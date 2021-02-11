@@ -3,22 +3,11 @@
       <span class="introword">Hi </span>
       <span class="introword">I'm </span>
       <span class="introword">Ryan.</span>
-      <span class="introword">I </span>
+      <!-- <span class="introword">I </span>
       <span class="introword">like </span>
       <span class="introword">to </span>
       <span class="introword">solve </span>
-      <span class="introword">problems. </span>
-         <!-- <span class="introword" style="padding: 0 0 0 3px;">p</span>
-         <span class="introword" style="padding: 0;">r</span>
-         <span class="introword" style="padding: 0;">o</span>
-         <span class="introword" style="padding: 0;">b</span>
-         <span class="introword" style="padding: 0;">l</span>
-         <span class="introword" style="padding: 0;">e</span>
-         <span class="introword" style="padding: 0;">m</span>  
-         <span class="introword" style="padding: 0;">s</span>
-         <span class="introword" style="padding: 0;">.</span> -->
-      <!-- <span class="introword">and </span>
-      <span class="introword">learn. </span> -->
+      <span class="introword">problems. </span> -->
    </div>
 </template>
 
