@@ -34,7 +34,7 @@ export default {
       ringGeometry[4] = new THREE.CircleGeometry(20.125, 70);
       ringGeometry[5] = new THREE.CircleGeometry(36.531, 70);
 
-      const saturnRings = new THREE.CircleGeometry(1, 30);
+      const saturnRings = new THREE.TorusGeometry(1, 0.2, 2, 30);
 
       const sunGeometry = new THREE.SphereBufferGeometry(0.85, 25, 25);
       const mercuryGeometry = new THREE.SphereBufferGeometry(0.02, 15, 15);
