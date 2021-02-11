@@ -12,7 +12,7 @@
       <br>
       <!-- <span class="subword">asdfasdfasdf</span> -->
       <div id="subda">
-         <span class="subwordhomeIntro">Neptune and Uranus are too far away</span>
+         <span class="subwordhomeIntro">PS sun not to scale</span>
       </div>
    </div>
 </div>
@@ -33,7 +33,7 @@ export default {
             gsap.from(x[i], {duration: "random(4, 8)", opacity: 0, stagger: 6, ease: "slow"});
          }
       
-         gsap.from(y[0], {duration: 5, opacity: 0, delay: 3.5});
+         gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
    }
 }
 </script>
@@ -53,8 +53,8 @@ export default {
 }
 
 #subda {
-   padding-top: 15px;
-   font-size: 20px;
+   padding-top: 14px;
+   font-size: 18px;
 }
 
 @media screen and (max-height: 850px) {
