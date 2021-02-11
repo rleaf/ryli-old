@@ -25,6 +25,8 @@ export default {
    
    mounted() {
       
+         // subtextArray = ['PS sun not to scale', 'If ']
+
          const x = document.getElementsByClassName("introword");
          const y = document.getElementsByClassName("subwordhomeIntro");
       

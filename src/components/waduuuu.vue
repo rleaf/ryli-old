@@ -33,6 +33,8 @@ export default {
       ringGeometry[3] = new THREE.CircleGeometry(5.9, 70);
       ringGeometry[4] = new THREE.CircleGeometry(20.125, 70);
       ringGeometry[5] = new THREE.CircleGeometry(36.531, 70);
+      ringGeometry[6] = new THREE.CircleGeometry(73.16, 70);
+      ringGeometry[7] = new THREE.CircleGeometry(114.4, 70);
 
       const saturnRings = new THREE.TorusGeometry(1, 0.2, 2, 30);
 
@@ -43,6 +45,8 @@ export default {
       const marsGeometry = new THREE.SphereBufferGeometry(0.07, 15, 15);
       const jupiterGeometry = new THREE.SphereBufferGeometry(0.65, 15, 15);
       const saturnGeometry = new THREE.SphereBufferGeometry(0.55, 15, 15);
+      const uranusGeometry = new THREE.SphereBufferGeometry(0.55, 15, 15);
+      const neptuneGeometry = new THREE.SphereBufferGeometry(0.55, 15, 15);
 
       // Material
       const ringMaterial = new THREE.PointsMaterial({color: '#ffffff',size: 0.01});
@@ -53,6 +57,8 @@ export default {
       const marsMaterial = new THREE.PointsMaterial({color: '#7d4628', size: 0.01});
       const jupiterMaterial = new THREE.PointsMaterial({color: '#a6865a', size: 0.003});
       const saturnMaterial = new THREE.PointsMaterial({color: '#827b51', size: 0.003});
+      const uranusMaterial = new THREE.PointsMaterial({color: '#5f8696', size: 0.003});
+      const neptuneMaterial = new THREE.PointsMaterial({color: '#416687', size: 0.003});
 
       // Structures & Groups
       const mainGroup = new THREE.Group();
@@ -97,6 +103,18 @@ export default {
       saturnRingGroup.rotateZ(0.47);
       saturnGroup.add(saturnRingGroup);
       saturnRingGroup.position.set(36.531, 0, 0);
+
+      const uranusGroup = new THREE.Group();
+      const uranusPoints = new THREE.Points(uranusGeometry, uranusMaterial);
+      uranusPoints.rotateZ(1.7);
+      uranusGroup.add(uranusPoints);
+      uranusPoints.position.set(73.16, 0, 0);
+
+      const neptuneGroup = new THREE.Group();
+      const neptunePoints = new THREE.Points(neptuneGeometry, neptuneMaterial);
+      neptunePoints.rotateZ(0.49);
+      neptuneGroup.add(neptunePoints);
+      neptunePoints.position.set(114.4, 0, 0);
       
 
 
@@ -111,7 +129,7 @@ export default {
       }
 
 
-      mainGroup.add(sunPoints, mercuryGroup, venusGroup, earthGroup, marsGroup, jupiterGroup, saturnGroup);
+      mainGroup.add(sunPoints, mercuryGroup, venusGroup, earthGroup, marsGroup, jupiterGroup, saturnGroup, neptuneGroup, uranusGroup);
       mainGroup.rotateX(0.41);
 
       scene.add(mainGroup);
@@ -139,6 +157,12 @@ export default {
 
          saturnGroup.rotateOnAxis(yAxis, 0.00003);
          saturnRingGroup.rotateOnAxis(yAxis, 0.018);
+
+         uranusGroup.rotateOnAxis(yAxis, 0.000015);
+         uranusPoints.rotateOnAxis(yAxis, 0.005);
+
+         neptuneGroup.rotateOnAxis(yAxis, 0.00000765);
+         neptunePoints.rotateOnAxis(yAxis, 0.005);
 
          requestAnimationFrame(animate);
          renderer.render(scene, camera);
