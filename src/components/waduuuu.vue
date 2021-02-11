@@ -26,26 +26,31 @@ export default {
 
       // Geometry
       const ringGeometry = [];
-      let circleRad = 1.5;
 
-      for (let i = 0; i < 8; i++) {
-         ringGeometry[i] = new THREE.CircleGeometry(circleRad, 100);
-         circleRad = circleRad + 1.3;
-      }
+      ringGeometry[0] = new THREE.CircleGeometry(1.5, 100);
+      ringGeometry[1] = new THREE.CircleGeometry(2.8, 100);
+      ringGeometry[2] = new THREE.CircleGeometry(3.8, 100);
+      ringGeometry[3] = new THREE.CircleGeometry(5.9, 100);
+      ringGeometry[4] = new THREE.CircleGeometry(20.125, 100);
+      ringGeometry[5] = new THREE.CircleGeometry(36.531, 100);
 
       const sunGeometry = new THREE.SphereBufferGeometry(0.8, 25, 25);
       const mercuryGeometry = new THREE.SphereBufferGeometry(0.05, 15, 15);
       const venusGeometry = new THREE.SphereBufferGeometry(0.05, 15, 15);
-      const marsGeometry = new THREE.SphereBufferGeometry(0.07, 15, 15);
       const earthGeometry = new THREE.SphereBufferGeometry(0.06, 15, 15);
+      const marsGeometry = new THREE.SphereBufferGeometry(0.07, 15, 15);
+      const jupiterGeometry = new THREE.SphereBufferGeometry(0.23, 15, 15);
+      const saturnGeometry = new THREE.SphereBufferGeometry(0.23, 15, 15);
 
       // Material
       const ringMaterial = new THREE.PointsMaterial({color: '#ffffff',size: 0.01});
       const sunMaterial = new THREE.PointsMaterial({color: '#d3c124', size: 0.015});
-      const mercuryMaterial = new THREE.PointsMaterial({color: '#82481b', size: 0.002});
-      const venusMaterial = new THREE.PointsMaterial({color: '#826b35', size: 0.002});
-      const marsMaterial = new THREE.PointsMaterial({color: '#7d4628', size: 0.02});
-      const earthMaterial = new THREE.PointsMaterial({color: '#3750e0', size: 0.003});
+      const mercuryMaterial = new THREE.PointsMaterial({color: '#82481b', size: 0.001});
+      const venusMaterial = new THREE.PointsMaterial({color: '#826b35', size: 0.001});
+      const earthMaterial = new THREE.PointsMaterial({color: '#3750e0', size: 0.001});
+      const marsMaterial = new THREE.PointsMaterial({color: '#7d4628', size: 0.01});
+      const jupiterMaterial = new THREE.PointsMaterial({color: '#a6865a', size: 0.003});
+      const saturnMaterial = new THREE.PointsMaterial({color: '#827b51', size: 0.003});
 
       // Structures & Groups
       const mainGroup = new THREE.Group();
@@ -65,12 +70,22 @@ export default {
       const earthGroup = new THREE.Group();
       const earthPoints = new THREE.Points(earthGeometry, earthMaterial);
       earthGroup.add(earthPoints);
-      earthPoints.position.set(4.1, 0, 0);
+      earthPoints.position.set(3.8, 0, 0);
 
       const marsGroup = new THREE.Group();
       const marsPoints = new THREE.Points(marsGeometry, marsMaterial);
       marsGroup.add(marsPoints);
-      marsPoints.position.set(5.4, 0, 0);
+      marsPoints.position.set(5.9, 0, 0);
+
+      const jupiterGroup = new THREE.Group();
+      const jupiterPoints = new THREE.Points(jupiterGeometry, jupiterMaterial);
+      jupiterGroup.add(jupiterPoints);
+      jupiterPoints.position.set(20.125, 0, 0);
+
+      const saturnGroup = new THREE.Group();
+      const saturnPoints = new THREE.Points(saturnGeometry, saturnMaterial);
+      saturnGroup.add(saturnPoints);
+      saturnPoints.position.set(36.531, 0, 0);
 
       const ringPoints = [];
       for (let i = 0; i < ringGeometry.length; i++) {
@@ -83,7 +98,7 @@ export default {
       }
 
 
-      mainGroup.add(sunPoints, mercuryGroup, venusGroup, earthGroup, marsGroup);
+      mainGroup.add(sunPoints, mercuryGroup, venusGroup, earthGroup, marsGroup, jupiterGroup, saturnGroup);
       mainGroup.rotateX(0.41);
 
       scene.add(mainGroup);
@@ -95,17 +110,23 @@ export default {
 
          mainGroup.rotateOnWorldAxis(yAxis, speed);
 
-         mercuryGroup.rotateOnAxis(yAxis, speed);
+         mercuryGroup.rotateOnAxis(yAxis, 0.004);
          mercuryPoints.rotateOnAxis(yAxis, earthRotation);
 
-         venusGroup.rotateOnAxis(yAxis, speed);
+         venusGroup.rotateOnAxis(yAxis, 0.0016);
          venusPoints.rotateOnAxis(yAxis, earthRotation);
 
-         earthGroup.rotateOnAxis(yAxis, 0.0009);
+         earthGroup.rotateOnAxis(yAxis, 0.001);
          earthPoints.rotateOnAxis(yAxis, earthRotation);
 
-         marsGroup.rotateOnAxis(yAxis, 0.001);
+         marsGroup.rotateOnAxis(yAxis, 0.00056);
          marsPoints.rotateOnAxis(yAxis, earthRotation);
+
+         jupiterGroup.rotateOnAxis(yAxis, 0.00008);
+         jupiterPoints.rotateOnAxis(yAxis, earthRotation);
+
+         saturnGroup.rotateOnAxis(yAxis, 0.00003);
+         saturnPoints.rotateOnAxis(yAxis, earthRotation);
 
          requestAnimationFrame(animate);
          renderer.render(scene, camera);
