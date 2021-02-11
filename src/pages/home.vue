@@ -1,7 +1,7 @@
 <template>
 <div id="origin">
    <div id="canvas">
-      <waduuuu />
+      <wadu />
    </div>
   <div id="landing">
       <NavBar />
@@ -19,19 +19,15 @@
 
 <script>
    import NavBar from '../components/nav.vue'
-   // import portfolioSkeleton from '../components/portfolioSkeleton.vue'
    import homeIntro from '../components/homeIntro.vue'
-   // import Grain from '../components/grain.vue'
-   import waduuuu from '../components/waduuuu.vue'
+   import wadu from '../components/waduuuu.vue'
 
    export default {
       name: 'home',
       components: {
          NavBar,
-         // portfolioSkeleton,
          homeIntro,
-         waduuuu
-         // Grain
+         wadu
       },
    }
 
