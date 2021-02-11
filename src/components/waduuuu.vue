@@ -27,12 +27,12 @@ export default {
       // Geometry
       const ringGeometry = [];
 
-      ringGeometry[0] = new THREE.CircleGeometry(1.5, 100);
-      ringGeometry[1] = new THREE.CircleGeometry(2.8, 100);
-      ringGeometry[2] = new THREE.CircleGeometry(3.8, 100);
-      ringGeometry[3] = new THREE.CircleGeometry(5.9, 100);
-      ringGeometry[4] = new THREE.CircleGeometry(20.125, 100);
-      ringGeometry[5] = new THREE.CircleGeometry(36.531, 100);
+      ringGeometry[0] = new THREE.CircleGeometry(1.5, 70);
+      ringGeometry[1] = new THREE.CircleGeometry(2.8, 70);
+      ringGeometry[2] = new THREE.CircleGeometry(3.8, 70);
+      ringGeometry[3] = new THREE.CircleGeometry(5.9, 70);
+      ringGeometry[4] = new THREE.CircleGeometry(20.125, 70);
+      ringGeometry[5] = new THREE.CircleGeometry(36.531, 70);
 
       const sunGeometry = new THREE.SphereBufferGeometry(0.8, 25, 25);
       const mercuryGeometry = new THREE.SphereBufferGeometry(0.05, 15, 15);
@@ -45,7 +45,7 @@ export default {
       // Material
       const ringMaterial = new THREE.PointsMaterial({color: '#ffffff',size: 0.01});
       const sunMaterial = new THREE.PointsMaterial({color: '#d3c124', size: 0.015});
-      const mercuryMaterial = new THREE.PointsMaterial({color: '#82481b', size: 0.001});
+      const mercuryMaterial = new THREE.PointsMaterial({color: '#636363', size: 0.001});
       const venusMaterial = new THREE.PointsMaterial({color: '#826b35', size: 0.001});
       const earthMaterial = new THREE.PointsMaterial({color: '#3750e0', size: 0.001});
       const marsMaterial = new THREE.PointsMaterial({color: '#7d4628', size: 0.01});

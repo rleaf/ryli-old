@@ -1,19 +1,21 @@
 <template>
+<div id="syntax">
    <div id="landingintro">
       <span class="introword">Hi </span>
       <span class="introword">I'm </span>
-      <span class="introword">Ryan.</span>
+      <span class="introword">Ryan</span>
       <!-- <span class="introword">I </span>
       <span class="introword">like </span>
       <span class="introword">to </span>
       <span class="introword">solve </span>
       <span class="introword">problems. </span> -->
-      <!-- <br>
-      <span class="subword">asdfasdfasdf</span> -->
-      <div id="sub">
-         <span class="subword">Neptune and Uranus are too far away</span>
+      <br>
+      <!-- <span class="subword">asdfasdfasdf</span> -->
+      <div id="subda">
+         <span class="subwordhomeIntro">Neptune and Uranus are too far away</span>
       </div>
    </div>
+</div>
 </template>
 
 <script>
@@ -24,14 +26,14 @@ export default {
    mounted() {
       
          const x = document.getElementsByClassName("introword");
-         const y = document.getElementsByClassName("subword");
+         const y = document.getElementsByClassName("subwordhomeIntro");
       
          for (let i = 0; i < x.length; i++) {
             gsap.from(x[i], {duration: "random(3, 5)", y: 120});
             gsap.from(x[i], {duration: "random(4, 8)", opacity: 0, stagger: 6, ease: "slow"});
          }
       
-         gsap.from(y[0], {duration: 3, opacity: 0, delay: 5});
+         gsap.from(y[0], {duration: 5, opacity: 0, delay: 3.5});
    }
 }
 </script>
@@ -47,10 +49,11 @@ export default {
    text-align: center;
    line-height: normal;
    margin-top: 18vh;
+   position: relative;
 }
 
-#sub {
-   padding-top: 10px;
+#subda {
+   padding-top: 15px;
    font-size: 20px;
 }
 
@@ -60,13 +63,7 @@ export default {
    }
 }
 
-.introword {
-   display: inline-block;
-   white-space: nowrap;
-   visibility: inherit;
-   padding: 0 4px;
-}
-.subword {
+.introword, .subwordhomeIntro {
    display: inline-block;
    white-space: nowrap;
    visibility: inherit;

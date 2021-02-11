@@ -7,8 +7,6 @@
       <NavBar />
       <div id="portfolio">
          <homeIntro />
-         <!-- <portfolioSkeleton /> -->
-         <!-- <Grain/> -->
       </div>
       <div id="homefooter">
          <a href="https://youtu.be/wupToqz1e2g" target="_blank">Made by Ryan Lin</a>
