@@ -135,10 +135,11 @@ export default {
       scene.add(mainGroup);
 
       function animate() {
-         const speed = 0.0005;
+         // const speed = 0.0005;
          const yAxis = new THREE.Vector3(0, 1, 0).normalize();
 
-         mainGroup.rotateOnWorldAxis(yAxis, speed);
+         mainGroup.rotateOnWorldAxis(yAxis, 0.0004);
+         mainGroup.rotateOnAxis(yAxis, .00002);
 
          mercuryGroup.rotateOnAxis(yAxis, 0.004);
          mercuryPoints.rotateOnAxis(yAxis, 0.008);

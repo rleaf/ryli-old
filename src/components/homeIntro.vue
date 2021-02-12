@@ -12,7 +12,7 @@
       <br>
       <!-- <span class="subword">asdfasdfasdf</span> -->
       <div id="subda">
-         <span class="subwordhomeIntro">PS sun not to scale</span>
+         <span class="subwordhomeIntro">PS Sun not to scale</span>
       </div>
    </div>
 </div>
