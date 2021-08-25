@@ -2,9 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../pages/home.vue'
 import CurriculumVitae from '../pages/curriculum.vue'
+import wipLink from '../pages/wip.vue'
 import contact from '../pages/contact.vue'
 import sketches from '../pages/sketches.vue'
 import designLink from '../pages/design.vue'
+import speakLink from '../pages/cms.vue'
+
 import portfolioLink from '../pages/portfolioObjects/portfolioObject.vue'
 import expanseLink from '../pages/portfolioObjects/expanseObject.vue'
 import tubeLink from '../pages/portfolioObjects/tubeObject.vue'
@@ -30,6 +33,11 @@ const routes = [
     path: '/cv',
     name: 'curriculumvitae',
     component: CurriculumVitae
+  },
+  {
+    path: '/wip',
+    name: 'wip',
+    component: wipLink
   },
   {
     path: '/contact',
@@ -95,6 +103,11 @@ const routes = [
     path: '/design',
     name: 'design',
     component: designLink
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: speakLink
   },
   {
     path: '/*',

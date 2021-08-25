@@ -1,7 +1,9 @@
 <template>
    <div class="landing">
+      <NavBar />
       <h1><span style="font-size: 40px; padding-bottom: 50px;">wip</span></h1>
-      <p>Ryan &#8226; Owl#4626</p>
+      <p>Ryan</p>
+      <!-- &#8226; Owl#4626 -->
       <br>
       -
       <br>
@@ -10,8 +12,14 @@
 </template>
 
 <script>
-export default {
 
+import NavBar from '../components/nav.vue'
+
+export default {
+   name: 'wip',
+   components: {
+      NavBar
+   }
 }
 </script>
 

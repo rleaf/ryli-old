@@ -22,6 +22,9 @@
                   <span class="emailnotif" style="position: absolute; overflow-wrap: normal;">Copied to clipboard!</span>
                </span>
             </router-link>
+            <router-link to='blog' class="underline">
+               <li>Blog</li>
+            </router-link>
             <router-link to='sketches' class="underline">
                <li>Sketches +</li>
             </router-link>
