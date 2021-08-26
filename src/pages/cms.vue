@@ -7,11 +7,14 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place to record my thoughts.</p>
+         <p>A place for talking.</p>
          <div id="curriculumBody">
-            <li v-for='blog in blogs' :key="blog.id">
-               <a href="http://www.google.com">{{ blog.name }}</a>
+            <li v-for='(blog, index) in blogs' :key="blog.id">
+               <a :href="links[index]">{{ blog.name }}</a>
             </li>
+            <!-- <a href="https://www.google.com"><li>{{ blogs[0].name }}</li></a>
+            <a href="https://www.youtube.com"><li>{{ blogs[1].name }}</li></a> -->
+
             <!-- <li v-for='blog in blogs' :key="blog.id">
                <a href="http://www.google.com">{{ blog.name }}</a>
             </li> -->
@@ -32,6 +35,7 @@
    import NavBar from '../components/nav.vue'
    import axios from 'axios'
 
+
 export default {
    name: 'speak',
    components: {
@@ -39,6 +43,7 @@ export default {
    },
    data () {
       return {
+         links: ['blogskeleton', 'https://www.microsoft.com'],
          blogs: [],
          error: null
       }
@@ -47,7 +52,6 @@ export default {
       try {
          const response = await axios.get('http://localhost:1337/blogs')
          this.blogs = response.data
-         console.log(response);
       } catch (error) {
          this.error = error;
       }
@@ -56,6 +60,10 @@ export default {
 </script>
 
 <style scoped>
+
+#curriculumBody {
+   width: 700px;
+}
 
 #curriculumBody > a, li {
    padding: 10px 0 10px 0;

@@ -18,6 +18,7 @@ import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
 import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
 import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
 import signLink from '../pages/portfolioObjects/signObject.vue'
+import blogskeletonLink from '../components/blog/skeleton.vue' 
 
 
 
@@ -108,6 +109,11 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: speakLink
+  },
+  {
+    path: '/blogskeleton',
+    name: 'blogskeleton',
+    component: blogskeletonLink
   },
   {
     path: '/*',
