@@ -19,7 +19,7 @@
          <div id="curriculumBody">
             <div>
                <div id="curriculumHeader">
-                  <u style="font-size: 18px;">Background & Skills</u>
+                  <u style="font-size: 18px;">Resume</u>
                </div>
                <div  style="padding-bottom: 0;">
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
@@ -64,6 +64,7 @@
                         <ul>
                            <li style="list-style-type: none; font-size: 14px;"><i>Have worked with: </i></li>
                         <ul>
+                           <li>Pytorch</li>
                            <li>Pandas</li>
                            <li>Scikit-learn</li>
                            <li>NumPy</li>
