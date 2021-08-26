@@ -7,25 +7,17 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking.</p>
+         <p>A place for talking. <i>(In the works 8/26/21)</i></p>
          <div id="curriculumBody">
-            <li v-for='(blog, index) in blogs' :key="blog.id">
+            <router-link to="blogskeleton">
+               <!-- Hide Skeleton for production -->
+               <!-- <li>Skeleton</li> -->
+            </router-link>
+            <!------------ Code to pull blog titles from Strapi -->
+            <!-- <li v-for='(blog, index) in blogs' :key="blog.id">
                <a :href="links[index]">{{ blog.name }}</a>
-            </li>
-            <!-- <a href="https://www.google.com"><li>{{ blogs[0].name }}</li></a>
-            <a href="https://www.youtube.com"><li>{{ blogs[1].name }}</li></a> -->
-
-            <!-- <li v-for='blog in blogs' :key="blog.id">
-               <a href="http://www.google.com">{{ blog.name }}</a>
             </li> -->
          </div>
-      <!-- <li v-for="restaurant in restaurants" :key="restaurant.id">
-        {{ restaurant.name }}
-        {{ restaurant.description }}
-        <br>
-        
-      </li> -->
-      
 
      </div>
   </div> 
@@ -33,7 +25,7 @@
 
 <script>
    import NavBar from '../components/nav.vue'
-   import axios from 'axios'
+   // import axios from 'axios'
 
 
 export default {
@@ -41,21 +33,22 @@ export default {
    components: {
       NavBar
    },
-   data () {
-      return {
-         links: ['blogskeleton', 'https://www.microsoft.com'],
-         blogs: [],
-         error: null
-      }
-   },
-   async mounted () {
-      try {
-         const response = await axios.get('http://localhost:1337/blogs')
-         this.blogs = response.data
-      } catch (error) {
-         this.error = error;
-      }
-   }
+   /* Code for Strapi if I decide to use it */
+   // data () {
+   //    return {
+   //       links: ['blogskeleton', 'https://www.microsoft.com'],
+   //       blogs: [],
+   //       error: null
+   //    }
+   // },
+   // async mounted () {
+   //    try {
+   //       const response = await axios.get('http://localhost:1337/blogs')
+   //       this.blogs = response.data
+   //    } catch (error) {
+   //       this.error = error;
+   //    }
+   // }
 }
 </script>
 
