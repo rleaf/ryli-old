@@ -2,8 +2,8 @@
   <div id="linkhover"> 
       Hello my name is Ryan Lin. This site is intended to provide a synopsis of what I enjoy doing and who I am.
       Amongst what is already mentioned below, I also enjoy
-      <a href='https://www.youtube.com/channel/UCe8X-Ib4hEc7keoBQ7cMdmA' target='_blank'><i>power / olympic lifting</i></a>,
-      <a href='https://www.instagram.com/rylikefood/' target='_blank'><i>eating / cooking</i></a>, and playing games. 
+      <a href='https://www.youtube.com/channel/UCe8X-Ib4hEc7keoBQ7cMdmA' target='_blank'><u><i>power / olympic lifting</i></u></a>,
+      <a href='https://www.instagram.com/rylikefood/' target='_blank'><u><i>eating / cooking</i></u></a>, and playing games. 
       Extraneous to design, I spend a lot of my extra time learning more about code and machine learning.
       <br>
       <br>
