@@ -11,7 +11,7 @@
          <div id="curriculumBody">
             <router-link to="blogskeleton">
                <!-- Hide Skeleton for production -->
-               <!-- <li>Skeleton</li> -->
+               <li>Skeleton</li>
             </router-link>
             <!------------ Code to pull blog titles from Strapi -->
             <!-- <li v-for='(blog, index) in blogs' :key="blog.id">

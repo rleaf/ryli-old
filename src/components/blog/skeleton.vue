@@ -12,6 +12,9 @@
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
+            <vue-mathjax :formula='formula'></vue-mathjax>
+            <!-- <math-jax :latex="formula" />
+            <math-jax :latex="formula" :block="true" /> -->
             <p>The quick brown fox jumps over the lazy dog.</p>
             <!-- <p>{{ blogs[0].description }}</p> -->
          </div>
@@ -19,27 +22,42 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import NavBar from '../nav.vue'
+import { VueMathjax } from 'vue-mathjax'
+// import { MathJax } from 'mathjax-vue'
+
+
 
 export default {
    name: 'blogskeleton',
    components: {
-      NavBar
+      NavBar,
+      'vue-mathjax': VueMathjax
+      // MathJax
    },
    data() {
       return {
          blogs: [],
-         error: null
+         error: null,
+         formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$'
       }
    },
    async mounted () {
-      try {
-         const response = await axios.get('http://localhost:1337/blogs')
-         this.blogs = response.data
-      } catch (error) {
-         this.error = error;
-      }
+
+      let mathjaxScript = document.createElement('script')
+      // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js')
+      mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
+      document.head.appendChild(mathjaxScript)
+
+      // try {
+      //    const response = await axios.get('http://localhost:1337/blogs')
+      //    this.blogs = response.data
+      // } catch (error) {
+      //    this.error = error;
+      // }
+
+
    } 
 
 }
