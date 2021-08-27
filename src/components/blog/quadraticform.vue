@@ -34,7 +34,7 @@
             <vue-mathjax :formula='formula2' id="quadraticformula"></vue-mathjax>
             <p>Once represented</p>
             <vue-mathjax :formula='formula3' id="quadraticformula"></vue-mathjax>
-            <!-- <p>{{ blogs[0].description }}</p> -->
+            <p>{{ blogs[0].description }}</p>
          </div>
    </div>
 </template>
@@ -119,8 +119,4 @@ a {
    font-size: 28px;
 }
 
-#quadraticformula {
-   /* padding-top: 15px;
-   padding-bottom: 15px; */
-}
 </style>
