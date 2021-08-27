@@ -18,7 +18,8 @@ import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
 import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
 import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
 import signLink from '../pages/portfolioObjects/signObject.vue'
-import blogskeletonLink from '../components/blog/skeleton.vue' 
+import blogskeletonLink from '../components/blog/skeleton.vue'
+import blogQuadraticFormLink from '../components/blog/quadraticform.vue' 
 
 
 
@@ -114,6 +115,11 @@ const routes = [
     path: '/blogskeleton',
     name: 'blogskeleton',
     component: blogskeletonLink
+  },
+  {
+    path: '/quadraticform',
+    name: 'quadraticform',
+    component: blogQuadraticFormLink
   },
   {
     path: '/*',

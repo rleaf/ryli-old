@@ -13,6 +13,9 @@
                <!-- Hide Skeleton for production -->
                <li>Skeleton</li>
             </router-link>
+            <router-link to="quadraticform">
+               <li>Learning to find the derivative of the quadratic form</li>
+            </router-link>
             <!------------ Code to pull blog titles from Strapi -->
             <!-- <li v-for='(blog, index) in blogs' :key="blog.id">
                <a :href="links[index]">{{ blog.name }}</a>
