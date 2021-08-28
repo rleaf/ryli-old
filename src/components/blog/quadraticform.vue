@@ -238,13 +238,24 @@ export default {
                              \\end{equation}
                              $$`,                             
          frechetComparisonNotSym: `$$\\begin{equation}
-                               \\begin{aligned}
-                               f({\\bf x}) = {\\bf x^\\top Ax} \\\\
-                               A\\bf h = x^\\top Ah+x^\\top A^\\top h \\\\
-                               o(h) = {\\bf h^\\top Ah}
-                               \\end{aligned}
-                               \\end{equation}
-                               $$`,
+                                     \\begin{aligned}
+                                     f({\\bf x}) = {\\bf x^\\top Ax} \\\\
+                                     \\end{aligned}
+                                     \\end{equation}
+                                     $$
+                                     $$\\begin{equation}
+                                     \\begin{aligned}
+                                     A\\bf h = x^\\top Ah+x^\\top A^\\top h \\\\
+                                     \\end{aligned}
+                                     \\end{equation}
+                                     $$
+                                     $$
+                                     \\begin{equation}
+                                     \\begin{aligned}
+                                     o(h) = {\\bf h^\\top Ah}
+                                     \\end{aligned}
+                                     \\end{equation}
+                                     $$`,
          frechetComparison: `$$\\begin{equation}
                                \\begin{aligned}
                                f({\\bf x}) = {\\bf x^\\top Ax} \\\\
