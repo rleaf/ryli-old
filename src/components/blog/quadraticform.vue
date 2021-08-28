@@ -174,7 +174,6 @@
 // import axios from 'axios'
 import NavBar from '../nav.vue'
 import { VueMathjax } from 'vue-mathjax'
-// import { MathJax } from 'mathjax-vue'
 
 
 
@@ -391,7 +390,7 @@ export default {
       // }
 
 
-   } 
+   },
 
 }
 </script>
