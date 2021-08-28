@@ -7,11 +7,11 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking. <i>(In the works 8/26/21)</i></p>
+         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai and the things in between. <i>(In the works 8/26/21)</i></p>
          <div id="curriculumBody">
             <router-link to="blogskeleton">
                <!-- Hide Skeleton for production -->
-               <li>Skeleton</li>
+               <!-- <li>Skeleton</li> -->
             </router-link>
             <router-link to="quadraticform">
                <li>Learning to find the derivative of the quadratic form</li>
