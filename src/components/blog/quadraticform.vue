@@ -71,6 +71,7 @@
                <h2>Row Vector Format:</h2>
                <vue-mathjax :formula='rowVector'></vue-mathjax>
                <br>
+               <br>
             <div id="blogSubHeader">
                2) The Fréchet, Gateaux, and everything else.
             </div>
