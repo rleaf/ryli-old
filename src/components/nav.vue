@@ -18,7 +18,7 @@
             <router-link to='' class="underline">
                <span @click="emailnotif">
                   <li>Contact</li>
-                  <input value="rlin.leaf@gmail.com" class="email" style="opacity: 0; visibility: 0; z-index: -999; position: absolute;">
+                  <input value="ryanurquhartlin@gmail.com" class="email" style="opacity: 0; visibility: 0; z-index: -999; position: absolute;">
                   <span class="emailnotif" style="position: absolute; overflow-wrap: normal;">Copied to clipboard!</span>
                </span>
             </router-link>
