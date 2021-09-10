@@ -21,7 +21,7 @@
                a training set accompanied with labels. There is the very similar <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#k-NN_regression" target="_blank">kNN Regression</a>, which employs the
                same idea, just different task. Throughout this explanation, I'm going to be sprinkling in print statements in code blocks represented with triple angle brackets: <i>>>></i>. The next section <i>"What is kNN / How does kNN work"</i>
                assumes the reader has no prior understanding of kNN. The sections following, <i>"Loading CIFAR"</i> and beyond, assumes the reader to have basic understanding of Python, PyTorch, and Linear Algebra. If you aren't familiar with
-               these concepts but have read the <i>"What is kNN / How does kNN work"</i> section, then you should be good. I will try and toss in some explanations in <span style="color: #81A1C1;">blue</span> for important things.
+               these concepts but have read the <i>"What is kNN / How does kNN work"</i> section, then you may still be good. I will toss in some explanations in <span style="color: #81A1C1;">blue</span> for important things.
             </p>
             <div id="blogSubHeader">
                <!-- kNN Step 1: Qualify and Quantify the similarities -->
@@ -106,7 +106,7 @@
             </div>
             <p>
                Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I did what's called subsampling. Subsampling enables taking a
-               smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. Looking back at the chunk of code with
+               smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. We subsample by looking back at the definition of
                <code style="background: #242424; border-radius: 5px;">cifar10()</code>, there are two keyword aruments present in it's declaration <code style="background: #242424; border-radius: 5px;">num_train</code> and
                <code style="background: #242424; border-radius: 5px;">num_test</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
                algorithm.
@@ -177,7 +177,7 @@ export default {
    print(y_train[0]) 
    # Finding integer label of corresponding 0th image
    # >>> tensor(6)
-   # Element 6 in list classes is a frog (which is correct)`,
+   # Element 6 in list classes is a frog (which is correct, just take my word for it)`,
          declaration:`
    x_train, y_train, x_test, y_test = cifar10()
 
