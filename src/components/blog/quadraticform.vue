@@ -406,6 +406,11 @@ export default {
    text-align: center;
 }
 
+#blogHeader {
+   padding-bottom: 20px;
+   font-size: 28px;
+}
+
 p {
    padding: 25px 7vw !important;
    line-height: 2;
@@ -422,11 +427,6 @@ h2 {
    padding-top: 10px;
    margin: 0;
    font-weight: 200;
-}
-
-#blogHeader {
-   padding-bottom: 20px;
-   font-size: 28px;
 }
 
 #blogSubHeader {

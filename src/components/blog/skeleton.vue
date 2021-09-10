@@ -100,4 +100,5 @@ export default {
    padding-bottom: 20px;
    font-size: 28px;
 }
+
 </style>

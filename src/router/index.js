@@ -19,7 +19,8 @@ import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
 import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
 import signLink from '../pages/portfolioObjects/signObject.vue'
 import blogskeletonLink from '../components/blog/skeleton.vue'
-import blogQuadraticFormLink from '../components/blog/quadraticform.vue' 
+import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
+import knn_cifarLink from '../components/blog/knn_cifar.vue'
 
 
 
@@ -120,6 +121,11 @@ const routes = [
     path: '/quadraticform',
     name: 'quadraticform',
     component: blogQuadraticFormLink
+  },
+  {
+    path: '/knn',
+    name: 'knn',
+    component: knn_cifarLink
   },
   {
     path: '/*',

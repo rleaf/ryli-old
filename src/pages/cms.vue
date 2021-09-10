@@ -9,6 +9,9 @@
          </div>
          <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai and the things in between. <i>(In the works 8/26/21)</i></p>
          <div id="curriculumBody">
+            <router-link to="knn">
+               <li>Implementing K Nearest Neighbors on CIFAR-10</li>
+            </router-link>
             <router-link to="blogskeleton">
                <!-- Hide Skeleton for production -->
                <!-- <li>Skeleton</li> -->
@@ -28,13 +31,14 @@
 
 <script>
    import NavBar from '../components/nav.vue'
+   
    // import axios from 'axios'
 
 
 export default {
    name: 'speak',
    components: {
-      NavBar
+      NavBar,
    },
    /* Code for Strapi if I decide to use it */
    // data () {
