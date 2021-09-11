@@ -360,7 +360,7 @@ export default {
                         \\end{aligned}
                         \\end{equation}$`,
          quadraticFormula: `$\\bf x^\\top Ax$`,
-         quadraticFormulaWithSpace: `$\\bf x^\\top Ax$ ; $x∈R^n , A∈R^{nxn}$`,
+         quadraticFormulaWithSpace: `$\\bf x^\\top Ax$ ; $\\bf x∈R^n , A∈R^{nxn}$`,
          formula2: `$\\begin{equation}
                      \\begin{aligned}
                      {\\bf x^\\top Ax} = \\sum\\limits_{j=1}^{n}\\sum\\limits_{i=1}^{n}x_jx_iA_{ji} = \\sum\\limits_{j=1}^{n}x_j\\sum\\limits_{i=1}^{n}x_iA_{ji}
@@ -377,6 +377,15 @@ export default {
       }
    },
    async mounted () {
+      
+      window.MathJax.Hub.Config({
+      tex2jax: {
+         inlineMath: [['$','$']],
+         displayMath: [['$$', '$$'], ['[', ']']],
+         processEscapes: true,
+         processEnvironments: true
+      }
+      });
 
       // let mathjaxScript = document.createElement('script')
       // // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js')

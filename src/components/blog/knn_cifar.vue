@@ -116,7 +116,35 @@
          {{ subsample }}
                </pre>
             </code-highlight>
-         
+            <div id="blogSubHeader">
+               The actual part with kNN
+            </div>
+            <br>
+            <h2><u>Finding Euclidean distance</u></h2>
+            <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
+               <code style="background: #242424; border-radius: 5px;">for</code> loops to populate
+               our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> (declared below) where each loop will iterate over a unique axis. This method is not computationally efficient as it does not make use
+               of Linear Algebra operations and broadcasting. However, where it lacks in efficiency, it makes up for in intuition from a pedogogical standpoint. Because of this, I'm going over it first.
+               <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
+               <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
+            </p>
+            <code-highlight language="python">
+               <pre>
+         {{ nested_for_loops }}
+               </pre>
+            </code-highlight>
+            <p>
+               As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a rank 4 tensor as [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
+               It is important to notice that prior to our loop, we flatten the tensors <span style="color: #81A1C1;">(reduce dimensionality)</span>. <code style="background: #242424; border-radius: 5px;">
+               <a href="https://pytorch.org/docs/stable/generated/torch.flatten.html" target="_blank">torch.flatten</a></code> is a function worth mentioning as it is an alternative means to flatten without doing the gymnastics I did.
+               I emphasize flattening because it transforms our before [500, 3, 32, 32] training image tensor into a [500, 3072] tensor. Now you can think of our reshaped tensor as a matrix where each row houses every single
+               pixel value (3x32x32) of every training image. We repeat the same to the test images yielding a [250, 3072] tensor. The purpose of flattening can be thought of as the final preprocessing step before we evaluate anything with our data.
+               We are further simplifying our data to make it easier to implement in a kNN.
+               <br>
+               <br>
+               The first <code style="background: #242424; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the two
+               and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor.
+            </p>
          </div>
    </div>
 </template>
@@ -147,6 +175,47 @@ export default {
          knn_train: require('../../assets/blog/knn_train.webm'),
          feature_map: require('../../assets/blog/featuremap.webm'),
          euclidean: `$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}}$`,
+         nested_for_loops:`
+   def compute_distances_two_loops(x_train, x_test):
+      """
+      Inputs:
+      - x_train: Torch tensor of shape (num_train, D1, D2, ...)
+      - x_test: Torch tensor of shape (num_test, D1, D2, ...)
+
+      Returns:
+      - dists: Torch tensor of shape (num_train, num_test) where dists[j, i] is the
+      squared Euclidean distance between the ith training point and the jth test
+      point. It should have the same dtype as x_train.
+      """
+
+      # Get the number of training and testing images
+      num_train = x_train.shape[0]
+      num_test = x_test.shape[0]
+
+      # dists will be the tensor housing all distance measurements between testing and training
+      dists = x_train.new_zeros(num_train, num_test)
+      # >>> dists shape: torch.Size([500, 250])
+
+      # Flatten tensors
+      train = x_train.view(num_train, x_train[1].view(1, -1).shape[1])
+      # >>> train shape: torch.Size([500, 3072])
+      test = x_test.view(num_test, x_test[1].view(1, -1).shape[1])
+      # >>> test shape: torch.Size([250, 3072])
+
+      for i in range(num_test):
+         for j in range(num_train):
+            dists[j, i] = torch.sqrt(torch.sum(torch.square(train[j] - test[i])))
+
+      return dists
+
+
+   torch.manual_seed(0)
+   num_train = 500
+   num_test = 250
+   x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
+
+   dists = compute_distances_two_loops(x_train, x_test)  
+   `,
          subsample:`
    # Subsample size
    num_train = 500
@@ -218,17 +287,16 @@ export default {
       return x_train, y_train, x_test, y_test`,
       }
    },
-   methods: {
-      // highlighter(code) {
-      //    return highlight(code, languages.js);
-      // }
-   },
    async mounted () {
-
-      let mathjaxScript = document.createElement('script')
-      mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-      document.head.appendChild(mathjaxScript)
-   } 
+      window.MathJax.Hub.Config({
+         tex2jax: {
+            inlineMath: [['$','$']],
+            displayMath: [['$$', '$$'], ['[', ']']],
+            processEscapes: true,
+            processEnvironments: true
+         }
+      });
+   }
 
 }
 </script>
