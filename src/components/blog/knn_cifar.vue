@@ -15,7 +15,7 @@
                <!-- <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">kNN</a> classification is (my definition) an algorithm that classifies inputs to their "k" majoritarily closest neighbors. -->
                The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. I'm going to say this again at the end, but feel free to get in touch with me if you have alternative
                ways of representing some of the code, irregardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/">UMichigan's
-               498/598 Deep Learning for Computer Vision</a> to support utilities such as visualization of kNN and importing from CIFAR.
+               498/598 Deep Learning for Computer Vision</a>.
                <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">CIFAR-10</a> is a well known dataset composed of 60,000
                colored 32x32 images. <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">kNN</a> classification is an algorithm to classify inputs by comparing their similarities to
                a training set accompanied with labels. There is the very similar <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#k-NN_regression" target="_blank">kNN Regression</a>, which employs the
@@ -123,7 +123,7 @@
             <h2><u>Finding Euclidean distance</u></h2>
             <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
                <code style="background: #242424; border-radius: 5px;">for</code> loops to populate
-               our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> (declared below) where each loop will iterate over a unique axis. This method is not computationally efficient as it does not make use
+               our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> where each loop will iterate over an axis to populate every element. This method is not computationally efficient as it does not make use
                of Linear Algebra operations and broadcasting. However, where it lacks in efficiency, it makes up for in intuition from a pedogogical standpoint. Because of this, I'm going over it first.
                <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
@@ -142,8 +142,32 @@
                We are further simplifying our data to make it easier to implement in a kNN.
                <br>
                <br>
-               The first <code style="background: #242424; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the two
-               and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor.
+               The first <code style="background: #242424; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the
+               <i>jth</i> training image and <i>ith</i> testing image two and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor in its respective position.
+            </p>
+            <p>
+               Without using functions like <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html">torch.cdist</a></code>, here is a more
+               optimal variation of finding the Euclidean distance that has no loops:
+            </p>
+            <code-highlight language="python">
+               <pre class="line-numbers">
+         {{ no_loops }}
+               </pre>
+            </code-highlight>
+            <p>
+               This procedure makes use of expanding the square in the Euclidean distance:
+               <br>
+               <br>
+               <vue-mathjax :formula='distributed_euclidean'></vue-mathjax>
+               <br>
+               On this no-loop version of computing the Euclidean, we are evaluating all arithmetic independently and then compiling everything together so that it represents the right hand side of the equality above.
+               Instead of going through element by element, we square the <code style="background: #242424; border-radius: 5px; color: #636f88;">train</code> and <code style="background: #242424; border-radius: 5px; color: #636f88;">test</code>
+               tensors immediately then take the sum of their rows as shown above below
+               <code style="background: #242424; border-radius: 5px; color: #636f88;">### Find Euclidean distance ###</code>. Then, the sum of <vue-mathjax :formula='midterm'></vue-mathjax> is evaluated through the matrix multiplication of the
+               <code style="background: #242424; border-radius: 5px; color: #636f88;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: #242424; border-radius: 5px; color: #636f88;">test</code> <i>[3072, 250]</i> tensors.
+               The convenience of this step is that matrix multiplication is doing both steps we did for <code style="background: #242424; border-radius: 5px; color: #636f88;">train_sum_sq</code> and
+               <code style="background: #242424; border-radius: 5px; color: #636f88;">test_sum_sq</code> in a single step. Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
+               store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>.
             </p>
          </div>
    </div>
@@ -155,14 +179,14 @@ import { VueMathjax } from 'vue-mathjax'
 import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
 
 import "vue-code-highlight/themes/prism-nord.css"
-// import "vue-code-highlight/themes/duotone-sea.css"
+// import "vue-code-highlight/themes/prism-duotone-space.css"
 import 'prism-es6/components/prism-markup-templating';
 import 'prism-es6/components/prism-python';
 
 
 
 export default {
-   name: 'blogskeleton',
+   name: 'knn_cifar',
    components: {
       NavBar,
       'vue-mathjax': VueMathjax,
@@ -170,11 +194,66 @@ export default {
    },
    data() {
       return {
+         lineNumbers: true,
          blogs: [],
          error: null,
          knn_train: require('../../assets/blog/knn_train.webm'),
          feature_map: require('../../assets/blog/featuremap.webm'),
          euclidean: `$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}}$`,
+         distributed_euclidean: `$$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}} =
+         \\sqrt{\\sum_{i=1}^{n}{x_i^2-2x_iy_i+y_i^2}}$$`,
+         midterm: `$x_iy_i$`,
+         no_loops: `
+   def compute_distances_no_loops(x_train, x_test):
+      """
+      Inputs:
+      - x_train: Torch tensor of shape (num_train, C, H, W)
+      - x_test: Torch tensor of shape (num_test, C, H, W)
+
+      Returns:
+      - dists: Torch tensor of shape (num_train, num_test) where dists[i, j] is the
+         squared Euclidean distance between the ith training point and the jth test
+         point.
+      """
+      # Get number of training and testing images
+      num_train = x_train.shape[0]
+      num_test = x_test.shape[0]
+
+      # Create return tensor with desired dimensions
+      dists = x_train.new_zeros(num_train, num_test)
+      # >>> dists shape: torch.Size([500, 250])
+
+      # Flattening tensors
+      train = x_train.view(num_train, x_train[1].view(1, -1).shape[1])
+      # >>> train shape: torch.Size([500, 3072])
+      test = x_test.view(num_test, x_test[1].view(1, -1).shape[1])
+      # >>> test shape: torch.Size([250, 3072])
+
+      ### Find Euclidean distance ###
+      # Squaring elements
+      train_sq = torch.square(train)
+      test_sq = torch.square(test)
+
+      # Summing row elements
+      train_sum_sq = torch.sum(train_sq, 1)
+      # >>> torch.Size([500])
+      test_sum_sq = torch.sum(test_sq, 1)
+      # >>> torch.Size([250])
+
+      # Matrix multiplying train tensor with the transpose of test tensor
+      mul = torch.matmul(train, test.transpose(0, 1))
+
+      # Reshape enables proper broadcasting, reshapes train to a [100, 1] column vector and test to a [1, 100] row vector.
+      # This enables broadcasting to match desired dimensions of dists
+      dists = torch.sqrt(train_sum_sq.reshape(-1, 1) + test_sum_sq.reshape(1, -1) - 2*mul)
+
+
+      return dists
+
+   ### Function call
+   x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
+   dists = compute_distances_no_loops(x_train, x_test) 
+      `,
          nested_for_loops:`
    def compute_distances_two_loops(x_train, x_test):
       """
@@ -190,7 +269,9 @@ export default {
 
       # Get the number of training and testing images
       num_train = x_train.shape[0]
+      # >>> 500
       num_test = x_test.shape[0]
+      # >>> 250
 
       # dists will be the tensor housing all distance measurements between testing and training
       dists = x_train.new_zeros(num_train, num_test)
@@ -202,18 +283,16 @@ export default {
       test = x_test.view(num_test, x_test[1].view(1, -1).shape[1])
       # >>> test shape: torch.Size([250, 3072])
 
+      ### Find Euclidean distance ###
       for i in range(num_test):
          for j in range(num_train):
             dists[j, i] = torch.sqrt(torch.sum(torch.square(train[j] - test[i])))
 
+
       return dists
 
-
-   torch.manual_seed(0)
-   num_train = 500
-   num_test = 250
+   ### Function call
    x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
-
    dists = compute_distances_two_loops(x_train, x_test)  
    `,
          subsample:`
@@ -291,7 +370,7 @@ export default {
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
-            displayMath: [['$$', '$$'], ['[', ']']],
+            displayMath: [['$$', '$$']],
             processEscapes: true,
             processEnvironments: true
          }
