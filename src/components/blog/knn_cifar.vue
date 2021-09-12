@@ -58,7 +58,7 @@
                The <i>k</i> in kNN is a integer parameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
                If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors of the same class. Some considerations when
                picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
-               not picking multiples of the number of classes. Below is a visualization for different values k.
+               not picking multiples of the number of classes. Below is a visualization for different values of k.
             </p>
             <br>
             <img src="../../assets/blog/knn.png" alt="">
@@ -105,7 +105,7 @@
                Subsampling
             </div>
             <p>
-               Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I did what's called subsampling. Subsampling enables taking a
+               Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I did what's called subsampling. Subsampling takes a
                smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. We subsample by looking back at the definition of
                <code style="background: #242424; border-radius: 5px;">cifar10()</code>, there are two keyword aruments present in it's declaration <code style="background: #242424; border-radius: 5px;">num_train</code> and
                <code style="background: #242424; border-radius: 5px;">num_test</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
@@ -175,7 +175,33 @@
                Our tensor of goodies is complete. Within each column of <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code> is the Euclidean distance of every training image with respect to a test image. We'd now like
                to have our algorithm find the k lowest values of the same class within each column and classify that test image in accordance with the label of those training images.
             </p>
-            <p>Hello, if you see this, then I'm currently in the process of finishing this :)</p>
+            <code-highlight language="python">
+               {{ classify }}
+            </code-highlight>
+            <p>
+               The goal is to return the rank 1 tensor <code style="background: #242424; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
+               of how the classification works on a <code style="background: #242424; border-radius: 5px;">dists</code> of size [5x3]. The algorithm finds the index of the <i>k</i> lowest Euclidean distances within each column. Then it corresponds
+               that index with the <code style="background: #242424; border-radius: 5px;">classes</code> list and stores those values in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. 
+               <code style="background: #242424; border-radius: 5px;">y_test_pred[i]</code> is then assigned the most frequent occuring label present in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. Once a column
+               calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next.
+            </p>
+            <video id="img800" autoplay loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
+            <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
+            <p>
+               We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our parameter k set to 5, our kNN results in a 27.8%
+               accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
+            </p>
+            <code-highlight language="python">
+               <pre>
+                  {{ running_kNN }}
+               </pre>
+            </code-highlight>
+            <div id="blogSubHeader">
+               Optimizing kNN: Cross Validation
+            </div>
+            <p>
+               toads
+            </p>
          </div>
    </div>
 </template>
@@ -205,11 +231,41 @@ export default {
          blogs: [],
          error: null,
          knn_train: require('../../assets/blog/knn_train.webm'),
-         feature_map: require('../../assets/blog/featuremap.webm'),
+         knn_classify: require('../../assets/blog/knn_classify.webm'),
          euclidean: `$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}}$`,
          distributed_euclidean: `$$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}} =
          \\sqrt{\\sum_{i=1}^{n}{x_i^2-2x_iy_i+y_i^2}}$$`,
          midterm: `$x_iy_i$`,
+         running_kNN: `
+   from knn import KnnClassifier
+
+   torch.manual_seed(0)
+   num_train = 5000
+   num_test = 500
+   x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
+
+   classifier = KnnClassifier(x_train, y_train)
+   classifier.check_accuracy(x_test, y_test, k=5)
+   # >>> Got 139 / 500 correct; accuracy is 27.80%
+   # >>> 27.8
+         `,
+         classify: `
+   # Create tensor to house all labels of test images
+   y_test_pred = torch.zeros(x_test.shape[0], dtype=torch.int64)
+
+   # Iterate through the columns of dists
+   for i in range(dists.shape[1]):
+      # Create list to store labels for k lowest values of ith column
+      k_lowest_labels = []
+      # Index over column elements to find the location (index) of k lowest values
+      x = torch.topk(dists[:,i], k, largest=False).indices
+      # Correspond each location to the respective label
+      k_lowest_labels = self.y_train[x[0:k]]
+
+      # Populate y_test_pred with the majority label in k_lowest_labels.
+      # If there is no majority, populates with the lowest value
+      y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))
+         `,
          no_loops: `
    def compute_distances_no_loops(x_train, x_test):
       """
