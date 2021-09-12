@@ -31,7 +31,7 @@
                I broadly defined kNN in the last paragraph. This section is going to be dedicated to explaining further what kNN classification does, and how it works. I'm going to be using images as an example
                dataset to aid my explanation of kNN. I will not be defining concepts such as cross-validation for optimal <i>k</i> and means of optimizing for more efficient code here. When moving on to the next section where we will use kNN on the CIFAR-10 dataset,
                I will explain those concepts. Throughout this read, I frequently use "test", "unlabeled", and "input" interchangeably to refer to the input for kNN. Feel free to skip this section if you're just interested in the code and implementation.
-               Feel free to also <i>only</i> read this section if you just want a synopsis of kNN.
+               Feel free to also <i>only</i> read this section if you just want a synopsis of kNN classification.
             </p>
             <p>
                The goal is <i>classification</i>. We have a dataset, images in our case, and unfortunately a portion of the images are <i>unlabeled</i>, they do not have an accompanying label which classifies them.
@@ -58,10 +58,10 @@
                The <i>k</i> in kNN is a integer parameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
                If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors of the same class. Some considerations when
                picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
-               not picking multiples of the number of classes.
-               <!-- The animation below is of what's called a feature map, a space where the test and training images exist within. The red sphere could be interpreted as a single test image and the blue spheres training images.
-               The Euclidean distance would be exactly the distance between two spheres, which the only ones we're interested in are the test points with respect to every single training point.  -->
+               not picking multiples of the number of classes. Below is a visualization for different values k.
             </p>
+            <br>
+            <img src="../../assets/blog/knn.png" alt="">
                <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
             <div id="blogSubHeader">
@@ -117,10 +117,9 @@
                </pre>
             </code-highlight>
             <div id="blogSubHeader">
-               The actual part with kNN
+               The actual part with kNN: Finding the Euclidean distance
             </div>
             <br>
-            <h2><u>Finding Euclidean distance</u></h2>
             <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
                <code style="background: #242424; border-radius: 5px;">for</code> loops to populate
                our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> where each loop will iterate over an axis to populate every element. This method is not computationally efficient as it does not make use
@@ -146,7 +145,7 @@
                <i>jth</i> training image and <i>ith</i> testing image two and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor in its respective position.
             </p>
             <p>
-               Without using functions like <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html">torch.cdist</a></code>, here is a more
+               Without using functions like <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, here is a more
                optimal variation of finding the Euclidean distance that has no loops:
             </p>
             <code-highlight language="python">
@@ -169,6 +168,14 @@
                <code style="background: #242424; border-radius: 5px; color: #636f88;">test_sum_sq</code> in a single step. Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
                store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>.
             </p>
+            <div id="blogSubHeader">
+               The actual part of kNN: Classifying our test images
+            </div>
+            <p>
+               Our tensor of goodies is complete. Within each column of <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code> is the Euclidean distance of every training image with respect to a test image. We'd now like
+               to have our algorithm find the k lowest values of the same class within each column and classify that test image in accordance with the label of those training images.
+            </p>
+            <p>Hello, if you see this, then I'm currently in the process of finishing this :)</p>
          </div>
    </div>
 </template>
