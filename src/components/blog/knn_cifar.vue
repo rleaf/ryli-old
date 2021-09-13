@@ -50,7 +50,7 @@
                is then summed and finally taken the square root of. To reiterate, we are taking 75 (total pixel count) differences, squaring each one, summing all that together, and then finally square rooting everything - for each test image
                for each training image. Then as I said before, the test image proceeds to the next training image. Once the test image completes finding it's Euclidean distance with every image in the
                training set, it steps aside for the proceeding test image to repeat the cycle. The distances, which are scalar values, are usually stored in a matrix/tensor.
-               It's worth mentioning, to expedite conveying the concept in the animation, I do not show the 5x5 green and blue pixel channels being iterated over
+               It's worth mentioning, in the animation I do not show the 5x5 green and blue pixel channels being iterated over
                like I did for the red channel; instead the green and blue layers are simplified with a "single blink".
                <br>
                <br>
