@@ -14,7 +14,7 @@
             <p>
                <!-- <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">kNN</a> classification is (my definition) an algorithm that classifies inputs to their "k" majoritarily closest neighbors. -->
                The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. I'm going to say this again at the end, but feel free to get in touch with me if you have alternative
-               ways of representing some of the code, irregardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/">UMichigan's
+               ways of representing some of the code, irregardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
                498/598 Deep Learning for Computer Vision</a>.
                <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">CIFAR-10</a> is a well known dataset composed of 60,000
                colored 32x32 images. <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">kNN</a> classification is an algorithm to classify inputs by comparing their similarities to
@@ -55,13 +55,14 @@
                <br>
                <br>
                We are almost understanding how kNN works. We understand how to qualify and quantify similarities between every test and training image and now want to classify those test images based off similarity to the training images.
-               The <i>k</i> in kNN is a integer parameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
+               The <i>k</i> in kNN is a integer hyperparameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
                If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors of the same class. Some considerations when
                picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
-               not picking multiples of the number of classes. Below is a visualization for different values of k.
+               not picking multiples of the number of classes. Below is a visualization for different values of k. <a style="color: #81A1C1;" href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)" target="_blank">Hyperparameter
+               definition</a>.
             </p>
             <br>
-            <img src="../../assets/blog/knn.png" alt="">
+            <img id="img1300" src="../../assets/blog/knn.png" alt="">
                <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
             <div id="blogSubHeader">
@@ -166,7 +167,8 @@
                <code style="background: #242424; border-radius: 5px; color: #636f88;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: #242424; border-radius: 5px; color: #636f88;">test</code> <i>[3072, 250]</i> tensors.
                The convenience of this step is that matrix multiplication is doing both steps we did for <code style="background: #242424; border-radius: 5px; color: #636f88;">train_sum_sq</code> and
                <code style="background: #242424; border-radius: 5px; color: #636f88;">test_sum_sq</code> in a single step. Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
-               store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>.
+               store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>. For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
+               faster than the two loop. This probably provides better intuition behind how powerful broadcasting can be.
             </p>
             <div id="blogSubHeader">
                The actual part of kNN: Classifying our test images
@@ -188,10 +190,10 @@
             <video id="img800" autoplay loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
             <p>
-               We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our parameter k set to 5, our kNN results in a 27.8%
+               We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our hyperparameter k set to 5, our kNN results in a 27.8%
                accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
             </p>
-            <code-highlight language="python">
+            <code-highlight language="python">  
                <pre>
                   {{ running_kNN }}
                </pre>
@@ -200,7 +202,56 @@
                Optimizing kNN: Cross Validation
             </div>
             <p>
-               toads
+               A problem with the our current kNN is that after we've successfully automated a process of "intelligebly" classifying images, we are still left with manually setting parameters. As our algorithm currently
+               exists, we have to manually tune the hyperparameter <i>k</i> to some integer value; then the follow up question comes - is that the best value for k?
+               Cross validation is a procedure to automate selecting an optimal value for <i>k</i>. The problem with this is that to evaluate the efficacy of some value <i>k</i>, we currently use the test set. If we want to evaluate numerous values
+               for <i>k</i> it breaks the convention of segregating the test set until final testing. Finding some optimal k through using the same test set on each evaluation, would have our kNN algorithm fall victim to overfitting. Our model
+               would be too well trained to the test set, and because of this, may not generalize well to new and unseen data.
+               <span style="color: #81A1C1;">Overfitting is a big issue in training. The inverse of overfitting is underfitting, where a model does not yield high enough or desired efficacy on training data.</span> 
+               <br>
+               <br>
+               Cross validation further segregates our training set into "chunks". For our subsample of 5,000 test images and labels, we can create 5 tensors of shape [1,000, 3072]. One of those 5 chunks becomes what is called
+               the validation set to evaluate an optimal <i>k</i>. The validation set does the job for what was previously the test set's. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
+            </p>
+            <code-highlight language="python">
+               <pre>
+                  {{ cross_validation }}
+               </pre>
+            </code-highlight>
+            <img id="img500" src="../../assets/blog/optimalk.png" alt="">
+            <p>
+               A total of 50 different accuracies result from our 10 different <i>k's</i> and 5 partitions from cross validation. We'd now like kNN to select the value for k that yielded the highest average accuracy for the 5 folds. We can see
+               on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
+            </p>
+            <code-highlight language="python">
+               <pre>
+                  {{ best_k }}
+               </pre>
+            </code-highlight>
+            <div id="blogSubHeader">
+               Running on the entire CIFAR-10
+            </div>
+            <p>
+               We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instea of 5,000 images.
+            </p>
+            <code-highlight language="python">
+               <pre>
+                  {{ full_cifar }}
+               </pre>
+            </code-highlight>
+            <div id="blogSubHeader">
+               Thoughts
+            </div>
+            <p>
+               Writing this took a <b>lot</b> longer than expected. I tried to be intentionally redundant at times to solidify understanding of concepts that, when I learned kNN and some ML in general, had trouble understanding. Creating the animations was a lot of fun. I was considering attempting to create them in Three.js or manim, but ended up with using
+               After Effects & Illustrator; I'm definitely interested in playing with manim in the future. I mentioned this at the top, but shoutout to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">
+               UMichigan's 498/598 Deep Learning for Computer Vision</a>. If you're interested in making a kNN yourself, you can find the files there or analogously, you can find a NumPy variation through Stanford's CS231n. I say that assumingly.
+               I'm actually not sure if they still use NumPy or if they have transitioned to PyTorch. After writing this, things on the "to-do" list are: 1) Find a better module for representing code, the current one I use doesn't seem to have a 
+               line numbering feature, which sucks, and 2) See if I can incorporate a "table of contents" feature like you see in some blogs. As usual, if you notice
+               any typos, inconsistencies, or have thoughts in general, feel free to ping me and let me know.
+            </p>
+            <p>
+               - Ryan Lin
             </p>
          </div>
    </div>
@@ -236,6 +287,119 @@ export default {
          distributed_euclidean: `$$\\sqrt{\\sum_{i=1}^{n}{(x_i-y_i)^2}} =
          \\sqrt{\\sum_{i=1}^{n}{x_i^2-2x_iy_i+y_i^2}}$$`,
          midterm: `$x_iy_i$`,
+         full_cifar: 
+         `
+   from knn import KnnClassifier
+
+   torch.manual_seed(0)
+   x_train_all, y_train_all, x_test_all, y_test_all = cifar10()
+
+   classifier = KnnClassifier(x_train_all, y_train_all)
+   classifier.check_accuracy(x_test_all, y_test_all, k=best_k)
+
+   # >>> Got 3399 / 10000 correct; accuracy is 33.99%
+   # >>> 33.99
+         `,
+         best_k: 
+         `
+   def knn_get_best_k(k_to_accuracies):
+      """
+      Inputs:
+      - k_to_accuracies: Dictionary mapping values of k to lists, where
+      k_to_accuracies[k][i] is the accuracy on the ith fold of a KnnClassifier
+      that uses k nearest neighbors.
+
+      Returns:
+      - best_k: best (and smallest if there is a conflict) k value based on
+      the k_to_accuracies info
+      """
+      # Create best_k variable to return optimal k
+      best_k = 0
+
+      # Get keys and values from k_to_accuracies object
+      keys = [k for k in k_to_accuracies.keys()]
+      # >>> keys = [1, 3, 5, 8, 10, 12, 15, 20, 50, 100]
+      values = [v for v in k_to_accuracies.values()]
+      # >>> values = [[26.3, 25.7, 26.4, 27.8, 26.6], ..., [25.6, 27.0, 26.3, 25.6, 26.3]]
+
+      # Get largest average of all the values
+      max_avg = torch.argmax(torch.mean(torch.tensor(values), dim=1))
+      # Get corresponding k for max_avg
+      best_k = keys[max_avg]
+
+      return best_k
+
+   # >>> Best k is  10
+   # >>> Got 141 / 500 correct; accuracy is 28.20%
+   # >>> 28.2
+         `,
+         cross_validation:
+         `
+   def knn_cross_validate(x_train, y_train, num_folds=5, k_choices=None):
+      """
+      Inputs:
+      - x_train: Tensor of shape (num_train, C, H, W) giving all training data
+      - y_train: int64 tensor of shape (num_train,) giving labels for training data
+      - num_folds: Integer giving the number of folds to use
+      - k_choices: List of integers giving the values of k to try
+
+      Returns:
+      - k_to_accuracies: Dictionary mapping values of k to lists, where
+      k_to_accuracies[k][i] is the accuracy on the ith fold of a KnnClassifier
+      that uses k nearest neighbors.
+      """
+      # Create a list of k's for testing
+      if k_choices is None:
+         k_choices = [1, 3, 5, 8, 10, 12, 15, 20, 50, 100]
+
+      # Create empty lists to house the chunks for cross validation
+      x_train_folds = []
+      y_train_folds = []
+
+      # Flatten x_train from [5000, 3, 32, 32] to [5000, 3072]
+      x_train_flat = x_train.view(x_train.shape[0], x_train[1].view(1, -1).shape[1])
+
+      # Partition our training set to 5 tensors of training images of shape [1000, 3072] and 5 labels of shape [1000]
+      x_train_folds = torch.chunk(x_train_flat, num_folds, dim=0)
+      y_train_folds = torch.chunk(y_train, num_folds, dim=0)
+
+      # Create object to house the combination of accuracies for different values k for different validation sets
+      k_to_accuracies = {}
+
+      # Iterate through every combination of k_choices and possible validation sets
+      for k in k_choices:
+         for folds in range(num_folds):
+            # Setting validation sets
+            x_valid = x_train_folds[folds]
+            y_valid = y_train_folds[folds]
+
+            # Setting new training sets 
+            x_traink = torch.cat(x_train_folds[:folds] + x_train_folds[folds + 1:])
+            y_traink = torch.cat(y_train_folds[:folds] + y_train_folds[folds + 1:])
+
+            # Call our kNN with the newly defined sets
+            knn = KnnClassifier(x_traink, y_traink)
+
+            # Check accuracy 
+            accuracy = knn.check_accuracy(x_valid, y_valid, k=k)
+
+            # Append a list of accuracies for different values k to k_to_accuracies
+            k_to_accuracies.setdefault(k, []).append(accuracy)
+
+            return k_to_accuracies
+      
+   # Accuracies when running cross validation on our subsample
+   # >>> k = 1 got accuracies: [26.3, 25.7, 26.4, 27.8, 26.6]
+   # >>> k = 3 got accuracies: [23.9, 24.9, 24.0, 26.6, 25.4]
+   # >>> k = 5 got accuracies: [24.8, 26.6, 28.0, 29.2, 28.0]
+   # >>> k = 8 got accuracies: [26.2, 28.2, 27.3, 29.0, 27.3]
+   # >>> k = 10 got accuracies: [26.5, 29.6, 27.6, 28.4, 28.0]
+   # >>> k = 12 got accuracies: [26.0, 29.5, 27.9, 28.3, 28.0]
+   # >>> k = 15 got accuracies: [25.2, 28.9, 27.8, 28.2, 27.4]
+   # >>> k = 20 got accuracies: [27.0, 27.9, 27.9, 28.2, 28.5]
+   # >>> k = 50 got accuracies: [27.1, 28.8, 27.8, 26.9, 26.6]
+   # >>> k = 100 got accuracies: [25.6, 27.0, 26.3, 25.6, 26.3]
+         `,
          running_kNN: `
    from knn import KnnClassifier
 
