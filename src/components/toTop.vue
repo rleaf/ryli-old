@@ -1,14 +1,24 @@
 <template>
   <div id="toTop">
-     <!-- <a href onclick="scroll({0,0, behavior: 'smooth'})">Go back to top</a> -->
-     <router-link  to="/">Go back home</router-link>
+     <!-- <a href onclick="window.scrollTo({0,0, behavior: 'smooth'})">Go back to top</a> -->
+     <!-- <router-link  to="/">Go Back Top</router-link> -->
+     <router-link to="" @click.native="scrollToTop()">Go Back Top</router-link>
   </div>
 </template>
 
 <script>
 export default {
+   methods: {
+      scrollToTop() {
+         window.scrollTo({
+            top: 0,
+            // behavior: 'smooth'
+         });
+      }
+   }
 
 }
+
 </script>
 
 <style scoped>
@@ -19,7 +29,7 @@ export default {
 
 #toTop > a {
 
-   font-size: 22px;
+   font-size: 18px;
    font-family: 'Inconsolata', sans-serif;
    color: var(--white);
    text-decoration: none;

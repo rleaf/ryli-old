@@ -40,12 +40,14 @@
             </p>
             <!-- <p>{{ blogs[0].description }}</p> -->
          </div>
+         <toTop />
    </div>
 </template>
 
 <script>
 // import axios from 'axios'
 import NavBar from '../nav.vue'
+import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
 // import { MathJax } from 'mathjax-vue'
 
@@ -55,6 +57,7 @@ export default {
    name: 'blogskeleton',
    components: {
       NavBar,
+      toTop,
       'vue-mathjax': VueMathjax
       // MathJax
    },

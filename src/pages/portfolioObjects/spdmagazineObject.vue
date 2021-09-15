@@ -16,8 +16,8 @@
          <img src="../../assets/spdmagazine/mock12.jpg" alt="" id="img1300">
          <img src="../../assets/spdmagazine/mock21.jpg" alt="" id="img1300">
          <img src="../../assets/spdmagazine/mock22.jpg" alt="" id="img1300">
-         <toTop />
       </div>
+      <toTop />
   </div>
 </template>
 

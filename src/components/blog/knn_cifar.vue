@@ -253,6 +253,7 @@
                - Ryan Lin
             </p>
          </div>
+         <toTop />
    </div>
 </template>
 
@@ -260,6 +261,7 @@
 import NavBar from '../nav.vue'
 import { VueMathjax } from 'vue-mathjax'
 import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
+import toTop from '../../components/toTop.vue'
 
 import "vue-code-highlight/themes/prism-nord.css"
 // import "vue-code-highlight/themes/prism-duotone-space.css"
@@ -272,6 +274,7 @@ export default {
    name: 'knn_cifar',
    components: {
       NavBar,
+      toTop,
       'vue-mathjax': VueMathjax,
       CodeHighlight,
    },

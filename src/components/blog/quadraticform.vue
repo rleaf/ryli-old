@@ -171,6 +171,7 @@
                <!-- I isolate and then open up one of the derivatives.
                Lets look at: <vue-mathjax :formula='isolatedDerivative'></vue-mathjax>. -->
          </div>
+         <toTop />
    </div>
 </template>
 
@@ -178,6 +179,7 @@
 // import axios from 'axios'
 import NavBar from '../nav.vue'
 import { VueMathjax } from 'vue-mathjax'
+import toTop from '../../components/toTop.vue'
 
 
 
@@ -185,6 +187,7 @@ export default {
    name: 'blogQuadraticForm',
    components: {
       NavBar,
+      toTop,
       'vue-mathjax': VueMathjax
       // MathJax
    },
