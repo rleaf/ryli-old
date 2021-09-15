@@ -154,6 +154,9 @@
                , but the trick of substituting and understanding the derivative of <vue-mathjax :formula='ytx'></vue-mathjax> and <vue-mathjax :formula='xty'></vue-mathjax> w.r.t the same variable evaulate to the same answer
                took some time for me to get down.
             </p>
+            <div id="blogSubHeader">
+               Thoughts
+            </div>
             <p>
                The rigmaroles I went through to learn what was discussed here were pretty annoying. What I just typed on a single page took months for me to understand and get down pat.
                But it was worth it and I'd probably (hopefully) do it again. I've always wanted to "type" or create a document and this accomplishes that. I tried to differentiate vectors and matrices from scalars clearly by bolding the former,

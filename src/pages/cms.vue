@@ -7,7 +7,7 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai and the things in between. <i>(In the works 8/26/21)</i></p>
+         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai and the things in between.
          <div id="curriculumBody">
             <router-link to="knn">
                <li>Implementing K Nearest Neighbors on CIFAR-10</li>
