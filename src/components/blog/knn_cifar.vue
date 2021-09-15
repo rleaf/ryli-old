@@ -135,8 +135,7 @@
             </code-highlight>
             <p>
                As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a rank 4 tensor as [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
-               It is important to notice that prior to our loop, we flatten the tensors <span style="color: #81A1C1;">(reduce dimensionality)</span>. <code style="background: #242424; border-radius: 5px;">
-               <a href="https://pytorch.org/docs/stable/generated/torch.flatten.html" target="_blank">torch.flatten</a></code> is a function worth mentioning as it is an alternative means to flatten without doing the gymnastics I did.
+               It is important to notice that prior to our loop, we flatten the tensors <span style="color: #81A1C1;">(reduce dimensionality)</span>.
                I emphasize flattening because it transforms our before [500, 3, 32, 32] training image tensor into a [500, 3072] tensor. Now you can think of our reshaped tensor as a matrix where each row houses every single
                pixel value (3x32x32) of every training image. We repeat the same to the test images yielding a [250, 3072] tensor. The purpose of flattening can be thought of as the final preprocessing step before we evaluate anything with our data.
                We are further simplifying our data to make it easier to implement in a kNN.
@@ -451,9 +450,9 @@ export default {
       # >>> dists shape: torch.Size([500, 250])
 
       # Flattening tensors
-      train = x_train.view(num_train, x_train[1].view(1, -1).shape[1])
+      train = x_train.flatten(1)
       # >>> train shape: torch.Size([500, 3072])
-      test = x_test.view(num_test, x_test[1].view(1, -1).shape[1])
+      test = x_test.flatten(1)
       # >>> test shape: torch.Size([250, 3072])
 
       ### Find Euclidean distance ###
@@ -505,9 +504,9 @@ export default {
       # >>> dists shape: torch.Size([500, 250])
 
       # Flatten tensors
-      train = x_train.view(num_train, x_train[1].view(1, -1).shape[1])
+      train = x_train.flatten(1)
       # >>> train shape: torch.Size([500, 3072])
-      test = x_test.view(num_test, x_test[1].view(1, -1).shape[1])
+      test = x_test.flatten(1)
       # >>> test shape: torch.Size([250, 3072])
 
       ### Find Euclidean distance ###
