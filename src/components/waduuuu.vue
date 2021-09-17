@@ -138,6 +138,8 @@ export default {
          // const speed = 0.0005;
          const yAxis = new THREE.Vector3(0, 1, 0).normalize();
 
+         sunPoints.rotateOnAxis(yAxis, 0.0008)
+
          mainGroup.rotateOnWorldAxis(yAxis, 0.0004);
          mainGroup.rotateOnAxis(yAxis, .00002);
 
