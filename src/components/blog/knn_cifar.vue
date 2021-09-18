@@ -242,11 +242,10 @@
                Thoughts
             </div>
             <p>
-               Writing this took a <b>lot</b> longer than expected. I tried to be intentionally redundant at times to solidify understanding of concepts that, when I learned kNN and some ML in general, had trouble understanding. Creating the animations was a lot of fun. I was considering attempting to create them in Three.js or manim, but ended up with using
-               After Effects & Illustrator; I'm definitely interested in playing with manim in the future. I mentioned this at the top, but shoutout to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">
-               UMichigan's 498/598 Deep Learning for Computer Vision</a>. If you're interested in making a kNN yourself, you can find the files there or analogously, you can find a NumPy variation through Stanford's CS231n. I say that assumingly.
-               I'm actually not sure if they still use NumPy or if they have transitioned to PyTorch. After writing this, things on the "to-do" list are: 1) Find a better module for representing code, the current one I use doesn't seem to have a 
-               line numbering feature, which sucks, and 2) See if I can incorporate a "table of contents" feature like you see in some blogs. As usual, if you notice
+               Writing this took a bit longer than I expected. I tried to be intentionally redundant at times to solidify understanding of concepts that, when I learned kNN and some ML in general, had trouble understanding. Creating the animations was fun. I was considering between Three.js and manim originally, but ended up with using
+               After Effects & Illustrator. I mentioned this at the top, but shoutout to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">
+               UMichigan's 498/598 Deep Learning for Computer Vision</a>. If you're interested in making a kNN yourself, you can find the files there or analogously, you can find a NumPy variation through Stanford's CS231n. I say that assumingly because 
+               I'm actually not sure if they still use NumPy or if they have transitioned to PyTorch/TensorFlow. As usual, if you notice
                any typos, inconsistencies, or have thoughts in general, feel free to ping me and let me know.
             </p>
             <p>
