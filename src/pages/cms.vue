@@ -7,7 +7,7 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai and the things in between.
+         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, why Gandalf is a great role model, and the things in between.
          <div id="curriculumBody">
             <router-link to="knn">
                <li>Implementing K Nearest Neighbors on CIFAR-10</li>
