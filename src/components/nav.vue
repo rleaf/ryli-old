@@ -25,9 +25,9 @@
             <router-link to='blog' class="underline">
                <li>Blog</li>
             </router-link>
-            <router-link to='sketches' class="underline">
+            <!-- <router-link to='sketches' class="underline">
                <li>Sketches +</li>
-            </router-link>
+            </router-link> -->
          </ul>
          <ul id='bar2'>
             <a href="https://www.behance.net/ryli" class="underline" target="_blank">
