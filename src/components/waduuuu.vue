@@ -13,15 +13,19 @@ import * as THREE from "three";
 export default {
    
    mounted() {
-
+      
+      const sizes = {
+         width: window.innerWidth,
+         height: window.innerHeight
+      }
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(45, sizes.width/sizes.height, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({antialias: false});
       
       // camera.position.set(0, 0, 6);
       camera.position.z = 6;
       // camera.translateY(-6);
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      
       document.getElementById('planets').appendChild(renderer.domElement);
 
       // Geometry
@@ -145,6 +149,19 @@ export default {
 
       scene.add(mainGroup);
 
+      window.addEventListener('resize', () => {
+         sizes.width = window.innerWidth
+         sizes.height = window.innerHeight
+
+         camera.aspect = sizes.width / sizes.height
+         camera.updateProjectionMatrix()
+
+         renderer.setSize(sizes.width, sizes.height)
+         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      })
+
+      renderer.setSize(sizes.width, sizes.height);
+
       function animate() {
          // const speed = 0.0005;
          const yAxis = new THREE.Vector3(0, 1, 0).normalize();
@@ -178,8 +195,8 @@ export default {
          neptuneGroup.rotateOnAxis(yAxis, 0.00000765);
          neptunePoints.rotateOnAxis(yAxis, 0.005);
 
-         requestAnimationFrame(animate);
          renderer.render(scene, camera);
+         window.requestAnimationFrame(animate);
       }
 
       animate();
