@@ -59,6 +59,17 @@ export default {
       const saturnMaterial = new THREE.PointsMaterial({color: '#827b51', size: 0.003});
       const uranusMaterial = new THREE.PointsMaterial({color: '#5f8696', size: 0.003});
       const neptuneMaterial = new THREE.PointsMaterial({color: '#416687', size: 0.003});
+      ringMaterial.sizeAttenuation = true;
+      sunMaterial.sizeAttenuation = true;
+      mercuryMaterial.sizeAttenuation = true;
+      venusMaterial.sizeAttenuation = true;
+      earthMaterial.sizeAttenuation = true;
+      marsMaterial.sizeAttenuation = true;
+      jupiterMaterial.sizeAttenuation = true;
+      saturnMaterial.sizeAttenuation = true;
+      uranusMaterial.sizeAttenuation = true;
+      neptuneMaterial.sizeAttenuation = true;
+
 
       // Structures & Groups
       const mainGroup = new THREE.Group();
