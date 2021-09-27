@@ -1,7 +1,7 @@
 <template>
 <div id="origin">
    <div id="canvas">
-      <wadu />
+      <threeScene />
    </div>
   <div id="landing">
       <NavBar />
@@ -9,7 +9,7 @@
          <homeIntro />
       </div>
       <div id="homefooter">
-         <a href="https://youtu.be/wupToqz1e2g" target="_blank">Made by Ryan Lin</a>
+         <!-- <a href="https://youtu.be/wupToqz1e2g" target="_blank">Made by Ryan Lin</a> -->
       </div>
   </div>
 </div>
@@ -18,14 +18,15 @@
 <script>
    import NavBar from '../components/nav.vue'
    import homeIntro from '../components/homeIntro.vue'
-   import wadu from '../components/waduuuu.vue'
+   import threeScene from '../components/threeScene.vue'
+   // import threeScene from '../components/threeSceneuuu.vue'
 
    export default {
       name: 'home',
       components: {
          NavBar,
          homeIntro,
-         wadu
+         threeScene
       },
    }
 

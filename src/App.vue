@@ -18,7 +18,7 @@ export default {
 
 <style>
 
-.fade-enter-active, .fade-leave-active {
+/* .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
   transition-duration: .3s;
 }
@@ -29,5 +29,5 @@ export default {
 
 .fade-enter, .fade-leave-active {
   opacity: 0
-}
+} */
 </style>
