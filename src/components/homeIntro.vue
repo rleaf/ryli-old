@@ -6,7 +6,7 @@
       <br>
       <!-- <span class="subword">asdfasdfasdf</span> -->
       <div id="subda">
-         <!-- <span class="subwordhomeIntro">Sun not to scale</span> -->
+         <span class="subwordhomeIntro">Dev | Design | Data</span>
       </div>
    </div>
 </div>
@@ -21,16 +21,17 @@ export default {
       
          // subtextArray = ['PS sun not to scale', 'If ']
 
-         const x = document.getElementsByClassName("introword");
+         // const x = document.getElementsByClassName("introword");
          // const y = document.getElementsByClassName("subwordhomeIntro");
 
          // const ran = x[Math.floor(Math.random() * x.length)]
          // gsap.from(x[ran], {duration: "random(10, 12)", opacity: 0, stagger: 6, ease: "slow"});
 
-         for (let i = 0; i < x.length; i++) {
-            // gsap.from(x[i], {duration: "random(3, 5)", y: 120});
-            gsap.from(x[i], {duration: 8, opacity: 0, stagger: 6, ease: "slow"});
-         }
+         gsap.from('.introword', {duration: 7, opacity: 0, delay: .8});
+         gsap.from('.subwordhomeIntro', {duration: 7, opacity: 0, delay: 3})
+         // for (let i = 0; i < x.length; i++) {
+         //    // gsap.from(x[i], {duration: "random(3, 5)", y: 120});
+         // }
       
          // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
    }

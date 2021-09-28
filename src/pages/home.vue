@@ -77,7 +77,7 @@ body, html {
 
 #origin {
    width: 100vw;
-   height: 100vh;
+   /* height: 92vh; */
 }
 
 #landing {
@@ -90,7 +90,7 @@ body, html {
 }
 
 .nav {
-   padding-top: 80px;
+   padding-top: 8vh;
    font-size: 16px;
    /* display: block; */
 }
@@ -370,7 +370,7 @@ body, html {
    color: var(--offWhite);
    font-size: 16px;
    line-height: 140%;
-   width: 500px;
+   width: 700px;
    padding: 25px 5vw;
    z-index: 10;
    /* float: left; */

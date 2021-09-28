@@ -23,6 +23,7 @@ import signLanguage from './portfolioPreview/signPreview.vue'
 import spdmagazine from './portfolioPreview/spdmagazinePreview.vue'
 // import jawsposter from './portfolioPreview/jawspreview.vue'
 
+// import gsap from 'gsap'
 
 export default {
    components: {
@@ -33,7 +34,7 @@ export default {
       valiant,
       spotify,
       signLanguage,
-      spdmagazine
+      spdmagazine,
       // jawsposter
 
 
@@ -43,6 +44,16 @@ export default {
       cLog: function() {
          console.log('taods');
       }
+   },
+
+   mounted() {
+      const x = document.querySelector('#imgcontainer')
+
+      x.addEventListener('mouseover', () => {
+         console.log('waffles');
+      // gsap.to(colors.peak, {color: 0xfff, duration: 3})
+      })
+
    }
 
 }

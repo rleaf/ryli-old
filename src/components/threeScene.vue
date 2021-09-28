@@ -70,6 +70,11 @@ export default {
          }
       })
 
+      const colors = {
+         valley: 0x1a1a1a,
+         peak: 0x000000,
+      }
+
       const shaderMaterial2 = new THREE.ShaderMaterial({
          vertexShader: vertexShader2,
          fragmentShader: fragmentShader2,
@@ -81,9 +86,9 @@ export default {
             uElevation: { value: .05 },
             uFrequency: { value: new THREE.Vector2(4, 1.2) },
             uSpeed: { value: .7},
-            uValleyColor: { value: new THREE.Color('#1a1a1a')},
-            // uPeakColor: { value: new THREE.Color('#0e0e0e')},
-            uPeakColor: { value: new THREE.Color('#000000')},
+            // uValleyColor: { value: new THREE.Color('#1a1a1a')},
+            uValleyColor: { value: new THREE.Color(colors.valley)},
+            uPeakColor: { value: new THREE.Color(colors.peak)},
             uColorOffset: { value: 0.08 },
             uColorMultiplier: { value: 10 },
             ...THREE.UniformsLib['fog'],
@@ -172,8 +177,8 @@ export default {
          const elapsedTime = clock.getElapsedTime()
          anchor.rotateOnWorldAxis(yAxis, 0.0008)
          camera.lookAt(sphere.position)
-         camera.rotation.y = - (cursor.x * 0.05)
-         camera.rotation.x = - (cursor.y * 0.05)
+         camera.rotation.y = - (cursor.x * 0.04)
+         camera.rotation.x = - (cursor.y * 0.04)
 
          // camera.position.x = Math.sin(elapsedTime * 0.1)
          // camera.position.z = Math.cos(elapsedTime * 0.1)
@@ -195,10 +200,9 @@ export default {
       }
 
       tick()
-
-      
    }
 }
+
 </script>
 
 <style scoped>

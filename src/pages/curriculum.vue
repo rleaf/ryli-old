@@ -28,7 +28,7 @@
                </div>
                <ul style="list-style-type: square; margin-bottom: 100px;">
                   <li>Bachelor of Arts in Graphic Design & Minor in Web Design</li>
-                  <li>Media Design / Branding / Logo / Print Production / Photography</li>
+                  <li>Branding / UI & UX / Photography / Development / Data Science</li>
                   <p>Languages & Software:</p>
                   <ul style="list-style-type: none;">
                      <li><i>Adobe CC</i></li>
@@ -66,7 +66,7 @@
                         <ul>
                            <li style="list-style-type: none; font-size: 14px;"><i>Have worked with: </i></li>
                         <ul>
-                           <li>Pytorch</li>
+                           <li>PyTorch</li>
                            <li>Pandas</li>
                            <li>Scikit-learn</li>
                            <li>NumPy</li>
