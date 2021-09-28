@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar/>
+     <!-- <NavBar/> -->
       <div id="centerContainer">
          <div id="textContainerHeader">
             moshi moshi
@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+// import NavBar from '../../components/nav.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {
    name: 'portfolioObject',
    components: {
-      NavBar,
+      // NavBar,
       toTop
    }
 }

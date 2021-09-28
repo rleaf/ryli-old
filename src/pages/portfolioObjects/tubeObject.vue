@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar/>
+     <!-- <NavBar/> -->
       <div id="centerContainer">
          <div id="textContainerHeader">
             Tube World
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+// import NavBar from '../../components/nav.vue'
 
 export default {
    components: {
-      NavBar
+      // NavBar
    }
 }
 </script>

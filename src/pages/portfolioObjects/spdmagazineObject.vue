@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar/>
+     <NavBar />
       <div id="centerContainer">
          <div id="textContainerHeader">
             Magazine Spread
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+import NavBar from '../../components/backdrop.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {

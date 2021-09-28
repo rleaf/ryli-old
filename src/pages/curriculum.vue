@@ -1,6 +1,8 @@
 <template>
   <div id="landing">
-     <NavBar />
+     <div class="testo">
+
+     <!-- <NavBar /> -->
          <div id="textContainerHeader">
          </div>
       <!-- <div id="textContainerBody" style="font-size: 16px;"> -->
@@ -76,18 +78,19 @@
          </div>
 
       </div>
+     </div>
   </div>
 </template>
 
 <script>
-import NavBar from '../components/nav.vue'
+// import NavBar from '../components/nav.vue'
 import curriculumAbout from '../components/curriculumAbout.vue'
 // import sharks from '../components/sharks.vue'
 
 export default {
    name: 'curriculum',
    components: {
-      NavBar,
+      // NavBar,
       curriculumAbout,
       // sharks
    },

@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <NavBar />
+   <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -254,13 +254,14 @@
          </div>
          <toTop />
    </div>
+
 </template>
 
 <script>
-import NavBar from '../nav.vue'
 import { VueMathjax } from 'vue-mathjax'
 import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
 import toTop from '../../components/toTop.vue'
+import backdrop from '../../components/backdrop.vue'
 
 import "vue-code-highlight/themes/prism-nord.css"
 // import "vue-code-highlight/themes/prism-duotone-space.css"
@@ -272,8 +273,8 @@ import 'prism-es6/components/prism-python';
 export default {
    name: 'knn_cifar',
    components: {
-      NavBar,
       toTop,
+      backdrop,
       'vue-mathjax': VueMathjax,
       CodeHighlight,
    },
@@ -646,5 +647,7 @@ h2 {
    font-size: 22px;
    padding-top: 50px;
 }
+
+
 
 </style>

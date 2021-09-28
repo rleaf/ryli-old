@@ -1,6 +1,6 @@
 a<template>
   <div id="landing">
-     <NavBar/>
+     <!-- <NavBar/> -->
       <div id="centerContainer">
          <div id="textContainerHeader">
             Jaws Movie Poster
@@ -32,13 +32,13 @@ a<template>
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+// import NavBar from '../../components/nav.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {
    name: 'portfolioObject',
    components: {
-      NavBar,
+      // NavBar,
       toTop
    }
 }

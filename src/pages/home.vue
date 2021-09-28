@@ -1,10 +1,10 @@
 <template>
 <div id="origin">
    <div id="canvas">
-      <threeScene />
+      <!-- <threeScene /> -->
    </div>
   <div id="landing">
-      <NavBar />
+      <!-- <NavBar /> -->
       <div id="portfolio">
          <homeIntro />
       </div>
@@ -16,17 +16,17 @@
 </template>
 
 <script>
-   import NavBar from '../components/nav.vue'
+   // import NavBar from '../components/nav.vue'
    import homeIntro from '../components/homeIntro.vue'
-   import threeScene from '../components/threeScene.vue'
+   // import threeScene from '../components/threeScene.vue'
    // import threeScene from '../components/threeSceneuuu.vue'
 
    export default {
       name: 'home',
       components: {
-         NavBar,
+         // NavBar,
          homeIntro,
-         threeScene
+         // threeScene
       },
    }
 
@@ -81,11 +81,16 @@ body, html {
 }
 
 #landing {
-   padding: 0 10vh 0 10vh;
+   padding: 0 8vw 0 8vw;
+   display: inherit;
+   position: relative;
+   flex-wrap: inherit;
+   justify-content: inherit;
+   clear: both;
 }
 
 .nav {
-   padding-top: 100px;
+   padding-top: 80px;
    font-size: 16px;
    /* display: block; */
 }
@@ -243,6 +248,8 @@ body, html {
    clear: both;
    font-family: 'Lora', serif;
    text-align: center;
+   position: relative;
+   z-index: 10;
 }
 
 #centerContainer > img, #centerContainer > video {
@@ -327,8 +334,9 @@ body, html {
    font-family: 'Inconsolata';
    color: var(--white);
    text-transform: uppercase;
-   padding-top: 150px;
+   padding-top: 80px;
    padding-bottom: 75px;
+   z-index: 5;
 }
 
 #subHeader {
@@ -357,12 +365,14 @@ body, html {
 
 #curriculumBody {
    display: inherit;
+   position: relative;
    font-family: 'Lora', serif;
    color: var(--offWhite);
    font-size: 16px;
    line-height: 140%;
    width: 500px;
    padding: 25px 5vw;
+   z-index: 10;
    /* float: left; */
 } 
 

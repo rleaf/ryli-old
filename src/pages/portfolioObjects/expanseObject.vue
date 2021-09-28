@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar/>
+     <backdrop />
       <div id="centerContainer">
          <div id="textContainerHeader">
             Expanse
@@ -33,12 +33,12 @@
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+import backdrop from '../../components/backdrop.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {
    components: {
-      NavBar,
+      backdrop,
       toTop
    }
 }

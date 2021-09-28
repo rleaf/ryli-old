@@ -30,8 +30,8 @@
             </router-link> -->
          </ul>
          <ul id='bar2'>
-            <a href="https://www.behance.net/ryli" class="underline" target="_blank">
-               <li>Behance</li>
+            <a href="https://twitter.com/_ryli" class="underline" target="_blank">
+               <li>Twitter</li>
             </a>
             <a href="https://www.github.com/rleaf" class="underline" target="_blank">
                <li>Github</li>
@@ -77,7 +77,11 @@ export default {
 </script>
 
 <style>
-
+.nav {
+   position: relative;
+   padding: 0 3vw;
+   z-index: 5;
+}
 .emailnotif {
    font-family: 'Inconsolata', sans-serif;
    font-size: 14px;

@@ -1,13 +1,13 @@
 <template>
    <div id="landing">  
-      <NavBar />
+      <!-- <NavBar /> -->
       <div id="textContainerHeader">
       </div>
       <div id="curriculumBody">
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, why Gandalf is a great role model, and the things in between.
+         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
             <router-link to="knn">
                <li>Implementing K Nearest Neighbors on CIFAR-10</li>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-   import NavBar from '../components/nav.vue'
+   // import NavBar from '../components/nav.vue'
    
    // import axios from 'axios'
 
@@ -38,7 +38,7 @@
 export default {
    name: 'speak',
    components: {
-      NavBar,
+      // NavBar,
    },
    /* Code for Strapi if I decide to use it */
    // data () {

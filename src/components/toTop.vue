@@ -24,6 +24,8 @@ export default {
 <style scoped>
 
 #toTop {
+   position: relative;
+   z-index: 10;
    text-align: center;
 }
 

@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <NavBar />
+      <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -177,7 +177,7 @@
 
 <script>
 // import axios from 'axios'
-import NavBar from '../nav.vue'
+import backdrop from '../../components/backdrop.vue'
 import { VueMathjax } from 'vue-mathjax'
 import toTop from '../../components/toTop.vue'
 
@@ -186,7 +186,7 @@ import toTop from '../../components/toTop.vue'
 export default {
    name: 'blogQuadraticForm',
    components: {
-      NavBar,
+      backdrop,
       toTop,
       'vue-mathjax': VueMathjax
       // MathJax

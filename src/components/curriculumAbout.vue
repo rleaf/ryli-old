@@ -17,6 +17,10 @@ export default {
 
 <style scoped>
 
+* {
+   z-index: 5;
+}
+
 #linkhover > a {
    color: var(--white);
 }

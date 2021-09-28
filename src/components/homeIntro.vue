@@ -22,7 +22,7 @@ export default {
          // subtextArray = ['PS sun not to scale', 'If ']
 
          const x = document.getElementsByClassName("introword");
-         const y = document.getElementsByClassName("subwordhomeIntro");
+         // const y = document.getElementsByClassName("subwordhomeIntro");
 
          // const ran = x[Math.floor(Math.random() * x.length)]
          // gsap.from(x[ran], {duration: "random(10, 12)", opacity: 0, stagger: 6, ease: "slow"});
@@ -32,7 +32,7 @@ export default {
             gsap.from(x[i], {duration: 8, opacity: 0, stagger: 6, ease: "slow"});
          }
       
-         gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
+         // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
    }
 }
 </script>

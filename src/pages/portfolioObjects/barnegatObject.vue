@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar/>
+     <backdrop />
       <div id="centerContainer">
          <div id="textContainerHeader">
             Barnegat Light
@@ -27,18 +27,21 @@
 </template>
 
 <script>
-import NavBar from '../../components/nav.vue'
+import backdrop from '../../components/backdrop.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {
    name: 'portfolioObject',
    components: {
-      NavBar,
+      backdrop,
       toTop
    }
 }
 </script>
 
 <style>
-
+   .landing {
+      display: inherit;
+      z-index: 5;
+   }
 </style>

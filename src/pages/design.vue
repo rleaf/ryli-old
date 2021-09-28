@@ -1,6 +1,6 @@
 <template>
   <div id="landing">
-     <NavBar />
+     <!-- <NavBar /> -->
      <div id="portfolio">
         <portfolioSkeleton />
      </div>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import NavBar from '../components/nav.vue'
+// import NavBar from '../components/nav.vue'
 import portfolioSkeleton from '../components/portfolioSkeleton.vue'
 
 export default {
    name: 'design',
    components: {
-      NavBar,
+      // NavBar,
       portfolioSkeleton
    }
 }
