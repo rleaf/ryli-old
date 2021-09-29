@@ -10,9 +10,9 @@
          </div>
          <div id="textContainerBody" style="padding-bottom: 100px;">
             The purpose of this redesign is to maintain the aesthetic already established and compliment it with increased functionality.
-            As an avid Spotify user, the lack of some features can be aggravating. Incorporating better organization on the landing page,
-            a 'stats' section of your listening activity, and control of generating your own playlist were some of the largest features implemented.
-            Various cosmetic changes were also introduced. 
+            The goals included: better organization on the landing page,
+            a "stats" section of your listening activity, and control of generating your own playlist.
+            Various cosmetic changes were also introduced. This project was desiged at the time of the 2019 Spotify UX.
          </div>
          <div id="textContainerBody">
          </div>

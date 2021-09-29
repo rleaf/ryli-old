@@ -9,7 +9,7 @@
             </div>
          </div>
          <div id="textContainerBody">
-            I spent the weekend at Barnegat Light.
+            I spent the weekend at Barnegat Light, NJ during the winter. Had a great time.
          </div>
          <img src="../../assets/barnegat/beach.jpg" alt="" id="img1300">
          <img src="../../assets/barnegat/bird.jpg" alt="" id="img1300">

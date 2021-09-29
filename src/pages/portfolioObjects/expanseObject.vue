@@ -9,7 +9,8 @@
             </div>         
          </div>
          <div id="textContainerBody">
-            Expanse is a header typeface designed with tech and sci-fi aesthetics. 
+            Expanse is a header typeface designed with tech and sci-fi aesthetics. I incorporated minimalistic and geometric aesthetics into the typeface while
+            attempting to preserve readability. 
          </div>
          <img src="../../assets/expanse/expanseland.jpg" alt="" id="img1300">
          <img src="../../assets/expanse/expanse_sample.png" alt="" id="img1300">

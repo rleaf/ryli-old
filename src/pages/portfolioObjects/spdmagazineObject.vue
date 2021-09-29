@@ -9,8 +9,8 @@
             </div>
          </div>
          <div id="textContainerBody">
-            This project was my entry to SPD's student design competition. It consists of a four page spread. I decided to go with a spread layout that had a science fiction and computer-esque aesthetic.
-            "What is Artificial Intelligence?" was the headline and I focused on illustrating "bundles" of threads together to resemble the connectionism that occurs in neural networks.
+            My entry to the SPD design competition composed of a four page magazine spread. I decided to go with a spread layout that had a science fiction and computer-esque aesthetic.
+            I focused on illustrating "bundles" of threads together to resemble the connectionism that is frequently associated with AI while keeping them spread out enough to appear organic.
          </div>
          <img src="../../assets/spdmagazine/mock11.jpg" alt="" id="img1300">
          <img src="../../assets/spdmagazine/mock12.jpg" alt="" id="img1300">
