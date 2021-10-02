@@ -231,7 +231,7 @@
                Running on the entire CIFAR-10
             </div>
             <p>
-               We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instea of 5,000 images.
+               We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instead of 5,000 images.
             </p>
             <code-highlight language="python">
                <pre>
