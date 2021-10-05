@@ -21,6 +21,7 @@ import signLink from '../pages/portfolioObjects/signObject.vue'
 import blogskeletonLink from '../components/blog/skeleton.vue'
 import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
+import bn_backpassLink from '../components/blog/bn_backpass.vue'
 
 
 
@@ -126,6 +127,11 @@ const routes = [
     path: '/knn',
     name: 'knn',
     component: knn_cifarLink
+  },
+  {
+    path: '/bnbackpass',
+    name: 'bnbackpass',
+    component: bn_backpassLink
   },
   {
     path: '/*',

@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <NavBar />
+      <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -46,7 +46,7 @@
 
 <script>
 // import axios from 'axios'
-import NavBar from '../nav.vue'
+import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
 // import { MathJax } from 'mathjax-vue'
@@ -56,7 +56,7 @@ import { VueMathjax } from 'vue-mathjax'
 export default {
    name: 'blogskeleton',
    components: {
-      NavBar,
+      backdrop,
       toTop,
       'vue-mathjax': VueMathjax
       // MathJax
@@ -90,18 +90,42 @@ export default {
 </script>
 <style scoped>
 
-#curriculumBody, p {
-   padding: 25px 7vw !important;
+#curriculumBody {
    width: auto !important;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
+   text-align: center;
 }
 
 #blogHeader {
    padding-bottom: 20px;
    font-size: 28px;
+}
+
+p {
+   padding: 25px 7vw !important;
+   line-height: 2;
+}
+
+a {
+   color: var(--white);
+   text-decoration: underline;
+   font-style: oblique;
+}
+
+h2 {
+   font-size: 16px;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
+
+#blogSubHeader {
+   font-family: 'Inconsolata', sans-serif;
+   font-size: 22px;
+   padding-top: 50px;
 }
 
 </style>
