@@ -18,13 +18,14 @@
                <br>
                The image below defines "whitening". An application to a batch of inputs with the goal to reduce the <i>internal covariate shift</i>. This procedure occurs during the forward pass.
                In order to preserve training, the backward pass must also be defined. Similarly to how the local gradient of the sigmoid function simplifies to <vue-mathjax :formula='simplesigmoid'></vue-mathjax>,
-               the local gradient for batch normalization can also undergo a similar process, which promotes computational efficiency (<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank">link to paper</a>).
+               the local gradient for batch normalization can also undergo a similar process to promote computational efficiency (<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank">link to paper</a>).
                <br>
             </p>
                <img id="img500" src="../../assets/blog/bn_forward.png" alt=""> 
             <p>
-               During training, the chain rule is shown to backpropogate through the batch normalization transformation (page 4 of the paper). Shown below is referred to as the "Staged Computation" for backpropogation.
-               It is also sometimes referred to as the "flat" implementation for backprop, it uses the chain rule to derive the impact a parameter has upon an output. The code block was my implementation
+               During training, the chain rule is shown to backpropogate through the batch normalization transformation (page 4 of the paper). The code block was my implementation.
+               <!-- Shown below is referred to as the "Staged Computation" for backpropogation.
+               It is also sometimes referred to as the "flat" implementation for backprop, it uses the chain rule to derive the impact a parameter has upon an output.  -->
             </p>
                <img id="img500" src="../../assets/blog/bn_backward.png" alt=""> 
             <code-highlight language="python">
@@ -71,10 +72,16 @@
             </div>
             <p>
                Solve for all of the partials shown above. This is the easiest part. If I hadn't earlier defined my summations earlier then I would need to write them below where I'm differentating wrt a scalar.
+               The upstream gradient defined immediately below is automatically provided to the function when backpropogating. Special consideration towards <vue-mathjax :formula='dsigdmu'></vue-mathjax> and
+               <vue-mathjax :formula='dsigdx'></vue-mathjax> as there is a native summation in <vue-mathjax :formula='sigmoid'></vue-mathjax>. It will persist when differentiating wrt a scalar, however nullifies
+               when differentiating wrt a vector because you differentiate by iterating through the elements. Another way to think about it is that if you were to include the summation you'd result in a scalar value,
+               which is incorrect because you're differiating wrt a vector.
             </p>
             <vue-mathjax :formula='dldy'></vue-mathjax>
             <br>
             <vue-mathjax :formula='dydxhatSolve'></vue-mathjax>
+            <br>
+            <vue-mathjax :formula='dldxSolve'></vue-mathjax>
             <br>
             <vue-mathjax :formula='dxhatdxSolve'></vue-mathjax>
             <br>
@@ -91,27 +98,81 @@
                Step 3
             </div>
             <p>
-               Every partial is evaluated. Substitute.
+               Every partial is evaluated. <b>Substitute in everything except dout</b>. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
+               It will initially look more confusing, but simplifies well :). <i>(be careful to consider equations overflowing to the next line)</i>
             </p>
+            <h2>1</h2>
             <vue-mathjax :formula='dldxSub1'></vue-mathjax>
             <p>
-               Rewrite <vue-mathjax :formula='rootTrick'></vue-mathjax> as <vue-mathjax :formula='rootTrick2'></vue-mathjax>. It will initially look more confusing, but simplifies well. Simplify :). <i>(If you have a 
-               smaller screen, be careful to consider the equations overflowing to the next line)</i>
+               Two steps here: 1) Rewrite <vue-mathjax :formula='rootTrick'></vue-mathjax> as <vue-mathjax :formula='rootTrick2'></vue-mathjax> and 2) Factor constants outside of summations. I will also slowly
+               be removing the dot notation where multiplication is obvious.
             </p>
+            <h2>2</h2>
             <vue-mathjax :formula='dldxSub2'></vue-mathjax>
-            <br>
+            <p>
+               Further simplify the nested summation <vue-mathjax :formula='secondSumSimplify'></vue-mathjax> by distributing the sigma to it's terms.
+            </p>
+            <h2>3</h2>
             <vue-mathjax :formula='dldxSub3'></vue-mathjax>
             <br>
+            <h2>4</h2>
             <vue-mathjax :formula='dldxSub4'></vue-mathjax>
             <br>
+            <h2>5</h2>
             <vue-mathjax :formula='dldxSub5'></vue-mathjax>
-            <p>
+            <br>
+            <h2>6</h2>
             <vue-mathjax :formula='dldxSub6'></vue-mathjax>
             <p>
-               Simp
+               On equation 4 after distributing the sums, the values both simplify to the expectation over the batch <vue-mathjax :formula='mu'></vue-mathjax>. I do not break down 
+               <vue-mathjax :formula='trickyPart1'></vue-mathjax> immediately as I did for <vue-mathjax :formula='expectation'></vue-mathjax> for understanding. <vue-mathjax :formula='mu'></vue-mathjax>
+               is being summed up <i>m</i> times then divided by <i>m</i>. The difference in the parenthesis evaluates to 0 and then the labor of <i>"10 steps backwards 11 steps forward"</i> is shown.
+               Equation 6 drops everything multiplied by zero and combines some of the terms on the left hand side of the summation to clean things up.
+               <br>
+               <br>
+               Now we begin simplifying right-most summand. Before we factor out constants, we combine a couple of the terms (money step). For ease of understanding I change the index of the summation to make sure
+               we don't accidentally sum over the wrong terms.
             </p>
-            <!-- <vue-mathjax :formula='dldxSubb3'></vue-mathjax> -->
-
+            <h2>7</h2>
+            <vue-mathjax :formula='dldxSub7'></vue-mathjax>  
+            <p>
+               Factor out constants
+            </p>         
+            <h2>8</h2>
+            <vue-mathjax :formula='dldxSub8'></vue-mathjax>
+            <p>
+               The reason I mentioned combining terms in equation 7 was the money step is because the term <vue-mathjax :formula='xhatformula'></vue-mathjax> is equal to the normalization step 
+               <vue-mathjax :formula='xhat'></vue-mathjax> in the backward pass of batch normalization. I substitute in <vue-mathjax :formula='xhat'></vue-mathjax>, which will be a parameter passed to
+               our backward pass function from the forward pass stored in the cache (shown later), I change the square root representation to make factoring later more amenable, and I clean up stray terms.
+            </p>
+            <h2>9</h2>
+            <vue-mathjax :formula='dldxSub9'></vue-mathjax>
+            <p>
+               Some final cleaning up.   
+            </p>     
+            <h2>10</h2>
+            <vue-mathjax :formula='dldxSub10'></vue-mathjax>
+            <p>
+               Below is a codeblock implemented with equation 10. With a 276 character difference, the shortcut performs a backwards pass much faster than the original implementation.
+            </p>
+            <code-highlight language="python">
+               {{ finalAnswerCode }}
+            </code-highlight>
+            <div id="blogSubHeader">
+               Thoughts
+            </div>
+            <p>
+               I made a joke to it earlier by stating <i>"10 steps backwards 11 steps forward"</i>, but this exercise really embodied that expression.
+               Originally I had trouble with understanding where summations belonged so there were a handful of errors by the time I got to step 3 causing me to scrap a chunk of the work.
+               I found out that defining them rigidly in my current step 1 helped tremendously to save brain space. I'm also not entirely confident in this, but I realized that you can "interweave" total derivatives
+               with partials (prior to step 1). If you're looking for a more readable interpretation of this exercise, check out
+               <a href="https://kevinzakka.github.io/2016/09/14/batch_normalization/" target="_blank">this</a> blog post. The author substitutes in the partials as needed as opposed to doing it all at once as I did.
+               The reason why I did it all at once was a combination of solidifying understanding and having fun. If anybody struggles with concepts
+               affiliated to total/partial derivatives wrt vectors this is definitely a good exercise to try and do yourself. Feel free to ping me if you see any errors or have any suggestions/considerations.
+            </p>
+            <p>
+               Ryan Lin
+            </p>
          </div>
          <toTop />
    </div>
@@ -143,97 +204,149 @@ export default {
          error: null,
          factor: `$\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}}$`,
          dldx: `$\\frac{\\partial{\\ell}}{\\partial{x_i}}$`,
-         dldy: `$$\\frac{\\partial{\\ell}}{\\partial{y_i}} = \\mathrm{dout}$$`,
+         dldy: `$$\\frac{\\partial{\\ell}}{\\partial{y_i}} = \\mathrm{upstream}\\; \\mathrm{gradient} = \\mathrm{dout}$$`,
+         dldxSolve: `$$\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} = \\mathrm{dout} \\cdot \\gamma$$`,
+         dsigdmu: `$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}$`,
+         dsigdx: `$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{x_i}}$`,
          dxdsig: `$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}$`,
          dydxhatSolve: `$$\\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} = \\gamma$$`, 
          dxhatdxSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{x_i}} = \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}$$`,
          dxhatdmuSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\mu_\\beta}} = \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}$$`,
          dxhatdsigSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} = \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta)$$`,
-         dsigdmuSolve: `$$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}} = \\frac{-2}{m}(x_i-\\mu_\\beta)$$`,
+         dsigdmuSolve: `$$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}} = \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)$$`,
          dmudxSolve: `$$\\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} = \\frac{1}{m}$$`,
          dsigdxSolve: `$$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{x_i}} = \\frac{2}{m}(x_i-\\mu_\\beta)$$`,
          simplesigmoid: `$(1 - \\sigma(x))(\\sigma(x))$`,
          sigmoid: `$\\sigma^2_\\beta$`,
          xhat: `$\\hat{x_i}$`,
+         xhatformula: `$\\frac{x_i-\\mu_\\beta}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}$`,
          mu: `$\\mu_\\beta$`,
+         trickyPart1: `$\\frac{m\\mu_\\beta}{m}$`,
+         expectation: `$\\frac{1}{m}\\sum_{i=1}^{m}x_i$`,
+         secondSumSimplify: `$\\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)$`,
          rootTrick: `$(\\sigma^2_\\beta+\\epsilon)^{-3/2}$`,
          rootTrick2: `$(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}$`,
-         formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
-         jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$',
          dxhatdmu: `$\\frac{\\mathrm{d}{\\hat{x_i}}}{\\mathrm{d}{\\mu_\\beta}}$`,
          dxhatdmufull: `$$\\frac{\\mathrm{d}{\\hat{x_i}}}{\\mathrm{d}{\\mu_\\beta}} = \\frac{\\partial{\\hat{x_i}}}{\\partial{\\mu_\\beta}} +
                         \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
                         \\frac{\\partial{\\sigma^2}}{\\partial{\\mu_\\beta}}$$`,
          redundant: `$\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} = \\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}}$`,
-         dldxSub1: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-                  
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-
-                   \\sum_{i=1}^{m}\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma\\biggl(\\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{-2}{m}\\sum_{k=1}^{m}(x_k-\\mu_\\beta)\\biggr) \\cdot
+         dldxSub1: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
+                   \\biggl(\\sum_{i=1}^{m}\\biggl( \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}\\biggr) \\cdot
                    \\frac{1}{m} +
-
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta) \\cdot
+                   \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{1}{m}\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
-         dldxSub2: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   
-                   \\sum_{i=1}^{m}\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma\\biggl(\\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{-2}{m}\\sum_{k=1}^{m}(x_k-\\mu_\\beta)\\biggr) \\cdot
-                   \\frac{1}{m} +
-                   
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+         dldxSub2: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
+                   \\biggl( \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) \\frac{1}{m} +
+                   \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot (x_i-\\mu_\\beta) \\cdot
+                   \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{1}{m}\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
-         dldxSub3: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   
-                   \\sum_{i=1}^{m}\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma\\biggl(\\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   (\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{1}{m}\\sum_{k=1}^{m}(x_k-\\mu_\\beta)\\biggr) \\cdot
-                   \\frac{1}{m} +
-                   
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+         dldxSub3: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
+                   \\biggl( \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) \\frac{1}{m} +
+                   \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot (x_i-\\mu_\\beta) \\cdot
+                   -2\\biggl(\\frac{1}{m}\\sum_{i=1}^{m}x_i-\\frac{1}{m}\\sum_{i=1}^{m}\\mu_\\beta\\biggr)\\biggr) \\cdot
+                   \\frac{1}{m}\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
-         dldxSub4: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   
-                   \\sum_{i=1}^{m}\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma\\biggl(\\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   (\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\biggl(\\frac{1}{m}\\sum_{k=1}^{m}x_k-\\frac{1}{m}\\sum_{k=1}^{m}\\mu_\\beta\\bigr)\\biggr) \\cdot
-                   \\frac{1}{m} +
-                   
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+         dldxSub4: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
+                   \\biggl( \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) \\frac{1}{m} +
+                   \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot (x_i-\\mu_\\beta) \\cdot
+                   -2\\Bigl(\\mu_\\beta-\\frac{m\\mu_\\beta}{m}\\Bigr)\\biggr) \\cdot
+                   \\frac{1}{m}\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
-         dldxSub5: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   
-                   \\sum_{i=1}^{m}\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma\\biggl(\\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   (\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\biggl(\\mu_\\beta-\\frac{m\\mu_\\beta}{m}\\biggr)\\biggr) \\cdot
-                   \\frac{1}{m} +
-                   
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+         dldxSub5: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
+                   \\biggl( \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) \\frac{1}{m} +
+                   \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot (x_i-\\mu_\\beta) \\cdot
+                   -2\\Bigl(0\\Bigr)\\biggr) \\cdot
+                   \\frac{1}{m}\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
-         dldxSub6: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
-
-                   \\biggl(\\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} -
-                   
-                   \\frac{\\sum_{i=1}^{m}\\gamma\\frac{\\partial{\\ell}}{\\partial{y_i}}}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{k=1}^{m}(x_k-\\mu_\\beta) \\cdot
-                   \\frac{2}{m}(x_i-\\mu_\\beta)\\biggr)
+         dldxSub6: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} -
+                   \\biggl(\\frac{\\gamma}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr)\\biggr) +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{2}{m}(x_i-\\mu_\\beta)
+                   $$`,
+         dldxSub7: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} -
+                   \\biggl(\\frac{\\gamma}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr)\\biggr) +
+                   \\sum_{k=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_k}} \\cdot \\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{x_k-\\mu_\\beta}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{x_i-\\mu_\\beta}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\biggr) \\cdot
+                   \\frac{2}{m}
+                   $$`,
+         dldxSub8: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} -
+                   \\biggl(\\frac{\\gamma}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr)\\biggr) -
+                   \\frac{\\gamma}{m}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{x_i-\\mu_\\beta}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}
+                   \\sum_{k=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_k}} \\cdot \\frac{x_k-\\mu_\\beta}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\biggr) \\cdot
+                   $$`,
+         dldxSub9: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
+                   \\frac{\\gamma }{\\sqrt{\\sigma^2_\\beta + \\epsilon}} -
+                   \\frac{\\gamma}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) -
+                   \\frac{\\gamma}{m\\sqrt{\\sigma^2_\\beta + \\epsilon}}\\hat{x_i}
+                   \\sum_{k=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_k}} \\cdot \\hat{x_j}\\biggr)
+                   $$`,
+         dldxSub10: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
+                   \\frac{\\gamma}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}\\Biggr(\\frac{\\partial{\\ell}}{\\partial{y_i}} -
+                   \\frac{1}{m}
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\biggr) -
+                   \\frac{\\hat{x_i}}{m}
+                   \\sum_{k=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_k}} \\cdot \\hat{x_j}\\biggr)\\Biggl)
                    $$`,
          dldxSubb3: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\mathrm{dout} \\cdot \\gamma
 
@@ -254,7 +367,7 @@ export default {
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
-                   \\frac{\\partial{\\sigma^2}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
+                   \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\biggr) \\cdot
@@ -268,7 +381,7 @@ export default {
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} +
                    \\sum_{i=1}^{m}\\biggl(
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
-                   \\frac{\\partial{\\sigma^2}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
+                   \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\Biggr) +
                    \\sum_{i=1}^{m}\\biggl(
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\biggr) \\cdot
@@ -284,7 +397,7 @@ export default {
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
-                   \\frac{\\partial{\\sigma^2}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
+                   \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
@@ -301,7 +414,7 @@ export default {
                    \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
-                   \\frac{\\partial{\\sigma^2}}{\\partial{\\mu_\\beta}} \\cdot
+                   \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}} \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\biggr) +
                    \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
@@ -329,22 +442,45 @@ export default {
       # cache: cache of intermediate variables to construct local gradient
 
       dx, dgamma, dbeta = None, None, None
-      x, xhat, sMean, sVar, eps, gamma, beta = cache
+      x, xhat, bMean, bVar, eps, gamma, beta = cache
       N, D = dout.shape
 
       dxhat = dout * gamma
-      dsVar1 = torch.sum(dxhat * (x - sMean), 0)
-      dsVar2 = ((-1/2)*((sVar + eps))**(-3/2))
-      dsVar =  dsVar1 * dsVar2
-      dMean = torch.sum(dxhat * -1/torch.sqrt(sVar + eps), 0) + dsVar * (torch.sum(-2*(x - sMean), 0))/ N
-      x1 = dxhat * (1/torch.sqrt(sVar + eps)) 
-      x2 = dsVar * (2 * (x - sMean)/ N)
+      dbVar1 = torch.sum(dxhat * (x - bMean), 0)
+      dbVar2 = ((-1/2)*((bVar + eps))**(-3/2))
+      dbVar =  dbVar1 * dbVar2
+      dMean = torch.sum(dxhat * -1/torch.sqrt(bVar + eps), 0) + dbVar * (torch.sum(-2*(x - bMean), 0))/ N
+      x1 = dxhat * (1/torch.sqrt(bVar + eps)) 
+      x2 = dbVar * (2 * (x - bMean)/ N)
       x3 = dMean * (1 / N)
+      # Standard dl/dx composed of 373 characters
       dx = x1 + x2 + x3
 
       dgamma = torch.sum(dout * xhat, 0)
       dbeta = torch.sum(dout, 0)
+
+      return dx, dgamma, dbeta
          `,
+         finalAnswerCode:
+         `
+   @staticmethod
+   def backward_alt(dout, cache):
+
+      # dout: upstream gradient
+      # cache: cache of intermediate variables to construct local gradient
+
+      dx, dgamma, dbeta = None, None, None
+      x, xhat, bMean, bVar, eps, gamma, beta = cache
+      N, D = dout.shape
+
+      dbeta = torch.sum(dout, 0)
+      dgamma = torch.sum(dout * xhat, 0)
+      # Optimized dl/dx composed of 97 characters
+      dx = gamma/torch.sqrt(bVar + eps) * (dout - torch.sum(dout, 0)/N - xhat/N * torch.sum(dout * xhat, 0))
+
+      return dx, dgamma, dbeta
+   # >>> ~3-10x faster than backward()
+         `
       }
    },
    async mounted () {
@@ -395,6 +531,7 @@ a {
 
 h2 {
    font-size: 16px;
+   color: #81A1C1;
    padding-top: 10px;
    margin: 0;
    font-weight: 200;
