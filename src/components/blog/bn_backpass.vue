@@ -39,7 +39,8 @@
                <br>
                Above is a "full" representation of the total derivative of <vue-mathjax :formula='dldx'></vue-mathjax>.
                I wrote the "full" (as opposed to the truly full) representation first for ease of understanding. The third term in the second summand: 
-               <vue-mathjax :formula='dxhatdmu'></vue-mathjax>, can be further decomposed because <vue-mathjax :formula='mu'></vue-mathjax> is an argument of <vue-mathjax :formula='xhat'></vue-mathjax> and <vue-mathjax :formula='sigmoid'></vue-mathjax>.
+               <vue-mathjax :formula='dxhatdmu'></vue-mathjax>, can be further decomposed because <vue-mathjax :formula='mu'></vue-mathjax> is an argument of <vue-mathjax :formula='xhat'></vue-mathjax> and the
+               intermediate variable <vue-mathjax :formula='sigmoid'></vue-mathjax>.
                It looks like:
             </p>
             <vue-mathjax :formula="dxhatdmufull"></vue-mathjax>
@@ -148,7 +149,7 @@
             <h2>9</h2>
             <vue-mathjax :formula='dldxSub9'></vue-mathjax>
             <p>
-               Some final cleaning up.   
+               Some final cleaning by factoring our similarities from the 3 terms. 
             </p>     
             <h2>10</h2>
             <vue-mathjax :formula='dldxSub10'></vue-mathjax>
@@ -167,8 +168,8 @@
                I found out that defining them rigidly in my current step 1 helped tremendously to save brain space. I'm also not entirely confident in this, but I realized that you can "interweave" total derivatives
                with partials (prior to step 1). If you're looking for a more readable interpretation of this exercise, check out
                <a href="https://kevinzakka.github.io/2016/09/14/batch_normalization/" target="_blank">this</a> blog post. The author substitutes in the partials as needed as opposed to doing it all at once as I did.
-               The reason why I did it all at once was a combination of solidifying understanding and having fun. If anybody struggles with concepts
-               affiliated to total/partial derivatives wrt vectors this is definitely a good exercise to try and do yourself. Feel free to ping me if you see any errors or have any suggestions/considerations.
+               The reason why I did it all at once was a combination of solidifying understanding, making explanations unambiguous, and having fun. If anybody struggles with concepts
+               affiliated to total/partial derivatives wrt vectors this is definitely a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations.
             </p>
             <p>
                Ryan Lin
