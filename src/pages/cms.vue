@@ -10,7 +10,7 @@
          <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
             <router-link to="bnbackpass">
-               <li>Differentiating the backwards pass in Batch Normalization</li>
+               <li>The Shortcut in Differentiating the Backwards Pass in Batch Normalization</li>
             </router-link>
             <router-link to="knn">
                <li>Implementing K Nearest Neighbors on CIFAR-10</li>
