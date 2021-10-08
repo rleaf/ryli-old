@@ -55,14 +55,16 @@
                Notice the redundancy of <vue-mathjax :formula='redundant'></vue-mathjax> in every summand. Factor this out and solve for the partials.
             </p> -->
             <p>
-               A gradient will match the dimensionality of what you're differentiating with respect to. This means when differentiating wrt a scalar, you sum over the elements of the batch.
+               A gradient will match the dimensionality of what you're differentiating with respect to. This means when differentiating wrt a scalar, you sum over the elements of the batch. Below is a
+               <b>template</b>
+               for visualization of what the full total derivative will look like when taking into account differentiating wrt scalars.
             </p>
                <vue-mathjax :formula='dldxSimple1'></vue-mathjax>
                <br>
-            <p>
+            <!-- <p>
                Factoring out <vue-mathjax :formula='factor'></vue-mathjax> as shown below is no good. Doing so destroys scalar structure. The below function is bad.
             </p>
-            <vue-mathjax :formula='dldxSimple2'></vue-mathjax>
+            <vue-mathjax :formula='dldxSimple2'></vue-mathjax> -->
             <p>
                For clarity and soon screen space, you can rewrite redundant partials into a generalized form: <vue-mathjax :formula='redundant'></vue-mathjax>
             </p>
@@ -72,11 +74,9 @@
                Step 2
             </div>
             <p>
-               Solve for all of the partials shown above. This is the easiest part. If I hadn't earlier defined my summations earlier then I would need to write them below where I'm differentating wrt a scalar.
-               The upstream gradient defined immediately below is automatically provided to the function when backpropogating. Special consideration towards <vue-mathjax :formula='dsigdmu'></vue-mathjax> and
-               <vue-mathjax :formula='dsigdx'></vue-mathjax> as there is a native summation in <vue-mathjax :formula='sigmoid'></vue-mathjax>. It will persist when differentiating wrt a scalar, however nullifies
-               when differentiating wrt a vector because you differentiate by iterating through the elements. Another way to think about it is that if you were to include the summation you'd result in a scalar value,
-               which is incorrect because you're differiating wrt a vector.
+               Solve for all of the partials shown above. This is the easiest part. The upstream gradient defined immediately below is automatically provided to the function when backpropogating.
+               Special consideration to <vue-mathjax :formula='dsigdmu'></vue-mathjax>, <vue-mathjax :formula='dxdsig'></vue-mathjax>, and <vue-mathjax :formula='dsigdx'></vue-mathjax> as there are summations in
+               their functions. The sigma notation in <vue-mathjax :formula='dsigdx'></vue-mathjax> does not carry over because we are differentiating wrt a vector.
             </p>
             <vue-mathjax :formula='dldy'></vue-mathjax>
             <br>
@@ -99,13 +99,14 @@
                Step 3
             </div>
             <p>
-               Every partial is evaluated. <b>Substitute in everything except dout</b>. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
+               Every partial is evaluated. <b>Substitute in everything except dout</b> to the template. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
                It will initially look more confusing, but simplifies well :). <i>(be careful to consider equations overflowing to the next line)</i>
             </p>
             <h2>1</h2>
             <vue-mathjax :formula='dldxSub1'></vue-mathjax>
             <p>
-               Two steps here: 1) Rewrite <vue-mathjax :formula='rootTrick'></vue-mathjax> as <vue-mathjax :formula='rootTrick2'></vue-mathjax> and 2) Factor constants outside of summations. I will also slowly
+               I'm going to work on the middle summand first. Rewrite <vue-mathjax :formula='rootTrick'></vue-mathjax> as <vue-mathjax :formula='rootTrick2'></vue-mathjax>. Notice how the second summation dissapears below.
+               This is because there's nothing to be summed over - the summations native to the partials accomplish the same task . I will also slowly
                be removing the dot notation where multiplication is obvious.
             </p>
             <h2>2</h2>
@@ -213,7 +214,7 @@ export default {
          dydxhatSolve: `$$\\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} = \\gamma$$`, 
          dxhatdxSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{x_i}} = \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}$$`,
          dxhatdmuSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\mu_\\beta}} = \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}$$`,
-         dxhatdsigSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} = \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta)$$`,
+         dxhatdsigSolve: `$$\\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} = \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)$$`,
          dsigdmuSolve: `$$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}} = \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)$$`,
          dmudxSolve: `$$\\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} = \\frac{1}{m}$$`,
          dsigdxSolve: `$$\\frac{\\partial{\\sigma^2_\\beta}}{\\partial{x_i}} = \\frac{2}{m}(x_i-\\mu_\\beta)$$`,
@@ -236,27 +237,29 @@ export default {
          dldxSub1: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
                    \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
                    \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   \\biggl(\\sum_{i=1}^{m}\\biggl( \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
+                   \\Biggl(\\sum_{i=1}^{m}\\biggl( \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
                    \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}\\biggr) \\cdot
                    \\frac{1}{m} +
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}\\cdot\\gamma \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}
+                   \\sum_{k=1}^{m}(x_k -\\mu_\\beta)\\cdot
+                   \\frac{-2}{m}\\sum_{k=1}^{m}(x_k -\\mu_\\beta)
+                   \\biggr)\\frac{1}{m}\\Biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta) \\cdot
-                   \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)\\biggr) \\cdot
-                   \\frac{1}{m}\\biggr) +
-                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
-                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}(x_i-\\mu_\\beta)\\biggr) \\cdot
+                   \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-3/2}
+                   \\sum_{k=1}^{m}(x_k -\\mu_\\beta)\\biggr) \\cdot
                    \\frac{2}{m}(x_i-\\mu_\\beta)
                    $$`,
          dldxSub2: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} =
                    \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
                    \\frac{1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}} +
-                   \\biggl( \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
-                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}
+                   \\Biggl(\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}}\\cdot
+                   \\gamma \\cdot \\frac{-1}{\\sqrt{\\sigma^2_\\beta + \\epsilon}}
                    \\biggr) \\frac{1}{m} +
                    \\gamma \\cdot
                    \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot (x_i-\\mu_\\beta) \\cdot
                    \\frac{-2}{m}\\sum_{i=1}^{m}(x_i-\\mu_\\beta)\\biggr) \\cdot
-                   \\frac{1}{m}\\biggr) +
+                   \\frac{1}{m}\\Biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot \\gamma \\cdot
                    \\frac{-1}{2}(\\sigma^2_\\beta+\\epsilon)^{-1/2}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}\\frac{1}{\\sqrt{\\sigma^2_\\beta+\\epsilon}}(x_i-\\mu_\\beta)\\biggr) \\cdot
                    \\frac{2}{m}(x_i-\\mu_\\beta)
@@ -363,13 +366,14 @@ export default {
                    $$`,
          dldxSimple3: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{x_i}} +
-                   \\biggl(\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
+                   \\Biggl(\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} +
-                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
-                   \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
+                   \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
+                   \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
+                   \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\cdot
                    \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
-                   \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\biggr) +
+                   \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\Biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{x_i}}
@@ -391,15 +395,15 @@ export default {
          dldxSimple1: `$$\\frac{\\partial{\\ell}}{\\partial{x_i}} = \\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{x_i}} +
-                   \\biggl(\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
+                   \\Biggl(\\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
                    \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}} +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
-                   \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}} \\cdot
+                   \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\cdot
                    \\frac{\\partial{\\sigma^2_\\beta}}{\\partial{\\mu_\\beta}}\\biggr) \\cdot
-                   \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\biggr) +
+                   \\frac{\\partial{\\mu_\\beta}}{\\partial{x_i}}\\Biggr) +
                    \\sum_{i=1}^{m}\\biggl(\\frac{\\partial{\\ell}}{\\partial{y_i}} \\cdot
                    \\frac{\\partial{y_i}}{\\partial{\\hat{x_i}}} \\cdot
                    \\frac{\\partial{\\hat{x_i}}}{\\partial{\\sigma^2_\\beta}}\\biggr) \\cdot
