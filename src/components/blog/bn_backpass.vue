@@ -78,7 +78,7 @@
             </div>
             <p>
                Solve for all of the partials shown above. This is the easiest part. The upstream gradient defined immediately below is automatically provided to the function when backpropagating.
-               Special consideration to <vue-mathjax :formula='dsigdmu'></vue-mathjax>, <vue-mathjax :formula='dxdsig'></vue-mathjax>, and <vue-mathjax :formula='dsigdx'></vue-mathjax> as there are summations in
+               Special consideration to <vue-mathjax :formula='dsigdmu'></vue-mathjax> and <vue-mathjax :formula='dsigdx'></vue-mathjax> as there are summations in
                their functions. The sigma notation in <vue-mathjax :formula='dsigdx'></vue-mathjax> does not carry over because we are differentiating wrt a vector.
             </p>
             <vue-mathjax :formula='dldy'></vue-mathjax>
@@ -102,7 +102,7 @@
                Step 3
             </div>
             <p>
-               Every partial is evaluated. <b>Substitute in everything except dout</b> to the template. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
+               Every partial is evaluated. <b>Substitute in everything except dout</b> to the template from step 1. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
                Note that I've changed the nested summations index to <i>k</i>. It will initially look more confusing, but simplifies well :). <i>(be careful to consider equations overflowing to the next line)</i>
             </p>
             <h2>1</h2>
@@ -171,7 +171,8 @@
                I found out that defining them rigidly in my current step 1 helped tremendously to save brain space. I also realized that you can "interweave" total derivatives
                with partials (prior to step 1) - doubt I'll be doing that again. If you're looking for a more readable interpretation of this exercise, check out
                <a href="https://kevinzakka.github.io/2016/09/14/batch_normalization/" target="_blank">this</a> blog post. The author substitutes in the partials as needed as opposed to doing it all at once as I did.
-               The reason why I did it all at once was a combination of solidifying understanding, <b>making explanations unambiguous</b>, and having fun. If anybody struggles with concepts
+               The reason why I did it all at once was a combination of solidifying understanding, <b>making explanations unambiguous</b>, and having fun. Some of the simplifications in equations 1-10 are
+               inefficient for the same reasons. If anybody struggles with concepts
                affiliated to total/partial derivatives wrt vectors this is a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations. Lastly, sorry to my
                2nd grade teacher, Mrs. Swain, for using "we" and "I" interchangeably.
             </p>
