@@ -13,8 +13,9 @@
                </div>
             </div>
             <p>
-               <i>This read is to serve mainly as a reference to concepts about the shortcut of the backward pass in batch normalization - it is a little impractical because instead of substituting partials as needed,
-                  when working through the math, I do everything at once.</i>
+               <i>This read is to serve more-so as a reference, as opposed to being more explanatory, to concepts about the shortcut of the backward pass in batch normalization. It is a little impractical because
+                  instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
+                  I link an alternative, maybe more interpretable, blog down below in the conclusion.</i>
                <br>
                <br>
                The image below defines "whitening". An application to a batch of inputs with the goal to reduce the <i>internal covariate shift</i>. This procedure occurs during the forward pass.
@@ -58,7 +59,7 @@
             <p>
                The downstream gradient will always match the dimensionality of whatever you're differentiating with respect to.
                This means you have to sum over the elements if the upstream is of a higher rank than your downstream. For batch normalization, the metaphorical local jacobian, which you multiply by the upstream,
-               will instead be a conglomeration of intermediary functions. Below I integrate summations into the total derivative for dimensionality reduction as the betas all reference a scalar value for each feature
+               will instead be a conglomeration of intermediary functions. Below I integrate summations into the total derivative to reduce dimensionality as the betas all reference a scalar value for each feature
                of the entire batch. (aka: Derivative of rank 2 tensor wrt rank 1 tensor goes through summation to produce a rank 1 tensor which matches dimensionality of what we're differentiating wrt to).
             </p>
                <vue-mathjax :formula='dldxSimple1'></vue-mathjax>
@@ -68,7 +69,7 @@
             </p>
             <vue-mathjax :formula='dldxSimple2'></vue-mathjax> -->
             <p>
-               For clarity and soon screen space, you can rewrite redundant partials into a generalized form: <vue-mathjax :formula='redundant'></vue-mathjax>
+               For clarity, you can rewrite redundant partials into a generalized form: <vue-mathjax :formula='redundant'></vue-mathjax>
             </p>
             <vue-mathjax :formula='dldxSimple3'></vue-mathjax>
             
@@ -170,8 +171,9 @@
                I found out that defining them rigidly in my current step 1 helped tremendously to save brain space. I also realized that you can "interweave" total derivatives
                with partials (prior to step 1) - doubt I'll be doing that again. If you're looking for a more readable interpretation of this exercise, check out
                <a href="https://kevinzakka.github.io/2016/09/14/batch_normalization/" target="_blank">this</a> blog post. The author substitutes in the partials as needed as opposed to doing it all at once as I did.
-               The reason why I did it all at once was a combination of solidifying understanding, making explanations unambiguous, and having fun. If anybody struggles with concepts
-               affiliated to total/partial derivatives wrt vectors this is a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations.
+               The reason why I did it all at once was a combination of solidifying understanding, <b>making explanations unambiguous</b>, and having fun. If anybody struggles with concepts
+               affiliated to total/partial derivatives wrt vectors this is a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations. Lastly, sorry to my
+               2nd grade teacher, Mrs. Swain, for using "we" and "I" interchangeably.
             </p>
             <p>
                Ryan Lin
