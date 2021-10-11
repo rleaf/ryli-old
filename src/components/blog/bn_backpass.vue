@@ -335,19 +335,6 @@ export default {
    font-size: 28px;
 }
 
-.codeblock {
-   background: #131313;
-   color: #ccc;
-   max-width: 950px;
-
-   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
-   font-size: 14px;
-   line-height: 1.5;
-   padding: 20px 10px;
-
-   border-radius: 7px;
-}
-
 p {
    padding: 25px 7vw !important;
    line-height: 2;

@@ -66,6 +66,13 @@
    display: none;
 }
 
+::selection {
+  background: #2c2c2c; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #2c2c2c; /* Gecko Browsers */
+}
+
 body, html {
    margin: 0;
    padding: 0;
@@ -396,6 +403,24 @@ body, html {
 
 #homefooter, a:hover {
    color: var(--white);
+}
+
+.codeblock {
+   background: #131313;
+   color: #ccc;
+   /* max-width: 950px; */
+   max-width: max-content;
+
+   font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+   font-size: 14px;
+   line-height: 1.5;
+   padding: 20px 10px;
+
+   border-radius: 7px;
+}
+
+.prism-editor__textarea:focus {
+   outline: none;
 }
 
 </style>

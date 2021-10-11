@@ -72,11 +72,7 @@
                Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>, <code style="background: #242424; border-radius: 5px;">x_test</code>,
                <code style="background: #242424; border-radius: 5px;">y_train</code>, and <code style="background: #242424; border-radius: 5px;">y_test</code>. They are declared simply with:
             </p>
-               <code-highlight language="python">
-                  <pre>
-         {{ declaration }}
-                  </pre>
-               </code-highlight>
+            <prism-editor class="codeblock" v-model="declaration" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Below is the <code style="background: #242424; border-radius: 5px;">cifar10()</code> definition. It isn't necessary to understand kNN's but I thought it was worth adding for the curious.
                PyTorch ameliorates importing a handful of popular datasets and networks. By calling <code style="background: #242424; border-radius: 5px;">cifar10()</code>, we're populating tensors with the...CIFAR-10 dataset (shocker).
@@ -85,11 +81,7 @@
                returns a 10,000 testing images (of same dimensionality as x_train), and lastly <code style="background: #242424; border-radius: 5px;">y_test</code> returns the labels for those 10,000 images (of same dimensionality as x_test).
                <span style="color: #81A1C1;">A tensor can be thought of as a generalization to a scalar (0D tensor), vector (1D tensor), matrix (2D tensor), etc...</span>
             </p>
-               <code-highlight language="python">
-                  <pre>
-         {{ load }}
-                  </pre>
-               </code-highlight>
+            <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                Visualizing
             </div>
@@ -99,9 +91,7 @@
                Each image is composed of 3x32x32 pixel values. The 3x<b><u>32x32</u></b> references their height/width and the <b><u>3</u></b>x32x32 references the color channels, which most of computer vision (to my knowledge)
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer label then corresponds to a list of classes:
             </p>
-               <code-highlight language="python">
-                  {{ classes }}
-               </code-highlight>
+            <prism-editor class="codeblock" v-model="classes" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                Subsampling
             </div>
@@ -112,11 +102,7 @@
                <code style="background: #242424; border-radius: 5px;">num_test</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
                algorithm.
             </p>
-            <code-highlight language="python">
-               <pre>
-         {{ subsample }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                The actual part with kNN: Finding the Euclidean distance
             </div>
@@ -128,11 +114,7 @@
                <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
             </p>
-            <code-highlight language="python">
-               <pre>
-         {{ nested_for_loops }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="nested_for_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a rank 4 tensor as [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
                It is important to notice that prior to our loop, we flatten the tensors <span style="color: #81A1C1;">(reduce dimensionality)</span>.
@@ -148,11 +130,7 @@
                Without using functions like <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, here is a more
                optimal variation of finding the Euclidean distance that has no loops:
             </p>
-            <code-highlight language="python">
-               <pre class="line-numbers">
-         {{ no_loops }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="no_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                This procedure makes use of expanding the square in the Euclidean distance:
                <br>
@@ -176,9 +154,7 @@
                Our tensor of goodies is complete. Within each column of <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code> is the Euclidean distance of every training image with respect to a test image. We'd now like
                to have our algorithm find the k lowest values of the same class within each column and classify that test image in accordance with the label of those training images.
             </p>
-            <code-highlight language="python">
-               {{ classify }}
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="classify" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                The goal is to return the rank 1 tensor <code style="background: #242424; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
                of how the classification works on a <code style="background: #242424; border-radius: 5px;">dists</code> of size [5x3]. The algorithm finds the index of the <i>k</i> lowest Euclidean distances within each column. Then it corresponds
@@ -192,11 +168,7 @@
                We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our hyperparameter k set to 5, our kNN results in a 27.8%
                accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
             </p>
-            <code-highlight language="python">  
-               <pre>
-                  {{ running_kNN }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="running_kNN" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                Optimizing kNN: Cross Validation
             </div>
@@ -212,32 +184,20 @@
                Cross validation further segregates our training set into "chunks". For our subsample of 5,000 test images and labels, we can create 5 tensors of shape [1,000, 3072]. One of those 5 chunks becomes what is called
                the validation set to evaluate an optimal <i>k</i>. The validation set does the job for what was previously the test set's. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
             </p>
-            <code-highlight language="python">
-               <pre>
-                  {{ cross_validation }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="cross_validation" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <img id="img500" src="../../assets/blog/optimalk.png" alt="">
             <p>
                A total of 50 different accuracies result from our 10 different <i>k's</i> and 5 partitions from cross validation. We'd now like kNN to select the value for k that yielded the highest average accuracy for the 5 folds. We can see
                on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
             </p>
-            <code-highlight language="python">
-               <pre>
-                  {{ best_k }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="best_k" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                Running on the entire CIFAR-10
             </div>
             <p>
                We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instead of 5,000 images.
             </p>
-            <code-highlight language="python">
-               <pre>
-                  {{ full_cifar }}
-               </pre>
-            </code-highlight>
+            <prism-editor class="codeblock" v-model="full_cifar" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -259,14 +219,15 @@
 
 <script>
 import { VueMathjax } from 'vue-mathjax'
-import CodeHighlight from 'vue-code-highlight/src/CodeHighlight.vue'
 import toTop from '../../components/toTop.vue'
 import backdrop from '../../components/backdrop.vue'
 
-import "vue-code-highlight/themes/prism-nord.css"
-// import "vue-code-highlight/themes/prism-duotone-space.css"
-import 'prism-es6/components/prism-markup-templating';
-import 'prism-es6/components/prism-python';
+import { PrismEditor } from 'vue-prism-editor'
+import 'vue-prism-editor/dist/prismeditor.min.css'
+import { highlight, languages } from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-python'
+import 'prismjs/themes/prism-nord.css'
+
 
 
 
@@ -276,7 +237,7 @@ export default {
       toTop,
       backdrop,
       'vue-mathjax': VueMathjax,
-      CodeHighlight,
+      PrismEditor
    },
    data() {
       return {
@@ -290,8 +251,7 @@ export default {
          \\sqrt{\\sum_{i=1}^{n}{x_i^2-2x_iy_i+y_i^2}}$$`,
          midterm: `$x_iy_i$`,
          full_cifar: 
-         `
-   from knn import KnnClassifier
+`   from knn import KnnClassifier
 
    torch.manual_seed(0)
    x_train_all, y_train_all, x_test_all, y_test_all = cifar10()
@@ -300,11 +260,9 @@ export default {
    classifier.check_accuracy(x_test_all, y_test_all, k=best_k)
 
    # >>> Got 3399 / 10000 correct; accuracy is 33.99%
-   # >>> 33.99
-         `,
+   # >>> 33.99`,
          best_k: 
-         `
-   def knn_get_best_k(k_to_accuracies):
+`   def knn_get_best_k(k_to_accuracies):
       """
       Inputs:
       - k_to_accuracies: Dictionary mapping values of k to lists, where
@@ -331,13 +289,11 @@ export default {
 
       return best_k
 
-   # >>> Best k is  10
-   # >>> Got 141 / 500 correct; accuracy is 28.20%
-   # >>> 28.2
-         `,
+      # >>> Best k is  10
+      # >>> Got 141 / 500 correct; accuracy is 28.20%
+      # >>> 28.2`,
          cross_validation:
-         `
-   def knn_cross_validate(x_train, y_train, num_folds=5, k_choices=None):
+`   def knn_cross_validate(x_train, y_train, num_folds=5, k_choices=None):
       """
       Inputs:
       - x_train: Tensor of shape (num_train, C, H, W) giving all training data
@@ -400,10 +356,9 @@ export default {
    # >>> k = 15 got accuracies: [25.2, 28.9, 27.8, 28.2, 27.4]
    # >>> k = 20 got accuracies: [27.0, 27.9, 27.9, 28.2, 28.5]
    # >>> k = 50 got accuracies: [27.1, 28.8, 27.8, 26.9, 26.6]
-   # >>> k = 100 got accuracies: [25.6, 27.0, 26.3, 25.6, 26.3]
-         `,
-         running_kNN: `
-   from knn import KnnClassifier
+   # >>> k = 100 got accuracies: [25.6, 27.0, 26.3, 25.6, 26.3]`,
+         running_kNN: 
+`   from knn import KnnClassifier
 
    torch.manual_seed(0)
    num_train = 5000
@@ -413,10 +368,9 @@ export default {
    classifier = KnnClassifier(x_train, y_train)
    classifier.check_accuracy(x_test, y_test, k=5)
    # >>> Got 139 / 500 correct; accuracy is 27.80%
-   # >>> 27.8
-         `,
-         classify: `
-   # Create tensor to house all labels of test images
+   # >>> 27.8`,
+         classify: 
+`   # Create tensor to house all labels of test images
    y_test_pred = torch.zeros(x_test.shape[0], dtype=torch.int64)
 
    # Iterate through the columns of dists
@@ -430,10 +384,9 @@ export default {
 
       # Populate y_test_pred with the majority label in k_lowest_labels.
       # If there is no majority, populates with the lowest value
-      y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))
-         `,
-         no_loops: `
-   def compute_distances_no_loops(x_train, x_test):
+      y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))`,
+         no_loops:
+`   def compute_distances_no_loops(x_train, x_test):
       """
       Inputs:
       - x_train: Torch tensor of shape (num_train, C, H, W)
@@ -481,10 +434,9 @@ export default {
 
    ### Function call
    x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
-   dists = compute_distances_no_loops(x_train, x_test) 
-      `,
-         nested_for_loops:`
-   def compute_distances_two_loops(x_train, x_test):
+   dists = compute_distances_no_loops(x_train, x_test)`,
+         nested_for_loops:
+`   def compute_distances_two_loops(x_train, x_test):
       """
       Inputs:
       - x_train: Torch tensor of shape (num_train, D1, D2, ...)
@@ -524,8 +476,8 @@ export default {
    x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
    dists = compute_distances_two_loops(x_train, x_test)  
    `,
-         subsample:`
-   # Subsample size
+         subsample:
+`   # Subsample size
    num_train = 500
    num_test = 250
 
@@ -542,10 +494,9 @@ export default {
    print('labels shape:', y_test.shape)
    # Testing set:
    # >>> data shape: torch.Size([250, 3, 32, 32])
-   # >>> labels shape: torch.Size([250])
-   `,
-         classes: `
-   classes = ['plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+   # >>> labels shape: torch.Size([250])`,
+         classes:
+`   classes = ['plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
    # plane = 0, car = 1, bird = 2 ... truck = 9
       
    print(x_train[0].shape)
@@ -555,8 +506,8 @@ export default {
    # Finding integer label of corresponding 0th image
    # >>> tensor(6)
    # Element 6 in list classes is a frog (which is correct, just take my word for it)`,
-         declaration:`
-   x_train, y_train, x_test, y_test = cifar10()
+         declaration:
+`   x_train, y_train, x_test, y_test = cifar10()
 
    # Training Set
    print('data shape:', x_train.shape)
@@ -569,8 +520,8 @@ export default {
    print('labels shape', y_test.shape)
    # >>> data shape: torch.Size([10000, 3, 32, 32])
    # >>> labels shape: torch.Size([10000])`,
-         load:`
-   import os
+         load:
+`   import os
    import torch
    from torchvision.datasets import CIFAR10
 
@@ -594,6 +545,11 @@ export default {
       
       return x_train, y_train, x_test, y_test`,
       }
+   },
+   methods: {
+      highlighter(code) {
+        return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      } 
    },
    async mounted () {
       window.MathJax.Hub.Config({
