@@ -2,6 +2,8 @@
 node_modules
 /dist
 /src/assets
+package-lock.json
+package.json
 
 # local env files
 .env.local
