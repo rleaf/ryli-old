@@ -8,12 +8,6 @@ module.exports = {
       .use('raw-loader')
          .loader('raw-loader')
          .end()
-    config.module
-          .rule('markdown-latex')
-          .test(/\.(md|markdown|markdown-latex)$/)
-          .use('raw-loader')
-            .loader('raw-loader')
-            .end()
-  },
+  }
 }
 
