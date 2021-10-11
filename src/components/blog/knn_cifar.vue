@@ -474,8 +474,7 @@ export default {
 
    ### Function call
    x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
-   dists = compute_distances_two_loops(x_train, x_test)  
-   `,
+   dists = compute_distances_two_loops(x_train, x_test)`,
          subsample:
 `   # Subsample size
    num_train = 500
