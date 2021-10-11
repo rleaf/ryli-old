@@ -71,10 +71,10 @@ export default {
    },
    async mounted () {
 
-      let mathjaxScript = document.createElement('script')
-      // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js')
-      mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-      document.head.appendChild(mathjaxScript)
+      // let mathjaxScript = document.createElement('script')
+      // // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js')
+      // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
+      // document.head.appendChild(mathjaxScript)
 
       // try {
       //    const response = await axios.get('http://localhost:1337/blogs')
