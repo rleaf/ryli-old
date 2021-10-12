@@ -9,7 +9,7 @@
                   <p style="font-size: 18px; margin: 0;">Total items: {{postList.length}}</p>
                </div>
                <p>
-                  <i style="font-size: 14px;">Experimental page. May delete in the future</i>
+                  <i style="font-size: 14px;">Experimental page. May delete in the future. Intended for food.</i>
                </p>
                   <input type="text" v-model="search" placeholder="Search..."/>
             </div>
@@ -19,11 +19,12 @@
                   <p style="white-space: pre;">
                      <u>{{ post.title }}</u>
                   </p>
-                  <p style="white-space: pre;">
+                  <p style="white-space: pre;" v-if="post.body">
                      {{ post.body}}
                   </p>
                   <p style="white-space: pre;">
-                     <vue-mathjax :formula='post.math'></vue-mathjax>
+                     <vue-mathjax v-if="post.math" :formula='post.math'></vue-mathjax>
+                     <prism-editor class="codeblock" v-if="post.code" v-model="post.code" :highlight="highlighter" :readonly="true"></prism-editor>
                   </p>
             </div>
          </div>
@@ -34,10 +35,16 @@
 import Post from '../assets/js/glossaryStruc.js'
 import g from '../assets/json/glossary.json'
 import { VueMathjax } from 'vue-mathjax'
+import { PrismEditor } from 'vue-prism-editor'
+import 'vue-prism-editor/dist/prismeditor.min.css'
+import { highlight, languages } from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-python'
+import 'prismjs/themes/prism-nord.css'
 
 export default {
    components: {
-      'vue-mathjax': VueMathjax
+      'vue-mathjax': VueMathjax,
+      PrismEditor
    },
 
    data() {
@@ -47,17 +54,20 @@ export default {
                // title
                // body
                // math
+               // code
                // keys
 
             new Post(
                g.svmLoss.title, 
                g.svmLoss.body,
                g.svmLoss.math,
+               undefined,
                g.svmLoss.keys
             ),
             new Post(
                g.Pesto.title, 
                g.Pesto.body, 
+               undefined,
                undefined,
                g.Pesto.keys
             ),
@@ -65,8 +75,16 @@ export default {
                g.Pizza.title,
                g.Pizza.body,
                undefined,
+               undefined,
                g.Pizza.keys
-            )
+            ),
+            new Post(
+               g.Print.title,
+               g.Print.body,
+               undefined,
+               g.Print.code,
+               g.Print.keys
+            ),
          ]
       }
    },
@@ -80,7 +98,9 @@ export default {
    },
 
    methods: {
-
+      highlighter(code) {
+         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      }
    }
 }
 </script>
@@ -114,5 +134,9 @@ input[type=text] {
    
    color: var(--offWhite);
    max-width: 400px;
+}
+
+.codeblock {
+   padding: 5px 10px;
 }
 </style>
