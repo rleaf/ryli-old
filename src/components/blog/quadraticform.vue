@@ -180,7 +180,7 @@
 import backdrop from '../../components/backdrop.vue'
 import { VueMathjax } from 'vue-mathjax'
 import toTop from '../../components/toTop.vue'
-import quadForm from '../../assets/math/quadraticForm.json'
+import quadForm from '../../assets/json/quadraticForm.json'
 
 
 

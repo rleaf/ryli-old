@@ -182,7 +182,7 @@
 <script>
 import backdrop from '../../components/backdrop.vue'
 import toTop from '../../components/toTop.vue'
-import bnBackpass from '../../assets/math/bnBackpass.json'
+import bnBackpass from '../../assets/json/bnBackpass.json'
 
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css'

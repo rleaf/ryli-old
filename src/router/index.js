@@ -7,6 +7,7 @@ import contact from '../pages/contact.vue'
 import sketches from '../pages/sketches.vue'
 import designLink from '../pages/design.vue'
 import speakLink from '../pages/cms.vue'
+import glossaryLink from '../pages/glossary.vue'
 
 import portfolioLink from '../pages/portfolioObjects/portfolioObject.vue'
 import expanseLink from '../pages/portfolioObjects/expanseObject.vue'
@@ -132,6 +133,11 @@ const routes = [
     path: '/bnbackpass',
     name: 'bnbackpass',
     component: bn_backpassLink
+  },
+  {
+    path: '/glossary',
+    name: 'glossary',
+    component: glossaryLink
   },
   {
     path: '/*',

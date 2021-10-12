@@ -25,6 +25,9 @@
             <router-link to='blog' class="underline">
                <li>Blog</li>
             </router-link>
+            <router-link to='glossary' class="underline">
+               <li>Glossary</li>
+            </router-link>
             <!-- <router-link to='sketches' class="underline">
                <li>Sketches +</li>
             </router-link> -->
