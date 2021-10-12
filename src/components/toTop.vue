@@ -2,17 +2,32 @@
   <div id="toTop">
      <!-- <a href onclick="window.scrollTo({0,0, behavior: 'smooth'})">Go back to top</a> -->
      <!-- <router-link  to="/">Go Back Top</router-link> -->
-     <router-link to="" @click.native="scrollToTop()">Go Back Top</router-link>
+     <router-link id="toTop" to="" @click.native="scrollToTop()">Go Back Top</router-link>
   </div>
 </template>
 
 <script>
+// import { gsap } from "gsap";
+
 export default {
+   data() {
+      return {
+
+      }
+   },
+   created() {
+      window.addEventListener('scroll', this.test)
+   },
    methods: {
+      // test() {
+      //    if(top != window.self) {
+      //       console.log('toad');
+      //    }
+      // },
       scrollToTop() {
          window.scrollTo({
             top: 0,
-            // behavior: 'smooth'
+            behavior: 'smooth'
          });
       }
    }
