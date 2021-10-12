@@ -2,12 +2,13 @@
   <div id="toTop">
      <!-- <a href onclick="window.scrollTo({0,0, behavior: 'smooth'})">Go back to top</a> -->
      <!-- <router-link  to="/">Go Back Top</router-link> -->
-     <router-link id="toTop" to="" @click.native="scrollToTop()">Go Back Top</router-link>
+     <!-- <router-link id="toTop" to="" @click.native="scrollToTop()">Go Back Top</router-link> -->
+     <button id="toTopButton" to="" @click="scrollToTop()">Go Back Top</button>
   </div>
 </template>
 
 <script>
-// import { gsap } from "gsap";
+import { gsap } from "gsap";
 
 export default {
    data() {
@@ -19,11 +20,18 @@ export default {
       window.addEventListener('scroll', this.test)
    },
    methods: {
-      // test() {
-      //    if(top != window.self) {
-      //       console.log('toad');
-      //    }
-      // },
+      test() {
+         const x = document.querySelector('#toTopButton')
+
+         if(document.body.scrollTop > 300 ||  document.documentElement.scrollTop > 300) {
+            gsap.to(x, {duration: .25, display: 'block', opacity: 1, bottom: 20})
+            // x.style.display = "block"
+         } else {
+            gsap.to(x, {duration: .25, display: 'none', opacity: 0, bottom: 0})
+            // x.style.display = 'none'
+         }
+         
+      },
       scrollToTop() {
          window.scrollTo({
             top: 0,
@@ -54,21 +62,21 @@ export default {
    padding-bottom: 150px;
 }
 
-#button {
-   display: inline-block;
-   background-color: #FF9800;
-   width: 50px;
-   height: 50px;
-   text-align: center;
-   border-radius: 4px;
+button {
+   display: none; 
+   /* opacity: 0; */
    position: fixed;
-   bottom: 30px;
+   /* bottom: 20px;  */
    right: 30px;
-   transition: background-color .3s, 
-   opacity .5s, visibility .5s;
-   opacity: 0;
-   visibility: hidden;
-   z-index: 1000;
+   z-index: 99; 
+   border: none;
+   box-shadow: -1px 0 var(--offWhite), 0 1px var(--offWhite), 1px 0 var(--offWhite), 0 -1px var(--offWhite);
+   outline: none;
+   background-color: #0e0e0e; 
+   color: var(--white); 
+   cursor: pointer; /* Add a mouse pointer on hover */
+   padding: 5px 10px; 
+   font-size: 14px; 
 }
 
 </style>
