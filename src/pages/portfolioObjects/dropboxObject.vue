@@ -11,10 +11,10 @@
          <div id="textContainerBody">
             A redesign intended to convey a simple and cleaner aesthetic
          </div>
-         <img src="../../assets/dropbox/mock1.jpg" alt="" id="img1300">
+         <img src="../../assets/design/dropbox/mock1.jpg" alt="" id="img1300">
          <!-- <video id="img1300" autoplay loop src="../../assets/dropbox/test.webm"></video> -->
          <video id="img1300" autoplay loop :src="landing"></video>
-         <img src="../../assets/dropbox/dropbox_compare.jpg" alt="" id="img1300">
+         <img src="../../assets/design/dropbox/dropbox_compare.jpg" alt="" id="img1300">
          <video id="img1300" autoplay loop :src="signin"></video>
          <toTop />
       </div>
@@ -33,8 +33,8 @@ export default {
    },
    data: function() {
       return {
-         landing: require("../../assets/dropbox/test.webm"),
-         signin: require("../../assets/dropbox/signin.webm")
+         landing: require("../../assets/design/dropbox/test.webm"),
+         signin: require("../../assets/design/dropbox/signin.webm")
       }
    },
 }

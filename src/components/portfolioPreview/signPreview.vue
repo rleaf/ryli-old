@@ -10,7 +10,9 @@
                <!-- <p>4/2/2020</p> -->
             </div>
          </div>
-         <img src="../../assets/signlanguage/sign_cover.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/signlanguage/sign_cover.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>

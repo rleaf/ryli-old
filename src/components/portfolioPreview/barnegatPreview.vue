@@ -10,7 +10,9 @@
                <!-- <p>01/20/19</p> -->
             </div>
          </div>
-         <img src="../../assets/barnegat/barnegat_cover.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/barnegat/barnegat_cover.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>
@@ -21,6 +23,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

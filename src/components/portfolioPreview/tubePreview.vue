@@ -10,7 +10,9 @@
                <!-- <p>2/15/19</p> -->
             </div>
          </div>
-         <img src="../../assets/tube/tubeworld_cover.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/tube/tubeworld_cover.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>

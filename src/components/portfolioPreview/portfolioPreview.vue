@@ -10,7 +10,9 @@
                <!-- <p>01/04/20</p> -->
             </div>
          </div>
-         <img src="../../assets/test.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/test.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>

@@ -13,8 +13,8 @@
             incorporating hand gestures with public speaking to increase efficacy of communication. Many signs have been redesigned specifically for a presentation environment
             to participate conveying the speakers message.
          </div>
-         <img src="../../assets/signlanguage/mock.jpg" alt="" id="img1300">
-         <img src="../../assets/signlanguage/mock2.jpg" alt="" id="img1300">
+         <img src="../../assets/design/signlanguage/mock.jpg" alt="" id="img1300">
+         <img src="../../assets/design/signlanguage/mock2.jpg" alt="" id="img1300">
          <div id="textContainerBody">
             
          </div>

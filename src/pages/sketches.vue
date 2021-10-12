@@ -17,10 +17,10 @@
          <div id="sketchesSkeletonFlex">
             <!-- <img src="../assets/sketches/eye.jpg" alt="" id="imgH400">
             <img src="../assets/sketches/gold.jpg" alt="" id="imgH400"> -->
-            <img src="../assets/sketches/tube.jpg" alt="" id="imgH400">
+            <img src="../assets/design/sketches/tube.jpg" alt="" id="imgH400">
             <video autoplay loop :src="threejs" alt=""></video>
-            <img src="../assets/sketches/shark1.jpg" alt="" id="imgH400">
-            <img src="../assets/sketches/shark2.jpg" alt="" id="imgH400">
+            <img src="../assets/design/sketches/shark1.jpg" alt="" id="imgH400">
+            <img src="../assets/design/sketches/shark2.jpg" alt="" id="imgH400">
          </div>
          <toTop />
    </div>
@@ -38,7 +38,7 @@ export default {
 
    data: () => {
       return {
-         threejs: require("../assets/sketches/threejs.webm")
+         threejs: require("../assets/design/sketches/threejs.webm")
       }
    }
 }

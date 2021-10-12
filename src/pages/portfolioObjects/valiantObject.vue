@@ -19,8 +19,8 @@
             different resolutions were all incorporated to provide the viewer with a greater experience.
          </div>
          <!-- <img src="../../assets/valiant/Artboard 2.png" alt="" id="img1300"> -->
-         <img src="../../assets/valiant/mock1.jpg" alt="" id="img1300">
-         <img src="../../assets/valiant/mock2.jpg" alt="" id="img1300">
+         <img src="../../assets/design/valiant/mock1.jpg" alt="" id="img1300">
+         <img src="../../assets/design/valiant/mock2.jpg" alt="" id="img1300">
          <!-- <div id="textContainerBody">
             Here is the final version of the website. 
          </div> -->
@@ -43,7 +43,7 @@ export default {
    data: function() {
       return {
          // valiantOpen:
-         landing: require("../../assets/valiant/valiant.webm") 
+         landing: require("../../assets/design/valiant/valiant.webm") 
       }
    }
 }

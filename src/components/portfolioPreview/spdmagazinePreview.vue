@@ -10,7 +10,9 @@
                <!-- <p>2/24/2020</p> -->
             </div>
          </div>
-         <img src="../../assets/spdmagazine/magazine_cover.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/spdmagazine/magazine_cover.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>

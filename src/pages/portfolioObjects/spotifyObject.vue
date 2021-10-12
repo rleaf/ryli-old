@@ -16,20 +16,20 @@
          </div>
          <div id="textContainerBody">
          </div>
-         <img src="../../assets/spotify/mock1.jpg" alt="">
-         <img src="../../assets/spotify/mock2.jpg" alt="">
-         <img src="../../assets/spotify/spotifymap.jpg" alt="" id="img1300">
+         <img src="../../assets/design/spotify/mock1.jpg" alt="">
+         <img src="../../assets/design/spotify/mock2.jpg" alt="">
+         <img src="../../assets/design/spotify/spotifymap.jpg" alt="" id="img1300">
          <br>
-         <img src="../../assets/spotify/mainLanding.png" alt="" id="img350">
-         <img src="../../assets/spotify/landing.png" alt="" id="img350">
-         <img src="../../assets/spotify/playlist.png" alt="" id="img350">
-         <img src="../../assets/spotify/profile.png" alt="" id="img350">
-         <img src="../../assets/spotify/song.png" alt="" id="img350">
-         <img src="../../assets/spotify/stats.png" alt="" id="img350">
-         <img src="../../assets/spotify/statsGenre.png" alt="" id="img350">
-         <img src="../../assets/spotify/search.png" alt="" id="img350">
-         <img src="../../assets/spotify/generate.png" alt="" id="img350">
-         <img src="../../assets/spotify/carView.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/mainLanding.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/landing.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/playlist.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/profile.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/song.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/stats.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/statsGenre.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/search.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/generate.png" alt="" id="img350">
+         <img src="../../assets/design/spotify/carView.png" alt="" id="img350">
          <div id="textContainerBody">
          </div>        
       </div>

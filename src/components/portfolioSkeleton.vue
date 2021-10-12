@@ -23,7 +23,7 @@ import signLanguage from './portfolioPreview/signPreview.vue'
 import spdmagazine from './portfolioPreview/spdmagazinePreview.vue'
 // import jawsposter from './portfolioPreview/jawspreview.vue'
 
-// import gsap from 'gsap'
+// import { gsap } from 'gsap'
 
 export default {
    components: {
@@ -41,17 +41,20 @@ export default {
    },
 
    methods: {
-      cLog: function() {
-         console.log('taods');
-      }
+      
    },
 
    mounted() {
-      const x = document.querySelector('#imgcontainer')
+      const x = document.querySelector('.imagePreviewHover')
 
       x.addEventListener('mouseover', () => {
-         console.log('waffles');
-      // gsap.to(colors.peak, {color: 0xfff, duration: 3})
+         // console.log('waffles');
+         // gsap.to(x, {scale: 1.2, duration: .3})
+
+      })
+
+      x.addEventListener('mouseout', () => {
+         // gsap.to(x, {scale: 1, duration: .3})
       })
 
    }

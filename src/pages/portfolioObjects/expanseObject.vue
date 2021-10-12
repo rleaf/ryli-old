@@ -12,15 +12,15 @@
             Expanse is a header typeface designed with tech and sci-fi aesthetics. I incorporated minimalistic and geometric aesthetics into the typeface while
             attempting to preserve readability. 
          </div>
-         <img src="../../assets/expanse/expanseland.jpg" alt="" id="img1300">
-         <img src="../../assets/expanse/expanse_sample.png" alt="" id="img1300">
+         <img src="../../assets/design/expanse/expanseland.jpg" alt="" id="img1300">
+         <img src="../../assets/design/expanse/expanse_sample.png" alt="" id="img1300">
          <div id="textContainerBody">
             
          </div>
-         <img src="../../assets/expanse/expanse_fill.png" alt="" id="img500">
-         <img src="../../assets/expanse/expanse_stroke.png" alt="" id="img500">
-         <img src="../../assets/expanse/space.jpg" alt="" id="img1300">
-         <img src="../../assets/expanse/mock1.jpg" alt="" id="img1300">
+         <img src="../../assets/design/expanse/expanse_fill.png" alt="" id="img500">
+         <img src="../../assets/design/expanse/expanse_stroke.png" alt="" id="img500">
+         <img src="../../assets/design/expanse/space.jpg" alt="" id="img1300">
+         <img src="../../assets/design/expanse/mock1.jpg" alt="" id="img1300">
          <br>
          <div id="textContainerBody">
             <div id="linkhover">

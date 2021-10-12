@@ -10,7 +10,9 @@
                <!-- <p>5/13/2020</p> -->
             </div>
          </div>
-         <img src="../../assets/jawsposter/mock_cover.jpg" class="portimg">
+         <div class="imagePreviewHover">
+            <img src="../../assets/design/jawsposter/mock_cover.jpg" class="portimg">
+         </div>
       </router-link>
    </div>
 </template>

@@ -246,9 +246,19 @@ body, html {
    transition: 0.1s;
 }
 
+.imagePreviewHover {
+   overflow: hidden;
+}
+
+.imagePreviewHover img {
+   transition: 0.3s ease-out;
+}
+
 #imgrouter:hover img {
-   opacity: 0.2;
-   transition: 0.1s;
+   transform: scale(1.08) rotate(-2deg);
+   opacity: 0.25;
+   /* transition: 0.3s; */
+   transition: 0.3s ease-in;
 }
 
 #centerContainer {
