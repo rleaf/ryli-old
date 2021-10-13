@@ -29,12 +29,12 @@ export default {
 
       x.addEventListener('mouseover', () => {
          // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 132/255,g: 215/255, b: 161/255})
-         gsap.to(threeScene.uColors.uValleyColor, 1.5, {r: 0/255,g: 97/255, b: 255/255})
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 0/255,g: 12.125/255, b: 31.875/255})
       })
 
       x.addEventListener('mouseout', () => {
          // gsap.to(threeScene.uColors.uPeakColor, 1, {r: threeScene.uColors.uPeakColorBase.r, g: threeScene.uColors.uPeakColorBase.g, b: threeScene.uColors.uPeakColorBase.b})
-         gsap.to(threeScene.uColors.uValleyColor, 1.5, {r: threeScene.uColors.uValleyColorBase.r, g: threeScene.uColors.uValleyColorBase.g, b: threeScene.uColors.uValleyColorBase.b})
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
       })
 
    }

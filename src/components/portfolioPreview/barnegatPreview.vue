@@ -28,12 +28,12 @@ export default {
       const x = document.querySelector('#barnegatTween')
       x.addEventListener('mouseover', () => {
          // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 75/255,g: 81/255, b: 182/255})
-         gsap.to(threeScene.uColors.uValleyColor, 1.5, {r: 80/255,g: 108/255, b: 220/255})
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 10/255,g: 13.5/255, b: 27.5/255})
       })
 
       x.addEventListener('mouseout', () => {
          // gsap.to(threeScene.uColors.uPeakColor, 1, {r: threeScene.uColors.uPeakColorBase.r, g: threeScene.uColors.uPeakColorBase.g, b: threeScene.uColors.uPeakColorBase.b})
-         gsap.to(threeScene.uColors.uValleyColor, 1.5, {r: threeScene.uColors.uValleyColorBase.r, g: threeScene.uColors.uValleyColorBase.g, b: threeScene.uColors.uValleyColorBase.b})
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
       })
 
    }
