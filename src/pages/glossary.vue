@@ -6,23 +6,23 @@
             <div id="curriculumBody">
                <div id="curriculumHeader">
                   <!-- <u style="font-size: 18px;">For reference</u> -->
-                  <p style="font-size: 18px; margin: 0;">Total items: {{postList.length}}</p>
+                  <p style="font-size: 18px; margin: 0;">Searchable references: {{postList.length}}</p>
                </div>
                <p>
-                  <i style="font-size: 14px;">Experimental page. May delete in the future. Intended for food.</i>
+                  <i style="font-size: 14px;">Experimental page. May delete in the future. Intended primarily for food.</i>
                </p>
                   <input type="text" v-model="search" placeholder="Search..."/>
             </div>
          </div>
          <div id="glossarySkeletonFlex">
             <div class="glossaryWrapper" v-for="post in filteredList" :key="post.title">
-                  <p style="white-space: pre;">
+                  <p style="white-space: pre-wrap;">
                      <u>{{ post.title }}</u>
                   </p>
-                  <p style="white-space: pre;" v-if="post.body">
+                  <p style="white-space: pre-wrap;" v-if="post.body">
                      {{ post.body}}
                   </p>
-                  <p style="white-space: pre;">
+                  <p style="white-space: pre-wrap;">
                      <vue-mathjax v-if="post.math" :formula='post.math'></vue-mathjax>
                      <prism-editor class="codeblock" v-if="post.code" v-model="post.code" :highlight="highlighter" :readonly="true"></prism-editor>
                   </p>
@@ -85,6 +85,13 @@ export default {
                g.Print.code,
                g.Print.keys
             ),
+            new Post(
+               g.Cookies.title,
+               g.Cookies.body,
+               undefined,
+               undefined,
+               g.Cookies.keys
+            ),
          ]
       }
    },
@@ -116,6 +123,7 @@ export default {
 
 .glossaryWrapper {
    padding: 20px 10px;
+   max-width: 400px;
 }
 
 input[type=text] {

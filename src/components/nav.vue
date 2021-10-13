@@ -26,7 +26,7 @@
                <li>Blog</li>
             </router-link>
             <router-link to='glossary' class="underline">
-               <li>Glossary</li>
+               <li>Reference</li>
             </router-link>
             <!-- <router-link to='sketches' class="underline">
                <li>Sketches +</li>
