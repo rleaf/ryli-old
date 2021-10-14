@@ -2,14 +2,14 @@
    <div class="nav">
       <!-- <div class="imageheaderratio"> -->
             <!-- <li>Home</li> -->
-         <router-link to="/" class="underline">
+         <router-link  to="/" class="underline">
             <img src="../assets/logo.png" width="50px" alt="">
          </router-link>
          <ul id='bar'>
             <!-- <router-link to="/" class="underline">
                <li>Home</li>
             </router-link> -->
-            <router-link to="design" class="underline">
+            <router-link  to="design" class="underline">
                <li>Design</li>
             </router-link>
             <router-link to="cv" class="underline">
@@ -47,7 +47,6 @@
 
 <script>
 import { gsap } from "gsap";
-
 export default {
 
    methods: {
@@ -81,9 +80,10 @@ export default {
 
 <style>
 .nav {
+   
    position: relative;
    padding: 0 3vw;
-   z-index: 5;
+   z-index: 10;
 }
 .emailnotif {
    font-family: 'Inconsolata', sans-serif;

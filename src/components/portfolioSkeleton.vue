@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import threeScene from '../assets/js/threeScene.js'
 import expanse from './portfolioPreview/expansePreview.vue'
 // import tubeWorld from './portfolioPreview/tubePreview.vue'
 import barnegatLight from './portfolioPreview/barnegatPreview.vue'
@@ -38,14 +39,9 @@ export default {
 
    },
 
-   methods: {
-      
-   },
-
    mounted() {
-
+      threeScene.loadScene(threeScene.scene1)
    }
-
 }
 
 </script>

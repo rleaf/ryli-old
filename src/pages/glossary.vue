@@ -1,5 +1,6 @@
 <template>
    <div id="landing">
+   <!-- <backdrop /> -->
       <div id="textContainerHeader">
       </div>
          <div id="curriculumStructure">
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+// // import backdrop from '../components/backdrop.vue'
+import threeScene from '../assets/js/threeScene.js'
 import Post from '../assets/js/glossaryStruc.js'
 import g from '../assets/json/glossary.json'
 import { VueMathjax } from 'vue-mathjax'
@@ -44,7 +47,8 @@ import 'prismjs/themes/prism-nord.css'
 export default {
    components: {
       'vue-mathjax': VueMathjax,
-      PrismEditor
+      PrismEditor,
+      // backdrop
    },
 
    data() {
@@ -108,6 +112,9 @@ export default {
       highlighter(code) {
          return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
+   },
+   mounted() {
+      threeScene.loadScene(threeScene.scene1)
    }
 }
 </script>

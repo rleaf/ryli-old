@@ -10,7 +10,7 @@
                <!-- <p>11/12/2019</p> -->
             </div>
          </div>
-         <div id="spotifyTween" class="imagePreviewHover">
+         <div id="spotifyTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
             <img src="../../assets/design/spotify/spotify_cover.jpg" class="portimg">
          </div>
       </router-link>
@@ -22,15 +22,27 @@ import threeScene from '../../assets/js/threeScene.js'
 import { gsap } from 'gsap'
 
 export default {
-   
+   data() {
+      return {
+
+      }
+   },
+
+   methods: {
+      bgTweenMouseOver() {
+         // Divide rgb by factor of 8
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 3.75/255,g: 26.875/255, b: 12/255, a: 0.1})
+      },
+      bgTweenMouseLeave() {
+         gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
+      }
+   },
 
    mounted() {
       const x = document.querySelector('#spotifyTween')
 
       x.addEventListener('mouseover', () => {
          // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 132/255,g: 215/255, b: 161/255})
-         // Divide rgb by factor of 8
-         gsap.to(threeScene.fogColorRGB, 1.5, {r: 3.75/255,g: 26.875/255, b: 12/255, a: 0.1})
       })
 
       x.addEventListener('mouseout', () => {

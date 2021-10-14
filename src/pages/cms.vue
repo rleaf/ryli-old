@@ -34,6 +34,7 @@
 
 <script>
    // import NavBar from '../components/nav.vue'
+   import threeScene from '../assets/js/threeScene.js'
    
    // import axios from 'axios'
 
@@ -59,6 +60,9 @@ export default {
    //       this.error = error;
    //    }
    // }
+   mounted() {
+      threeScene.loadScene(threeScene.scene1)
+   }
 }
 </script>
 

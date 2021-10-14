@@ -1,8 +1,8 @@
 <template>
    <keep-alive>
-      <canvas class="threeScene">
-
-      </canvas>
+      <transition name="fade">
+         <canvas class="threeScene"></canvas>
+      </transition>
    </keep-alive>
 </template>
 
@@ -22,7 +22,18 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .6s;
+}
 
+.fade-enter-active {
+  transition-delay: .6s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 .threeScene {
     position: fixed;
     top: 0;

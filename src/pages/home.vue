@@ -1,8 +1,8 @@
 <template>
 <div id="origin">
-   <div id="canvas">
-      <!-- <threeScene /> -->
-   </div>
+   <!-- <div id="canvas">
+      <threeScene />
+   </div> -->
   <div id="landing">
       <!-- <NavBar /> -->
       <div id="portfolio">
@@ -19,6 +19,7 @@
    // import NavBar from '../components/nav.vue'
    import homeIntro from '../components/homeIntro.vue'
    // import threeScene from '../components/threeScene.vue'
+   import threeScene from '../assets/js/threeScene.js'
    // import threeScene from '../components/threeSceneuuu.vue'
 
    export default {
@@ -28,6 +29,9 @@
          homeIntro,
          // threeScene
       },
+      mounted() {
+         threeScene.loadScene(threeScene.scene1)
+      }
    }
 
 </script>
@@ -97,7 +101,7 @@ body, html {
 }
 
 .nav {
-   padding-top: 8vh;
+   padding-top: 6vh;
    font-size: 16px;
    /* display: block; */
 }
@@ -361,6 +365,58 @@ body, html {
 #subHeader {
    font-size: 22px;
    padding-top: 20px;
+}
+
+.landingDesign {
+   clear: both;
+   width: 100vw;
+   height: 80vh;
+   position: relative;
+}
+
+.designHero {
+   /* position: relative; */
+   width: 100vw;
+   height: 100vh;
+   z-index: 10;
+}
+.designContainerHeader {
+   /* padding-left: 30px;
+   padding-right: 30px; */
+   /* padding: 45px 40px; */
+   align-items: center;
+   z-index: 10;
+   top: calc(50% - 35vmin / 2);
+   position: relative;
+   /* left: 0; */
+   width: 100%;
+   /* padding-top: 80px;
+   padding-bottom: 75px; */
+}
+
+.textDesignContainer {
+   font-size: 40px;
+   font-family: 'Inconsolata';
+   color: var(--white);
+   text-transform: uppercase;
+   text-align: center;
+}
+
+.designBodyContainer {
+   position: relative;
+   padding-top: 50px;
+   z-index: 10;
+   text-align: center;
+   justify-content: center;
+}
+
+.designTextContainerBody {
+   padding: 50px 10vw;
+   color: var(--offWhite);
+   font-family: 'Lora', serif;
+   font-size: 16px;
+   /* font-weight: 300; */
+   line-height: 140%;
 }
 
 #textContainerBody {

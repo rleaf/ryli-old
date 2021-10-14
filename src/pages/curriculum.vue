@@ -85,7 +85,7 @@
 <script>
 // import NavBar from '../components/nav.vue'
 import curriculumAbout from '../components/curriculumAbout.vue'
-// import sharks from '../components/sharks.vue'
+import threeScene from '../assets/js/threeScene.js'
 
 export default {
    name: 'curriculum',
@@ -94,6 +94,9 @@ export default {
       curriculumAbout,
       // sharks
    },
+   mounted() {
+      threeScene.loadScene(threeScene.scene1)
+   }
 }
 </script>
 

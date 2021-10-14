@@ -10,7 +10,7 @@
                <!-- <p>01/20/19</p> -->
             </div>
          </div>
-         <div id="barnegatTween" class="imagePreviewHover">
+         <div id="barnegatTween" v-on:click="sceneChange()" v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
             <img src="../../assets/design/barnegat/barnegat_cover.jpg" class="portimg">
          </div>
       </router-link>
@@ -23,20 +23,36 @@ import { gsap } from 'gsap'
 
 export default {
    
+   data() {
+      return {
+
+      }
+   },
 
    mounted() {
-      const x = document.querySelector('#barnegatTween')
-      x.addEventListener('mouseover', () => {
-         // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 75/255,g: 81/255, b: 182/255})
+      // const x = document.querySelector('#barnegatTween')
+      // x.addEventListener('mouseover', () => {
+      //    // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 75/255,g: 81/255, b: 182/255})
+         
+      // })
+
+      // x.addEventListener('mouseout', () => {
+      //    // gsap.to(threeScene.uColors.uPeakColor, 1, {r: threeScene.uColors.uPeakColorBase.r, g: threeScene.uColors.uPeakColorBase.g, b: threeScene.uColors.uPeakColorBase.b})
+      // })
+   },
+
+   methods: {
+      sceneChange() {
+         console.log('toads');
+      },
+      bgTweenMouseOver() {
          gsap.to(threeScene.fogColorRGB, 1.5, {r: 10/255,g: 13.5/255, b: 27.5/255})
-      })
+      },
+      bgTweenMouseLeave() {
 
-      x.addEventListener('mouseout', () => {
-         // gsap.to(threeScene.uColors.uPeakColor, 1, {r: threeScene.uColors.uPeakColorBase.r, g: threeScene.uColors.uPeakColorBase.g, b: threeScene.uColors.uPeakColorBase.b})
          gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
-      })
-
-   }
+      }
+   },
 }
 </script>
 

@@ -1,6 +1,8 @@
 <template>
   <div id="landing">
-     <!-- <NavBar/> -->
+      <!-- <div id="canvas">
+         <threeScene />
+      </div> -->
       <div id="centerContainer">
          <div id="textContainerHeader">
             moshi moshi
@@ -23,13 +25,18 @@
 <script>
 // import NavBar from '../../components/nav.vue'
 import toTop from '../../components/toTop.vue'
+// import threeScene from '../../components/threeScene.vue'
 
 export default {
    name: 'portfolioObject',
    components: {
       // NavBar,
-      toTop
-   }
+      toTop,
+      // threeScene
+   },
+   methods: {
+
+   },
 }
 </script>
 

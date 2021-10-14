@@ -10,7 +10,7 @@
                <!-- <p>10/5/2018</p> -->
             </div>
          </div>
-         <div id="dropboxTween" class="imagePreviewHover">
+         <div id="dropboxTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
             <img src="../../assets/design/dropbox/dropbox_cover.jpg" class="portimg">
          </div>
       </router-link>
@@ -23,21 +23,20 @@ import { gsap } from 'gsap'
 
 export default {
    
+   data() {
+      return {
 
-   mounted() {
-      const x = document.querySelector('#dropboxTween')
+      }
+   },
 
-      x.addEventListener('mouseover', () => {
-         // gsap.to(threeScene.uColors.uPeakColor, 1, {r: 132/255,g: 215/255, b: 161/255})
+   methods: {
+      bgTweenMouseOver() {
          gsap.to(threeScene.fogColorRGB, 1.5, {r: 0/255,g: 12.125/255, b: 31.875/255})
-      })
-
-      x.addEventListener('mouseout', () => {
-         // gsap.to(threeScene.uColors.uPeakColor, 1, {r: threeScene.uColors.uPeakColorBase.r, g: threeScene.uColors.uPeakColorBase.g, b: threeScene.uColors.uPeakColorBase.b})
+      },
+      bgTweenMouseLeave() {
          gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
-      })
-
-   }
+      }
+   },
 }
 
 </script>
