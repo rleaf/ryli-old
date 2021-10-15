@@ -1,6 +1,5 @@
 <template>
   <div class="landingDesign">
-     <!-- <backdrop /> -->
       <div class="designHero">
          
          <div class="designContainerHeader">
@@ -33,18 +32,21 @@
 </template>
 
 <script>
-// // import backdrop from '../../components/backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import threeScene from '../../assets/js/threeScene.js'
+import bg from '../../assets/design/signlanguage/background_sign3.jpg'
 
 export default {
    components: {
-      // backdrop ,
       toTop
    },
+   beforeCreate() {
+      threeScene.texurePath = bg  
+   },
    mounted() {
+      console.log(bg);
       threeScene.loadScene(threeScene.scene2)
-
+      
    }
 }
 </script>

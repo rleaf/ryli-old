@@ -7,15 +7,17 @@
 </template>
 
 <script>
-import threeScene from '../assets/js/threeScene.js'
+// import threeScene from '../assets/js/threeScene.js'
+import MainScene from '../assets/js/mainScene'
 
 export default {
    name: 'threeScene',
    components: {
-
-   },
+      
+      },
    mounted() {
-      threeScene.mounted()
+      // threeScene.init()
+      MainScene()
    }
 }
 

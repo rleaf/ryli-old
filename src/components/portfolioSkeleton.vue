@@ -23,6 +23,7 @@ import spotify from './portfolioPreview/spotifyPreview.vue'
 import signLanguage from './portfolioPreview/signPreview.vue'
 import spdmagazine from './portfolioPreview/spdmagazinePreview.vue'
 // import jawsposter from './portfolioPreview/jawspreview.vue'
+import gsap from 'gsap'
 
 export default {
    components: {
@@ -41,6 +42,15 @@ export default {
 
    mounted() {
       threeScene.loadScene(threeScene.scene1)
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
+
+      // Create x + 1 Mesh's, where x = num of portfolio objects and the +1 are the main meshs
+      // Transition by tweening opacity between mesh's
+      // 
+      // portfolioSkeleton --> threeScene.vue --> threeScene.js
+      // instantiate class of the desired scene
+      // 
+
    }
 }
 

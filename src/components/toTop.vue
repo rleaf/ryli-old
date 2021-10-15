@@ -16,19 +16,19 @@ export default {
 
       }
    },
-   created() {
-      window.addEventListener('scroll', this.test)
+   mounted() {
+      window.addEventListener('scroll', this.toTop)
    },
    methods: {
-      test() {
-         const x = document.querySelector('#toTopButton')
+      toTop() {
+         const buttonToTop = document.querySelector('#toTopButton')
 
          if(document.body.scrollTop > 300 ||  document.documentElement.scrollTop > 300) {
-            gsap.to(x, {duration: .25, display: 'block', opacity: 1, bottom: 20})
-            // x.style.display = "block"
+            gsap.to(buttonToTop, {duration: .25, display: 'block', opacity: 1, bottom: 20})
+            // buttonToTop.style.display = "block"
          } else {
-            gsap.to(x, {duration: .25, display: 'none', opacity: 0, bottom: 0})
-            // x.style.display = 'none'
+            gsap.to(buttonToTop, {duration: .25, display: 'none', opacity: 0, bottom: 0})
+            // buttonToTop.style.display = 'none'
          }
          
       },
