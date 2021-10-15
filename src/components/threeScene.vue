@@ -7,8 +7,8 @@
 </template>
 
 <script>
-// import threeScene from '../assets/js/threeScene.js'
-import MainScene from '../assets/js/mainScene'
+import threeScene from '../assets/js/threeScene.js'
+// import Experience from '../assets/js/mainScene'
 
 export default {
    name: 'threeScene',
@@ -16,8 +16,8 @@ export default {
       
       },
    mounted() {
-      // threeScene.init()
-      MainScene()
+      threeScene.init()
+      // new Experience()
    }
 }
 

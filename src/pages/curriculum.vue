@@ -86,6 +86,7 @@
 // import NavBar from '../components/nav.vue'
 import curriculumAbout from '../components/curriculumAbout.vue'
 import threeScene from '../assets/js/threeScene.js'
+import gsap from 'gsap'
 
 export default {
    name: 'curriculum',
@@ -95,7 +96,8 @@ export default {
       // sharks
    },
    mounted() {
-      threeScene.loadScene(threeScene.scene1)
+      threeScene.loadPageScene()
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
    }
 }
 </script>

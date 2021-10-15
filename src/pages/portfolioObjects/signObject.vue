@@ -34,18 +34,21 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import threeScene from '../../assets/js/threeScene.js'
-import bg from '../../assets/design/signlanguage/background_sign3.jpg'
+import gsap from 'gsap'
+// import bg from '../../assets/design/signlanguage/background_sign3.jpg'
 
 export default {
    components: {
       toTop
    },
    beforeCreate() {
-      threeScene.texurePath = bg  
+      // threeScene.signTexture = bg  
    },
    mounted() {
-      console.log(bg);
-      threeScene.loadScene(threeScene.scene2)
+      // console.log(bg);
+      // threeScene.loadScene(threeScene.scene2)
+      threeScene.loadPageScene('signGroup')
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
       
    }
 }

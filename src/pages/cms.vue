@@ -35,6 +35,7 @@
 <script>
    // import NavBar from '../components/nav.vue'
    import threeScene from '../assets/js/threeScene.js'
+   import gsap from 'gsap'
    
    // import axios from 'axios'
 
@@ -61,7 +62,8 @@ export default {
    //    }
    // }
    mounted() {
-      threeScene.loadScene(threeScene.scene1)
+      threeScene.loadPageScene()
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
    }
 }
 </script>

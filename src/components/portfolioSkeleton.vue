@@ -41,7 +41,8 @@ export default {
    },
 
    mounted() {
-      threeScene.loadScene(threeScene.scene1)
+      // threeScene.loadScene(threeScene.scene1)
+      threeScene.loadPageScene()
       gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
 
       // Create x + 1 Mesh's, where x = num of portfolio objects and the +1 are the main meshs
