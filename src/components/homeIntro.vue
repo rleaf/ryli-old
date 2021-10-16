@@ -13,27 +13,38 @@
 </template>
 
 <script>
+import threeScene from '../assets/js/threeScene.js'
 import { gsap } from "gsap";
 
 export default {
    
    mounted() {
+      // REMOVE FADE TRANSITION WHEN GOING TO SAME SCENE
       
-         // subtextArray = ['PS sun not to scale', 'If ']
+      if(threeScene.cache == 'mainScene') {
+         return
+      } else {
+         
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: "auto", onComplete:() => {
+         threeScene.destroyMesh()
+         // threeScene.scene.remove(threeScene.signGroup)
+         threeScene.scene.add(threeScene.sphere,threeScene.plane)
+         }})
 
-         // const x = document.getElementsByClassName("introword");
-         // const y = document.getElementsByClassName("subwordhomeIntro");
-
-         // const ran = x[Math.floor(Math.random() * x.length)]
-         // gsap.from(x[ran], {duration: "random(10, 12)", opacity: 0, stagger: 6, ease: "slow"});
-
-         gsap.from('.introword', {duration: 7, opacity: 0, delay: .8});
-         gsap.from('.subwordhomeIntro', {duration: 7, opacity: 0, delay: 3})
-         // for (let i = 0; i < x.length; i++) {
-         //    // gsap.from(x[i], {duration: "random(3, 5)", y: 120});
-         // }
+         gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         
+         threeScene.cache = 'mainScene'
+      }
       
-         // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
+
+      gsap.from('.introword', {duration: 7, opacity: 0, delay: .8});
+      gsap.from('.subwordhomeIntro', {duration: 7, opacity: 0, delay: 3})
+      
+      // for (let i = 0; i < x.length; i++) {
+      //    // gsap.from(x[i], {duration: "random(3, 5)", y: 120});
+      // }
+   
+      // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
    }
 }
 </script>

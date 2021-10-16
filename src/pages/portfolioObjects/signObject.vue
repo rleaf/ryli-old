@@ -1,7 +1,6 @@
 <template>
   <div class="landingDesign">
       <div class="designHero">
-         
          <div class="designContainerHeader">
             <div class="textDesignContainer">
                ASL Illustrations
@@ -11,7 +10,6 @@
 
             </div>
          </div>
-         
       </div>
 
       <div class="designBodyContainer">
@@ -35,21 +33,23 @@
 import toTop from '../../components/toTop.vue'
 import threeScene from '../../assets/js/threeScene.js'
 import gsap from 'gsap'
-// import bg from '../../assets/design/signlanguage/background_sign3.jpg'
 
 export default {
    components: {
       toTop
    },
-   beforeCreate() {
-      // threeScene.signTexture = bg  
-   },
    mounted() {
-      // console.log(bg);
-      // threeScene.loadScene(threeScene.scene2)
-      threeScene.loadPageScene('signGroup')
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
-      
+      // threeScene.loadPageScene('signGroup')
+
+      gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
+         threeScene.scene.remove(threeScene.sphere, threeScene.plane)
+         threeScene.scene.add(threeScene.signMesh)
+      }})
+      gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
+
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5, delay: 1.5})
+
+      threeScene.cache = 'signScene'
    }
 }
 </script>
