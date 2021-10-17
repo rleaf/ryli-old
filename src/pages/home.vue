@@ -368,6 +368,12 @@ body, html {
    padding-top: 20px;
 }
 
+.textDesignSubHeader {
+   font-size: 18px;
+   padding-top: 20px;
+   text-shadow: 1px 1px 8px #0e0e0e;
+}
+
 .landingDesign {
    clear: both;
    width: 100vw;
@@ -396,12 +402,18 @@ body, html {
 }
 
 .textDesignContainer {
-   font-size: 40px;
-   font-family: 'Inconsolata';
+   font-size: 46px;
+   font-family: 'Lora';
    color: var(--white);
-   text-transform: uppercase;
+   text-shadow: 1px 1px 8px #0e0e0e;
+   /* text-transform: uppercase; */
    text-align: center;
 }
+
+/* .designContainerBox {
+   margin-left: -50px;
+   background-color: #fff;
+} */
 
 .designBodyContainer {
    position: relative;

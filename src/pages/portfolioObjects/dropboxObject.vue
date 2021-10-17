@@ -1,10 +1,11 @@
 <template>
   <div class="landingDesign">
+     <backdropFade />
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
-            DropBox Redesign
-            <div id="subHeader">
+            Dropbox Redesign
+            <div class="textDesignSubHeader">
                Web Design & Development
             </div>
 
@@ -17,7 +18,7 @@
                A redesign intended to convey a simple and cleaner aesthetic
             </div>
             
-            <img src="../../assets/design/dropbox/mock1.jpg" alt="" id="img1300">
+            <img src="../../assets/design/dropbox/mock2.jpg" alt="" id="img1300">
             <!-- <video id="img1300" autoplay loop src="../../assets/dropbox/test.webm"></video> -->
             <video id="img1300" autoplay loop :src="landing"></video>
             <img src="../../assets/design/dropbox/dropbox_compare.jpg" alt="" id="img1300">
@@ -29,13 +30,15 @@
 
 <script>
 import toTop from '../../components/toTop.vue'
+import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
 
 export default {
    name: 'portfolioObject',
    components: {
-      toTop
+      toTop,
+      backdropFade
    },
    data: function() {
       return {

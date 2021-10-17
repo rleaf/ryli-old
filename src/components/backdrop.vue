@@ -31,7 +31,6 @@ export default {
       left: 0;
       position: fixed;
       background: #0e0e0e;
-      background: url('../assets/design/signlanguage/background_sign3.jpg');
       opacity: 0;
       z-index: 1;
 

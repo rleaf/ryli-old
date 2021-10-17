@@ -1,10 +1,11 @@
 <template>
   <div class="landingDesign">
+     <backdropFade />
      <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
                Barnegat Light
-               <div id="subHeader">
+               <div class="textDesignSubHeader">
                   Photography
                </div>
 
@@ -35,13 +36,15 @@
 
 <script>
 import toTop from '../../components/toTop.vue'
+import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
 import gsap from 'gsap'
 
 export default {
    name: 'portfolioObject',
    components: {
-      toTop
+      toTop,
+      backdropFade,
    },
    mounted() {
       

@@ -1,10 +1,11 @@
 <template>
   <div class="landingDesign">
+     <backdropFade />
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
                Valiant
-               <div id="subHeader">
+               <div class="textDesignSubHeader">
                   Branding / Logo & Web Design / Dev
                </div>
             </div>
@@ -37,6 +38,7 @@
 
 <script>
 import toTop from '../../components/toTop.vue'
+import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
 import gsap from 'gsap'
 
@@ -44,6 +46,7 @@ export default {
    name: 'portfolioObject',
    components: {
       toTop,
+      backdropFade
    },
    data() {
       return {

@@ -1,10 +1,11 @@
 <template>
   <div class="landingDesign">
+     <backdropFade />
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
                Expanse
-               <div id="subHeader">
+               <div class="textDesignSubHeader">
                   typeface
                </div>
 
@@ -40,12 +41,14 @@
 
 <script>
 import toTop from '../../components/toTop.vue'
+import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
 import gsap from 'gsap'
 
 export default {
    components: {
-      toTop
+      toTop,
+      backdropFade
    },
    mounted() {
       gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {

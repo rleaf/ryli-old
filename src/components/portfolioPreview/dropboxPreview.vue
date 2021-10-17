@@ -2,7 +2,7 @@
    <div id="imgcontainer">
       <router-link id="imgrouter" to="/dropbox">
          <div class="imagehover">
-            <p>Drop Box Redesign</p>
+            <p>Dropbox Redesign</p>
             <div id="subtext">
                <p>Web Design / Dev</p>
             </div>

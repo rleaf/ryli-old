@@ -115,13 +115,13 @@ export default {
       }
    },
    mounted() {
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
 
       if(threeScene.cache == 'mainScene') {
          return
       } else {
          
-         gsap.fromTo(threeScene.groupOpacity, {sign: 0.4}, {sign: 0.0, duration: .6, overwrite: "auto", onComplete:() => {
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
          threeScene.destroyMesh()
          threeScene.scene.add(threeScene.sphere,threeScene.plane)
          }})

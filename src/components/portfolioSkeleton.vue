@@ -47,7 +47,7 @@ export default {
       if(threeScene.cache == 'mainScene') {
          return
       } else {
-         gsap.fromTo(threeScene.groupOpacity, {sign: 0.4}, {sign: 0.0, duration: .6, overwrite: "auto", onComplete:() => {
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
             threeScene.destroyMesh()
             threeScene.scene.add(threeScene.sphere,threeScene.plane)
          }})
