@@ -301,6 +301,15 @@ body, html {
    }
 }
 
+.designImg1300 {
+   max-width: 100%;
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+}
+
 #img1300 {
    width: 1300px !important;
    user-select: none;
@@ -310,9 +319,38 @@ body, html {
    -ms-user-select: none;
 }
 
+.offsetImg800 {
+   /* max-height: 800px; */
+   height: auto;
+   max-width: 100%;
+}
+
+.img50Percent {
+   width: 50%;
+   /* max-width: 800px; */
+}
+
+#img800 {
+   width: 100%;
+   max-width: 800px;
+}
+
+
 @media (max-width: 1420px) {
    #img1300 {
       width: 80vw !important;
+   }
+}
+@media (max-width: 1086px) {
+   .offsetImgText {
+      padding-bottom: 50px !important;
+      padding-top: 50px !important;
+   }
+}
+
+@media (max-width: 850px) {
+   .designContainerBoxPadding {
+      padding: 0 !important;
    }
 }
 
@@ -410,26 +448,84 @@ body, html {
    text-align: center;
 }
 
-/* .designContainerBox {
-   margin-left: -50px;
-   background-color: #fff;
-} */
-
 .designBodyContainer {
    position: relative;
    padding-top: 50px;
    z-index: 10;
    text-align: center;
    justify-content: center;
+   width: 100vw;
+}
+
+.designContainerBox {
+   margin: 0 auto;
+   padding-top: 50px;
+   /* margin-left: 4em;
+   margin-right: 4em; */
+   background-color: #fff;
+   max-width: 90vw;
+}
+
+.designSpace {
+   padding: 50px 0;
+}
+
+.designContainerBoxPadding {
+   padding: 0 4em;
 }
 
 .designTextContainerBody {
    padding: 50px 10vw;
-   color: var(--offWhite);
+   /* color: var(--offWhite); */
+   color: #000;
    font-family: 'Lora', serif;
-   font-size: 18px;
-   /* font-weight: 300; */
+   font-size: 16px;
    line-height: 140%;
+}
+
+.designImageSubText {
+   color: #000;
+   font-family: 'Lora', serif;
+   font-size: 14px;
+   font-style: oblique;
+}
+
+.designOffsetImageLeft {
+   display: flex;
+   flex-wrap: wrap-reverse;
+   align-items: center;
+   justify-content: center;
+}
+
+.designOffsetImageRight {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+}
+
+/* .designOffsetImageContainer {
+   width: 100%;
+} */
+
+.designOffsetContainer {
+   min-width: 425px;
+   width: 50%;
+}
+
+.designOffsetImageContainer {
+   width: 200px;
+}
+
+
+.offsetImgText {
+   padding: 0 6em;
+   /* color: var(--offWhite); */
+   color: #000;
+   font-family: 'Lora', serif;
+   font-size: 16px;
+   line-height: 140%;
+   /* margin-bottom: 70px; */
 }
 
 #textContainerBody {

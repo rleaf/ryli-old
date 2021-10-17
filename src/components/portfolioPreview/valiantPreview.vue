@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="valiantTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/valiant/valiant_cover.jpg" class="portimg">
+            <img src="../../assets/design/valiant/valiant_cover2.jpg" class="portimg">
          </div>
       </router-link>
    </div>

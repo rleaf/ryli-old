@@ -11,22 +11,96 @@
             </div>
          </div>
       </div>
-         <div class="designBodyContainer">
-            <div class="designTextContainerBody">
-               My entry to the SPD design competition composed of a four page magazine spread. I decided to go with a spread layout that had a science fiction and computer-esque aesthetic.
-               I focused on illustrating "bundles" of threads together to resemble the connectionism that is frequently associated with AI while keeping them spread out enough to appear organic.
-            </div>
 
-         <img src="../../assets/design/spdmagazine/mock11.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/mock12.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/mock13.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/left1.jpg" alt="" id="img800">
-         <img src="../../assets/design/spdmagazine/right1.jpg" alt="" id="img800">
-         <img src="../../assets/design/spdmagazine/left2.jpg" alt="" id="img800">
-         <img src="../../assets/design/spdmagazine/right2.jpg" alt="" id="img800">
-         <!-- <img src="../../assets/design/spdmagazine/mock21.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/mock22.jpg" alt="" id="img1300"> -->
+         <div class="designBodyContainer">
+            <div class="designContainerBox">
+               <div class="designContainerBoxPadding">
+                  <div class="designTextContainerBody">
+                     My entry to the SPD design competition composed of a four page magazine spread. I decided to go with a spread layout that had a science fiction and computer-esque aesthetic.
+                     I focused on illustrating "bundles" of threads together to resemble the connectionism that is frequently associated with AI while keeping them spread out enough to appear organic.
+                  </div>
+
+                  <img src="../../assets/design/spdmagazine/mock111.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/spdmagazine/mock121.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/spdmagazine/mock13.jpg" alt="" class="designImg1300">
+                  <div class="designSpace"></div>
+                  <!-- <div class="designTextContainerBody">
+                     At the time I was a little interested in AI so I decided to dedicate my entry to the subject. The text is from the Wikipedia page.
+                  </div> -->
+                  <div class="designTextContainerBody">
+                     I had the idea already of incorporating threads and dots into the design and used Illustrator to create some concepts. The goal at this stage was to simply create as much of anything
+                     as possible. Even if I knew that I wouldn't use a particular asset, as long as it aligned with the aesthetic I was pursuing, I wanted it on the artboard.
+                  </div>
+                  <img src="../../assets/design/spdmagazine/step1.jpg" alt="" class="designImg1300 ">
+                  <img src="../../assets/design/spdmagazine/step2.jpg" alt="" class="designImg1300 ">
+                  <div class="designImageSubText">
+                     <p> Creative process </p>
+                  </div>
+
+                  <div class="designSpace"></div>
+                  <img src="../../assets/design/spdmagazine/draft1.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/spdmagazine/draft2.jpg" alt="" class="designImg1300">
+                  <div class="designImageSubText">
+                     <p> Early concepts of title page </p>
+                  </div>
+
+                  <div class="designSpace"></div>
+                  
+
+                  <div class="designOffsetImageLeft">
+                     <div class="designOffsetContainer">
+                        <div class="designOffsetImgContainer">
+                           <img src="../../assets/design/spdmagazine/flair.jpg" alt="" class="offsetImg800">
+                        </div>
+                     </div>
+                     <div class="designOffsetContainer">
+                        <div class="offsetImgText">
+                           For lighter designs where I didn't want to detriment legibility, I added "flairs" and subtle rings of dots behind the text.
+                           I also lighten the background to reduce contrast for a better reading experience as you transition to the second page on the first spread.
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="designSpace"></div>
+                  <img src="../../assets/design/spdmagazine/decoded.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/spdmagazine/oded.jpg" alt="" class="designImg1300">
+                  <div class="designOffsetImageRight">
+                     <div class="designOffsetContainer">
+                        <div class="offsetImgText">
+                           For the title text "decoded", I blended together an array of dots and then masked everything under a bold typeface. Lastly I applied the blue-to-pink gradient 
+                        </div>
+                     </div>
+                     <div class="designOffsetContainer">
+                        <div class="designOffsetImgContainer">
+                           <img src="../../assets/design/spdmagazine/de.jpg" alt="" class="offsetImg800">
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="designSpace"></div>
+                  <div class="designTextContainerBody">
+                     I decided to have the threads run up and off the page along the spine of the magazine to reduce any awkwardness as designs transitioned over to the next page. The text is from Wikipedia.
+                  </div>
+                  <img src="../../assets/design/spdmagazine/left1.jpg" alt="" class="img50Percent">
+                  <img src="../../assets/design/spdmagazine/right1.jpg" alt="" class="img50Percent">
+                  <img src="../../assets/design/spdmagazine/left2.jpg" alt="" class="img50Percent">
+                  <img src="../../assets/design/spdmagazine/right2.jpg" alt="" class="img50Percent">
+                  <div class="designImageSubText">
+                     <p> Final images </p>
+                  </div>
+                  <div class="designSpace"></div>
+                     <div class="designTextContainerBody">
+                        Desiging this was a lot of fun. Although I don't regret adding a page worth of text for information, in the future, I would probably cut down on that text and and use the
+                        available real-estate for adding more illustrations and designs.
+                     <div class="designSpace"></div>
+                  </div>
+                  <!-- <img src="../../assets/design/spdmagazine/mock21.jpg" alt="" id="img1300">
+                  <img src="../../assets/design/spdmagazine/mock22.jpg" alt="" id="img1300"> -->
+               </div>
+            </div>
          </div>
+
+
       <toTop />
   </div>
 </template>
@@ -57,6 +131,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #bbbbbb !important; /* Gecko Browsers */
+}
 </style>

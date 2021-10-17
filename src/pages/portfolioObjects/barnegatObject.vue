@@ -67,8 +67,17 @@ export default {
 </script>
 
 <style>
-   .landing {
+   /* .landing {
       display: inherit;
       z-index: 5;
-   }
+   } */
+
+   
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #bbbbbb !important; /* Gecko Browsers */
+}
+
 </style>

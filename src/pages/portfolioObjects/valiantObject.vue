@@ -13,7 +13,7 @@
       </div>
          <div class="designBodyContainer" style="padding-bottom: 100px;">
             <div class="designTextContainerBody">
-               Valiant is a custom furniture design business that compounds the functionality and aesthetics of both metal and carpentry.
+               Valiant is a custom furniture design business that combines the functionality and aesthetics of both metalwork and carpentry.
                The client requested a brand identity, logo design, and multimedia channels to convey his business.
             </div>
             <img src="../../assets/design/valiant/mock1.jpg" alt="" id="img1300">
@@ -21,8 +21,8 @@
             <br>
                <div class="designTextContainerBody">
                   The goal for the website
-                  was to maintain the desired aesthetic by heavily promoting the bright reds and subtle off white,
-                  the philosophy was to create a simple but effective landing page. Modal images, smooth scrolling, and dynamic changing for 
+                  was to promote the desired aesthetic by showing the bright reds and subtle off white on landing.
+                  Modal images, smooth scrolling, and dynamic changing for 
                   different resolutions were all incorporated to provide the viewer with a greater experience.
                </div>
             <img src="../../assets/design/valiant/mock2.jpg" alt="" id="img1300">
@@ -69,6 +69,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+   background: #bbbbbb !important; /* Gecko Browsers */
+}
 
 </style>
