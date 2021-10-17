@@ -6,7 +6,7 @@
             <div class="textDesignContainer">
                Expanse
                <div class="textDesignSubHeader">
-                  typeface
+                  Typeface
                </div>
 
             </div>   

@@ -19,8 +19,13 @@
 
          <img src="../../assets/design/spdmagazine/mock11.jpg" alt="" id="img1300">
          <img src="../../assets/design/spdmagazine/mock12.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/mock21.jpg" alt="" id="img1300">
-         <img src="../../assets/design/spdmagazine/mock22.jpg" alt="" id="img1300">
+         <img src="../../assets/design/spdmagazine/mock13.jpg" alt="" id="img1300">
+         <img src="../../assets/design/spdmagazine/left1.jpg" alt="" id="img800">
+         <img src="../../assets/design/spdmagazine/right1.jpg" alt="" id="img800">
+         <img src="../../assets/design/spdmagazine/left2.jpg" alt="" id="img800">
+         <img src="../../assets/design/spdmagazine/right2.jpg" alt="" id="img800">
+         <!-- <img src="../../assets/design/spdmagazine/mock21.jpg" alt="" id="img1300">
+         <img src="../../assets/design/spdmagazine/mock22.jpg" alt="" id="img1300"> -->
          </div>
       <toTop />
   </div>

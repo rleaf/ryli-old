@@ -30,10 +30,10 @@ export default {
 
    methods: {
       bgTweenMouseOver() {
-         gsap.to(threeScene.fogColorRGB, 1.5, {r: 15/255,g: 13/255, b: 5/255})
+         gsap.to(threeScene.fogColorRGB, {r: 15/255,g: 13/255, b: 5/255, duration: 1.5})
       },
       bgTweenMouseLeave() {
-         gsap.to(threeScene.fogColorRGB, 1.5, {r: 14/255,g: 14/255, b: 14/255})
+         gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
       }
    },
 }

@@ -9,11 +9,14 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
+ScrollTrigger.config({
+   autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
+})
 
 export default {
    mounted() {
 
-      gsap.to('.backdropFade', {scrollTrigger: {
+      this.x = gsap.to('.backdropFade', {scrollTrigger: {
          trigger: '.backdropFade',
          start: '40%',
          end: 'bottom+=10% 10%',
@@ -21,6 +24,9 @@ export default {
          scrub: true,
       },
       opacity: .85})
+   },
+   beforeDestroy() {
+      this.x.kill()
    }
 }
 </script>

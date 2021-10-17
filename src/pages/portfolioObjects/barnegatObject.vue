@@ -47,7 +47,7 @@ export default {
       backdropFade,
    },
    mounted() {
-      
+
    gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
       threeScene.scene.remove(threeScene.sphere, threeScene.plane)
       threeScene.scene.add(threeScene.barnegatMesh)
@@ -59,6 +59,9 @@ export default {
    threeScene.cache = 'barnegatScene'
 
 
+   },
+   beforeDestroy() {
+      console.log('toad');
    }
 }
 </script>

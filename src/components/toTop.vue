@@ -11,21 +11,18 @@
 import { gsap } from "gsap";
 
 export default {
-   data() {
-      return {
-
-      }
-   },
+   
    mounted() {
       window.addEventListener('scroll', this.toTop)
+
    },
-   unmounted() {
-      // toTop.kill()
+   beforeDestroy() {
+      window.removeEventListener('scroll', this.toTop)
+
    },
    methods: {
       toTop() {
          // const buttonToTop = document.querySelector('#toTopButton')
-
          if(document.body.scrollTop > 300 ||  document.documentElement.scrollTop > 300) {
             gsap.to('#toTopButton', {duration: .25, display: 'block', opacity: 1, bottom: 20})
             // buttonToTop.style.display = "block"
@@ -33,11 +30,7 @@ export default {
             gsap.to('#toTopButton', {duration: .25, display: 'none', opacity: 0, bottom: 0})
             // buttonToTop.style.display = 'none'
          }
-         
       },
-
-     
-
       scrollToTop() {
          window.scrollTo({
             top: 0,
@@ -45,7 +38,6 @@ export default {
          });
       }
    }
-
 }
 
 </script>

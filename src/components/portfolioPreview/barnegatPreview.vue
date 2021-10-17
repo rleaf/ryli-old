@@ -10,7 +10,7 @@
                <!-- <p>01/20/19</p> -->
             </div>
          </div>
-         <div id="barnegatTween" v-on:click="sceneChange()" v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
+         <div id="barnegatTween" v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
             <img src="../../assets/design/barnegat/barnegat_cover.jpg" class="portimg">
          </div>
       </router-link>
@@ -42,9 +42,6 @@ export default {
    },
 
    methods: {
-      sceneChange() {
-         console.log('toads');
-      },
       bgTweenMouseOver() {
          gsap.to(threeScene.fogColorRGB, 1.5, {r: 10/255,g: 13.5/255, b: 27.5/255})
       },
