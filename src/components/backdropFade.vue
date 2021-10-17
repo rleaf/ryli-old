@@ -16,7 +16,7 @@ export default {
       gsap.to('.backdropFade', {scrollTrigger: {
          trigger: '.backdropFade',
          start: '40%',
-         end: 'bottom+=20% 10%',
+         end: 'bottom+=10% 10%',
          // markers: true,
          scrub: true,
       },
