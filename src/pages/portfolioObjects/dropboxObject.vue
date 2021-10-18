@@ -14,15 +14,30 @@
       </div>
 
          <div class="designBodyContainer">
-            <div class="designTextContainerBody">
-               A redesign intended to convey a simple and cleaner aesthetic
+            <div class="designContainerBox">
+               <div class="designContainerBoxPadding">
+
+                  <div class="designTextContainerBody">
+                     A redesign intended to convey a simple and cleaner aesthetic
+                  </div>
+                  
+                  <img src="../../assets/design/dropbox/mock2.jpg" alt="" id="img1300">
+                  <div class="designSpace"></div>
+                  <video id="img1300" autoplay loop :src="landing"></video>
+                  <div class="designImageSubText">
+                     <p> Landing page </p>
+                  </div>
+                  <div class="designSpace"></div>
+                  <img src="../../assets/design/dropbox/dropbox_compare.jpg" alt="" id="img1300">
+                  <div class="designSpace"></div>
+                  <video id="img1300" autoplay loop :src="signin"></video>
+                  <div class="designSpace"></div>
+                  <!-- <div class="designTextContainerBody">
+                     toad
+                  </div> -->
+                  <div class="designSpace"></div>
+               </div>
             </div>
-            
-            <img src="../../assets/design/dropbox/mock2.jpg" alt="" id="img1300">
-            <!-- <video id="img1300" autoplay loop src="../../assets/dropbox/test.webm"></video> -->
-            <video id="img1300" autoplay loop :src="landing"></video>
-            <img src="../../assets/design/dropbox/dropbox_compare.jpg" alt="" id="img1300">
-            <video id="img1300" autoplay loop :src="signin"></video>
          </div>
          <toTop />
       </div>

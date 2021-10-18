@@ -303,6 +303,7 @@ body, html {
 
 .designImg1300 {
    max-width: 100%;
+   box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
    user-select: none;
    -moz-user-select: none;
    -webkit-user-drag: none;
@@ -322,6 +323,7 @@ body, html {
 .offsetImg800 {
    /* max-height: 800px; */
    height: auto;
+   box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
    max-width: 100%;
 }
 
@@ -332,6 +334,7 @@ body, html {
 
 #img800 {
    width: 100%;
+   box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
    max-width: 800px;
 }
 

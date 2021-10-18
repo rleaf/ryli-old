@@ -11,32 +11,56 @@
             </div>
          </div>
       </div>
-         <div class="designBodyContainer" style="padding-bottom: 100px;">
-            <div class="designTextContainerBody">
-               The purpose of this redesign is to maintain the aesthetic already established and compliment it with increased functionality.
-               The goals included: better organization on the landing page,
-               a "stats" section of your listening activity, and control of generating your own playlist.
-               Various cosmetic changes were also introduced. This project was desiged at the time of the 2019 Spotify UX.
-            </div>
 
-            <div id="textContainerBody">
+         <div class="designBodyContainer">
+            <div class="designContainerBox">
+               <div class="designContainerBoxPadding">
+                  <div class="designTextContainerBody">
+                     The purpose of this redesign is to maintain the aesthetic already established and compliment it with increased functionality.
+                     The goals included: better organization on the landing page,
+                     a "stats" section of your listening activity, and control of generating your own playlist.
+                     Various cosmetic changes were also introduced. This project was desiged at the time of the 2019 Spotify UX.
+                  </div>
+
+                  <div id="textContainerBody">
+                  </div>
+                  <div class="designOffsetImageLeft">
+                     <div class="designOffsetContainer">
+                        <div class="designOffsetImgContainer">
+                           <img src="../../assets/design/spotify/mock2.jpg" class="offsetImg800">
+                        </div>
+                     </div>
+                     <div class="designOffsetContainer">
+                        <div class="designOffsetImgContainer">
+                           <img src="../../assets/design/spotify/mock1.jpg" class="offsetImg800">
+                        </div>
+                     </div>
+                  </div>
+
+                  <img src="../../assets/design/spotify/spotifymap.jpg" class="designImg1300">
+                  <div class="designImageSubText">
+                     <p> Map of redesign </p>
+                  </div>
+                  <div class="designSpace"></div>
+                     <img src="../../assets/design/spotify/mainLanding.png" id="img350">
+                     <img src="../../assets/design/spotify/landing.png" id="img350">
+                     <img src="../../assets/design/spotify/playlist.png" id="img350">
+                     <img src="../../assets/design/spotify/profile.png" id="img350">
+                     <img src="../../assets/design/spotify/song.png" id="img350">
+                     <img src="../../assets/design/spotify/stats.png" id="img350">
+                     <img src="../../assets/design/spotify/statsGenre.png" id="img350">
+                     <img src="../../assets/design/spotify/search.png" id="img350">
+                     <img src="../../assets/design/spotify/generate.png" id="img350">
+                     <img src="../../assets/design/spotify/carView.png" id="img350">
+                     <div id="textContainerBody">
+                  </div>
+                  <div class="designSpace"></div>
+                  <div class="designTextContainerBody">
+                     In total, there are 10 images - some redesigned, some created.
+                  </div>
+                  <div class="designSpace"></div>
+               </div>
             </div>
-            <img src="../../assets/design/spotify/mock1.jpg" alt="">
-            <img src="../../assets/design/spotify/mock2.jpg" alt="">
-            <img src="../../assets/design/spotify/spotifymap.jpg" alt="" id="img1300">
-            <br>
-            <img src="../../assets/design/spotify/mainLanding.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/landing.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/playlist.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/profile.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/song.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/stats.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/statsGenre.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/search.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/generate.png" alt="" id="img350">
-            <img src="../../assets/design/spotify/carView.png" alt="" id="img350">
-            <div id="textContainerBody">
-         </div>
       </div>
       <toTop />
   </div>
@@ -68,6 +92,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-</style>z
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+   background: #bbbbbb !important; /* Gecko Browsers */
+}
+
+</style>

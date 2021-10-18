@@ -14,18 +14,62 @@
       </div>
 
       <div class="designBodyContainer">
-         <div class="designTextContainerBody">
-            I spent the weekend at Barnegat Light, NJ during the winter.
-
+         <div class="designContainerBox">
+            <div class="designContainerBoxPadding">
+               <div class="designTextContainerBody">
+                  I spent the weekend at Barnegat Light, NJ during the winter.
+               </div>
+               <img src="../../assets/design/barnegat/beach.jpg" class="designImg1300">
+               <div class="designSpace"></div>
+               <img src="../../assets/design/barnegat/bird.jpg" class="designImg1300">
+               <div class="designSpace"></div>
+               <img src="../../assets/design/barnegat/trails.jpg" class="designImg1300">
+               <div class="designSpace"></div>
+               <div class="designOffsetImageLeft">
+                  <div class="designOffsetContainer">
+                     <div class="designOffsetImgContainer">
+                        <img src="../../assets/design/barnegat/seagullfront.jpg" alt="" class="offsetImg800">
+                     </div>
+                  </div>
+                  <div class="designOffsetContainer">
+                     <div class="designOffsetImgContainer">
+                        <img src="../../assets/design/barnegat/seagullside.jpg" alt="" class="offsetImg800">
+                     </div>
+                  </div>
+               </div>
+               <div class="designSpace"></div>
+               
+               <img src="../../assets/design/barnegat/panorama.jpg" class="designImg1300">
+               <div class="designSpace"></div>
+               <div class="designOffsetImageLeft">
+                  <div class="designOffsetContainer">
+                     <div class="designOffsetImgContainer">
+                        <img src="../../assets/design/barnegat/mock1.jpg" class="offsetImg800">
+                     </div>
+                  </div>
+                  <div class="designOffsetContainer">
+                     <div class="designOffsetImgContainer">
+                        <img src="../../assets/design/barnegat/mock2.jpg" class="offsetImg800">
+                     </div>
+                  </div>
+               </div>
+               <div class="designSpace"></div>
+               <div class="designOffsetImageLeft">
+                  <div class="designOffsetContainer">
+                     <div class="designOffsetImgContainer">
+                        <img src="../../assets/design/barnegat/barnegat_cover.jpg" class="offsetImg800">
+                     </div>
+                  </div>
+                  <div class="designOffsetContainer">
+                     <div class="offsetImgText">
+                        The picture on the left (or below depending on your screen width), was taken while I was taking shots for the first picture. I don't go to the beach at 4 am in the middle
+                        of January very often but if you're ever considering it, bring <i>a lot</i> of jackets - I forgot how windy it gets. All of these shots were taken on my trusty Rebel T2i.
+                     </div>
+                  </div>
+               </div>
+               <div class="designSpace"></div>
+            </div>
          </div>
-         <img src="../../assets/design/barnegat/beach.jpg" alt="" id="img1300">
-         <img src="../../assets/design/barnegat/bird.jpg" alt="" id="img1300">
-         <img src="../../assets/design/barnegat/trails.jpg" alt="" id="img1300">
-         <img src="../../assets/design/barnegat/seagullfront.jpg" alt="">
-         <img src="../../assets/design/barnegat/seagullside.jpg" alt="">
-         <img src="../../assets/design/barnegat/panorama.jpg" alt="" id="img1600">
-         <img src="../../assets/design/barnegat/mock1.jpg" alt="" id="img800">
-         <img src="../../assets/design/barnegat/mock2.jpg" alt="" id="img800">
       </div>
          <div id="textContainerBody">
          </div>        

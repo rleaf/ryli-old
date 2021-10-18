@@ -4,7 +4,7 @@
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
-               ASL Illustrations
+               Hand Gestures
                <div class="textDesignSubHeader">
                   Illustration
                </div>         
@@ -22,18 +22,16 @@
                      came from the American Sign Language, however many gestures have been redesigned to be more suitable
                      for a presentation environment.
                   </div>
-                  <img src="../../assets/design/signlanguage/mock.jpg" alt="" class="designImg1300">
-                  <img src="../../assets/design/signlanguage/mock2.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/signlanguage/mock.jpg" class="designImg1300">
+                  <img src="../../assets/design/signlanguage/mock2.jpg" class="designImg1300">
                   <div class="designImageSubText">
-                     <p>
-                        Shown above are mockups found online, not the actual book.
-                     </p>
+                     <p> Shown above are mockups found online, not the actual book. </p>
                   </div>
                   <div class="designSpace"></div>
                   <div class="designOffsetImageLeft">
                      <div class="designOffsetContainer">
                         <div class="designOffsetImgContainer">
-                           <img src="../../assets/design/signlanguage/trace2.jpg" alt="" class="offsetImg800">
+                           <img src="../../assets/design/signlanguage/trace2.jpg" class="offsetImg800">
                         </div>
                      </div>
                      <div class="designOffsetContainer">
@@ -50,24 +48,20 @@
                      </div>
                   </div>
                   <div class="designSpace"></div>
-                  <img src="../../assets/design/signlanguage/ps.jpg" alt="" id="img800">
+                  <img src="../../assets/design/signlanguage/ps.jpg" id="img800">
                   <div class="designImageSubText">
-                     <p>
-                        The final draft of the 50 drawings prior to illustrating 
-                     </p>
+                     <p> The final draft of the 50 drawings prior to illustrating </p>
                   </div>
                   <div class="designSpace"></div>
                   <div class="designTextContainerBody">
                      Below are 55 illustrations of the final gestures. I added indicator arrows and a gray-to-white color change to help communicate <i>"where to start"</i> and <i>"how to move"</i>. I did not
                      illustrate the finer characteristics of hands such as fingernails and knuckles to keep everything simple.
                   </div>
-                  <img src="../../assets/design/signlanguage/illustrations1.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/signlanguage/illustrations1.jpg" class="designImg1300">
                   <div class="designSpace"></div>
-                  <img src="../../assets/design/signlanguage/illustrations2.jpg" alt="" class="designImg1300">
+                  <img src="../../assets/design/signlanguage/illustrations2.jpg" class="designImg1300">
                   <div class="designImageSubText">
-                     <p>
-                        Close up of some of the illustrations
-                     </p>
+                     <p> Close up of some of the illustrations </p>
                   </div>
                   <div class="designSpace"></div>
                   <div class="designTextContainerBody">

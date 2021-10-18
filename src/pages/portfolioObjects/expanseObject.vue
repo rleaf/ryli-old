@@ -14,26 +14,40 @@
       </div>
       
          <div class="designBodyContainer">
-            <div class="designTextContainerBody">
-               Expanse is a header typeface designed with tech and sci-fi aesthetics. I incorporated minimalistic and geometric aesthetics into the typeface while
-               attempting to preserve readability.
-            </div>
-            <img src="../../assets/design/expanse/expanseland.jpg" alt="" id="img1300">
-            <img src="../../assets/design/expanse/expanse_sample.png" alt="" id="img1300">
-            <div id="textContainerBody">
-               
-            </div>
-            <img src="../../assets/design/expanse/expanse_fill.png" alt="" id="img500">
-            <img src="../../assets/design/expanse/expanse_stroke.png" alt="" id="img500">
-            <img src="../../assets/design/expanse/space.jpg" alt="" id="img1300">
-            <img src="../../assets/design/expanse/mock1.jpg" alt="" id="img1300">
-            <br>
-            <div id="textContainerBody">
-               <div id="linkhover">
-                  Sources: <a href="https://www.artstation.com/karlpoyzer"> Karl Poyzer</a> &
-                  <a href="https://www.instagram.com/cosmic_background/">Andrew McCarthy</a>
+            <div class="designContainerBox">
+               <div class="designContainerBoxPadding">
+                  <div class="designTextContainerBody">
+                     Expanse is a header typeface designed with tech and sci-fi aesthetics. I incorporated minimalistic and geometric aesthetics into the typeface while
+                     attempting to preserve readability.
+                  </div>
+                  <img src="../../assets/design/expanse/expanseland.jpg" class="designImg1300">
+                  <div class="designSpace"></div>
+                  <img src="../../assets/design/expanse/quickbrownfox.png" class="designImg1300" style="box-shadow: none;">
+                  <!-- <div class="designSpace"></div> -->
+                  <div class="designOffsetImageLeft">
+                     <div class="designOffsetContainer">
+                        <div class="designOffsetImgContainer">
+                           <img src="../../assets/design/expanse/expanse_fill2.png" class="offsetImg800" style="box-shadow: none;">
+                        </div>
+                     </div>
+                     <!-- <div class="designOffsetContainer">
+                        <div class="offsetImgText">
+                           toadsare so poweroful toadsare so poweroful toadsare so poweroful toadsare so poweroful
+                        </div>
+                     </div> -->
+                  </div>
+                  <img src="../../assets/design/expanse/space.jpg" class="designImg1300">
+                  <img src="../../assets/design/expanse/mock1.jpg" class="designImg1300">
+                  <div class="designSpace"></div>
+                  <div id="textContainerBody">
+                     <div id="linkhover" style="color: #000;">
+                        Sources: <a href="https://www.artstation.com/karlpoyzer" style="color: #000;"> Karl Poyzer</a> &
+                        <a href="https://www.instagram.com/cosmic_background/" style="color: #000;">Andrew McCarthy</a>
+                     </div>
+                  </div>        
+                  <div class="designSpace"></div>
                </div>
-            </div>        
+            </div>
          </div>
       <toTop />
   </div>
@@ -67,6 +81,11 @@ export default {
 
 <style scoped>
 
-
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #bbbbbb !important; /* Gecko Browsers */
+}
 
 </style>

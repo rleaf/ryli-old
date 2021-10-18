@@ -11,24 +11,45 @@
             </div>
          </div>
       </div>
-         <div class="designBodyContainer" style="padding-bottom: 100px;">
-            <div class="designTextContainerBody">
-               Valiant is a custom furniture design business that combines the functionality and aesthetics of both metalwork and carpentry.
-               The client requested a brand identity, logo design, and multimedia channels to convey his business.
-            </div>
-            <img src="../../assets/design/valiant/mock1.jpg" alt="" id="img1300">
-            <br>
-            <br>
-               <div class="designTextContainerBody">
-                  The goal for the website
-                  was to promote the desired aesthetic by showing the bright reds and subtle off white on landing.
-                  Modal images, smooth scrolling, and dynamic changing for 
-                  different resolutions were all incorporated to provide the viewer with a greater experience.
+      
+         <div class="designBodyContainer">
+            <div class="designContainerBox">
+               <div class="designContainerBoxPadding">
+                  <div class="designTextContainerBody">
+                     Valiant is a custom furniture design business that combines the functionality and aesthetics of both metalwork and carpentry.
+                     The client requested a brand identity, logo design, and multimedia channels to convey his business.
+                  </div>
+                  <img src="../../assets/design/valiant/mock1.jpg" class="designImg1300">
+                  <div class="designSpace"></div>
+                  <div class="designTextContainerBody">
+                     The goal for the website
+                     was to promote the desired aesthetic by showing the bright reds and subtle off white on landing.
+                     Modal images, smooth scrolling, and dynamic changing for 
+                     different resolutions were all incorporated to provide the viewer with a greater experience.
+                  </div>
+                  <img src="../../assets/design/valiant/mock2.jpg" class="designImg1300">
+                  <video class="designImg1300" autoplay loop :src="landing"></video>
+                  <div class="designSpace"></div>
+                  <div class="designTextContainerBody">
+                     For the design process, I focused around the use of an I-beam. The idea actually came from the client himself as he used the design to join two pieces of wood together,
+                     having the I-beam act as a "clamp". With this in mind, I focused on a couple of different styles (look at the different letter designs in the red box, then the green box).
+                     <br>
+                     <br>
+                     For color, the initial main swatches were shades of red, blue, and a cream white. After talks with the client, the colors changed to a right red and a matching cream white to promote excitement.
+                     Nearing the end, the final draft of the logo was encapsulated within a hexagon to add structure.
+                  </div>
+                  <img src="../../assets/design/valiant/work1.jpg" class="designImg1300">
+                  <div class="designSpace"></div>
+                  <div class="designTextContainerBody">
+                     The alloted time frame that this project was to be completed in made everything a challenge. I worked with a couple other members on this project and initially we had not planned to create a
+                     website - the original assets were a business card, a logo, and some other stationary supplies. After proposing the idea however, the client was definitely interested in the website over the
+                     originally suggested stationary. All of the assets here were created by me.
+                  </div>
+                  <div class="designSpace"></div>
                </div>
-            <img src="../../assets/design/valiant/mock2.jpg" alt="" id="img1300">
-            <video id="img1300" autoplay loop :src="landing"></video>
+            </div>
          </div>
-         <!-- <img src="../../assets/valiant/Artboard 2.png" alt="" id="img1300"> -->
+         <!-- <img src="../../assets/valiant/Artboard 2.png" id="img1300"> -->
          <!-- <div id="textContainerBody">
             Here is the final version of the website. 
          </div> -->

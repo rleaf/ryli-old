@@ -2,7 +2,7 @@
    <div id="imgcontainer">
       <router-link id="imgrouter" to="/sign">
          <div class="imagehover">
-            <p>ASL Illustrations</p>
+            <p>Hand Gestures</p>
             <div id="subtext">
                <p>Illustration</p>
             </div>
