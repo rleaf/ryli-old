@@ -76,6 +76,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+   
+::selection {
+  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #bbbbbb !important; /* Gecko Browsers */
+}
 
 </style>

@@ -110,7 +110,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
    /* .landing {
       display: inherit;
       z-index: 5;
