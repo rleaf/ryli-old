@@ -1,6 +1,7 @@
 <template>
   <div class="landingDesign">
      <backdropFade />
+     <!-- <scroll /> -->
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
@@ -81,11 +82,13 @@
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
+// // import scroll from '../../components/scroll.vue'
 import gsap from 'gsap'
 
 export default {
    components: {
       toTop,
+      // scroll,
       backdropFade
    },
    mounted() {
