@@ -18,7 +18,7 @@
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
                   <div class="designTextContainerBody">
-                     I designed and illustrated 50 various hand gestures for <i>"Advanced Public Speaking: Theory and Technique"</i>. The book involves
+                     I designed and illustrated 50 various hand gestures for <a href="https://titles.cognella.com/advanced-public-speaking-9781793513274" target="_blank"><i>"Advanced Public Speaking: Theory and Technique"</i></a>. The book involves
                      incorporating these gestures into public speaking to increase effective communication. Original inspiration
                      came from the American Sign Language, however many gestures have been redesigned to be more suitable
                      for a presentation environment.
@@ -82,7 +82,7 @@
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
-// // import scroll from '../../components/scroll.vue'
+// import scroll from '../../components/scroll.vue'
 import gsap from 'gsap'
 
 export default {
@@ -92,12 +92,6 @@ export default {
       backdropFade
    },
    mounted() {
-      // threeScene.loadPageScene('signGroup')
-      // HELLO ALL YOU NEED TO DO IS GET GOOD IMAGES FO THE BACKGROUNDS FOR EACH DESIGN SCENE
-      // IF YOU HAVE THE TIME, ALSO DO BETTER MOCKUPS - SOME CURRENT ONES SUCK (SPD, SIGN)
-      // ADD A TWEEN THAT PROCS ON SCROLL TO MAKE BG DARKER FOR READING OR......
-      // ADD A BOX THAT ALL OF THE TEXT & MOCKUPS BELONG IN. MAYBE ADD MULTIPLE BOXES TO MAKE IT LOOK FANCY?
-      
 
       gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
          threeScene.scene.remove(threeScene.sphere, threeScene.plane)
@@ -121,7 +115,13 @@ export default {
 
    }   */
 
+a {
+   color: #a9a9a9;
+}
 
+a:hover {
+   color: #7c98c5;
+}
 ::selection {
   background: #bbbbbb !important; /* WebKit/Blink Browsers */
 }

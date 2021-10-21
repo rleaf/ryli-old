@@ -6,38 +6,57 @@
 
 <script>
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default {
    
    mounted() {
+
+      // let toads
+      console.log(this.toads);
       // const scrollTween = gsap.to('.bar', {yPercent: 400, ease: "none", paused: true})
-      
+      gsap.to('.bar', {scrollTrigger: {
+         trigger: '.bar',
+         start: 'top',
+         endTrigger: 'bottom',
+         // end: 'bottom',
+         scroller: 'body',
+         scrub: true,
+         markers: true,
 
-      window.addEventListener('scroll', this.updateScrollBar)
-      // window.addEventListener('scroll', () => {
-      //    // console.log('toad');
-      //    this.updateScrollBar()
-      // })
-      window.addEventListener('resize', this.updateScrollBar)
-
-      // updateScrollBar() {
-      //    scrollTween.progress(scrollY / (document.body.scrollHeight - innerHeight))
-      // }
+      },
+      top: '90%'});
+      window.addEventListener('scroll', this.test)
+      // window.addEventListener('scroll', this.updateScrollBar)
+      // // window.addEventListener('scroll', () => {
+      // //    // console.log('toad');
+      // //    this.updateScrollBar()
+      // // })
+      // window.addEventListener('resize', this.updateScrollBar)
    },
    methods: {
+      test() {
+         // console.log(scrollY);
+      }
       // Scroll on signObject
-      updateScrollBar() {
-         const scrollTween = gsap.to('.bar', {yPercent: 100, ease: "none", paused: true});
-         // console.log('toads', document.querySelector('.bar'));
-         scrollTween.progress(scrollY / (document.body.scrollHeight - innerHeight))
-         console.log(scrollY / (document.body.scrollHeight - innerHeight));
+      // updateScrollBar() {
+      //    const scrollTween = gsap.to('.bar', {yPercent: 100, ease: "none", paused: true});
+      //    // console.log('toads', document.querySelector('.bar'));
+      //    // scrollTween.progress(scrollY / (document.body.scrollHeight - innerHeight))
+      //    scrollTween.progress(.5)
+      //    console.log(scrollY / (document.body.scrollHeight - innerHeight));
          
-      },
+      // },
    }
 }
 </script>
 
 <style scoped>
+   /* body {
+      height: 500vh;
+   } */
 
    .scrollBarContainer {
       display: block;
@@ -53,6 +72,10 @@ export default {
 
    .bar {
       height: 50px;
+      display: block;
+      position: absolute;
+      /* transform: translate3d(0, 100%, 0); */
+      top: 0%;
       width: 100%;
       background-color: rgb(148, 148, 148);
    }
