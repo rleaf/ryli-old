@@ -62,7 +62,7 @@ export default {
    //    }
    // }
    mounted() {
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
 
       if(threeScene.cache == 'mainScene') {
          return

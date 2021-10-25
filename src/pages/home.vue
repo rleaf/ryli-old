@@ -55,16 +55,15 @@
 
 ::-webkit-scrollbar {
    display: none;
-   /* width: 10px; */
-   /* overflow: hidden; */
+   width: 7px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background: var(--green);
+   background: var(--white);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: var(--green);
+   background: var(--white);
 }
 
 ::-webkit-scrollbar-track {
@@ -82,9 +81,11 @@ body, html {
    margin: 0;
    padding: 0;
    background-color: #0e0e0e;
+   width: 100%;
+   height: 100%;
+   /* overflow-x: auto; */
    /* background-color: #0e0e0e; */
    /* scroll-behavior: smooth; */
-   /* overflow: hidden; */
 }
 
 #origin {

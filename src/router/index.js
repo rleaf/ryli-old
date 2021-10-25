@@ -122,16 +122,25 @@ const routes = [
   {
     path: '/quadraticform',
     name: 'quadraticform',
+    meta: {
+      title: 'Learning to find the derivative of the quadratic form'
+    },
     component: blogQuadraticFormLink
   },
   {
     path: '/knn',
     name: 'knn',
+    meta: {
+      title: 'Implementing K Nearest Neighbors on CIFAR-10'
+    },
     component: knn_cifarLink
   },
   {
     path: '/bnbackpass',
     name: 'bnbackpass',
+    meta: {
+      title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization'
+    },
     component: bn_backpassLink
   },
   {
@@ -161,6 +170,12 @@ const router = new VueRouter({
   scrollBehavior() {
     return {x:0, y:0};
   }
+})
+
+router.beforeEach((toRoute, fromRoute, next) => {
+  window.document.title = toRoute.meta && toRoute.meta.title ? toRoute.meta.title : '// Ryan Lin';
+
+  next();
 })
 
 export default router;

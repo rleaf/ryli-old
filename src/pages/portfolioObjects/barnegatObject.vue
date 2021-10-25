@@ -62,8 +62,8 @@
                   </div>
                   <div class="designOffsetContainer">
                      <div class="offsetImgText">
-                        The picture on the left (or below depending on your screen width), was taken while I was taking shots for the first picture. I don't go to the beach at 4 am in the middle
-                        of January very often but if you're ever considering it, bring <i>a lot</i> of jackets - I forgot how windy it gets. All of these shots were taken on my trusty Rebel T2i.
+                        The picture on the left (or below depending on your screen width), was taken while I was taking shots for the first picture. If you go to the beach at 4 am in the middle
+                        of January, bring a lot of jackets - I forgot how windy it gets. All of these shots were taken on my Rebel T2i.
                      </div>
                   </div>
                </div>
