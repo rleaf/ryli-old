@@ -1,7 +1,7 @@
 <template>
   <div class="landingDesign">
      <backdropFade />
-     <!-- <scroll /> -->
+     <scroll />
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
@@ -82,13 +82,13 @@
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
 import threeScene from '../../assets/js/threeScene.js'
-// import scroll from '../../components/scroll.vue'
+import scroll from '../../components/scroll.vue'
 import gsap from 'gsap'
 
 export default {
    components: {
       toTop,
-      // scroll,
+      scroll,
       backdropFade
    },
    mounted() {
@@ -108,12 +108,9 @@ export default {
 
 <style scoped>
 
-   /* .backdrop {
-      background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: center;
-
-   }   */
+/* ::-webkit-scrollbar {
+   display: inline-block !important;
+} */
 
 a {
    color: #a9a9a9;

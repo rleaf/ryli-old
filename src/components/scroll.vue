@@ -20,14 +20,16 @@ export default {
       gsap.to('.bar', {scrollTrigger: {
          trigger: '.bar',
          start: 'top',
+         // end: 'bottom += 200%',
          endTrigger: 'bottom',
-         // end: 'bottom',
+         end: 'bottom',
+         // end: document.querySelector("#app").scrollHeight
          scroller: 'body',
          scrub: true,
          markers: true,
 
       },
-      top: '90%'});
+      y: '100px'});
       window.addEventListener('scroll', this.test)
       // window.addEventListener('scroll', this.updateScrollBar)
       // // window.addEventListener('scroll', () => {
@@ -72,7 +74,6 @@ export default {
 
    .bar {
       height: 50px;
-      display: block;
       position: absolute;
       /* transform: translate3d(0, 100%, 0); */
       top: 0%;

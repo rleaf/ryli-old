@@ -55,7 +55,7 @@
 
 ::-webkit-scrollbar {
    display: none;
-   width: 7px;
+   /* width: 7px; */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -66,9 +66,10 @@
    background: var(--white);
 }
 
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
    display: none;
-}
+   background: transparent;
+} */
 
 ::selection {
   background: #2c2c2c; /* WebKit/Blink Browsers */
@@ -83,14 +84,10 @@ body, html {
    background-color: #0e0e0e;
    width: 100%;
    height: 100%;
-   /* overflow-x: auto; */
-   /* background-color: #0e0e0e; */
-   /* scroll-behavior: smooth; */
 }
 
 #origin {
    width: 100vw;
-   /* height: 92vh; */
 }
 
 #landing {
@@ -418,9 +415,9 @@ body, html {
 
 .landingDesign {
    clear: both;
-   width: 100vw;
-   height: 80vh;
-   position: relative;
+   /* width: 100vw; */
+   /* height: 80vh; */
+   /* position: relative; */
 }
 
 .designHero {

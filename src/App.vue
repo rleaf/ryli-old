@@ -25,6 +25,10 @@ export default {
 
 <style>
 
+/* #app {
+  width: 100vw;
+} */
+
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
   transition-duration: .6s;

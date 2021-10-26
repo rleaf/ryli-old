@@ -178,4 +178,5 @@ router.beforeEach((toRoute, fromRoute, next) => {
   next();
 })
 
+
 export default router;

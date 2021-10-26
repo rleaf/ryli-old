@@ -68,6 +68,7 @@ export default {
    flex-wrap: inherit;
    justify-content: inherit;
    /* z-index: 5; */
+   /* width: 100vw; */
 }
 
 </style>
