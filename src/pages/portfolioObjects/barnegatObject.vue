@@ -71,9 +71,6 @@
             </div>
          </div>
       </div>
-         <div id="textContainerBody">
-         </div>        
-      
       <toTop />
   </div>
 </template>
