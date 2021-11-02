@@ -19,19 +19,27 @@ export default {
   components: {
     threeScene,
     NavBar
-  }
+  },
+  watch: {
+    $route() {
+      document.body.style.overflowY = "hidden";
+    }
+  },
+  updated() {
+    setTimeout(function () {
+        document.body.style.overflowY = "auto";
+    }, 625);
+  },
 }
 </script>
 
 <style>
 
-/* #app {
-  width: 100vw;
-} */
 
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
   transition-duration: .6s;
+  /* overflow: auto; */
 }
 
 .fade-enter-active {

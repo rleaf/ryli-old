@@ -44,7 +44,7 @@ export default {
       // }
    
       // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
-   }
+   },
 }
 </script>
 

@@ -32,7 +32,7 @@
       mounted() {
          threeScene.loadPageScene()
          gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
-      }
+      },
    }
 
 </script>
@@ -45,31 +45,24 @@
 
 
 :root {
-   /* --green: #6baf76; */
    --green: #ffffff;
    --white: #dddddd;
    --offWhite: #b1b1b1;
-   /* --lightGreen: #aa1d1d; */
-   /* --black: #000000; */
 }
 
 ::-webkit-scrollbar {
-   display: none;
-   /* width: 7px; */
+   /* display: none; */
+   background: #0e0e0e;
+   width: 14px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background: var(--white);
+   background: #3f3f3f;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: var(--white);
+   background: var(--offWhite);
 }
-
-/* ::-webkit-scrollbar-track {
-   display: none;
-   background: transparent;
-} */
 
 ::selection {
   background: #2c2c2c; /* WebKit/Blink Browsers */
@@ -79,6 +72,7 @@
 }
 
 body, html {
+   /* overflow: auto; */
    margin: 0;
    padding: 0;
    background-color: #0e0e0e;
@@ -86,9 +80,9 @@ body, html {
    height: 100%;
 }
 
-#origin {
+/* #origin {
    width: 100vw;
-}
+} */
 
 #landing {
    padding: 0 8vw 0 8vw;
@@ -422,7 +416,7 @@ body, html {
 
 .designHero {
    /* position: relative; */
-   width: 100vw;
+   width: 100%;
    height: 100vh;
    z-index: 10;
 }
@@ -455,7 +449,7 @@ body, html {
    z-index: 10;
    text-align: center;
    justify-content: center;
-   width: 100vw;
+   width: 100%;
 }
 
 .designContainerBox {

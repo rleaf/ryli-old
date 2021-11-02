@@ -92,7 +92,7 @@ export default {
       backdropFade
    },
    mounted() {
-
+      
       gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
          threeScene.scene.remove(threeScene.sphere, threeScene.plane)
          threeScene.scene.add(threeScene.signMesh)
@@ -108,9 +108,9 @@ export default {
 
 <style scoped>
 
-/* ::-webkit-scrollbar {
-   display: inline-block !important;
-} */
+* {
+   overflow: hidden;
+}
 
 a {
    color: #a9a9a9;
