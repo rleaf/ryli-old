@@ -26,7 +26,7 @@ export default {
          // end: document.querySelector("#app").scrollHeight
          scroller: 'body',
          scrub: true,
-         markers: true,
+         // markers: true,
 
       },
       y: '100px'});
