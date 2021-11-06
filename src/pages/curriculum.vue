@@ -1,5 +1,6 @@
 <template>
   <div id="landing">
+     <!-- <backdrop /> -->
      <div class="testo">
 
      <!-- <NavBar /> -->
@@ -84,6 +85,7 @@
 
 <script>
 // import NavBar from '../components/nav.vue'
+// // import backdrop from '../components/backdrop.vue'
 import curriculumAbout from '../components/curriculumAbout.vue'
 import threeScene from '../assets/js/threeScene.js'
 import gsap from 'gsap'
@@ -92,6 +94,7 @@ export default {
    name: 'curriculum',
    components: {
       // NavBar,
+      // backdrop,
       curriculumAbout,
       // sharks
    },

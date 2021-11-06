@@ -1,6 +1,6 @@
 <template>
    <div id="landing">  
-      <!-- <NavBar /> -->
+      <!-- <backdrop /> -->
       <div id="textContainerHeader">
       </div>
       <div id="curriculumBody">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-   // import NavBar from '../components/nav.vue'
+   // // import backdrop from '../components/backdrop.vue'
    import threeScene from '../assets/js/threeScene.js'
    import gsap from 'gsap'
    
@@ -43,7 +43,7 @@
 export default {
    name: 'speak',
    components: {
-      // NavBar,
+      // backdrop
    },
    /* Code for Strapi if I decide to use it */
    // data () {
@@ -68,7 +68,7 @@ export default {
          return
       } else {
          
-         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: "auto", onComplete:() => {
          threeScene.destroyMesh()
          threeScene.scene.add(threeScene.sphere,threeScene.plane)
          }})

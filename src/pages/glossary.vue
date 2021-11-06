@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-   <!-- <backdrop /> -->
+   <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumStructure">
@@ -10,7 +10,7 @@
                   <p style="font-size: 18px; margin: 0;">Searchable references: {{postList.length}}</p>
                </div>
                <p>
-                  <i style="font-size: 14px;">Experimental page. May delete in the future. Intended primarily for food.</i>
+                  <i style="font-size: 14px;">Keeping notes :)</i>
                </p>
                   <input type="text" v-model="search" placeholder="Search..."/>
             </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-// // import backdrop from '../components/backdrop.vue'
+import backdrop from '../components/backdrop.vue'
 import threeScene from '../assets/js/threeScene.js'
 import Post from '../assets/js/glossaryStruc.js'
 import g from '../assets/json/glossary.json'
@@ -49,7 +49,7 @@ export default {
    components: {
       'vue-mathjax': VueMathjax,
       PrismEditor,
-      // backdrop
+      backdrop
    },
 
    data() {
@@ -117,7 +117,7 @@ export default {
    mounted() {
       gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
 
-      if(threeScene.cache == 'mainScene') {
+      if(threeScene.cache == 'noScene') {
          return
       } else {
          
@@ -125,11 +125,26 @@ export default {
          threeScene.destroyMesh()
          threeScene.scene.add(threeScene.sphere,threeScene.plane)
          }})
-
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         setTimeout(() => {
+            threeScene.destroyHero()
+         }, 1500)
+         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
          
-         threeScene.cache = 'mainScene'
+         threeScene.cache = 'noScene'
       }
+      // if(threeScene.cache == 'mainScene') {
+      //    return
+      // } else {
+         
+      //    gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+      //    threeScene.destroyMesh()
+      //    threeScene.scene.add(threeScene.sphere,threeScene.plane)
+      //    }})
+
+      //    gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         
+      //    threeScene.cache = 'mainScene'
+      // }
    }
 }
 </script>
@@ -146,6 +161,8 @@ export default {
 .glossaryWrapper {
    padding: 20px 10px;
    max-width: 400px;
+   z-index: 2;
+   /* backdrop is 1 */
 }
 
 input[type=text] {
