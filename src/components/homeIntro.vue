@@ -19,12 +19,13 @@ import { gsap } from "gsap";
 export default {
    
    mounted() {
-      // REMOVE FADE TRANSITION WHEN GOING TO SAME SCENE
+
+      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
       
       if(threeScene.cache == 'mainScene') {
          return
       } else {
-         
+
          gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
          threeScene.destroyMesh()
          threeScene.scene.add(threeScene.sphere,threeScene.plane)
