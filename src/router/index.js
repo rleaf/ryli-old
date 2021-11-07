@@ -23,6 +23,7 @@ import blogskeletonLink from '../components/blog/skeleton.vue'
 import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
+import lstmLink from '../components/blog/lstm.vue'
 
 
 
@@ -142,6 +143,14 @@ const routes = [
       title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization'
     },
     component: bn_backpassLink
+  },
+  {
+    path: '/lstm',
+    name: 'lstm',
+    meta: {
+      title: 'Looking at LSTM Architecture'
+    },
+    component: lstmLink
   },
   {
     path: '/glossary',

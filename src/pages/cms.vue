@@ -9,6 +9,9 @@
          </div>
          <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
+            <router-link to="lstm">
+               <li>Looking at LSTM Architecture</li>
+            </router-link>
             <router-link to="bnbackpass">
                <li>The Shortcut in Differentiating the Backwards Pass in Batch Normalization</li>
             </router-link>

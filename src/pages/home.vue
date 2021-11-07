@@ -330,6 +330,12 @@ body, html {
    max-width: 800px;
 }
 
+#img1000 {
+   width: 100%;
+   box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
+   max-width: 1000px;
+}
+
 
 @media (max-width: 1420px) {
    #img1300 {
