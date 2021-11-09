@@ -7,7 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Looking at RNN and then LSTM Architecture</p>
-                  <p style="font-size: 20px; padding: 0 !important; ">10&#8226;6&#8226;2021</p>
+                  <p style="font-size: 20px; padding: 0 !important; ">11&#8226;6&#8226;2021</p>
                </div>
             </div>
             <p>
@@ -76,32 +76,66 @@
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph2.png" alt="">
             <prism-editor class="codeblock" v-model="toad2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
          <div id="blogSubHeader">
-            Two: Backpropagation
+            Two: One Step Backwards
          </div>
          <img id="img500" style="box-shadow: none;" src="../../assets/blog/combinedgraphs.png" alt="">
          <span style="font-size:14px; padding-top: -10px;"><i>Combined picture of both computational graphs</i></span>
          <p>
-            Time to go backwards. Here are the partials we're looking for: <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{hy}}},
-            <!-- FIGURE OUT WHICH GRADIENTS I SHOULD ADD HERE -->
-            <!-- FIGURE OUT WHICH GRADIENTS I SHOULD ADD HERE -->
-            <!-- FIGURE OUT WHICH GRADIENTS I SHOULD ADD HERE -->
-            <!-- FIGURE OUT WHICH GRADIENTS I SHOULD ADD HERE -->
+            Time to go backwards. I first show the process <u>only going back only a single hidden step</u>. Afterwards I discuss fully propagating backwards <i>t</i> times to the first values.
+            <br>
+            <br>
+            Here are the partials we're looking for: <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{hy}}},
             \\frac{\\partial{L}}{\\partial{b_y}},
+            \\frac{\\partial{L}}{\\partial{h_{t}}},
             \\frac{\\partial{L}}{\\partial{W_{hh}}},
             \\frac{\\partial{L}}{\\partial{h_{t-1}}},
             \\frac{\\partial{L}}{\\partial{b_h}},
             \\frac{\\partial{L}}{\\partial{W_{xh}}}$$`'></vue-mathjax>
-            To compute the gradient of the previous timestep <vue-mathjax :formula='`$h_{t-1}$`'></vue-mathjax>, the gradient of the individual loss
-            <vue-mathjax :formula='`$\\frac{\\partial{L_t}}{\\partial{\\hat{y_t}}}$`'></vue-mathjax> will be added together with the upstream gradient.
-            the gradient of the next hidden state wrt every corresponding future individual loss <vue-mathjax :formula='`$\\frac{\\partial{L}}{\\partial{h_{t+1}}}$`'></vue-mathjax> are required. Fortunately,
-            as by the concept of backpropagation, we only need to focus on incorporating 
-            <!-- <vue-mathjax :formula='totalDeriv'></vue-mathjax> -->
+            <br>
+            Here are the transformations again:
+            <vue-mathjax :formula='rnnStep'></vue-mathjax>
+            <vue-mathjax :formula='yhatTransform'></vue-mathjax>
+            <br>
+            The first step is to look at the upstream gradient <vue-mathjax :formula='`$\\frac{\\partial{L_t}}{\\partial{\\hat{y_t}}}$`'></vue-mathjax>. This is the derivative of the loss wrt to the prediction
+            of the model at the current timestep and the gradient is represented as the <i>output_grad</i>. We can now begin finding the desired gradients. Note that when differentiating wrt to a bias parameter, I sum along the Nth
+            dimension to match the shape of said bias parameter.
+            <br>
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{hy}}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{W_{hy}}}=output\\_grad\\;\\cdot h_t^\\top$$`'></vue-mathjax>
+            <br>
+            <span style="font-color: red;"><vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b_y}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{b_y}}=\\sum^N{output\\_grad}$$`'></vue-mathjax>
+            </span >
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{h_t}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}=output\\_grad\\;\\cdot W_{hy}^\\top$$`'></vue-mathjax>
+            <br>
+            Everything beyond <vue-mathjax :formula='`$h_t$`'></vue-mathjax> runs through the element-wise <i>tanh</i> non-linearity, so I create an intermediary variable which I will call <vue-mathjax :formula='`$dtanh$`'></vue-mathjax>, that uses a hyperbolic identity:
+            <vue-mathjax :formula='`$\\frac{\\mathrm{d}tanh(x)}{\\mathrm{d}} = sech^2(x) = 1-tanh^2(x)$`'></vue-mathjax> to find the derivative. I will also be multiplying it element-wise with
+            <vue-mathjax :formula='`$\\frac{\\partial{L}}{\\partial{h_t}}$`'></vue-mathjax> to account for the preceeding partials in the chain rule. Doing this will provide more head space so I don't have to keep writing it down.
+            In one succinct formula: <vue-mathjax :formula='`$ dtanh = \\frac{\\partial{L}}{\\partial{h_t}} \\odot (1-tanh^2(x))$`'></vue-mathjax>. For clarification, the <i>x</i> argument inside the <i>tanh</i> function
+            is the argument in the forward pass at the current timestep.
+            <br>
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{hh}}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}\\cdot\\frac{\\partial{h_t}}{\\partial{W_{hh}}}=dtanh\\;\\cdot h_{t-1}^\\top$$`'></vue-mathjax>
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{h_{t-1}}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}\\cdot\\frac{\\partial{h_t}}{\\partial{h_{t-1}}}=dtanh\\;\\cdot W_{hh}^\\top$$`'></vue-mathjax>
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b_h}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}\\cdot\\frac{\\partial{h_t}}{\\partial{h_{t-1}}}=\\sum^N{dtanh}$$`'></vue-mathjax>
+            <br>
+            <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{xh}}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}\\cdot\\frac{\\partial{h_t}}{\\partial{W_{xh}}}=dtanh\\;\\cdot x_t^\\top$$`'></vue-mathjax>
+            <br>
          </p>
-
+         <prism-editor class="codeblock" v-model="toad3" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
          <p>
-            Another important consideration is that because we're using the same weights throughout the network, to find the
-            of the loss with respect to every hidden state, we sum the weights at every timestep as we backpropagate.
+            We can now implement backpropagation by repeating this process to reach the initial nodes.
+            An important consideration is that because we're using the same weights throughout the network, to find the
+            of the loss with respect to every parameter at each hidden state, we sum the weights at every timestep as we backpropagate. This is because for something like a many to many RNN, a weight tensor at an
+            arbitrary timestep affects the individual output of every future timestep, so we calculate it's impact on each individual output by summing which represents a holistic direction for the network to step in to optimize.
+            Looking at it in math, there's not much change. Just put a sigma that indexes through time in front of each gradient like <vue-mathjax :formula='`$\\sum^t\\frac{\\partial{L}}{\\partial{W_{hy}}}$`'></vue-mathjax>.
+            <br>
+            <br>
+            Here it is in code:
          </p>
+         <prism-editor class="codeblock" v-model="toad4" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
          <div id="blogSubHeader">
             Long Short Term Memory
          </div>
@@ -133,14 +167,15 @@ export default {
    },
    data() {
       return {
-         rnnStep: '$$h_t = f_h(h_{t-1}, x_t)=tanh(W_{hh}h_{t-1} + W_{xh}x_t + b_h)$$',
-         yhatTransform: '$$\\hat{y} = f_y(h_{t}) = W_{hy}h_t + b_y$$',
+         rnnStep: '$$f_h(h_{t-1}, x_t) = h_t = tanh(W_{hh}h_{t-1} + W_{xh}x_t + b_h)$$',
+         yhatTransform: '$$f_y(h_{t}) = \\hat{y} = W_{hy}h_t + b_y$$',
          totalDeriv: `$$\\frac{\\partial{L}}{\\partial{h_t}} = 
             \\frac{\\partial{L_t}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}} +
             \\frac{\\partial{L}}{\\partial{h_{t+1}}}$$`,
          toad:
 `  def rnn_step_forward(x, prev_h, Wx, Wh, b):
       # Vanilla RNN uses tanh
+      # torch.tanh(x) applies an element-wise activation over it's input
       next_h = torch.tanh(prev_h.mm(Wh) + x.mm(Wx) + b)
       return next_h`,
          toad2:
@@ -148,7 +183,77 @@ export default {
       # Very simple linear transformation
       # https://pytorch.org/docs/stable/generated/torch.nn.Linear.html
       yhat = nn.Linear(in_features, out_features, device=device, dtype=dtype)
-      return yhat`
+      return yhat`,
+         toad3:
+`  def oneStepBackwards(output_grad, cache):
+      """
+      Backward pass for a single timestep of a vanilla RNN.
+
+      Inputs:
+      - output_grad: Gradient of loss with respect to next hidden state, of shape (N, H)
+      - cache: Cache object from the forward pass containing all local variables at t timestep
+      """
+      dWhy, dby, dht, dWhh, dprev_h, dbh, dWxh = None, None, None, None, None, None, None
+      Why, by, ht, Whh, prev_h, bh, Wxh, next_h = cache
+
+      # Gradients
+      dWhy = output_grad.mm(ht.t())
+      dby = torch.sum(output_grad, 0)
+      dht = output_grad.mm(Why.t())
+
+      # Non-linearity & upstream 
+      dtanh = output_grad * (1 - next_h**2)
+      
+      dWhh = prev_h.t().mm(dtanh)
+      dprev_h = dtanh.mm(Wh.t())
+      dbh = torch.sum(dtanh, 0)
+      dWxh = x.t().mm(dtanh)
+      
+      return dWhy, dby, dht, dWhh, dbh, dWxh, dprev_h`,
+         toad4:
+`  def rnn_backward(dh, cache):
+      """
+      Compute the backward pass for a vanilla RNN over an entire sequence of data.
+
+      Inputs:
+      - dh: Upstream gradients of all hidden states, of shape (N, T, H).
+            Dimensions are ([minibatch size], [sequence length], [hidden_dim])
+      
+      NOTE: 'dh' contains the upstream gradients produced by the 
+      individual loss functions at each timestep, *not* the gradients
+      being passed between timesteps (which you'll have to compute yourself
+      by calling rnn_step_backward in a loop).
+      """
+      dWhy, dby, dht, dWhh, dprev_h, dbh, dWxh = None, None, None, None, None, None, None
+
+      # Index through the sequences in reverse starting at the last
+      for i in range(dh.shape[1]-1, -1, -1):
+
+         # Initialize dprev_h to be the upstream gradient of our last sequence
+         if (i == dh.shape[1] - 1):
+            dprev_h = dh[:, i, :]
+         # After the first step backwards, assign dprev_h to b
+         else:
+            dprev_h += dh[:, i, :]
+
+         _dWhy, _dby, _dht, _dWhh, _dbh, _dWxh, dprev_h = oneStepBackwards(dprev_h, cache[i])
+
+         # Initialize gradients as zero tensors with corresponding shape
+         if (i == dh.shape[1] - 1):
+            dWhy = torch.zeros_like(_dWhy).to(_dWhy.device).to(_dWhy.dtype)
+            dby = torch.zeros_like(_dby).to(_dWhy.device).to(_dWhy.dtype)
+            dht = torch.zeros_like(_dht).to(_dWhy.device).to(_dWhy.dtype)
+            dWhh = torch.zeros_like(_dWhh).to(_dWhy.device).to(_dWhy.dtype)
+            dbh = torch.zeros_like(_dbh).to(_dWhy.device).to(_dWhy.dtype)
+            dWxh = torch.zeros_like(_dWxh).to(_dWhy.device).to(_dWhy.dtype)
+
+         dx[:,i,:] = dx1
+         dh0 = dprev_h
+         dWx += dWx1
+         dWh += dWh1
+         db += db1
+
+         return dx, dh0, dWx, dWh, db`
       }
    },
    methods: {
