@@ -23,7 +23,7 @@ import blogskeletonLink from '../components/blog/skeleton.vue'
 import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
-import lstmLink from '../components/blog/lstm.vue'
+import rnnLink from '../components/blog/rnn.vue'
 
 
 
@@ -145,12 +145,12 @@ const routes = [
     component: bn_backpassLink
   },
   {
-    path: '/lstm',
-    name: 'lstm',
+    path: '/rnn',
+    name: 'rnn',
     meta: {
       title: 'A Closer Look at the RNN'
     },
-    component: lstmLink
+    component: rnnLink
   },
   {
     path: '/glossary',

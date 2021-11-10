@@ -9,7 +9,7 @@
          </div>
          <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
-            <router-link to="lstm">
+            <router-link to="rnn">
                <li>A Closer Look at the RNN</li>
             </router-link>
             <router-link to="bnbackpass">

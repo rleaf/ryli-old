@@ -10,9 +10,6 @@
                   <p style="font-size: 20px; padding: 0 !important; ">11&#8226;6&#8226;2021</p>
                </div>
             </div>
-            <p>
-               <i>Before discussing LSTM's, I briefly talk about Vanilla RNN's.</i>
-            </p>
             <div id="blogSubHeader">
                Recurrent Neural Networks
             </div>
