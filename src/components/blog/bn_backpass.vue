@@ -191,6 +191,9 @@ import { VueMathjax } from 'vue-mathjax'
 import 'prismjs/components/prism-python'
 import 'prismjs/themes/prism-nord.css'
 
+import threeScene from '../../assets/js/threeScene'
+import gsap from 'gsap'
+
 export default {
    name: 'blogskeleton',
    components: {
@@ -305,8 +308,8 @@ export default {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
    },
-   async mounted () {
 
+   beforeMount() {
       window.MathJax.Hub.Config({
       tex2jax: {
          inlineMath: [['$','$']],
@@ -315,6 +318,26 @@ export default {
          processEnvironments: true
       }
       });
+   },
+   
+   mounted () {
+
+      if(threeScene.cache == 'noScene') {
+         return
+      } else {
+         
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+         threeScene.destroyMesh()
+         threeScene.scene.add(threeScene.sphere,threeScene.plane)
+         }})
+         setTimeout(() => {
+            threeScene.destroyHero()
+         }, 1500)
+         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
+         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         
+         threeScene.cache = 'noScene'
+      }
    } 
 }
 </script>

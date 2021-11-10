@@ -7,7 +7,7 @@
          <div id="curriculumHeader">
             <i style="font-size: 18px;">---</i>
          </div>
-         <p>A place for talking. Discussion encompasses math, food, music, design, ml/ai, dev, and the things in between.
+         <p>A place for talking. Usually about math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
             <router-link to="rnn">
                <li>A Closer Look at the RNN</li>

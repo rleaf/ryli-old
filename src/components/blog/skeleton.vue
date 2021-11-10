@@ -49,7 +49,8 @@
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
-// import { MathJax } from 'mathjax-vue'
+import threeScene from '../../assets/js/threeScene'
+import gsap from 'gsap'
 
 
 
@@ -69,23 +70,37 @@ export default {
          jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$'
       }
    },
-   async mounted () {
 
-      // let mathjaxScript = document.createElement('script')
-      // // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/startup.js')
-      // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-      // document.head.appendChild(mathjaxScript)
+   beforeMount() {
+      window.MathJax.Hub.Config({
+      tex2jax: {
+         inlineMath: [['$','$']],
+         displayMath: [['$$', '$$'], ['[', ']']],
+         processEscapes: true,
+         processEnvironments: true
+      }
+      });
+   },
 
-      // try {
-      //    const response = await axios.get('http://localhost:1337/blogs')
-      //    this.blogs = response.data
-      // } catch (error) {
-      //    this.error = error;
-      // }
+   mounted () {
 
-
+      if(threeScene.cache == 'noScene') {
+         return
+      } else {
+         
+         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+         threeScene.destroyMesh()
+         threeScene.scene.add(threeScene.sphere,threeScene.plane)
+         }})
+         setTimeout(() => {
+            threeScene.destroyHero()
+         }, 1500)
+         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
+         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         
+         threeScene.cache = 'noScene'
+      }
    } 
-
 }
 </script>
 <style scoped>
