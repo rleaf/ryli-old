@@ -148,7 +148,7 @@ const routes = [
     path: '/lstm',
     name: 'lstm',
     meta: {
-      title: 'Looking at RNN and then LSTM Architecture'
+      title: 'A Closer Look at the RNN'
     },
     component: lstmLink
   },
