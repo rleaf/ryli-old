@@ -111,11 +111,6 @@ const routes = [
     component: designLink
   },
   {
-    path: '/blog',
-    name: 'blog',
-    component: speakLink
-  },
-  {
     path: '/blogskeleton',
     name: 'blogskeleton',
     component: blogskeletonLink
@@ -127,6 +122,19 @@ const routes = [
       title: 'Learning to find the derivative of the quadratic form'
     },
     component: blogQuadraticFormLink
+  },
+  {
+    path: '/glossary',
+    name: 'glossary',
+    component: glossaryLink,
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: speakLink,
+    children: [
+     
+    ]
   },
   {
     path: '/knn',
@@ -151,12 +159,8 @@ const routes = [
       title: 'A Closer Look at the RNN'
     },
     component: rnnLink
-  },
-  {
-    path: '/glossary',
-    name: 'glossary',
-    component: glossaryLink
-  },
+  }, 
+  
   {
     path: '/*',
     component: 404

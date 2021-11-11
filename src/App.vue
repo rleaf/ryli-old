@@ -2,7 +2,7 @@
   <div id="app">
     <NavBar />
     <transition name="fade">
-      <threeScene />
+        <threeScene />
     </transition>
     <transition name="fade">
       <router-view />
