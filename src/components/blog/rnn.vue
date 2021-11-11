@@ -162,9 +162,6 @@
                Here it is in code:
             </p>
             <prism-editor class="codeblock" v-model="toad4" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <p>
-               toadasdfasdfaasdf
-            </p>
             <div id="blogSubHeader">
                Thoughts
             </div>
