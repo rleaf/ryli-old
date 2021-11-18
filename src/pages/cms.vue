@@ -11,7 +11,7 @@
          <div id="curriculumBody">
             <router-link to="rnn">
             <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li>A Closer Look at the RNN</li>
+               <li>Forward & Backward of a RNN</li>
             </router-link>
 
             

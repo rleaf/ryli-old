@@ -29,7 +29,7 @@
                </div>
                <ul style="list-style-type: square; margin-bottom: 100px;">
                   <li>Bachelor of Arts in Graphic Design & Minor in Web Design</li>
-                  <li>Branding / UI & UX / Photography / Development / Data Science</li>
+                  <li>Branding / UI & UX / Photography / Development</li>
                   <p>Skills:</p>
                   <ul style="list-style-type: none;">
                      <li><i>Adobe CC</i></li>
@@ -57,6 +57,7 @@
                         <li style="list-style-type: none; font-size: 14px;"><i>Have worked with: </i></li>
                         <ul>
                            <li>jQuery</li>
+                           <li>Webpack</li>
                            <li>Vue</li>
                            <li>Three</li>
                            <li>GSAP</li>

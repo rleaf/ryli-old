@@ -156,7 +156,7 @@ const routes = [
     path: '/rnn',
     name: 'rnn',
     meta: {
-      title: 'A Closer Look at the RNN'
+      title: 'Forward & Backward of a RNN'
     },
     component: rnnLink
   }, 

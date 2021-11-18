@@ -6,21 +6,13 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">A Closer Look at the RNN</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Forward & Backward of a RNN</p>
                   <p style="font-size: 20px; padding: 0 !important; ">11&#8226;6&#8226;2021</p>
                </div>
             </div>
             <div id="blogSubHeader">
                Recurrent Neural Networks
             </div>
-            <p>
-               <i>
-                  This isn't written to be an introductory post to RNN's, but really more of a post to maybe help people at the
-                  "okay...this part makes sense...but this other part over here still trips me up..." phase. I try to explain
-                  the forward and backward pass with <u>very</u> specific detail as there can be some tricks that nuance it from a standard
-                  feed forward network. There are a lot of topics that I do not touch upon, such as for example, sequence to sequence modeling for machine translation.
-               </i>
-            </p>
             <p>
                Just as how a CNN's specialty is processing grid-like data such as images, an RNN specializes in procesing <i>sequential data</i> - data that can be discretized as steps in time - often referred to,
                as indicated by it's name, a sequence. Depending on the design and intended use of the RNN, we can parse a sequence in a handful of different ways. Below is a representation of a standard / Vanilla 
