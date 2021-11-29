@@ -544,8 +544,8 @@ body, html {
 }
 
 #curriculumHeader {
-   font-family: 'Inconsolata', sans-serif;
-   text-transform: uppercase;
+   font-family: 'Lora', serif;
+   /* text-transform: uppercase; */
 }
 
 #curriculumBody {

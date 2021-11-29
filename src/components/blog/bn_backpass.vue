@@ -8,12 +8,12 @@
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">The Shortcut in Differentiating the Backwards Pass in Batch Normalization</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
-                  <p style="font-size: 20px; padding: 0 !important; ">10&#8226;5&#8226;2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">10 &#8226; 5 &#8226; 2021</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
             <p>
-               <i>This read is to serve more-so as a reference, as opposed to being more explanatory, to concepts about the shortcut of the backward pass in batch normalization. It is a little impractical because
+               <i>This read may be a little ridiculous because
                   instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
                   I link an alternative, maybe more interpretable, blog down below in the conclusion.</i>
                <br>
@@ -168,8 +168,7 @@
                <a href="https://kevinzakka.github.io/2016/09/14/batch_normalization/" target="_blank">this</a> blog post. The author substitutes in the partials as needed as opposed to doing it all at once as I did.
                The reason why I did it all at once was a combination of solidifying understanding, <b>making explanations unambiguous</b>, and having fun. Some of the simplifications in equations 1-10 are
                inefficient for the same reasons. If anybody struggles with concepts
-               affiliated to total/partial derivatives wrt vectors this is a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations. Lastly, sorry to my
-               2nd grade teacher, Mrs. Swain, for using "we" and "I" interchangeably.
+               affiliated to total/partial derivatives wrt vectors this is a good exercise to do. Feel free to ping me if you see any errors or have any suggestions/considerations :).
             </p>
             <p>
                Ryan Lin
@@ -355,7 +354,7 @@ export default {
 
 #blogHeader {
    padding-bottom: 20px;
-   font-size: 28px;
+   font-size: 22px;
 }
 
 p {
@@ -378,8 +377,8 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Inconsolata', sans-serif;
-   font-size: 22px;
+   font-family: 'Lora', sans-serif;
+   font-size: 19px;
    padding-top: 50px;
 }
 

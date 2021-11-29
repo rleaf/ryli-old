@@ -7,7 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Forward & Backward of a RNN</p>
-                  <p style="font-size: 20px; padding: 0 !important; ">11&#8226;6&#8226;2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">11 &#8226; 6 &#8226; 2021</p>
                </div>
             </div>
             <div id="blogSubHeader">
@@ -336,7 +336,7 @@ export default {
 
 #blogHeader {
    padding-bottom: 20px;
-   font-size: 28px;
+   font-size: 22px;
 }
 
 p {
@@ -358,8 +358,8 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Inconsolata', sans-serif;
-   font-size: 22px;
+   font-family: 'Lora', sans-serif;
+   font-size: 19px;
    padding-top: 50px;
 }
 

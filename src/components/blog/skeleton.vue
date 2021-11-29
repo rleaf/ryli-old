@@ -8,7 +8,7 @@
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Skeleton</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
-                  <p style="font-size: 20px; padding: 0 !important; ">8&#8226;26&#8226;2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
@@ -116,7 +116,7 @@ export default {
 
 #blogHeader {
    padding-bottom: 20px;
-   font-size: 28px;
+   font-size: 22px;
 }
 
 p {
@@ -138,9 +138,8 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Inconsolata', sans-serif;
-   font-size: 22px;
+   font-family: 'Lora', sans-serif;
+   font-size: 19px;
    padding-top: 50px;
 }
-
 </style>

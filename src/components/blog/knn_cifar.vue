@@ -7,7 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Implementing K Nearest Neighbors on CIFAR-10</p>
-                  <p style="font-size: 20px; padding: 0 !important; ">9&#8226;7&#8226;2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">9 &#8226; 7 &#8226; 2021</p>
                </div>
             </div>
             
@@ -600,7 +600,7 @@ export default {
 
 #blogHeader {
    padding-bottom: 20px;
-   font-size: 28px;
+   font-size: 22px;
 }
 
 p {
@@ -622,8 +622,8 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Inconsolata', sans-serif;
-   font-size: 22px;
+   font-family: 'Lora', sans-serif;
+   font-size: 19px;
    padding-top: 50px;
 }
 

@@ -7,7 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Learning to find the derivative of the quadratic form</p>
-                  <p style="font-size: 20px; padding: 0 !important; ">8&#8226;26&#8226;2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
                </div>
             </div>
             <p>
@@ -289,7 +289,7 @@ export default {
 
 #blogHeader {
    padding-bottom: 20px;
-   font-size: 28px;
+   font-size: 22px;
 }
 
 p {
@@ -311,9 +311,10 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Inconsolata', sans-serif;
-   font-size: 22px;
-   padding-top: 20px;
+   font-family: 'Lora', sans-serif;
+   font-size: 19px;
+
+   padding-top: 50px;
 }
 
 </style>
