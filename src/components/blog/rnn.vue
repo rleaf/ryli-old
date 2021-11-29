@@ -27,15 +27,15 @@
                <vue-mathjax :formula='`$h_{t - 1}$`'></vue-mathjax> to produce the next hidden state <vue-mathjax :formula='`$h_t$`'></vue-mathjax>. <u>Two:</u> The gradients in backpropagation will be summed at each
                step as RNN's use shared weights at every timestep. <u>Three:</u> both the input and output sequence, shown as red and
                yellow respectively, are arbitrarily partitioned <i>t</i> times.
-               This is one of a <i>"handful of different ways"</i> to represent the input and output for an RNN. <u>Three:</u> a inital hidden state, <vue-mathjax :formula='`$h_0$`'></vue-mathjax>, must be provided for the forward pass
+               This is one of a <i>"handful of different ways"</i> to represent the input and output for an RNN. <u>Four:</u> a inital hidden state, <vue-mathjax :formula='`$h_0$`'></vue-mathjax>, must be provided for the forward pass
                of an RNN. The initial hidden state is either learnt (the output of  network <i>x</i> can be used to to populate <vue-mathjax :formula='`$h_0$`'></vue-mathjax> in RNN <i>y</i> ) or set to 0.
-               <u>Four:</u> the total loss is a sum over every individual loss.
+               <u>Five:</u> the total loss is a sum over every individual loss.
             </p>
             <div id="blogSubHeader">
                Three: Sequence Processing
             </div>
             <p>
-               The points above are ranked somewhat by importance. I currently consider understanding the transformations between states to be the most important, but I will start with the third point that discusses
+               The points above are ranked somewhat crudely by importance. I currently consider understanding the transformations between states to be the most important, but I will start with the third point that discusses
                the input and output sequence for intuition. The picture above is referred to as a <i>"many to many"</i> RNN. Using the colors in the above image, it would be a <i>"red to yellow"</i> RNN. Depending on the task of the network,
                there are different ways of processing the data. For the many to many shown above , consider our input sequence to be frames of a video: <vue-mathjax :formula='`$x_1$`'></vue-mathjax> would be the first frame,
                <vue-mathjax :formula='`$x_2$`'></vue-mathjax> would be the second... and so on. For this type of many-to-many, our output at each timestep could then be some decision/classification
