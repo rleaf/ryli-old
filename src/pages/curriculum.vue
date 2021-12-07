@@ -27,7 +27,7 @@
                <div  style="padding-bottom: 0;">
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
                </div>
-               <ul style="list-style-type: square; margin-bottom: 100px;">
+               <ul class="curriculumul">
                   <li>Bachelor of Arts in Graphic Design & Minor in Web Design</li>
                   <li>Branding / UI & UX / Photography / Development</li>
                   <p>Skills:</p>
@@ -56,11 +56,12 @@
                      <ul>
                         <li style="list-style-type: none; font-size: 14px;"><i>Have worked with: </i></li>
                         <ul>
-                           <li>jQuery</li>
-                           <li>Webpack</li>
                            <li>Vue</li>
-                           <li>Three</li>
+                           <li>Node</li>
+                           <li>Webpack</li>
+                           <li>Three & WebGL / GLSL</li>
                            <li>GSAP</li>
+                           <li>jQuery</li>
                            </ul>
                         </ul>
 
@@ -122,5 +123,12 @@ export default {
 
 <style scoped>
 
+.curriculumul {
+   margin-bottom: 100px;
+}
+
+.curriculumul ul {
+   list-style-type: disc;
+}
 
 </style>
