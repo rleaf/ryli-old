@@ -24,6 +24,7 @@ import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
 import rnnLink from '../components/blog/rnn.vue'
+import timeComplexityLink from '../components/blog/timeComplexity.vue'
 
 
 
@@ -159,6 +160,14 @@ const routes = [
       title: 'Forward & Backward of a RNN'
     },
     component: rnnLink
+  }, 
+  {
+    path: '/timeComplexity',
+    name: 'timeComplexity',
+    meta: {
+      title: 'Time Complexity for Algorithms'
+    },
+    component: timeComplexityLink
   }, 
   
   {

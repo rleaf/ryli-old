@@ -9,12 +9,14 @@
          </div>
          <p>A place for talking. Usually about math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
+            <router-link to="timeComplexity">
+            <!-- <router-link :to="{ path: '/rnn'}" append> -->
+               <li>Time Complexity for Algorithms</li>
+            </router-link>
             <router-link to="rnn">
             <!-- <router-link :to="{ path: '/rnn'}" append> -->
                <li>Forward & Backward of a RNN</li>
             </router-link>
-
-            
             <router-link to="bnbackpass">
                <li>The Shortcut in Differentiating the Backwards Pass in Batch Normalization</li>
             </router-link>
