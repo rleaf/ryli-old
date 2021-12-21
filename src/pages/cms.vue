@@ -9,33 +9,18 @@
          </div>
          <p>A place for talking. Usually about math, food, music, design, ml/ai, dev, and the things in between.
          <div id="curriculumBody">
-            <router-link to="timeComplexity">
             <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li>Time Complexity for Algorithms</li>
-            </router-link>
-            <router-link to="rnn">
+            <li><router-link to="timeComplexity">Time Complexity for Algorithms</router-link></li>
             <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li>Forward & Backward of a RNN</li>
-            </router-link>
-            <router-link to="bnbackpass">
-               <li>The Shortcut in Differentiating the Backwards Pass in Batch Normalization</li>
-            </router-link>
-            <router-link to="knn">
-               <li>Implementing K Nearest Neighbors on CIFAR-10</li>
-            </router-link>
-            <!-- <router-link to="blogskeleton">
-               Hide Skeleton for production
-               <li>Skeleton</li>
-            </router-link> -->
-            <router-link to="quadraticform">
-               <li>Learning to find the derivative of the quadratic form</li>
-            </router-link>
+            <li><router-link to="rnn">Forward & Backward of a RNN</router-link></li>
+            <li><router-link to="bnbackpass">The Shortcut in Differentiating the Backwards Pass in Batch Normalization</router-link></li>
+            <li><router-link to="knn">Implementing K Nearest Neighbors on CIFAR-10</router-link></li>
+            <li><router-link to="quadraticform">Learning to find the derivative of the quadratic form</router-link></li>
             <!------------ Code to pull blog titles from Strapi -->
             <!-- <li v-for='(blog, index) in blogs' :key="blog.id">
                <a :href="links[index]">{{ blog.name }}</a>
             </li> -->
          </div>
-
      </div>
   </div> 
 </template>
