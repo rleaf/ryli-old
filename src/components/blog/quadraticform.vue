@@ -73,14 +73,14 @@
                <br>
                <br>
             <div id="blogSubHeader">
-               2) The Fréchet, Gateaux, and everything else.
+               2) The Fréchet
             </div>
-            <p>Other strategies I went about to learn how to differentiate <vue-mathjax :formula='quadraticFormula'></vue-mathjax> have been ridiculously eclectic. I'm grouping them
+            <!-- <p>Other strategies I went about to learn how to differentiate <vue-mathjax :formula='quadraticFormula'></vue-mathjax> have been ridiculously eclectic. I'm grouping them
                together because some paths went too deep into a different domain of math and others are incomplete - I don't yet understand them. It may seem like I'm typing as
                if there are half a dozen other methods to differentiate <vue-mathjax :formula='quadraticFormula'></vue-mathjax> (there probably are),
                but realistically I only took the time to attempt to learn about <i>roughly</i> three other methods.
             </p>
-            <h2><u>The Fréchet Derivative</u></h2>
+            <h2><u>The Fréchet Derivative</u></h2> -->
             <p>There's a reason why this one is first - it's my favorite. The prior explanation with decomposing <vue-mathjax :formula='quadraticFormula'></vue-mathjax> into scalar sums
                is great as well, but this one is pretty cool because it is much simpler. To be more specific I'm a fan of
                the <a href="https://en.wikipedia.org/wiki/Fr%C3%A9chet_derivative#Definition" target="_blank">Fréchet derivative using Landau notation</a>. From Wikipedia (the link):
@@ -117,16 +117,19 @@
                There's a pretty neat proof that exists for the Cauchy Schwarz inequality that uses the quadratic formula, I think it's worth a watch. Writing out the inequality for <vue-mathjax :formula='htAh'></vue-mathjax>
                this way provides a clear reason why it evaluates to 0. We can now finally say <vue-mathjax :formula='htAhelementOf'></vue-mathjax>.
             </p>
-            <h2><u>The Gateaux and everything else</u></h2>
+            <div id="blogSubHeader">
+               3) The Gateaux
+            </div>
             <p>
-               I'd like to give the Gateaux it's own little section as it probably deserves it, however once I became more confident in my understanding of the Fréchet, I put my learning of the Gateaux on the backburner, so I don't
-               remember much about it. Similarly to the Fréchet, my introduction to the Gateaux was due to random answers while I was searching how to differentiate <vue-mathjax :formula='quadraticFormula'></vue-mathjax>.
-               A reply to a question could say <i>"...oh yea, I just used the Gateaux - it's real easy just plug it in dude"</i>, which would send my on a week long journey of watching Youtube videos, reading pdf's and tearing through my books.
-               I've been purposefully linking only Wikipedia pages as I believe they're reliable in both information <i>and</i> longevity (it is unlikely Wikipedia will go down). I dislike the thought of linking some universities pdf and banking
-               on the idea that the instructor won't take it down. Frequently they don't, but I have been led to many <a href="https://en.wikipedia.org/wiki/HTTP_404" target="_blank">404's</a> attempting to learn more about these same topics.
+               I don't actually have a way to solve for <vue-mathjax :formula='quadraticFormula'></vue-mathjax> using the Gateaux, however I thought it was worth metioning because similarly to the Fréchet,
+               my introduction to the Gateaux was due to random answers while I was searching how to differentiate <vue-mathjax :formula='quadraticFormula'></vue-mathjax>. Before I knew it, I was on a week long
+               journey watching Youtube videos, reading pdfs and tearing through my books.
                The Gateaux in concept, however, seems to tackle the problem very similarly to the Fréchet. Both derivatives are operable on vector spaces and just as the Fréchet generalizes the idea of the univariate derivative,
                the Gateaux generalizes the directional derivative.
             </p>
+            <div id="blogSubHeader">
+               4) Chain Rule
+            </div>
             <p>
                The last method I want to talk about is using the <a href="https://en.wikipedia.org/wiki/Total_derivative#The_chain_rule_for_total_derivatives" target="_blank">chain rule of the total derivative</a>. The only notion
                (exluding the chain rule I just linked) that you need to accept is <vue-mathjax :formula='partialxty'></vue-mathjax>. By now this is not a particularly difficult equality to accept but it is further illustrated with:
@@ -210,9 +213,7 @@ export default {
          htAhLittleO: quadForm.htAhLittleO,
          gOfhtAh: `$g(h)=h^\\top Ah$`,
          htAh: `$h^\\top Ah$`,
-         littleo: `$$
-                     \\lim_{h \\to 0} \\frac{g(h)}{h} = 0
-                  $$`,
+         littleo: `$$\\lim_{h \\to 0} \\frac{g(h)}{h} = 0$$`,
          frechetDerivSym: quadForm.frechetDerivSym,
          frechetDerivSymNotSym: quadForm.frechetDerivSymNotSym,                             
          frechetComparisonNotSym: quadForm.frechetComparisonNotSym,
