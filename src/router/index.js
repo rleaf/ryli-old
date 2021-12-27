@@ -24,7 +24,7 @@ import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
 import rnnLink from '../components/blog/rnn.vue'
-import timeComplexityLink from '../components/blog/timeComplexity.vue'
+import bigo from '../components/blog/bigo.vue'
 
 
 
@@ -162,12 +162,12 @@ const routes = [
     component: rnnLink
   }, 
   {
-    path: '/timeComplexity',
-    name: 'timeComplexity',
+    path: '/bigo',
+    name: 'bigo',
     meta: {
-      title: 'Time Complexity for Algorithms'
+      title: 'Big "Oh" Notation'
     },
-    component: timeComplexityLink
+    component: bigo
   }, 
   
   {
