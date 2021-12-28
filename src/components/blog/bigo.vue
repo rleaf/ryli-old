@@ -131,6 +131,22 @@
                </p>
             </div>
             <p>
+               If you look at these examples long enough aided with some intuition - you may notice some "hints" to help determine which set(s) a function belongs to. A big hint, probably the biggest, is that
+               the leading/highest degree term of the function is really what determines the outcome of the function. In <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax>, <vue-mathjax :formula='`$n^2$`'></vue-mathjax>
+               has the most impact to dictate <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>'s membership. For <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, any
+               <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> whose leading term is less than degree 2 will be <i>dominated</i> by <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. The inverse is also true; for
+               any <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> where the leading term is higher than degree 2, we say <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> <i>dominates</i> <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
+               A faster growing function dominates a slower growing one. If <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> dominates <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, we can then assert that at some point
+               <vue-mathjax :formula='`$f(n) = O(g(n))$`'></vue-mathjax> because <b>eventually</b>, regardless of other terms, there will be some point <vue-mathjax :formula='`$n_0$`'></vue-mathjax> such that every point thereafter
+               <vue-mathjax :formula='`$g(n) > f(n)$`'></vue-mathjax>.
+               <br>
+               <br>
+               Another observation is that <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> is the most restrictive set. <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> must belong to both
+               <vue-mathjax :formula='`$O$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega$`'></vue-mathjax> for <vue-mathjax :formula='`$f(n) = \\Theta$`'></vue-mathjax>. Piggybacking on thoughts from the paragraph above,
+               it becomes clear that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> must have matching degree to <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> for <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax>.
+               Only then can we guarantee that at no point in the domain of <i>n</i>, <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> will overtake <b>or</b> undertake <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
+               <br>
+               <br>
                I use the terms <i>upper</i> and <i>lower bound</i> a lot. Some books define them more rigidly and call them the <i>asymptotic upper</i> and <i>asymptotic lower bound</i> - communication can wear many hats.
                One term I find useful is that when <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax> we can say that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> is a <i>tight bound</i> for
                <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, indicating it is sandwiched between an upper and lower bound.
@@ -139,12 +155,15 @@
                The Implementation on Algorithms
             </div>
             <p>
-               The applications of these functions err on the side of theory. The RAM, <i>Random Access Machine</i>, is a very simplified hypothetical computer with which brings considerations that allow
-               us to represent algorithms functionally and use "Big Oh" notation. Quoting Skiena (p. 31):
+               We are now equipped with a robust understanding behind the operation of "Big Oh" notation when applied to polynomial functions. However the purpose is to have a means to use "Big Oh" on algorithms,
+               so we need to provide a means to represent computer algorithms as polynomials. In the paradigm of computer algorithms, the applications of "Big Oh" must err on the side of theory.
+               The RAM, <i>Random Access Machine</i>, is a very simplified hypothetical computer with which brings considerations that allow
+               us to represent algorithms polynomially and use "Big Oh" notation. Quoting Skiena (p. 31), these considerations are:
                <br>
                <br>
                <i>
                   &#8226; Each simple operation (+, *, -, =, if, call) takes exactly one time step
+                  <br>
                   <br>
                   &#8226; Loops and subroutines are not considered simple operations. Instead, they
                   are the composition of many single-step operations. It makes no sense for
@@ -153,10 +172,88 @@
                   loop or execute a subprogram depends upon the number of loop iterations or
                   the specific nature of the subprogram.
                   <br>
+                  <br>
                   &#8226; Each memory access takes exactly one time step. Further, we have as much
                   memory as we need. The RAM model takes no notice of whether an item is
                   in cache or on the disk.
                </i> 
+            </p>
+            <p>
+               With our hypothetical computer, we can now represent a simple algorithm as a function.
+            </p>
+            <prism-editor class="codeblock" v-model="forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <p>
+               Not bad right? Line 3 is constant no matter the size of our input <i>n</i> for algorithm <i>simple</i> so it is always equal to 1 time step.
+               The for loop however is dependent on the size of input <i>n</i> because it runs exactly <i>n</i> times. Together we are provided with <i>1 + n</i> and pulling ideas from above, equals <vue-mathjax :formula='`$\\Theta(n)$`'></vue-mathjax>.
+               This function doesn't really fit the definition of an algorithm, even if it's pseudocode, but that is okay. I just want to convey a very simple example of translating code into a function.
+               <br>
+               <br>
+               Personally I find it healthy to declare an algorithm <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> when possible because it provides more information to the reader, however using
+               <vue-mathjax :formula='`$O$`'></vue-mathjax> is also very fine because the <i>upper bound</i> is the primary interest. Just as many scientists seek to <a href="https://youtu.be/EYPapE-3FRw?t=226" target="_blank">prove theories wrong</a>,
+               may algorists and computer scientists seek to understand the <i>worst case scenario</i> for algorithms. Nobody cares if an algorithm is working efficiently, people only care if an algorithm is working <i>inefficiently</i>.
+               If an algorithm operates within an acceptable timeframe, we are content. It is only when an algorithm takes an obscene amount of time to complete we ask <i>"what the hell is going on?"</i>. I say the things here somewhat
+               jokingly. I do recommend watching the video linked just above, even from the beginning; it is one of my favorites.
+            </p>
+            <p>
+               Let us look at an actual algorithm, <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank">insertion sort</a>:
+            </p>
+            <prism-editor class="codeblock" v-model="insertionSort" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <p>
+               Insertion sort is a very popular algorithm that, as it sounds, sorts a list/array (depending on what language you like) by the smallest value to the largest value. A top level understanding of how it
+               works is that as the for loop iterates through a list, the while loop checks to see if the non-zero indexed value the for loop is on is less than the preceeding value in the list.
+               If the while loop flags the preceeding value to be smaller and non-zero indexed than the current value, it swaps the two values. This while loop continues until it reaches the beginning of the list, thus
+               terminating and proceeding to the next value in the for loop to begin again until the end of the list is reached. Let us decompose it and translate it to a math function using the considerations of our RAM computer.
+            </p>
+            <prism-editor class="codeblock" v-model="insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <p>
+               A little more complex than the previous simple algorithm! We conclude with the unrefined function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>. Here is a very specific explanation. Everything
+               in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times. This is why everything in our polynomial is multiplied by <i>n</i>. One level into our for loop, we have a 
+               simple initialization and a while loop. We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. As mentioned above, we are <b>primarily
+               interested in the worst case scenario</b>, it is most desirable to understand how <i>inefficient</i> an algorithm can perform. So we will always presume the maximum amount of iterations possible for some loop
+               because we can then safely and confidently assume that no matter what every permutation of list input <i>n</i>, if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
+               the maximum amount of times the while loop on line 7 can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order
+               (biggest to smallest). Now looking at everything happening inside the while loop, these single time step operations happen <i>n</i> times due to the while loop, and another <i>n</i> times due to the for loop.
+               This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplieifed is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
+               <br>
+               <br>
+               We understand that in a function, we should always look at the leading term. Coefficients to the leading term are also irrelevant because, remember we can pick any <i>c</i> to satisfy set membership. For
+               instance, if I want to show <vue-mathjax :formula='`$f(n) = 2n^2+n = \\Theta(n^2)$`'></vue-mathjax>, I pick <vue-mathjax :formula='`$c_2 = 1$`'></vue-mathjax> and
+               <vue-mathjax :formula='`$c_1 = 3$`'></vue-mathjax> providing <vue-mathjax :formula='`$1 \\cdot n^2 \\leq 2n^2 \\leq 3 \\cdot n^2$`'></vue-mathjax> as required by the definition of <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax>.
+               And this is correct, we have now shown that a very real algorithm, insertion sort, is <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax> / <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax>.
+            </p>
+            <div id="blogSubHeader">
+               Analysis & Addressing the Elephant
+            </div>
+            <p>
+               First analysis, then the elephant. So we've shown our insertion sort algorithm to be <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax>, now what? Well, what we have done is quantified the efficiency,
+               within allowable tolerances, of the insertion sort algorithm. Now we can compare it to other algorithms to see how it stacks up against others. <a href="https://www.bigocheatsheet.com/">Bigocheatsheet</a>
+               provides many resources to show just that. We can see that...well <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithms are classified as "horrible", meaning that as the input size <i>n</i> gets
+               larger, the amount of operations required scales quadratically. If we have an input size of 10 for a <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithm, at worst that algorithm will require 100
+               operations. If we have an input size of 1,000,000 (not unreasonable in the realm of computers), our <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithm will take 1,000,000,000,000 (a trillion)
+               operations. In <a href="https://www.algorist.com/" target="_blank">Skiena's</a> book (p. 38), you can find an extremely helpful table that compares algorithm runtimes between each other. It is shown
+               below.
+            </p>
+            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/bigoscaling.png" alt="">
+            <p>
+               Okay now the elephant. If you're already familiar with "Big Oh" or may have derived from the bigocheatsheet and table resources above, you will notice I only talk about a portion of the complexities.
+               <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> is certainly "horrible", but nowhere as horrible as <vue-mathjax :formula='`$O(n!)$`'></vue-mathjax> or <vue-mathjax :formula='`$O(2^n)$`'></vue-mathjax>.
+               Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vue-mathjax :formula='`$O(lg(n))$`'></vue-mathjax>? What an insanely efficient runtime. I talk about why I omit them below,
+               but the elephant is simply that I do not mention them at all here.
+            </p>
+            <div id="blogSubHeader">
+               Thoughts
+            </div>
+            <p>
+               For the complexities I don't talk about here, I would like to provide algorithms that represent these complexities their own blog. This is because algorithms that belong to for example,
+               <vue-mathjax :formula='`$O(nlg(n))$`'></vue-mathjax>, are frequently shown with recursion - a procedure I think warrants a decently "in depth" discussion on it's own. 
+               <br>
+               <br>
+               There are also other notations <vue-mathjax :formula='`$o(n)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\omega(n)$`'></vue-mathjax> that I don't mention. It was kinda funny seeing <vue-mathjax :formula='`$o(n)$`'></vue-mathjax>
+               again after using it for differentiating the quadratic form. My goal for this blog was to introduce a well grounded but simple enough explanation to "Big Oh" notation and I think everything I mentioned and did not
+               mention provides a nice balance between "enough detail to conveniently understand it" and "too much detail, where's my notebook?".
+            </p>
+            <p>
+               Ryan
             </p>
          </div>
          <toTop />
@@ -167,6 +264,9 @@
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
+import { PrismEditor } from 'vue-prism-editor'
+import 'vue-prism-editor/dist/prismeditor.min.css'
+import { highlight, languages } from 'prismjs/components/prism-core'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
 
@@ -177,6 +277,7 @@ export default {
    components: {
       backdrop,
       toTop,
+      PrismEditor,
       'vue-mathjax': VueMathjax
       // MathJax
    },
@@ -188,6 +289,42 @@ export default {
          bigO: '$f(n) = O(g(n))$',
          bigOmega: '$f(n) = \\Omega(g(n))$',
          bigTheta: '$f(n) = \\Theta(g(n))$',
+         forLoop: 
+`def simple(n):
+   # Memory access
+   x = n
+
+   # Loop
+   for i in range(x):
+      ...
+      
+# Algorithm equals 1 + n`,
+         insertionSort: 
+`def insertionSort(n):
+   for i in range(len(n)):
+      j = i
+      while ((j>0) and s[j] < s[j-1])):
+         swap(s[j], s[j-1])
+         j -= 1`,
+         insertionSort2: 
+`def insertionSort(n):
+   # Loop going around n times
+   for i in range(len(n)):
+      # Memory access
+      j = i
+      # Loop going around n times in *worst case scenario*
+      while ((j>0) and s[j] < s[j-1])):
+         # Simple call operation
+         swap(s[j], s[j-1])
+         # Memory access
+         j -= 1
+         
+# Algorithm equals n(1+n(1+1)) -> 2n^2 + n`,
+      }
+   },
+   methods: {
+      highlighter(code) {
+        return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
    },
 
