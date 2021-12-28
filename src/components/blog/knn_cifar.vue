@@ -14,7 +14,7 @@
             <p>
                <!-- <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">kNN</a> classification is (my definition) an algorithm that classifies inputs to their "k" majoritarily closest neighbors. -->
                The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. I'm going to say this again at the end, but feel free to get in touch with me if you have alternative
-               ways of representing some of the code, irregardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
+               ways of representing some of the code, regardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
                498/598 Deep Learning for Computer Vision</a>.
                <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">CIFAR-10</a> is a well known dataset composed of 60,000
                colored 32x32 images. <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">kNN</a> classification is an algorithm to classify inputs by comparing their similarities to

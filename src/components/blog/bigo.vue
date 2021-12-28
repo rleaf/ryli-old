@@ -213,7 +213,7 @@
                because we can then safely and confidently assume that no matter what every permutation of list input <i>n</i>, if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
                the maximum amount of times the while loop on line 7 can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order
                (biggest to smallest). Now looking at everything happening inside the while loop, these single time step operations happen <i>n</i> times due to the while loop, and another <i>n</i> times due to the for loop.
-               This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplieifed is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
+               This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplified is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
                <br>
                <br>
                We understand that in a function, we should always look at the leading term. Coefficients to the leading term are also irrelevant because, remember we can pick any <i>c</i> to satisfy set membership. For
