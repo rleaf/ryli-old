@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Big "Oh" Notation</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Big "Oh" Notation (Unfinished)</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">12 &#8226; 20 &#8226; 2021</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
@@ -23,7 +23,7 @@
                Not a bad deal right? Happily obliging, your coworker then hands you the single page for you find Waldo. It only takes you a couple seconds to a couple minutes to locate, and in-line with expectations your coworker now owes you a lunch.
                Your coworker then repeats themself, but this time waving no paper and upping the pot to a weeks' worth of lunch. Knowing you are about to get hustled but too curious to see your coworker's antics,
                you once again accept only to find them leaving the room and soon returning with a book on par to the size of <a href="https://en.wikipedia.org/wiki/List_of_longest_novels#List" target="_blank">Venmurasu</a> (a measly 22,000+ pages).
-               Immediately resiging because of how long it would take to locate Waldo, the only feeling you are left with is how perturbed you are knowing your coworker owns a 22,000+ page <i>Where's Waldo</i> children's book.
+               Immediately resigning because of how long it would take to locate Waldo, the only feeling you are left with is how perturbed you are knowing your coworker owns a 22,000+ page <i>Where's Waldo</i> children's book.
                <br>
                <br>
                As humans (the algorithm), it is easy to scan a page (the input) and find solace in how quickly it will take you to complete a desired task. Notice though, how impractical it becomes for us as the page count
@@ -53,14 +53,37 @@
                and <vue-mathjax :formula='`$c_2$`'></vue-mathjax> such that <vue-mathjax :formula='`$c_2 \\cdot g(n) \\leq f(n) \\leq c_1\\cdot g(n) $`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
                <br>
                <br>
-               The picture and definitions are from <a href="https://www.algorist.com/" target="_blank">The Algorithm Design Manuel, by Steven Skiena</a> (p 35-36 of 2nd edition). Before explaining how to use these functions, a couple
+               The picture and definitions are from <a href="https://www.algorist.com/" target="_blank">The Algorithm Design Manuel, by Steven Skiena</a> (p 35-36 of 2nd edition). Visually, the graphs show that
+               all <i>n</i> points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> are always satisfied. Before explaining how to use these functions, a couple
                of things to note: 1) Some people consider <vue-mathjax :formula='bigO'></vue-mathjax> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
                "<i>f(n)</i> is a member of set <i>O(g(n))</i>" which usually is represented in set notation as <vue-mathjax :formula='`$f(x) \\in O(g(n))$`'></vue-mathjax>. 2) It doesn't seem to be stated definitively
                in Skiena's book (or maybe I missed it), but it should seem apparent that <vue-mathjax :formula="`$c > 0$`"></vue-mathjax> otherwise we're subject to some funk. This is stated in
                <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">Introduction to Algorithms, 3rd Ed</a> on p. 50.
             </p>
             <div id="blogSubHeader">
-               The Implementation
+               The Implementation on Functions
+            </div>
+            <p>
+               Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. We can assert:
+               <br>
+               <br>
+               <vue-mathjax :formula='`$f(n) = n^2+4n = O(n^2)$`'></vue-mathjax>, because there exists a constant, for example <vue-mathjax :formula='`$c=2$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n) \\leq 2n^2$`'></vue-mathjax>
+               for all <vue-mathjax :formula='`$n \\geq 4$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/csj6cj3d4z" target="_blank">Link</a> to graphing calculator mapping the two functions showing this.
+               We can pick any value for <i>c</i>, what matters is that there is some <i>c</i> that satisfies to <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax>.
+               <br>
+               <br>
+               <vue-mathjax :formula='`$n^2+4n = \\Omega(n^2)$`'></vue-mathjax>, because similarly to the above, we can pick <vue-mathjax :formula='`$c = 1$`'></vue-mathjax>, enabling <vue-mathjax :formula='`$f(n) \\geq c\\cdot g(n)$`'></vue-mathjax>
+               for all <vue-mathjax :formula='`$n \\gt 0$`'></vue-mathjax>.
+               <br>
+               <br>
+               <vue-mathjax :formula='`$n^2+4n = \\Theta(n^2)$`'></vue-mathjax>, because both <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega(n^2)$`'></vue-mathjax> hold true for some
+               constants <vue-mathjax :formula='`$c_1$`'></vue-mathjax> and <vue-mathjax :formula='`$c_2$`'></vue-mathjax>.  
+            </p>
+            <p>
+               Toads
+            </p>
+            <div id="blogSubHeader">
+               The Implementation on Algorithms
             </div>
             <p>
                The applications of these functions err on the side of theory. The RAM, <i>Random Access Machine</i>, is a very simplified hypothetical computer with which brings considerations that allow
