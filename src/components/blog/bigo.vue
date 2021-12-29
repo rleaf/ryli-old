@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Big "Oh" Notation Part 1</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Introduction to Big "Oh" Notation</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">12 &#8226; 20 &#8226; 2021</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
@@ -184,15 +184,17 @@
             <prism-editor class="codeblock" v-model="forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Not bad right? Line 3 is constant no matter the size of our input <i>n</i> for algorithm <i>simple</i> so it is always equal to 1 time step.
-               The for loop however is dependent on the size of input <i>n</i> because it runs exactly <i>n</i> times. Together we are provided with <i>1 + n</i> and pulling ideas from above, equals <vue-mathjax :formula='`$\\Theta(n)$`'></vue-mathjax>.
-               This function doesn't really fit the definition of an algorithm, even if it's pseudocode, but that is okay. I just want to convey a very simple example of translating code into a function.
+               The for loop however is dependent on the size of input <i>n</i> because it runs exactly <i>n</i> times. Because of this, we multiply the inner operations, represented vaguely as (...), 
+               by <i>n</i> so that when we put everything together we are provided with <i>1 + n(...)</i>. We can now see that this function belongs to <vue-mathjax :formula='`$\\Theta(n)$`'></vue-mathjax>.
+               To be clear, this function doesn't really fit the definition of an algorithm, even if it's pseudocode, but that is okay. I just want to convey a very simple example of translating code into a function.
                <br>
                <br>
-               Personally I find it healthy to declare an algorithm <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> when possible because it provides more information to the reader, however using
+               I think it is a good habit declare an algorithm <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> when possible because it provides more information to the reader, however using
                <vue-mathjax :formula='`$O$`'></vue-mathjax> is also very fine because the <i>upper bound</i> is the primary interest. Just as many scientists seek to <a href="https://youtu.be/EYPapE-3FRw?t=226" target="_blank">prove theories wrong</a>,
                many algorists and computer scientists seek to understand the <i>worst case scenario</i> for algorithms. Nobody cares if an algorithm is working efficiently, people only care if an algorithm is working <i>inefficiently</i>.
-               If an algorithm operates within an acceptable timeframe, we are content. It is only when an algorithm takes an obscene amount of time to complete we ask <i>"what the hell is going on?"</i>. I say the things here somewhat
-               jokingly. I do recommend watching the video linked just above, even from the beginning; it is one of my favorites.
+               If an algorithm operates within an acceptable timeframe, we are content. It is only when an algorithm takes an obscene amount of time to complete we ask <i>"what the hell is going on?"</i>.
+               Except for our primary interest being towards the <i>worst case scenario</i>, I say the things here somewhat jokingly, I just want to convey the significance. 
+               Although I do recommend watching the video linked just above, even from the beginning; it is one of my favorites.
             </p>
             <p>
                Let us look at an actual algorithm, <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank">insertion sort</a>:
@@ -201,25 +203,33 @@
             <p>
                Insertion sort is a very popular algorithm that, as it sounds, sorts a list/array (depending on what language you like) by the smallest value to the largest value. A top level understanding of how it
                works is that as the for loop iterates through a list, the while loop checks to see if the non-zero indexed value the for loop is on is less than the preceeding value in the list.
-               If the while loop flags the preceeding value to be smaller and non-zero indexed than the current value, it swaps the two values. This while loop continues until it reaches the beginning of the list, thus
+               If the while loop flags the preceeding value to be smaller than the non-zero indexed current value, it swaps the two values. This while loop continues until it reaches the beginning of the list, thus
                terminating and proceeding to the next value in the for loop to begin again until the end of the list is reached. Let us decompose it and translate it to a math function using the considerations of our RAM computer.
             </p>
             <prism-editor class="codeblock" v-model="insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                A little more complex than the previous simple algorithm! We conclude with the unrefined function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>. Here is a very specific explanation. Everything
-               in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times. This is why everything in our polynomial is multiplied by <i>n</i>. One level into our for loop, we have a 
-               simple initialization and a while loop. We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. As mentioned above, we are <b>primarily
-               interested in the worst case scenario</b>, it is most desirable to understand how <i>inefficient</i> an algorithm can perform. So we will always presume the maximum amount of iterations possible for some loop
-               because we can then safely and confidently assume that no matter what, every permutation of list input <i>n</i>, if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
-               the maximum amount of times the while loop on line 7 can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order
-               (biggest to smallest). Now looking at everything happening inside the while loop, these single time step operations happen <i>n</i> times due to the while loop, and another <i>n</i> times due to the for loop.
+               in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times (line 3). This is why everything in our polynomial is multiplied by the outermost <i>n</i>.
+               One level into our for loop, we have a 
+               simple initialization and a while loop (line 5 & 7 respectively). We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. So far, we have
+               the partially translated function <vue-mathjax :formula='`$n(1+\\mathtt{while})$`'></vue-mathjax>, we need find a way to represent it functionally.
+               <br>
+                As mentioned above, we are <b>primarily
+               interested in the worst case scenario</b>; it is most desirable to understand how <i>inefficient</i> an algorithm can perform. So we will always assume the maximum amount of iterations possible for some loop
+               because we can then safely and confidently assume that no matter what, every permutation of list input <i>n</i> (for insertion sort), if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
+               the maximum amount of times the while loop can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order
+               (biggest to smallest).
+               <br>
+               So both loops can be represented as <i>n</i>. Now look at everything that loops <i>n</i> times in our while loop, we have two operations that do not depend on the input size so they are represented as single step operations.
                This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplified is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
                <br>
                <br>
-               We understand that in a function, we should always look at the leading term. Coefficients to the leading term are also irrelevant because, remember we can pick any <i>c</i> to satisfy set membership. For
+               To find a function's membership in the "Big Oh" family, we know, as stated above, always look at the leading term. Coefficients to the leading term are also irrelevant because, remember we can pick any <i>c</i> to satisfy set membership. For
                instance, if I want to show <vue-mathjax :formula='`$f(n) = 2n^2+n = \\Theta(n^2)$`'></vue-mathjax>, I pick <vue-mathjax :formula='`$c_2 = 1$`'></vue-mathjax> and
                <vue-mathjax :formula='`$c_1 = 3$`'></vue-mathjax> providing <vue-mathjax :formula='`$1 \\cdot n^2 \\leq 2n^2 \\leq 3 \\cdot n^2$`'></vue-mathjax> as required by the definition of <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax>.
-               And this is correct, we have now shown that a very real algorithm, insertion sort, is <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax> / <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax>.
+               And this is correct, we have now shown that a very real algorithm, insertion sort, is <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> on
+               a <i>worst case scenario</i>. Food for thought though, what if input <i>n</i> is already perfectly sorted? If <i>n</i> were perfectly sorted from smallest to largest, then the while loop would never
+               run, thus giving a lower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
             </p>
             <div id="blogSubHeader">
                Analysis & Addressing the Elephant
@@ -250,7 +260,7 @@
                <br>
                There are also other notations <vue-mathjax :formula='`$o(n)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\omega(n)$`'></vue-mathjax> that I don't mention. It was kinda funny seeing <vue-mathjax :formula='`$o(n)$`'></vue-mathjax>
                again after using it for differentiating the quadratic form. My goal for this blog was to introduce a well grounded but simple enough explanation to "Big Oh" notation and I think everything I mentioned and did not
-               mention provides a nice balance between "enough detail to conveniently understand it" and "too much detail, where's my notebook?".
+               mention provides a nice balance between "enough detail to conveniently understand it" and "too much detail, where's my notebook?!".
             </p>
             <p>
                Ryan
@@ -298,7 +308,7 @@ export default {
    for i in range(x):
       ...
       
-# Algorithm equals 1 + n`,
+# Algorithm equals 1 + n(...)`,
          insertionSort: 
 `def insertionSort(n):
    for i in range(len(n)):
