@@ -180,7 +180,7 @@
                </i> 
             </p>
             <p>
-               For the extra curious, you can an alternative description of the RAM on page 23 in <i>Introduction to Algorithms</i> linked above.
+               There is also an alternative description of the RAM on page 23 in <i>Introduction to Algorithms</i> linked above.
                With our hypothetical computer, we can now represent a simple algorithm as a function.
             </p>
             <prism-editor class="codeblock" v-model="forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
