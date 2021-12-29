@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Big "Oh" Notation (Unfinished)</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Big "Oh" Notation Part 1</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">12 &#8226; 20 &#8226; 2021</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
