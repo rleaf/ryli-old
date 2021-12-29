@@ -75,7 +75,8 @@
                The Implementation on Functions
             </div>
             <p>
-               Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. We can assert:
+               Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. I will be using 3 examples for <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
+               where <vue-mathjax :formula='`$n = n, n = n^2, n = n^3$`'></vue-mathjax> We can assert:
             </p>
             <div class="bgColor">
                   <br>
@@ -156,9 +157,9 @@
             </div>
             <p>
                We are now equipped with a robust understanding behind the operation of "Big Oh" notation when applied to polynomial functions. However the purpose is to have a means to use "Big Oh" on algorithms,
-               so we need to provide a means to represent computer algorithms as polynomials. In the paradigm of computer algorithms, the applications of "Big Oh" must err on the side of theory.
+               so we need to provide a means to represent computer algorithms as math functions. In the paradigm of computer algorithms, the applications of "Big Oh" must err on the side of theory.
                The RAM, <i>Random Access Machine</i>, is a very simplified hypothetical computer with which brings considerations that allow
-               us to represent algorithms polynomially and use "Big Oh" notation. Quoting Skiena (p. 31), these considerations are:
+               us to represent algorithms mathematically and use "Big Oh" notation. Quoting Skiena (p. 31), these considerations are:
                <br>
                <br>
                <i>
@@ -179,6 +180,7 @@
                </i> 
             </p>
             <p>
+               For the extra curious, you can an alternative description of the RAM on page 23 in <i>Introduction to Algorithms</i> linked above.
                With our hypothetical computer, we can now represent a simple algorithm as a function.
             </p>
             <prism-editor class="codeblock" v-model="forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
