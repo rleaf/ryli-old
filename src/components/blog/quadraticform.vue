@@ -194,9 +194,22 @@ export default {
    components: {
       backdrop,
       toTop,
-      'vue-mathjax': VueMathjax
-      
+      'vue-mathjax': VueMathjax 
    },
+   metaInfo: {
+      title: 'Learning to find the derivative of the quadratic form',
+      meta: [
+         { 
+            name: 'description',
+            content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'
+         },
+         {
+            name: 'keywords',
+            content: 'math, derivative, differentiation, quadratic form, linear algebra, calculus, vector calculus, matrix calculus, jacobian, frechet derivative, chain rule, total derivative, pain'
+         },
+      ],
+   },
+
    data() {
       return {
          blogs: [],

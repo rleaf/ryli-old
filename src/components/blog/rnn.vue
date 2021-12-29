@@ -192,6 +192,20 @@ export default {
       'vue-mathjax': VueMathjax,
       PrismEditor
    },
+   metaInfo: {
+      title: 'Forward & Backward of a RNN',
+      meta: [
+         { 
+            name: 'description',
+            content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',
+         },
+         {
+            name: 'keywords',
+            content: 'recurrent neural network, rnn, math, differentiation, forward pass, backward pass, computational graph, derivatives, pain, gradients, python, machine learning, ml, artificial intelligence, ai'
+         },
+      ],
+   },
+
    data() {
       return {
          rnnStep: '$$f_h(h_{t-1}, x_t) = h_t = tanh(W_{hh}h_{t-1} + W_{xh}x_t + b_h)$$',

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueMeta from 'vue-meta'
+
 import HomePage from '../pages/home.vue'
 import CurriculumVitae from '../pages/curriculum.vue'
 import wipLink from '../pages/wip.vue'
@@ -29,6 +31,13 @@ import bigo from '../components/blog/bigo.vue'
 
 
 Vue.use(VueRouter)
+Vue.use(VueMeta, {
+  keyName: 'metaInfo',
+  attribute: 'data-vue-meta',
+  ssrAttribute: 'data-vue-meta-server-rendered',
+  tagIDKeyName: 'vmid',
+  refreshOnceOnNavigation: true
+})
 
 const routes = [
   {
@@ -140,33 +149,37 @@ const routes = [
   {
     path: '/knn',
     name: 'knn',
-    meta: {
-      title: 'Implementing K Nearest Neighbors on CIFAR-10'
-    },
+    // meta: {
+    //   title: 'Implementing K Nearest Neighbors on CIFAR-10'
+    // },
     component: knn_cifarLink
   },
   {
     path: '/bnbackpass',
     name: 'bnbackpass',
-    meta: {
-      title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization'
-    },
     component: bn_backpassLink
   },
   {
     path: '/rnn',
     name: 'rnn',
-    meta: {
-      title: 'Forward & Backward of a RNN'
-    },
     component: rnnLink
   }, 
   {
     path: '/bigo',
     name: 'bigo',
-    meta: {
-      title: 'Big "Oh" Notation'
-    },
+    // meta: {
+    //   title: 'Introduction to Big "Oh" Notation',
+    //   metaTags: [
+    //     {
+    //       name: 'test1',
+    //       content: 'toad power'
+    //     },
+    //     {
+    //       name: 'test2',
+    //       content: 'frog power'
+    //     }
+    //   ],
+    // },
     component: bigo
   }, 
   

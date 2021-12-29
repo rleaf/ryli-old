@@ -62,6 +62,19 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
+   metaInfo: {
+      title: 'Toads',
+      meta: [
+         { 
+            name: 'description',
+            content: 'Toads'
+         },
+         {
+            name: 'keywords',
+            content: 'toads, are, green, sometimes'
+         },
+      ],
+   },
    data() {
       return {
          blogs: [],

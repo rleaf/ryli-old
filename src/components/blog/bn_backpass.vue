@@ -203,6 +203,19 @@ export default {
       PrismEditor
 
    },
+   metaInfo: {
+      title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization',
+      meta: [
+         { 
+            name: 'description',
+            content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'
+         },
+         {
+            name: 'keywords',
+            content: 'batch normalization, shortcut, neural networks, machine learning, artificial intelligence, ai, ml, backpropagation, backwards pass, regularization, optimization'
+         },
+      ],
+   },
    data() {
       return {
          blogs: [],

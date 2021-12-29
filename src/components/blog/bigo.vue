@@ -293,6 +293,19 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
+   metaInfo: {
+      title: 'Introduction to Big "Oh" Notation',
+      meta: [
+         { 
+            name: 'description',
+            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
+         },
+         {
+            name: 'keywords',
+            content: 'big oh, big o, big omega, big theta, algorithms, time complexity, asymptotic growth, functions, efficiency, code, dev, introductory, beginners, part 1'
+         },
+      ],
+   },
    data() {
       return {
          blogs: [],
