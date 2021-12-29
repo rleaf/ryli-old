@@ -190,7 +190,7 @@
                <br>
                Personally I find it healthy to declare an algorithm <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> when possible because it provides more information to the reader, however using
                <vue-mathjax :formula='`$O$`'></vue-mathjax> is also very fine because the <i>upper bound</i> is the primary interest. Just as many scientists seek to <a href="https://youtu.be/EYPapE-3FRw?t=226" target="_blank">prove theories wrong</a>,
-               may algorists and computer scientists seek to understand the <i>worst case scenario</i> for algorithms. Nobody cares if an algorithm is working efficiently, people only care if an algorithm is working <i>inefficiently</i>.
+               many algorists and computer scientists seek to understand the <i>worst case scenario</i> for algorithms. Nobody cares if an algorithm is working efficiently, people only care if an algorithm is working <i>inefficiently</i>.
                If an algorithm operates within an acceptable timeframe, we are content. It is only when an algorithm takes an obscene amount of time to complete we ask <i>"what the hell is going on?"</i>. I say the things here somewhat
                jokingly. I do recommend watching the video linked just above, even from the beginning; it is one of my favorites.
             </p>
@@ -210,7 +210,7 @@
                in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times. This is why everything in our polynomial is multiplied by <i>n</i>. One level into our for loop, we have a 
                simple initialization and a while loop. We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. As mentioned above, we are <b>primarily
                interested in the worst case scenario</b>, it is most desirable to understand how <i>inefficient</i> an algorithm can perform. So we will always presume the maximum amount of iterations possible for some loop
-               because we can then safely and confidently assume that no matter what every permutation of list input <i>n</i>, if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
+               because we can then safely and confidently assume that no matter what, every permutation of list input <i>n</i>, if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
                the maximum amount of times the while loop on line 7 can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order
                (biggest to smallest). Now looking at everything happening inside the while loop, these single time step operations happen <i>n</i> times due to the while loop, and another <i>n</i> times due to the for loop.
                This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplified is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
@@ -238,7 +238,7 @@
                Okay now the elephant. If you're already familiar with "Big Oh" or may have derived from the bigocheatsheet and table resources above, you will notice I only talk about a portion of the complexities.
                <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> is certainly "horrible", but nowhere as horrible as <vue-mathjax :formula='`$O(n!)$`'></vue-mathjax> or <vue-mathjax :formula='`$O(2^n)$`'></vue-mathjax>.
                Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vue-mathjax :formula='`$O(lg(n))$`'></vue-mathjax>? What an insanely efficient runtime. I talk about why I omit them below,
-               but the elephant is simply that I do not mention them at all here.
+               but the elephant is simply that I do not explain them at all here.
             </p>
             <div id="blogSubHeader">
                Thoughts
