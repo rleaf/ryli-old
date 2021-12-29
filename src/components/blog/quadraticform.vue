@@ -207,7 +207,11 @@ export default {
             name: 'keywords',
             content: 'math, derivative, differentiation, quadratic form, linear algebra, calculus, vector calculus, matrix calculus, jacobian, frechet derivative, chain rule, total derivative, pain'
          },
-      ],
+         {
+            property: 'og:description',
+            content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'
+         }
+      ]
    },
 
    data() {

@@ -253,6 +253,10 @@ export default {
             name: 'keywords',
             content: 'knn, classification, k nearest neighbors, cifar 10, artificial intelligence, ai, machine learning, ml, introduction, beginners, python, cross validation'
          },
+         {
+            property: 'og:description',
+            content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
+         }
       ],
    },
    data() {

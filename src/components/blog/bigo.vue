@@ -304,7 +304,11 @@ export default {
             name: 'keywords',
             content: 'big oh, big o, big omega, big theta, algorithms, time complexity, asymptotic growth, functions, efficiency, code, dev, introductory, beginners, part 1'
          },
-      ],
+         {
+            property: 'og:description',
+            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
+         }
+      ]
    },
    data() {
       return {

@@ -203,7 +203,11 @@ export default {
             name: 'keywords',
             content: 'recurrent neural network, rnn, math, differentiation, forward pass, backward pass, computational graph, derivatives, pain, gradients, python, machine learning, ml, artificial intelligence, ai'
          },
-      ],
+         {
+            property: 'og:description',
+            content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',
+         }
+      ]
    },
 
    data() {

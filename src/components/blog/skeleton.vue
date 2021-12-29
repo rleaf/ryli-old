@@ -73,7 +73,11 @@ export default {
             name: 'keywords',
             content: 'toads, are, green, sometimes'
          },
-      ],
+         {
+            property: 'og:description',
+            content: 'Toads'
+         }
+      ]
    },
    data() {
       return {

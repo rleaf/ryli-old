@@ -214,6 +214,10 @@ export default {
             name: 'keywords',
             content: 'batch normalization, shortcut, neural networks, machine learning, artificial intelligence, ai, ml, backpropagation, backwards pass, regularization, optimization'
          },
+         {
+            property: 'og:description',
+            content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'
+         }
       ],
    },
    data() {
