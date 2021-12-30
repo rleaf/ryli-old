@@ -296,7 +296,7 @@ export default {
    metaInfo: {
       title: 'Introduction to Big "Oh" Notation',
       meta: [
-         { 
+         {
             name: 'description',
             content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
          },

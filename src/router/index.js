@@ -31,6 +31,9 @@ import bigo from '../components/blog/bigo.vue'
 
 
 Vue.use(VueRouter)
+// Vue.use(VueMeta, {
+//   refreshOnceOnNavigation: true
+// })
 Vue.use(VueMeta, {
   keyName: 'metaInfo',
   attribute: 'data-vue-meta',
@@ -48,6 +51,9 @@ const routes = [
   {
     path: '/cv',
     name: 'curriculumvitae',
+    meta: {
+      title: 'About | Ryan Lin'
+    },
     component: CurriculumVitae
   },
   {
@@ -118,6 +124,9 @@ const routes = [
   {
     path: '/design',
     name: 'design',
+    meta: {
+      title: 'Designs | Ryan Lin'
+    },
     component: designLink
   },
   {
@@ -128,9 +137,6 @@ const routes = [
   {
     path: '/quadraticform',
     name: 'quadraticform',
-    meta: {
-      title: 'Learning to find the derivative of the quadratic form'
-    },
     component: blogQuadraticFormLink
   },
   {
@@ -142,9 +148,19 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: speakLink,
-    children: [
-     
-    ]
+    meta: {
+      title: 'Blog | Ryan Lin',
+    },
+    // children: [
+    //   {
+    //     path: 'blog/knn',
+    //     name: 'knn',
+    //     // meta: {
+    //     //   title: 'Implementing K Nearest Neighbors on CIFAR-10'
+    //     // },
+    //     component: knn_cifarLink
+    //   },
+    //   ]
   },
   {
     path: '/knn',
@@ -167,19 +183,6 @@ const routes = [
   {
     path: '/bigo',
     name: 'bigo',
-    // meta: {
-    //   title: 'Introduction to Big "Oh" Notation',
-    //   metaTags: [
-    //     {
-    //       name: 'test1',
-    //       content: 'toad power'
-    //     },
-    //     {
-    //       name: 'test2',
-    //       content: 'frog power'
-    //     }
-    //   ],
-    // },
     component: bigo
   }, 
   
@@ -208,7 +211,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((toRoute, fromRoute, next) => {
-  window.document.title = toRoute.meta && toRoute.meta.title ? toRoute.meta.title : '// Ryan Lin';
+  window.document.title = toRoute.meta && toRoute.meta.title ? toRoute.meta.title : 'Ryan Lin';
 
   next();
 })
