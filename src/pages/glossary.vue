@@ -7,7 +7,7 @@
             <div id="curriculumBody">
                <div id="curriculumHeader">
                   <!-- <u style="font-size: 18px;">For reference</u> -->
-                  <p style="font-size: 18px; margin: 0;">Searchable references: {{postList.length}}</p>
+                  <p style="font-size: 18px; margin: 0;">Total References: {{postList.length}}</p>
                </div>
                <p>
                   <i style="font-size: 14px;">Keeping notes</i>
@@ -66,14 +66,14 @@ export default {
                // img
                // keys
 
-            new Post(
-               g.svmLoss.title, 
-               g.svmLoss.body,
-               g.svmLoss.math,
-               undefined,
-               undefined,
-               g.svmLoss.keys
-            ),
+            // new Post(
+            //    g.svmLoss.title, 
+            //    g.svmLoss.body,
+            //    g.svmLoss.math,
+            //    undefined,
+            //    undefined,
+            //    g.svmLoss.keys
+            // ),
             new Post(
                g.Pesto.title, 
                g.Pesto.body, 
@@ -90,14 +90,14 @@ export default {
                undefined,
                g.Pizza.keys
             ),
-            new Post(
-               g.Print.title,
-               g.Print.body,
-               undefined,
-               g.Print.code,
-               undefined,
-               g.Print.keys
-            ),
+            // new Post(
+            //    g.Print.title,
+            //    g.Print.body,
+            //    undefined,
+            //    g.Print.code,
+            //    undefined,
+            //    g.Print.keys
+            // ),
             new Post(
                g.Cookies.title,
                g.Cookies.body,

@@ -4,7 +4,6 @@
       <span class="introword">Ryan</span>
       <span class="introword">Lin</span>
       <br>
-      <!-- <span class="subword">asdfasdfasdf</span> -->
       <div id="subda">
          <span class="subwordhomeIntro">Dev | Design | Data</span>
       </div>
@@ -18,6 +17,18 @@ import { gsap } from "gsap";
 
 export default {
    
+   metaInfo: {
+      meta: [
+         { 
+            name: 'description',
+            content: 'Personal site of Ryan Lin - learn more about my hobbies.',
+         },
+         {
+            property: 'og:description',
+            content: 'Personal site of Ryan Lin - learn more about my hobbies.',
+         }
+      ]
+   },
    mounted() {
 
       gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
