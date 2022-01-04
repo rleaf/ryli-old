@@ -19,7 +19,7 @@
                <br>
                <br>
                Imagine a coworker walks up to you and says "Wanna bet lunch on whether you can find Waldo?" while waving around a single page. For the uninitiated, I'm referring to a popular
-               children's book, which I just now discovered is called <a href="https://en.wikipedia.org/wiki/Where%27s_Wally%3F#:~:text=Where's%20Wally%3F%20(called%20Where's%20Waldo,things%20at%20a%20given%20location.">Where's Wally?</a>.
+               children's book, which I just now discovered is called <a href="https://en.wikipedia.org/wiki/Where%27s_Wally%3F#:~:text=Where's%20Wally%3F%20(called%20Where's%20Waldo,things%20at%20a%20given%20location." target="_blank">Where's Wally?</a>.
                Not a bad deal right? Happily obliging, your coworker then hands you the single page for you find Waldo. It only takes you a couple seconds to a couple minutes to locate him, and in-line with expectations your coworker now owes you a lunch.
                Your coworker then repeats themself, but this time waving no paper and upping the pot to a weeks' worth of lunch. Knowing you are about to get hustled but too curious to see your coworker's antics,
                you once again accept only to find them leaving the room and soon returning with a book on par to the size of <a href="https://en.wikipedia.org/wiki/List_of_longest_novels#List" target="_blank">Venmurasu</a> (a measly 22,000+ pages).
@@ -176,7 +176,7 @@
                   <br>
                   &#8226; Each memory access takes exactly one time step. Further, we have as much
                   memory as we need. The RAM model takes no notice of whether an item is
-                  in cache or on the disk.
+                  in cache or on the disk.   
                </i> 
             </p>
             <p>
@@ -205,8 +205,9 @@
             <p>
                Insertion sort is a very popular algorithm that, as it sounds, sorts a list/array (depending on what language you like) by the smallest value to the largest value. A top level understanding of how it
                works is that as the for loop iterates through a list, the while loop checks to see if the non-zero indexed value the for loop is on is less than the preceeding value in the list.
-               If the while loop flags the preceeding value to be smaller than the non-zero indexed current value, it swaps the two values. This while loop continues until it reaches the beginning of the list, thus
-               terminating and proceeding to the next value in the for loop to begin again until the end of the list is reached. Let us decompose it and translate it to a math function using the considerations of our RAM computer.
+               If the while loop flags the preceeding value to be smaller than the non-zero indexed current value, it swaps the two values. This while loop continues, progressing to the beginning of the list, 
+               until it it no longer flags truthy, thus terminating and proceeding to the next value in the for loop to begin again until the end of the list is reached.
+               Let us decompose it and translate it to a math function using the considerations of our RAM computer.
             </p>
             <prism-editor class="codeblock" v-model="insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
@@ -363,6 +364,17 @@ export default {
       // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
       // document.head.appendChild(mathjaxScript)
 
+      // window.MathJax.Hub.Config({
+      // tex2jax: {
+      //    inlineMath: [['$','$']],
+      //    displayMath: [['$$', '$$'], ['[', ']']],
+      //    processEscapes: true,
+      //    processEnvironments: true
+      // }
+      // });
+   },
+
+   mounted () {
       window.MathJax.Hub.Config({
       tex2jax: {
          inlineMath: [['$','$']],
@@ -371,9 +383,6 @@ export default {
          processEnvironments: true
       }
       });
-   },
-
-   mounted () {
       if(threeScene.cache == 'noScene') {
          return
       } else {
