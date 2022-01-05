@@ -375,6 +375,10 @@ export default {
    },
 
    mounted () {
+      let mathJaxScript = document.createElement('script')
+      mathJaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
+      document.head.appendChild(mathJaxScript)
+
       window.MathJax.Hub.Config({
       tex2jax: {
          inlineMath: [['$','$']],
