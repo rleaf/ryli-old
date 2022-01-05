@@ -385,7 +385,7 @@ export default {
 }
 
 p {
-   padding: 25px 7vw !important;
+   padding: 25px 6vw;
    line-height: 2;
 }
 
