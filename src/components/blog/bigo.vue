@@ -435,7 +435,7 @@ export default {
 }
 
 p {
-   padding: 25px 7vw !important;
+   padding: 25px 6vw;
    line-height: 2;
 }
 
@@ -456,5 +456,21 @@ h2 {
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
+}
+
+@media (max-width: 735px) {
+   #curriculumBody {
+      width: 100vw;
+   }
+
+   p {
+      padding: 0;
+   }
+}
+
+@media (max-width: 1255px) {
+   p {
+      padding: 2vw;
+   }
 }
 </style>

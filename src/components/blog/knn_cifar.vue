@@ -654,6 +654,20 @@ h2 {
    padding-top: 50px;
 }
 
+@media (max-width: 735px) {
+   #curriculumBody {
+      width: 100vw;
+   }
 
+   p {
+      padding: 0;
+   }
+}
+
+@media (max-width: 1255px) {
+   p {
+      padding: 2vw;
+   }
+}
 
 </style>
