@@ -338,6 +338,16 @@ export default {
    
    mounted () {
 
+      window.MathJax.Hub.Config({
+         tex2jax: {
+            inlineMath: [['$','$']],
+            displayMath: [['$$', '$$'], ['[', ']']],
+            skipStartupTypeset: true,
+            processEscapes: true,
+            processEnvironments: true
+         }
+      });
+
       if(threeScene.cache == 'noScene') {
          return
       } else {

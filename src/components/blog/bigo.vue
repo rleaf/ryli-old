@@ -373,20 +373,27 @@ export default {
       // }
       // });
    },
-
-   mounted () {
-      let mathJaxScript = document.createElement('script')
-      mathJaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-      document.head.appendChild(mathJaxScript)
+      mounted () {
+         // let mathJaxScript = document.createElement('script')
+         // mathJaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
+         // document.head.appendChild(mathJaxScript)
 
       window.MathJax.Hub.Config({
-      tex2jax: {
-         inlineMath: [['$','$']],
-         displayMath: [['$$', '$$'], ['[', ']']],
-         processEscapes: true,
-         processEnvironments: true
-      }
+         tex2jax: {
+            inlineMath: [['$','$']],
+            displayMath: [['$$', '$$'], ['[', ']']],
+            skipStartupTypeset: true,
+            processEscapes: true,
+            processEnvironments: true
+         }
       });
+
+         // console.log(window.MathJax);
+         // this.$nextTick(() => {
+         //    console.log('toads');
+         //    // window.MathJax.Hub.Queue(["Typeset",window.MathJax.Hub, document.body])
+         // })
+
       if(threeScene.cache == 'noScene') {
          return
       } else {
