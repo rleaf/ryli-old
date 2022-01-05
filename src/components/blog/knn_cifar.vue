@@ -654,16 +654,18 @@ h2 {
    padding-top: 50px;
 }
 
+@media (max-width: 1255px) {
+   p {
+      padding: 2vw;
+   }
+}
+
 @media (max-width: 735px) {
    p {
       padding: 0;
    }
 }
 
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
+
 
 </style>

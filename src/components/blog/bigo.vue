@@ -13,8 +13,8 @@
                </div>
             </div>
             <p>
-               <a href="https://en.wikipedia.org/wiki/Big_O_notation">"Big Oh"</a> notation provides a way to analyze an algorithm's runtime as the input for that algorithm increases.
-               I refer to this relationship, an algorithm's runtime and the input size of said algorithm, when I talk about the <i>efficiency</i> of the algorithm. Fueled on pure intuition, it is natural to presume an algorithm
+               <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">"Big Oh"</a> notation provides a way to analyze an algorithm's runtime as the input for that algorithm increases.
+               I refer to this relationship, an algorithm's runtime to the input size of said algorithm, when I talk about the <i>efficiency</i> of the algorithm. Fueled on pure intuition, it is natural to presume an algorithm
                to take increasingly longer to complete as the input gets progressively larger.
                <br>
                <br>
@@ -458,15 +458,15 @@ h2 {
    padding-top: 50px;
 }
 
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
 
 @media (max-width: 1255px) {
    p {
       padding: 2vw;
+   }
+}
+@media (max-width: 735px) {
+   p {
+      padding: 0;
    }
 }
 </style>
