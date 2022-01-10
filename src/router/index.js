@@ -6,7 +6,7 @@ import HomePage from '../pages/home.vue'
 import CurriculumVitae from '../pages/curriculum.vue'
 import wipLink from '../pages/wip.vue'
 import contact from '../pages/contact.vue'
-import sketches from '../pages/sketches.vue'
+// import sketches from '../pages/sketches.vue'
 import designLink from '../pages/design.vue'
 import speakLink from '../pages/cms.vue'
 import glossaryLink from '../pages/glossary.vue'
@@ -21,7 +21,7 @@ import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
 import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
 import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
 import signLink from '../pages/portfolioObjects/signObject.vue'
-import blogskeletonLink from '../components/blog/skeleton.vue'
+// import blogskeletonLink from '../components/blog/skeleton.vue'
 import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
 import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
@@ -66,11 +66,11 @@ const routes = [
     name: 'contact',
     component: contact
   },
-  {
-    path: '/sketches',
-    name: 'sketches',
-    component: sketches
-  },
+  // {
+  //   path: '/sketches',
+  //   name: 'sketches',
+  //   component: sketches
+  // },
   {
     path: '/PortfolioTest',
     name: 'PortfolioTest',
@@ -129,11 +129,11 @@ const routes = [
     },
     component: designLink
   },
-  {
-    path: '/blogskeleton',
-    name: 'blogskeleton',
-    component: blogskeletonLink
-  },
+  // {
+  //   path: '/blogskeleton',
+  //   name: 'blogskeleton',
+  //   component: blogskeletonLink
+  // },
   {
     path: '/quadraticform',
     name: 'quadraticform',
@@ -143,6 +143,9 @@ const routes = [
     path: '/glossary',
     name: 'glossary',
     component: glossaryLink,
+    meta: {
+      title: 'Notes | Ryan Lin',
+    }
   },
   {
     path: '/blog',

@@ -298,6 +298,10 @@ export default {
       title: 'Introduction to Big "Oh" Notation',
       meta: [
          {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
+         {
             name: 'description',
             content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
          },
@@ -308,7 +312,8 @@ export default {
          {
             property: 'og:description',
             content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
-         }
+         },
+         
       ]
    },
    data() {

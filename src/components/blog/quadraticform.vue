@@ -199,6 +199,10 @@ export default {
    metaInfo: {
       title: 'Learning to find the derivative of the quadratic form',
       meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
          { 
             name: 'description',
             content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'

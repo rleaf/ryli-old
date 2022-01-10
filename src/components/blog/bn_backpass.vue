@@ -206,6 +206,10 @@ export default {
    metaInfo: {
       title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization',
       meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
          { 
             name: 'description',
             content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'

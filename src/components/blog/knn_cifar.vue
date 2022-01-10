@@ -245,6 +245,10 @@ export default {
    metaInfo: {
       title: 'Implementing K Nearest Neighbors on CIFAR-10',
       meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
          { 
             name: 'description',
             content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',

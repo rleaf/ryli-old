@@ -195,6 +195,10 @@ export default {
    metaInfo: {
       title: 'Forward & Backward of a RNN',
       meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
          { 
             name: 'description',
             content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',

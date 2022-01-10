@@ -16,7 +16,19 @@ export default {
    components: {
       // NavBar,
       portfolioSkeleton
-   }
+   },
+   metaInfo: {
+      meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
+         {
+            name: 'description',
+            content: 'Behold...my stuff.'
+         },
+      ]
+   },
 }
 
 </script>

@@ -65,6 +65,10 @@ export default {
    metaInfo: {
       title: 'Toads',
       meta: [
+         {
+            name: 'author',
+            content: 'Ryan Lin'
+         },
          { 
             name: 'description',
             content: 'Toads'
