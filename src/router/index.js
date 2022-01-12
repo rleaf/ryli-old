@@ -27,6 +27,7 @@ import knn_cifarLink from '../components/blog/knn_cifar.vue'
 import bn_backpassLink from '../components/blog/bn_backpass.vue'
 import rnnLink from '../components/blog/rnn.vue'
 import bigo from '../components/blog/bigo.vue'
+import cnn from '../components/blog/cnn.vue'
 
 
 
@@ -187,7 +188,12 @@ const routes = [
     path: '/bigo',
     name: 'bigo',
     component: bigo
-  }, 
+  },
+  {
+    path: '/cnn',
+    name: 'cnn',
+    component: cnn
+  },
   
   {
     path: '/*',
