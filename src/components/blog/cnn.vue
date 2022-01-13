@@ -21,10 +21,21 @@
                when working with neural networks, yet provides 
             </p> -->
             <p>
-               Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. An image classifies as "grid-like" because
-               it is simply a composition of pixel values layed out alongside each other. Therefore when we consider a <b>colored RGB</b> image, we can think of a 3 dimensional
-               representation of pixel values where each axis would be <i>color x width x height</i>. When we consider a <b>black & white</b> image, we can think of a 2 dimensional
-               representation of pixel values where color axis would be omitted.
+               Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
+               in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
+               confuses.
+            </p>
+            <p>
+               Before going into CNNs, understanding "grid-like" data is just as easy as it is important. Images are probably the most popular examples, so throughout this post I will default to them.
+               Below is an image I took at <a href="https://ryli.design/barnegat" target="_blank">Barnegat Light</a> and is also a simple illustration clarifying how
+               images classify as a grid-like input. <b>Colored RGB</b> images have their 3 respsective channels populated with pixel integer values (0-255 inclusive) that tell how much of either red, green, or blue
+               belongs at that location. Because of this, colored images can be represented as a 3 dimensional tensor and used as input for CNNs. It may help as well to think of the pixels as 1x3 vectors that extend
+               through the depth/channels and are organized accordingly to the image.
+            </p>
+            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/cnn_Image.png" alt="">
+            <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
+            <p>
+               Toads
             </p>
             <p>
                - Code and breakdown of forwards pass
@@ -60,7 +71,7 @@ export default {
       // MathJax
    },
    metaInfo: {
-      title: 'Toads',
+      title: 'Forward & Backward of a CNN',
       meta: [
          {
             name: 'author',
@@ -68,7 +79,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Toads'
+            content: 'Forward & Backward of a CNN. I talk about the forward and backward pass of a Convolutional neural network with illustrations and codeblocks as examples.'
          },
          {
             name: 'keywords',
