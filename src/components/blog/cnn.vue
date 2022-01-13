@@ -15,9 +15,16 @@
             <p>
                <i>Hello, everything here is likely to change. I like pushing these, even thought they're incomplete, for the curious to see workflow.</i>
             </p>
+            <!-- <p>
+               On the journey to learn about neural networks, Convolutional neural networks (henceforth shortened to CNNs), serve as a very solid transition from Multilayered
+               perceptrons to other network architectures. I believe this because the CNN architecture captures the generalizing capabilities and overall flexibility present
+               when working with neural networks, yet provides 
+            </p> -->
             <p>
-               Convolutional neural networks are an architecture of neural nets designed to process grid-like data. There are a lot of examples for what classifies as 
-               <i>"grid-like data"</i>, however throughout this page I default to images, like the ones we take with our phone cameras, as an example.
+               Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. An image classifies as "grid-like" because
+               it is simply a composition of pixel values layed out alongside each other. Therefore when we consider a <b>colored RGB</b> image, we can think of a 3 dimensional
+               representation of pixel values where each axis would be <i>color x width x height</i>. When we consider a <b>black & white</b> image, we can think of a 2 dimensional
+               representation of pixel values where color axis would be omitted.
             </p>
             <p>
                - Code and breakdown of forwards pass
