@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Forward & Backward of a CNN <i>**In the works (1/12/22)**</i></p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Characteristics of a CNN <i>**In the works (1/12/22)**</i></p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">1 &#8226; 12 &#8226; 2022</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
@@ -23,17 +23,64 @@
             <p>
                Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
                in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
-               confuses.
+               confuses. At the time of writing this, my intentions are not to give a rundown of what CNNs are. My post about <a href="rnn" target="_blank">RNNs</a>
+               is, I think, a good example of what I mean by a "rundown". Instead I'm going to write pretty much exclusively about the transformations between layers in a CNN.
+               
+               
+
+
             </p>
-            <p>
+            <!-- <p>
                Before going into CNNs, understanding "grid-like" data is just as easy as it is important. Images are probably the most popular examples, so throughout this post I will default to them.
                Below is an image I took at <a href="https://ryli.design/barnegat" target="_blank">Barnegat Light</a> and is also a simple illustration clarifying how
                images classify as a grid-like input. <b>Colored RGB</b> images have their 3 respsective channels populated with pixel integer values (0-255 inclusive) that tell how much of either red, green, or blue
                belongs at that location. Because of this, colored images can be represented as a 3 dimensional tensor and used as input for CNNs. It may help as well to think of the pixels as 1x3 vectors that extend
                through the depth/channels and are organized accordingly to the image.
+            </p> -->
+            <p>
+               I default to images as an example for any input I talk about here. Able to easily <i>and intuitively</i> be represented as 3d tensors, it is evident why CNNs are big in
+               Computer Vision.
             </p>
-            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/cnn_Image.png" alt="">
+            <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnn_Image.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
+            <div id="blogSubHeader">
+               Deconstructing
+            </div>
+            <p>
+               I'm going to break down and talk about a CNN by the layers. As of 1/12/22 (mm/dd/yy), that means I will discuss the transformations between:
+               <br> conv layer <br> activation <br> pooling
+            </p>
+            <div id="blogSubHeader">
+               Convolutional Layer
+            </div>
+            <h2>Forward</h2>
+            <p>
+                <prism-editor class="codeblock" v-model="spain" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               Toads
+            </p>
+            <h2>Backward</h2>
+            <p>
+               Toads
+            </p>
+            <div id="blogSubHeader">
+               Activation
+            </div>
+            <h2>Forward</h2>
+            <p>
+               Toads
+            </p>
+            <h2>Backward</h2>
+            <p>
+               Toads
+            </p>
+            <div id="blogSubHeader">
+               Pooling Layer
+            </div>
+            <h2>Forward</h2>
+            <p>
+               Toads
+            </p>
+            <h2>Backward</h2>
             <p>
                Toads
             </p>
@@ -42,7 +89,8 @@
                <br>
                - Code and breakdown of backward pass
                <br>
-               - Any tricks? (batch norm / l2 reg / kaiming / ...) w/ code + breakdown too 
+               - <span style="text-decoration: line-through">Any tricks? (batch norm / l2 reg / kaiming / ...) w/ code + breakdown too</span>
+               Make independent blog about the bells & whistles (regularization strats / initialization / optimization / cool stuff :) ) 
                <br>
 
             </p>
@@ -57,6 +105,9 @@
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
+import { PrismEditor } from 'vue-prism-editor'
+import 'vue-prism-editor/dist/prismeditor.min.css'
+import { highlight, languages } from 'prismjs/components/prism-core'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
 
@@ -67,11 +118,12 @@ export default {
    components: {
       backdrop,
       toTop,
-      'vue-mathjax': VueMathjax
-      // MathJax
+      'vue-mathjax': VueMathjax,
+      PrismEditor
+
    },
    metaInfo: {
-      title: 'Forward & Backward of a CNN',
+      title: 'Characteristics of a CNN',
       meta: [
          {
             name: 'author',
@@ -96,7 +148,18 @@ export default {
          blogs: [],
          error: null,
          formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
-         jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$'
+         jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$',
+         spain:
+`  def rain(location):
+      if(location == spain):
+         return true
+      else:
+         return false`
+      }
+   },
+   methods: {
+      highlighter(code) {
+        return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
    },
 
@@ -160,6 +223,7 @@ a {
 
 h2 {
    font-size: 16px;
+   font-style: italic;
    padding-top: 10px;
    margin: 0;
    font-weight: 200;
