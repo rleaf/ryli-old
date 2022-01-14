@@ -38,8 +38,8 @@
                through the depth/channels and are organized accordingly to the image.
             </p> -->
             <p>
-               I default to images as an example for any input I talk about here. Able to easily <i>and intuitively</i> be represented as 3d tensors, it is evident why CNNs are big in
-               Computer Vision.
+               When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
+               be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
             </p>
             <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnn_Image.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
@@ -47,43 +47,58 @@
                Deconstructing
             </div>
             <p>
-               I'm going to break down and talk about a CNN by the layers. As of 1/12/22 (mm/dd/yy), that means I will discuss the transformations between:
-               <br> conv layer <br> activation <br> pooling
+               I'm going to break down and talk about a CNN by the layers. As of 1/12/22 (mm/dd/yy), that means I will discuss the transformations of:
+               <br>- <a href="#convolution">Convolution</a>
+               <br>- <a href="#activation">Activation</a>
+               <br>- <a href="#pooling">Pooling</a>
             </p>
-            <div id="blogSubHeader">
-               Convolutional Layer
-            </div>
-            <h2>Forward</h2>
-            <p>
-                <prism-editor class="codeblock" v-model="spain" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-               Toads
-            </p>
-            <h2>Backward</h2>
-            <p>
-               Toads
-            </p>
-            <div id="blogSubHeader">
-               Activation
-            </div>
-            <h2>Forward</h2>
-            <p>
-               Toads
-            </p>
-            <h2>Backward</h2>
-            <p>
-               Toads
-            </p>
-            <div id="blogSubHeader">
-               Pooling Layer
-            </div>
-            <h2>Forward</h2>
-            <p>
-               Toads
-            </p>
-            <h2>Backward</h2>
-            <p>
-               Toads
-            </p>
+            <section id="convolution">
+               <div id="blogSubHeader">
+                  Convolutional Layer
+               </div>
+            </section>
+               <h2>Forward</h2>
+               <p>
+                  CNNs, similar to MLPs operate under the same archetype of <vue-mathjax :formula='`$w^\\top x+b$`'></vue-mathjax>, except are designed to <i>preserve spatial
+                  structure</i>. To deal with high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i> or <i>filter</i> operates on a portion of the
+                  input then convolves/slides/translates to the next portion. The size of the kernel contributes to the overall volume processed on each translation and is a hyperparameter frequently
+                  referred to as the <i>kernel size</i> or <i>receptive field</i>.
+               </p>
+               <prism-editor class="codeblock" v-model="spain" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <h2>Backward</h2>
+               <p>
+                  Toads
+               </p>
+
+
+            <section id="activation">
+               <div id="blogSubHeader">
+                  Activation
+               </div>
+               <h2>Forward</h2>
+               <p>
+                  Toads
+               </p>
+               <h2>Backward</h2>
+               <p>
+                  Toads
+               </p>
+            </section>
+
+            <section id="pooling">
+               <div id="blogSubHeader">
+                  Pooling Layer
+               </div>
+               <h2>Forward</h2>
+               <p>
+                  Toads
+               </p>
+               <h2>Backward</h2>
+               <p>
+                  Toads
+               </p>
+            </section>
+
             <p>
                - Code and breakdown of forwards pass
                <br>
@@ -151,7 +166,7 @@ export default {
          jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$',
          spain:
 `  def rain(location):
-      if(location == spain):
+      if(location == 'spain'):
          return true
       else:
          return false`
