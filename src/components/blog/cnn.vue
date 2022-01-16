@@ -47,7 +47,7 @@
                Deconstructing
             </div>
             <p>
-               I'm going to break down and talk about a CNN by the layers. As of 1/12/22 (mm/dd/yy), that means I will discuss the transformations of:
+               I'm going to break down and talk about a CNN by transformations. As of 1/12/22 (mm/dd/yy), that means I will discuss:
                <br>- <a href="#convolution">Convolution</a>
                <br>- <a href="#activation">Activation</a>
                <br>- <a href="#pooling">Pooling</a>
@@ -60,12 +60,32 @@
                <h2>Forward</h2>
                <p>
                   CNNs, similar to MLPs operate under the same archetype of <vue-mathjax :formula='`$w^\\top x+b$`'></vue-mathjax>, except are designed to <i>preserve spatial
-                  structure</i>. Because there is no dimension reduction, to deal with high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i>
-                  or <i>filter</i> operates on a portion of the
-                  input then convolves/slides/translates to the next portion. The size of the kernel contributes to the overall volume processed on each translation and is a hyperparameter frequently
-                  referred to as the <i>kernel size</i> or <i>receptive field</i>.
+                  structure</i>. Because there is no dimension reduction, to deal with these high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i>
+                  or <i>filter</i> operates on a portion of the input by taking the dot product
+                  then convolves/slides/translates to the next portion. The kernel usually extends to the full depth of the input; there are times
+                  when this is not true. The output of the series of dot products composes the <i>activation map</i>. As the input traverses through a CNN, it is typically expected for
+                  it to get progressively "<a href="https://i.imgur.com/H1pU0yu.png" target="_blank">stumpier</a>",
+                  where what it loses in width & height grows in depth. The linked image shows 4 activation maps, producing a 4x4x4 output, from the original 3x5x5 input.
+                  <br>
+                  <br>
+                  Hyperparameters include:
+                  <br>
+                  <b>Number of Filters</b>: It is standard for a single convolutional layer to house many filters
+                  <br>
+                  <b>Kernel size</b>: Determines the width/height of the kernel
+                  <br>
+                  <b>Stride</b>: Determines the step distance of the kernel after each dot product
+                  <br>
+                  <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel.
                </p>
-               <prism-editor class="codeblock" v-model="spain" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <video id="img500" autoplay loop :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
+               <span style="font-size:14px; padding-top: -10px;"><i>Simple animation showing a 3x2x2 kernel interacting with a 3x5x5 input. Stride is 1 and there is no padding. <br>
+               Right click on animation to toggle controls or open in a new tab to enlarge.</i></span>
+               <p>
+                  Code breakdown for a forward pass in a convolutional layer. PyTorch does have a <a href="https://pytorch.org/docs/1.9.1/generated/torch.nn.Conv2d.html" target="_blank">class</a> that does
+                  this must faster, but for understanding - I am a fan of what's below. The actual operations occur within the nested for loops.
+               </p>
+               <prism-editor class="codeblock" v-model="cnnForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <h2>Backward</h2>
                <p>
                   Toads
@@ -165,12 +185,69 @@ export default {
          error: null,
          formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
          jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$',
+         cnn_anim: require('../../assets/blog/cnn_anim.webm'),
          spain:
 `  def rain(location):
       if(location == 'spain'):
          return true
       else:
-         return false`
+         return false`,
+         cnnForward:
+`  def forward(x, w, b, conv_param):
+      """
+      - x: Input data of shape (N, C, H, W). The input is 4 dimensional here because
+        NNs usually operate on batches of data: (Batch size x Channel x Height x Width).
+      - w: Filters of shape (F, C, HH, WW). Aka: (Fiter count x Channel x Filter Height x Filter Width)
+      - b: Biases, of shape (F)
+      - conv_param: A dictionary with the following keys:
+      - 'stride': The number of pixels between adjacent receptive fields in the
+      horizontal and vertical directions.
+      - 'pad': The number of pixels that will be used to zero-pad the input. 
+
+      Returns a tuple of:
+      - out: Output data, of shape (N, F, H', W') where H' and W' are given by
+      H' = 1 + (H + 2 * pad - HH) / stride
+      W' = 1 + (W + 2 * pad - WW) / stride
+      - cache: (x, w, b, conv_param)
+      """
+
+      # Getting shape sizes. We don't actually need w.shape[1] (channels), so that is omitted with '_'.
+      N, C, H, W = x.shape
+      F, _, HH, WW = w.shape
+
+      # Get hyperparameters. Default to stride = 1, padding = 0.
+      stride = conv_param.get('stride', 1)
+      pad = conv_param.get('pad', 0)
+
+      # Formula for calculating the width & height of activation map with hyperparameters.
+      hPrime = 1 + (H + 2 * pad - HH) // stride
+      wPrime = 1 + (W + 2 * pad - WW) // stride
+
+      # Wrap input x with pad: https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html
+      xpad = torch.nn.functional.pad(x, (pad,pad,pad,pad)).to(x.dtype).to(x.device)
+
+      # Define output/activation map shape
+      out = torch.zeros(N, F, hPrime, wPrime).to(x.dtype).to(x.device)
+
+      # For each image in the batch
+      for n in range(N):
+         # For each filter
+         for f in range(F):
+            # Index along the height of activation map
+            for h in range(0, hPrime):
+               # Index along the width of activation map
+               for W in range(0, wPrime):
+                  # CNN takes the sum of the elementwise multiplication (dot product) between kernel
+                  # and input and then adds the bias associated with that filter.
+                  #
+                  # Number of bias always corresponds 1:1 with number of filters
+                  #
+                  # We are demarcating the portion of the input to dot product with. Referring back
+                  # to the animation above may help.
+                  out[n, f, h, W] = torch.sum(xpad[n, :, h*stride:h*stride+HH, W*stride:W*stride+WW] * w[f, :, :, :]) + b[f]
+
+      cache = (x, w, b, conv_param)
+      return out, cache`
       }
    },
    methods: {
