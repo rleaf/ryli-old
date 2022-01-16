@@ -41,7 +41,7 @@
                When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
                be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
             </p>
-            <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnn_Image.png" alt="">
+            <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
             <div id="blogSubHeader">
                Deconstructing
@@ -60,7 +60,8 @@
                <h2>Forward</h2>
                <p>
                   CNNs, similar to MLPs operate under the same archetype of <vue-mathjax :formula='`$w^\\top x+b$`'></vue-mathjax>, except are designed to <i>preserve spatial
-                  structure</i>. To deal with high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i> or <i>filter</i> operates on a portion of the
+                  structure</i>. Because there is no dimension reduction, to deal with high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i>
+                  or <i>filter</i> operates on a portion of the
                   input then convolves/slides/translates to the next portion. The size of the kernel contributes to the overall volume processed on each translation and is a hyperparameter frequently
                   referred to as the <i>kernel size</i> or <i>receptive field</i>.
                </p>
