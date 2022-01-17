@@ -86,8 +86,14 @@
                   this must faster, but for understanding - I am a fan of what's below. The actual operations occur within the nested for loops.
                </p>
                <prism-editor class="codeblock" v-model="cnnForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <br>
+               <br>
                <h2>Backward</h2>
+               <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <p>
+                  Hmm work on improving clarity for comments in code blocks, they may be confusing. This is probably the hardest/ most confusing section so try to be clear.
+                  Animation?
+
                   Toads
                </p>
 
@@ -247,7 +253,58 @@ export default {
                   out[n, f, h, W] = torch.sum(xpad[n, :, h*stride:h*stride+HH, W*stride:W*stride+WW] * w[f, :, :, :]) + b[f]
 
       cache = (x, w, b, conv_param)
-      return out, cache`
+      return out, cache`,
+      cnnBackward:
+`  def backward(dout, cache):
+      """
+      Inputs:
+      - dout: Upstream derivatives.
+      - cache: A tuple of (x, w, b, conv_param).
+
+      Returns a tuple of:
+      - dx: Gradient with respect to x
+      - dw: Gradient with respect to w
+      - db: Gradient with respect to b
+      """
+
+      # Same as before, get shape sizes and hyperparameters stored in cache.
+      x, w, b, conv_param = cache
+      N, C, H, W = x.shape
+      F, _, HH, WW = w.shape
+
+      # Same as before, get the stride and padding. If DNE, set to 1 and 0 respectively.
+      stride = conv_param.get('stride', 1)
+      pad = conv_param.get('pad', 0)
+
+      # Also same as forward pass
+      xpad = torch.nn.functional.pad(x, (pad, pad, pad, pad)).to(x.dtype).to(x.device)
+      hPrime = 1 + (H + 2 * pad - HH) // stride
+      wPrime = 1 + (W + 2 * pad - WW) // stride
+
+      dxpad = torch.zeros_like(xpad).to(x.dtype).to(x.device)
+      dx = torch.zeros_like(x).to(x.dtype).to(x.device)
+      dw = torch.zeros_like(w).to(x.dtype).to(x.device)
+      db = torch.zeros_like(b).to(x.dtype).to(x.device)
+
+      # For each image in the batch
+      for n in range(N):
+         # For each filter
+         for f in range(F):
+            # Derivative wrt bias. Since there is only 1 bias per filter, we can evaluate the gradient when
+            # indexing through those filters, F. Note that the gradient wrt to bias is simply dout indexed with
+            # correspondence to the respective bias.
+            db[f] += torch.sum(dout[n, f])
+            # Indexing along the height
+            for h in range(0, hPrime):
+               # Indexing a long the width
+               for i in range(0, wPrime):
+                  # An easy way to compute the gradient is by looking thinking of the forward pass operation wx+b.
+                  # Look at the forward pass, and just multiply the corresponding gradient by dout[n, f, h i]
+                  dw[f] += xpad[n, :, h * stride:h * stride + HH, i * stride:i * stride + WW] * dout[n, f, h, i]
+                  dxpad[n, :, h * stride:h * stride + HH, i * stride:i * stride + WW] += w[f] * dout[n, f, h, i]
+      
+      dx = dxpad[:, :, pad:pad+H, pad:pad+W]
+      return dx, dw, db`
       }
    },
    methods: {
