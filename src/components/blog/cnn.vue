@@ -90,7 +90,8 @@
                <br>
                <h2>Backward</h2>
                <p>
-                  Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>.
+                  Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. Looking at the equation, it is very easy to find the desired local gradients
+                  and then simply multiply them by the upstream:
                   <br>
                   <br>
                   <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{x}} = \\frac{\\partial{f}}{\\partial{x}} \\cdot upstream= w \\cdot dout$$`'></vue-mathjax>
@@ -100,7 +101,9 @@
                   <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b}} = \\frac{\\partial{f}}{\\partial{b}} \\cdot upstream= dout$$`'></vue-mathjax>
                   <br>
                   The tricky part is thinking about the interaction between the tensor shapes. <i>"Okay...so we're indexing along dimension x and this 4x2x5x5 tensor multiples elementwise with this 2x3x3x3..."</i>.
-                  I also have a lot of difficulty conceptualizing it. You may be better off adhering to the simple rules which work well for me:
+                  I also have a lot of difficulty conceptualizing it - especially with high dimensional tensors. For more elaborate discussion, my post on
+                  <a href="/bnbackpass" target="_blank">differentiating batch normalization</a> and <a href="/rnn" target="_blank">recurrent neural networks</a> may be helpful.
+                  Keeping it simple however, here are some "rules" which work well for me:
                   <br>
                   <br>
                   1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, matche dimensionality of what is being differentiated wrt to.
