@@ -89,13 +89,30 @@
                <br>
                <br>
                <h2>Backward</h2>
-               <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <p>
-                  Hmm work on improving clarity for comments in code blocks, they may be confusing. This is probably the hardest/ most confusing section so try to be clear.
-                  Animation?
-
-                  Toads
+                  Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>.
+                  <br>
+                  <br>
+                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{x}} = \\frac{\\partial{f}}{\\partial{x}} \\cdot upstream= w \\cdot dout$$`'></vue-mathjax>
+                  <br>
+                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{w}} = \\frac{\\partial{f}}{\\partial{w}} \\cdot upstream= x \\cdot dout$$`'></vue-mathjax>
+                  <br>
+                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b}} = \\frac{\\partial{f}}{\\partial{b}} \\cdot upstream= dout$$`'></vue-mathjax>
+                  <br>
+                  The tricky part is thinking about the interaction between the tensor shapes. <i>"Okay...so we're indexing along dimension x and this 4x2x5x5 tensor multiples elementwise with this 2x3x3x3..."</i>.
+                  I also have a lot of difficulty conceptualizing it. You may be better off adhering to the simple rules which work well for me:
+                  <br>
+                  <br>
+                  1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, matche dimensionality of what is being differentiated wrt to.
+                  <br>
+                  2) Calculating the entire gradient is a running sum (note the <code style="background: #242424; border-radius: 5px;">+=</code> on lines 39, 46, and 47 where the gradient formulas are shown).
+                  <br>
+                  3) Make sure to properly "locate" where a gradient belongs. Consider what needs to be indexed in order to compute a gradient. For instance,
+                  <code style="background: #242424; border-radius: 5px;">db</code> on line 39 <i>can</i> be next to <code style="background: #242424; border-radius: 5px;">dw</code> and <code>dx</code>,
+                  but unlike <code style="background: #242424; border-radius: 5px;">dw</code> and <code style="background: #242424; border-radius: 5px;">dx</code>, it doesn't <i>need</i> to be since we're only indexing along f.
                </p>
+
+               <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
 
             <section id="activation">
@@ -291,15 +308,15 @@ export default {
          # For each filter
          for f in range(F):
             # Derivative wrt bias. Since there is only 1 bias per filter, we can evaluate the gradient when
-            # indexing through those filters, F. Note that the gradient wrt to bias is simply dout indexed with
-            # correspondence to the respective bias.
+            # indexing through those filters, F. The gradient wrt to bias is simply dout indexed corresponding
+            # to the respective bias.
             db[f] += torch.sum(dout[n, f])
             # Indexing along the height
             for h in range(0, hPrime):
                # Indexing a long the width
                for i in range(0, wPrime):
-                  # An easy way to compute the gradient is by looking thinking of the forward pass operation wx+b.
-                  # Look at the forward pass, and just multiply the corresponding gradient by dout[n, f, h i]
+                  # Note how we deal with padding & striding. Striding should be intuitive, but for padding
+                  # we use dxpad as an intermediary step and then on line 49, clip the padding to get dx. 
                   dw[f] += xpad[n, :, h * stride:h * stride + HH, i * stride:i * stride + WW] * dout[n, f, h, i]
                   dxpad[n, :, h * stride:h * stride + HH, i * stride:i * stride + WW] += w[f] * dout[n, f, h, i]
       
