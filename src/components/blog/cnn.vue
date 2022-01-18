@@ -338,7 +338,7 @@ export default {
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
-            displayMath: [['$$', '$$'], ['[', ']']],
+            displayMath: [['$$', '$$']],
             skipStartupTypeset: true,
             processEscapes: true,
             processEnvironments: true

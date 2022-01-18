@@ -328,24 +328,13 @@ export default {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
    },
-
-   beforeMount() {
-      window.MathJax.Hub.Config({
-      tex2jax: {
-         inlineMath: [['$','$']],
-         displayMath: [['$$', '$$'], ['[', ']']],
-         processEscapes: true,
-         processEnvironments: true
-      }
-      });
-   },
    
    mounted () {
 
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
-            displayMath: [['$$', '$$'], ['[', ']']],
+            displayMath: [['$$', '$$']],
             skipStartupTypeset: true,
             processEscapes: true,
             processEnvironments: true

@@ -368,15 +368,6 @@ export default {
       // let mathjaxScript = document.createElement('script')
       // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
       // document.head.appendChild(mathjaxScript)
-
-      // window.MathJax.Hub.Config({
-      // tex2jax: {
-      //    inlineMath: [['$','$']],
-      //    displayMath: [['$$', '$$'], ['[', ']']],
-      //    processEscapes: true,
-      //    processEnvironments: true
-      // }
-      // });
    },
       mounted () {
          // let mathJaxScript = document.createElement('script')
@@ -386,7 +377,7 @@ export default {
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
-            displayMath: [['$$', '$$'], ['[', ']']],
+            displayMath: [['$$', '$$']],
             skipStartupTypeset: true,
             processEscapes: true,
             processEnvironments: true
