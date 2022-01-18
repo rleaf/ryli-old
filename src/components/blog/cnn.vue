@@ -122,20 +122,27 @@
                <div id="blogSubHeader">
                   Activation
                </div>
+            </section>
                <h2>Forward</h2>
                <p>
-                  Toads
+                  The forward pass through activation layers operate element-wise. ReLU is shown below and iterates through each neuron to check if it is greater than 0. I discuss the forward pass for other
+                  activations, such as tanh, in my post on RNNs linked above. PyTorch has a bunch of well documented
+                  <a href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity" target="_blank">activation classes</a>.
                </p>
+               <prism-editor class="codeblock" v-model="reluForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <h2>Backward</h2>
                <p>
-                  Toads
+                  Backprop through this layer funtions similarly. A convenience of ReLU is that all the local gradients will equal to 1, so this transformation behaves like a mask that only allows the
+                  corresponding index between the activated neurons and <code style="background: #242424; border-radius: 5px;">dout</code> to progress backwards unchanged.
+                  <a href="https://pytorch.org/docs/stable/generated/torch.gt.html" target="_blank">Link</a> to <code style="background: #242424; border-radius: 5px;">torch.gt()</code>.
                </p>
-            </section>
+               <prism-editor class="codeblock" v-model="reluBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
             <section id="pooling">
                <div id="blogSubHeader">
                   Pooling Layer
                </div>
+            </section>
                <h2>Forward</h2>
                <p>
                   Toads
@@ -144,7 +151,6 @@
                <p>
                   Toads
                </p>
-            </section>
 
             <p>
                - Code and breakdown of forwards pass
@@ -156,7 +162,6 @@
                <br>
 
             </p>
-            <vue-mathjax :formula='formula'></vue-mathjax>
          </div>
          <toTop />
    </div>
@@ -324,7 +329,38 @@ export default {
                   dxpad[n, :, h * stride:h * stride + HH, i * stride:i * stride + WW] += w[f] * dout[n, f, h, i]
       
       dx = dxpad[:, :, pad:pad+H, pad:pad+W]
-      return dx, dw, db`
+      return dx, dw, db`,
+      reluForward: 
+`  def forward(x):
+      """
+      Input:
+      - x: Input; a tensor of any shape
+      Returns a tuple of:
+      - out: Output, a tensor of the same shape as x
+      - cache: x
+      """
+
+      k = torch.tensor([0])
+      out = torch.maximum(x, k.to(x.device))
+      
+      cache = x
+      return out, cache`,
+      reluBackward:
+`  def backward(dout, cache):
+      """
+      Input:
+      - dout: Upstream derivatives, of any shape
+      - cache: Input x, of same shape as dout
+      Returns:
+      - dx: Gradient with respect to x
+      """
+
+      # torch.gt() returns truthy if x > 0. Having the dtype of tensor
+      # g match x translates boolean values to 1's and 0's.
+      g = torch.tensor(torch.gt(x, 0), dtype=x.dtype, device=x.device)
+      dx = dout*g
+
+      return dx`
       }
    },
    methods: {
