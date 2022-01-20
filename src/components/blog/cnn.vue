@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Characteristics of a CNN <i>**In the works (1/12/22)**</i></p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Characteristics of a CNN</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">1 &#8226; 12 &#8226; 2022</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
@@ -24,33 +24,27 @@
                Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
                in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
                confuses. At the time of writing this, my intentions are not to give a rundown of what CNNs are. My post about <a href="rnn" target="_blank">RNNs</a>
-               is, I think, a good example of what I mean by a "rundown". Instead I'm going to write pretty much exclusively about the transformations between layers in a CNN.
-               
-               
-
-
+               is, I think, a good example of what I mean by a "rundown". Instead I'm going to focus on discussing the <i>forward</i> and <i>backward</i> transformations between layers in a CNN.
+               What I talk about may change over time, so everything will be listed in the <a href="#deconstructing">deconstructing</a> section just below. 
             </p>
-            <!-- <p>
-               Before going into CNNs, understanding "grid-like" data is just as easy as it is important. Images are probably the most popular examples, so throughout this post I will default to them.
-               Below is an image I took at <a href="https://ryli.design/barnegat" target="_blank">Barnegat Light</a> and is also a simple illustration clarifying how
-               images classify as a grid-like input. <b>Colored RGB</b> images have their 3 respsective channels populated with pixel integer values (0-255 inclusive) that tell how much of either red, green, or blue
-               belongs at that location. Because of this, colored images can be represented as a 3 dimensional tensor and used as input for CNNs. It may help as well to think of the pixels as 1x3 vectors that extend
-               through the depth/channels and are organized accordingly to the image.
-            </p> -->
             <p>
                When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
                be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
             </p>
             <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
-            <div id="blogSubHeader">
-               Deconstructing
-            </div>
+            <section id="deconstructing">
+               <div id="blogSubHeader">
+                  Deconstructing
+               </div>
+            </section>
             <p>
-               I'm going to break down and talk about a CNN by transformations. As of 1/12/22 (mm/dd/yy), that means I will discuss:
+               As stated above, I'm going to break down and talk about a CNN by transformations. In each of these sections you'll find <i>forward</i> and <i>backward</i> subsections. All sections are
+               accompanied with Python code.
+               As of 1/12/22 (mm/dd/yy), that means I will discuss:
                <br>- <a href="#convolution">Convolution</a>
-               <br>- <a href="#activation">Activation</a>
-               <br>- <a href="#pooling">Pooling</a>
+               <br>- <a href="#activation">Activation</a> (with ReLU as example)
+               <br>- <a href="#pooling">Pooling</a> (with Max Pooling as example)
             </p>
             <section id="convolution">
                <div id="blogSubHeader">
@@ -189,6 +183,18 @@
                   are indexed to the maximum value of every 2x2 square with stride 2.
                </p>
                <prism-editor class="codeblock" v-model="poolBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <div id="blogSubHeader">
+               Thoughts
+               </div>
+               <p>
+                  I've been wanting to do a little post on CNNs for a roughly a year now. They've been relatively low priority compared to some of the other topics I discuss, but I think (and I state this
+                  at the top of the page) CNNs are a <i>great</i> architecture to focus on when learning about machine learning - so the more I thought about them, the more I wanted to write about them.
+                  The goal was to concretely breakdown the processes going on during the forward and backward pass of a CNN and how the tensor values change. There are a lot of bells and whistles to a
+                  CNN and neural networks in general I did not talk about here, but that's now another topic added to the list of things I want to write about.
+               </p>
+               <p>
+                  Ryan
+               </p>
          </div>
          <toTop />
    </div>
