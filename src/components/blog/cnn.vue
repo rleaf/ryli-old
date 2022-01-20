@@ -106,7 +106,7 @@
                   Keeping it simple however, here are some "rules" which work well for me:
                   <br>
                   <br>
-                  1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, matche dimensionality of what is being differentiated wrt to.
+                  1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, match dimensionality of what is being differentiated wrt to.
                   <br>
                   2) Calculating the entire gradient is a running sum (note the <code style="background: #242424; border-radius: 5px;">+=</code> on lines 39, 46, and 47 where the gradient formulas are shown).
                   <br>
@@ -385,7 +385,8 @@ export default {
 
       return dx`,
       reluBackwardsExample:
-`   # Input tensor retrieved from cache
+`   # An example of the local operation for the backwards pass of a ReLU transformation.
+   # Input tensor retrieved from cache
    tensor([[-0.3, -0.0,  0.2, -2.3,  0.5,  0.6, -0.1,  1.0, -0.2, -0.5],
          [ 0.6,  1.3, -1.9, -0.0,  1.2,  1.4, -1.1, -0.0, -1.4, -1.3],
          [ 0.7, -0.3, -0.8, -0.5,  3.2,  0.0, -1.6,  1.3, -0.4, -0.7],
@@ -490,7 +491,8 @@ export default {
 
       return dx`,
       poolBackwardsExample: 
-`   # An 8x8 slice of a tensor
+`   # An example of the local operation for the backwards pass of a Max Pooling transformation.
+   # An 8x8 slice of a tensor
    tensor([[-0.3104, -0.0343,  0.1756, -2.2804,  0.5039,  0.5596, -0.0750,  0.9691],
          [-0.2357, -0.4582,  0.5661,  1.2851, -1.8667, -0.0312,  1.2433,  1.3689],
          [-1.0753, -0.0158, -1.4481, -1.3089,  0.6980, -0.3300, -0.7708, -0.4946],
