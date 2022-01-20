@@ -145,17 +145,20 @@
             </section>
                <h2>Forward</h2>
                <p>
-                  The pooling transformation is conceptually similar to the convolutional layer. A kernel that extends the full depth slides across the face of the input to "pool" together the sectioned values.
-                  I show max pooling, but there are <a href="https://pytorch.org/docs/stable/nn.html#pooling-layers" target="_blank">other forms of pooling</a>.
+                  The pooling transformation is similar to the convolutional layer. A kernel that extends the full depth slides across the face of the input to "pool" together the sectioned values.
+                  I show max pooling, but there are <a href="https://pytorch.org/docs/stable/nn.html#pooling-layers" target="_blank">other forms of pooling</a>. Even though the pooling kernel operates
+                  on the full depth of the input, the pooling operation operates uniquely on each slice of the depth. So an arbitrary tensor, lets say [6x20x20], going through a pooling layer with
+                  kernel of size 2 and stride 2 would output to [6x10x10].
                   <br>
                   <br>
                   Hyperparameters include:
                   <br>
-                  <b>Kernel size</b>: Determines the width/height of the kernel
+                  <b>Pooling Kernel size</b>: Determines the width/height of the kernel
                   <br>
                   <b>Stride</b>: Determines the step distance of the kernel after each dot product
                   <br>
-                  <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel.
+                  <b>Padding</b>: Adds a border to the input. Not common (to my knowledge), so the <code style="background: #242424; border-radius: 5px;">xpad</code> seen in the forward pass
+                  in the convolutional layer is omitted.
                </p>
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <h2>Backward</h2>
