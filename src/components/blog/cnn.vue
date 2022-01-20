@@ -137,6 +137,22 @@
                   <a href="https://pytorch.org/docs/stable/generated/torch.gt.html" target="_blank">Link</a> to <code style="background: #242424; border-radius: 5px;">torch.gt()</code>.
                </p>
                <prism-editor class="codeblock" v-model="reluBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <p>
+                  An example below. Backpropagation through a single transformation can be broken down to two metaphorical steps:
+                  <br>
+                  <br>
+                  1) There is the local computation. For the convolutional backpass, this was
+                  computing the local jacobian for <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. For ReLU, this means doing the same the piecewise function:
+                  <vue-mathjax :formula='`$$f(x) = \\begin{cases} 
+                  x & \\text{if $x \\gt 0$} \\\\  
+                  0 & \\text{otherwise} \\\\  
+                  \\end{cases} $$`'></vue-mathjax>
+                  which will provide 1's and 0's. Further shown below is max pooling where there's not much math and it strictly routes the upstream values.
+                  <br>
+                  <br>
+                  2) Multiply that local computation by the upstream. I use <code style="background: #242424; border-radius: 5px;">dout</code> to refer to the upstream.
+               </p>
+               <prism-editor class="codeblock" v-model="reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
             <section id="pooling">
                <div id="blogSubHeader">
@@ -163,20 +179,16 @@
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <h2>Backward</h2>
                <p>
-                  Toads
+                  Backpass through a pooling transformation routes <code style="background: #242424; border-radius: 5px;">dout</code> values to the index of the largest value of the corresponding 
+                  partition. Because pooling is a form of spatial <i>reduction</i>, on the backpass we have to upscale to produce a valid output tensor shape. Down below, I immediately produce the desired
+                  shape for dx and populate it with zeros (line 24), then mutate the values of the desired index (line 26-40). 
                </p>
                <prism-editor class="codeblock" v-model="poolBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-
-            <p>
-               - Code and breakdown of forwards pass
-               <br>
-               - Code and breakdown of backward pass
-               <br>
-               - <span style="text-decoration: line-through">Any tricks? (batch norm / l2 reg / kaiming / ...) w/ code + breakdown too</span>
-               Make independent blog about the bells & whistles (regularization strats / initialization / optimization / cool stuff :) ) 
-               <br>
-
-            </p>
+               <p>
+                  An example below. With pooling kernel size of 2 and stride 2, look how the values (<code style="background: #242424; border-radius: 5px;">dout</code>) that get through the backwards pass
+                  are indexed to the maximum value of every 2x2 square with stride 2.
+               </p>
+               <prism-editor class="codeblock" v-model="poolBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
          </div>
          <toTop />
    </div>
@@ -372,11 +384,35 @@ export default {
       dx = dout*g
 
       return dx`,
+      reluBackwardsExample:
+`   # Input tensor retrieved from cache
+   tensor([[-0.3, -0.0,  0.2, -2.3,  0.5,  0.6, -0.1,  1.0, -0.2, -0.5],
+         [ 0.6,  1.3, -1.9, -0.0,  1.2,  1.4, -1.1, -0.0, -1.4, -1.3],
+         [ 0.7, -0.3, -0.8, -0.5,  3.2,  0.0, -1.6,  1.3, -0.4, -0.7],
+         [-1.4, -0.1, -0.2, -0.6, -0.0,  0.1, -0.7,  0.1,  1.3, -1.9],
+         [ 0.8, -0.6,  1.1,  1.3,  0.2,  0.1, -0.4,  0.1, -0.3, -0.8],
+         [ 0.6, -1.1,  1.1,  0.2, -0.3, -0.9,  0.6, -0.2, -0.6, -1.0],
+         [-1.5, -0.9, -1.4, -0.0,  0.1,  0.8, -0.7,  0.9,  0.4,  0.1],
+         [ 1.9,  0.3,  0.3, -1.0, -1.4, -0.9, -1.0, -0.1,  1.0,  0.8],
+         [ 0.2,  1.4, -0.8,  1.1,  1.1,  1.8, -0.5, -1.0,  1.9,  0.8],
+         [ 1.0,  1.1, -2.6, -2.1,  1.9,  0.0, -0.2,  0.6, -0.7, -0.5]],
+         device='cuda:0', dtype=torch.float64)
+
+   # The "masking" that ReLU provides. All greater than 0 values evaluate
+   # to 1 to be multiplied by dout. All less than 0 values == 0.
+   tensor([[0., 0., 1., 0., 1., 1., 0., 1., 0., 0.],
+         [1., 1., 0., 0., 1., 1., 0., 0., 0., 0.],
+         [1., 0., 0., 0., 1., 1., 0., 1., 0., 0.],
+         [0., 0., 0., 0., 0., 1., 0., 1., 1., 0.],
+         [1., 0., 1., 1., 1., 1., 0., 1., 0., 0.],
+         [1., 0., 1., 1., 0., 0., 1., 0., 0., 0.],
+         [0., 0., 0., 0., 1., 1., 0., 1., 1., 1.],
+         [1., 1., 1., 0., 0., 0., 0., 0., 1., 1.],
+         [1., 1., 0., 1., 1., 1., 0., 0., 1., 1.],
+         [1., 1., 0., 0., 1., 1., 0., 1., 0., 0.]], device='cuda:0'`,
       poolForward: 
 `  def forward(x, pool_param):
       """
-      A naive implementation of the forward pass for a max-pooling layer.
-
       Inputs:
       - x: Input data, of shape (N, C, H, W)
 
@@ -410,6 +446,71 @@ export default {
 
       cache = (x, pool_param)
       return out, cache`,
+      poolBackward:
+`  def backward(dout, cache):
+      """
+      Inputs:
+      - dout: Upstream derivatives
+
+      Returns:
+      - dx: Gradient with respect to x
+      """
+      # Init values to index through
+      x, pool_param = cache
+      N, C, H, W = x.shape
+
+      # Get the width, height, and stride of pooling kernel stored inside pool_param
+      pHeight = pool_param.get('pool_height', 2)
+      pWidth = pool_param.get('pool_width', 2)
+      stride = pool_param.get('stride', 2)
+
+      # Define the output shape for us to index over 
+      hPrime = 1 + (H - pHeight) // stride
+      wPrime = 1 + (W - pWidth) // stride
+
+      # Init our output variable. We populate with zeros first and then mutate the activated values
+      # in the backpass
+      dx = torch.zeros_like(x).to(x.device)
+
+      for n in range(N):
+         for c in range(C):
+               for j in range(hPrime):
+                  for i in range(wPrime):
+                     # May look a little confusing but just note that
+                     # x[n, c, j*stride:j*stride+pHeight, i*stride:i*stride+pWidth] just references the partition
+                     # our kernel slides over at every iteration.
+                     #
+                     # ind gets the index for the maximum value in the partition, which afterwards we index
+                     # through that same partition and mutate it's maximum value using ind. Note again this is
+                     # for max pooling, so we desire the largest value.
+                     ind = (x[n, c, j*stride:j*stride+pHeight, i*stride:i*stride+pWidth]==torch.max( \\
+                     x[n, c, j*stride:j*stride+pHeight, i*stride:i*stride+pWidth])).nonzero()
+                     dx[n, c, j*stride:j*stride+pHeight, i*stride:i*stride+pWidth][ind[0][0], ind[0][1]] = dout[n, c, j, i]
+                     # dx[n, c, j*stride:j*stride+pHeight, i*stride:i*stride+pWidth][ind] = dout[n, c, j, i]
+
+      return dx`,
+      poolBackwardsExample: 
+`   # An 8x8 slice of a tensor
+   tensor([[-0.3104, -0.0343,  0.1756, -2.2804,  0.5039,  0.5596, -0.0750,  0.9691],
+         [-0.2357, -0.4582,  0.5661,  1.2851, -1.8667, -0.0312,  1.2433,  1.3689],
+         [-1.0753, -0.0158, -1.4481, -1.3089,  0.6980, -0.3300, -0.7708, -0.4946],
+         [ 3.1702,  0.0387, -1.5728,  1.2985, -0.4419, -0.6965, -1.4002, -0.0884],
+         [-0.2369, -0.5956, -0.0263,  0.0546, -0.7082,  0.0642,  1.2830, -1.8728],
+         [ 0.7562, -0.6345,  1.1176,  1.3382,  0.1994,  0.0671, -0.4159,  0.1468],
+         [-0.2672, -0.7882,  0.5857, -1.0649,  1.0950,  0.2490, -0.3271, -0.8691],
+         [ 0.5576, -0.1883, -0.5894, -1.0192, -1.4553, -0.8599, -1.3645, -0.0069]],
+         device='cuda:0', dtype=torch.float64)
+
+   # The backpass of the tensor for max pooling. Kernel size = 2, stride = 2
+   tensor([[ 0.0000,  0.3292,  0.0000,  0.0000,  0.0000,  0.9055,  0.0000,  0.0000],
+         [ 0.0000,  0.0000,  0.0000,  0.2507,  0.0000,  0.0000,  0.0000, -0.4100],
+         [ 0.0000,  0.0000,  0.0000,  0.0000, -0.5062,  0.0000,  0.0000,  0.0000],
+         [-0.9453,  0.0000,  0.0000,  2.1075,  0.0000,  0.0000,  0.0000,  0.0700],
+         [ 0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0783,  0.0000],
+         [-1.0990,  0.0000,  0.0000,  0.9257,  0.4166,  0.0000,  0.0000,  0.0000],
+         [ 0.0000,  0.0000, -1.1410,  0.0000,  0.6921,  0.0000,  0.0000,  0.0000],
+         [ 2.2135,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000,  0.0000, -0.3034]],
+         device='cuda:0', dtype=torch.float64)`
       }
    },
    methods: {
