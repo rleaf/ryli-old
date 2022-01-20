@@ -145,12 +145,24 @@
             </section>
                <h2>Forward</h2>
                <p>
-                  Toads
+                  The pooling transformation is conceptually similar to the convolutional layer. A kernel that extends the full depth slides across the face of the input to "pool" together the sectioned values.
+                  I show max pooling, but there are <a href="https://pytorch.org/docs/stable/nn.html#pooling-layers" target="_blank">other forms of pooling</a>.
+                  <br>
+                  <br>
+                  Hyperparameters include:
+                  <br>
+                  <b>Kernel size</b>: Determines the width/height of the kernel
+                  <br>
+                  <b>Stride</b>: Determines the step distance of the kernel after each dot product
+                  <br>
+                  <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel.
                </p>
+               <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <h2>Backward</h2>
                <p>
                   Toads
                </p>
+               <prism-editor class="codeblock" v-model="poolBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
             <p>
                - Code and breakdown of forwards pass
@@ -230,10 +242,6 @@ export default {
         NNs usually operate on batches of data: (Batch size x Channel x Height x Width).
       - w: Filters of shape (F, C, HH, WW). Aka: (Fiter count x Channel x Filter Height x Filter Width)
       - b: Biases, of shape (F)
-      - conv_param: A dictionary with the following keys:
-      - 'stride': The number of pixels between adjacent receptive fields in the
-      horizontal and vertical directions.
-      - 'pad': The number of pixels that will be used to zero-pad the input. 
 
       Returns a tuple of:
       - out: Output data, of shape (N, F, H', W') where H' and W' are given by
@@ -360,7 +368,45 @@ export default {
       g = torch.tensor(torch.gt(x, 0), dtype=x.dtype, device=x.device)
       dx = dout*g
 
-      return dx`
+      return dx`,
+      poolForward: 
+`  def forward(x, pool_param):
+      """
+      A naive implementation of the forward pass for a max-pooling layer.
+
+      Inputs:
+      - x: Input data, of shape (N, C, H, W)
+
+      Returns a tuple of: 
+      - out: Output data, of shape (N, C, H', W') where H' and W' are given by
+         H' = 1 + (H - pool_height) / stride
+         W' = 1 + (W - pool_width) / stride
+      - cache: (x, pool_param)
+      """
+      # Initialize x shape values
+      N, C, H, W = x.shape
+
+      # Get the width, height, and stride of pooling kernel stored inside pool_param
+      pHeight = pool_param.get('pool_height', 2)
+      pWidth = pool_param.get('pool_width', 2)
+      stride = pool_param.get('stride', 2)
+
+      # Define the output shape for us to index over
+      hPrime = 1 + (H - pHeight) // stride
+      wPrime = 1 + (W - pWidth) // stride
+
+      # Init out tensor of desired shape
+      out = torch.zeros((N, C, hPrime, wPrime)).to(x.dtype).to(x.device)
+
+      # Max pooling. torch.max method returns a list of 2 elements: [0] = lowest value(s) along optional dimension
+      # and [1] = the index of the lowest value(s). We're only needing the zeroth of the list. The second argument
+      # is such that we find the max value over the last dimension.
+      for h in range(hPrime):
+         for j in range(wPrime):
+            out[:, :, h, j] = torch.max(torch.max(x[:, :, h*stride:h*stride+hPrime ,j*stride:j*stride+wPrime], -1)[0], -1)[0]
+
+      cache = (x, pool_param)
+      return out, cache`,
       }
    },
    methods: {
