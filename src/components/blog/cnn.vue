@@ -13,19 +13,10 @@
                </div>
             </div>
             <p>
-               <i>Hello, everything here is likely to change. I like pushing these, even thought they're incomplete, for the curious to see workflow.</i>
-            </p>
-            <!-- <p>
-               On the journey to learn about neural networks, Convolutional neural networks (henceforth shortened to CNNs), serve as a very solid transition from Multilayered
-               perceptrons to other network architectures. I believe this because the CNN architecture captures the generalizing capabilities and overall flexibility present
-               when working with neural networks, yet provides 
-            </p> -->
-            <p>
                Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
                in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
-               confuses. At the time of writing this, my intentions are not to give a rundown of what CNNs are. My post about <a href="rnn" target="_blank">RNNs</a>
-               is, I think, a good example of what I mean by a "rundown". Instead I'm going to focus on discussing the <i>forward</i> and <i>backward</i> transformations between layers in a CNN.
-               What I talk about may change over time, so everything will be listed in the <a href="#deconstructing">deconstructing</a> section just below. 
+               confuses. I focus on discussing the <i>forward</i> and <i>backward</i> transformations between layers in a CNN.
+               I may add transformations in the future, so everything will be listed in the <a href="#deconstructing">deconstructing</a> section just below. 
             </p>
             <p>
                When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
