@@ -9,10 +9,10 @@
             <!-- <router-link to="/" class="underline">
                <li>Home</li>
             </router-link> -->
-            <router-link  to="design" class="underline">
+            <router-link  :to="{ name: 'design'}" class="underline">
                <li>Design</li>
             </router-link>
-            <router-link to="cv" class="underline">
+            <router-link :to="{ name: 'curriculumvitae'}" class="underline">
                <li>About / CV</li>
             </router-link>
             <router-link to='' class="underline">
@@ -22,10 +22,10 @@
                   <span class="emailnotif" style="position: absolute; overflow-wrap: normal;">Copied to clipboard!</span>
                </span>
             </router-link>
-            <router-link to='blog' class="underline">
+            <router-link :to="{ name: 'blog'}" class="underline">
                <li>Blog</li>
             </router-link>
-            <router-link to='glossary' class="underline">
+            <router-link :to="{ name: 'glossary'}" class="underline">
                <li>Food</li>
             </router-link>
             <!-- <router-link to='sketches' class="underline">

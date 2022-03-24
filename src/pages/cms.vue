@@ -11,14 +11,15 @@
          <div id="curriculumBody">
            
                <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li><router-link to="cnn">The Transformations in a CNN</router-link></li>
-               <li><router-link to="bigo">Introduction to Big "Oh" Notation</router-link></li>
+               <li><router-link :to="{ name: 'cnn'}">The Transformations in a CNN</router-link></li>
+               <li><router-link :to="{ name: 'bigo'}">Introduction to Big "Oh" Notation</router-link></li>
                <!-- <li>Time Complexity for Algorithms <i>**In the works (12/25/21)**</i></li> -->
                <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li><router-link to="rnn">Forward & Backward of a RNN</router-link></li>
-               <li><router-link to="bnbackpass">The Shortcut in Differentiating the Backwards Pass in Batch Normalization</router-link></li>
-               <li><router-link to="knn">Implementing K Nearest Neighbors on CIFAR-10</router-link></li>
-               <li><router-link to="quadraticform">Learning to find the derivative of the quadratic form</router-link></li>
+               <li><router-link :to="{ name: 'rnn'}">Forward & Backward of a RNN</router-link></li>
+               <li><router-link :to="{ name: 'bnbackpass'}">The Shortcut in Differentiating the Backwards Pass in Batch Normalization</router-link></li>
+               <!-- <li><router-link to="knn">Implementing K Nearest Neighbors on CIFAR-10</router-link></li> -->
+               <li><router-link :to="{ name: 'knn'}">Implementing K Nearest Neighbors on CIFAR-10</router-link></li>
+               <li><router-link :to="{ name: 'quadraticform'}">Learning to find the derivative of the quadratic form</router-link></li>
                <!------------ Code to pull blog titles from Strapi -->
                <!-- <li v-for='(blog, index) in blogs' :key="blog.id">
                   <a :href="links[index]">{{ blog.name }}</a>

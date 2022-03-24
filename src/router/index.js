@@ -126,7 +126,7 @@ const routes = [
     path: '/design',
     name: 'design',
     meta: {
-      title: 'Designs | Ryan Lin'
+      title: 'Design | Ryan Lin'
     },
     component: designLink
   },
@@ -136,7 +136,7 @@ const routes = [
   //   component: blogskeletonLink
   // },
   {
-    path: '/quadraticform',
+    path: '/blog/quadraticform',
     name: 'quadraticform',
     component: blogQuadraticFormLink
   },
@@ -145,7 +145,7 @@ const routes = [
     name: 'glossary',
     component: glossaryLink,
     meta: {
-      title: 'Notes | Ryan Lin',
+      title: 'Food | Ryan Lin',
     }
   },
   {
@@ -167,7 +167,7 @@ const routes = [
     //   ]
   },
   {
-    path: '/knn',
+    path: '/blog/knn',
     name: 'knn',
     // meta: {
     //   title: 'Implementing K Nearest Neighbors on CIFAR-10'
@@ -175,22 +175,22 @@ const routes = [
     component: knn_cifarLink
   },
   {
-    path: '/bnbackpass',
+    path: '/blog/bnbackpass',
     name: 'bnbackpass',
     component: bn_backpassLink
   },
   {
-    path: '/rnn',
+    path: '/blog/rnn',
     name: 'rnn',
     component: rnnLink
   }, 
   {
-    path: '/bigo',
+    path: '/blog/bigo',
     name: 'bigo',
     component: bigo
   },
   {
-    path: '/cnn',
+    path: '/blog/cnn',
     name: 'cnn',
     component: cnn
   },
