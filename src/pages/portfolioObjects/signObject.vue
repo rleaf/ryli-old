@@ -37,9 +37,9 @@
                      </div>
                      <div class="designOffsetContainer">
                         <div class="offsetImgText">
-                           Before I could begin designing the gestures, I needed to create them. The author marked the desired ASL signs he wanted me to replicate, but also
+                           Before I could begin illustrating and designing the gestures, I needed to create them. The author marked the desired ASL signs he wanted me to replicate, but also
                            emphasized that if the sign wasn't intuitive in a presentation environment, to consider variations. An overlap I realized while creating the gestures,
-                           was that most people, when they present, actually use the <i>same</i> hand movements, or at the very least, similar variations. I wanted to evenly incorporate the
+                           was that most people, when they present actually use the <i>same</i> hand movements - or at the very least, similar variations. I wanted to evenly incorporate the
                            idiosyncratic movement that came with ASL while also maintaining the generality of "regular hand waving".
                            <br>
                            <br>

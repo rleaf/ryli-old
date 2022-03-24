@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-   <backdrop />
+   <!-- <backdrop /> -->
       <div id="textContainerHeader">
       </div>
          <div id="curriculumStructure">
@@ -10,7 +10,7 @@
                   <p style="font-size: 18px; margin: 0;">Total References: {{postList.length}}</p>
                </div>
                <p>
-                  <i style="font-size: 14px;">Keeping notes</i>
+                  <i style="font-size: 14px;">The most important section...</i>
                </p>
                   <input type="text" v-model="search" placeholder="Search..."/>
             </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import backdrop from '../components/backdrop.vue'
+// // import backdrop from '../components/backdrop.vue'
 import threeScene from '../assets/js/threeScene.js'
 import Post from '../assets/js/glossaryStruc.js'
 import g from '../assets/json/glossary.json'
@@ -46,13 +46,13 @@ import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-python'
 import 'prismjs/themes/prism-nord.css'
 import gsap from 'gsap'
-const backpropImg = require('../assets/backprop2.png')
+// const backpropImg = require('../assets/backprop2.png')
 
 export default {
    components: {
       'vue-mathjax': VueMathjax,
       PrismEditor,
-      backdrop
+      // backdrop
    },
 
    data() {
@@ -106,14 +106,14 @@ export default {
                undefined,
                g.Cookies.keys
             ),
-            new Post(
-               g.Backprop.title,
-               g.Backprop.body,
-               undefined,
-               undefined,
-               backpropImg,
-               g.Backprop.keys
-            ),
+            // new Post(
+            //    g.Backprop.title,
+            //    g.Backprop.body,
+            //    undefined,
+            //    undefined,
+            //    backpropImg,
+            //    g.Backprop.keys
+            // ),
          ]
       }
    },
@@ -138,13 +138,19 @@ export default {
          return
       } else {
          
-         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         threeScene.destroyMesh()
-         threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         }})
-         setTimeout(() => {
+         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+         //    threeScene.destroyMesh()
+         //    threeScene.scene.add(threeScene.sphere,threeScene.plane)
+         // }})
+         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
             threeScene.destroyHero()
-         }, 1500)
+            threeScene.destroyMesh()
+            // setTimeout(() => {
+            //    threeScene.destroyHero()
+            //    threeScene.destroyMesh()
+            // }, 1500)
+         }})
          // Easier to just use the backdrop component, which I made earlier, instead of tweening.
          // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
          
