@@ -282,7 +282,8 @@ import 'vue-prism-editor/dist/prismeditor.min.css'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
-
+import 'prismjs/components/prism-python'
+import 'prismjs/themes/prism-nord.css'
 
 
 export default {

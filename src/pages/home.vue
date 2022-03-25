@@ -19,7 +19,7 @@
    // import NavBar from '../components/nav.vue'
    import homeIntro from '../components/homeIntro.vue'
    // import threeScene from '../components/threeScene.vue'
-   import threeScene from '../assets/js/threeScene'
+   import threeScene from '../assets/js/threeScene.js'
    import gsap from 'gsap'
 
    export default {
@@ -30,7 +30,7 @@
          // threeScene
       },
       mounted() {
-         threeScene.loadPageScene()
+         // threeScene.loadPageScene()
          gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
       },
    }

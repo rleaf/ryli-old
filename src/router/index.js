@@ -3,31 +3,31 @@ import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 
 import HomePage from '../pages/home.vue'
-import CurriculumVitae from '../pages/curriculum.vue'
-import wipLink from '../pages/wip.vue'
-import contact from '../pages/contact.vue'
+// import CurriculumVitae from '../pages/curriculum.vue'
+// import wipLink from '../pages/wip.vue'
+// import contact from '../pages/contact.vue'
 // import sketches from '../pages/sketches.vue'
-import designLink from '../pages/design.vue'
-import speakLink from '../pages/cms.vue'
-import glossaryLink from '../pages/glossary.vue'
+// import designLink from '../pages/design.vue'
+// import speakLink from '../pages/cms.vue'
+// import glossaryLink from '../pages/glossary.vue'
 
-import portfolioLink from '../pages/portfolioObjects/portfolioObject.vue'
-import expanseLink from '../pages/portfolioObjects/expanseObject.vue'
-import tubeLink from '../pages/portfolioObjects/tubeObject.vue'
-import barnegatLink from '../pages/portfolioObjects/barnegatObject.vue'
-import dropboxLink from '../pages/portfolioObjects/dropboxObject.vue'
-import valiantLink from '../pages/portfolioObjects/valiantObject.vue'
-import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
-import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
-import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
-import signLink from '../pages/portfolioObjects/signObject.vue'
+// import portfolioLink from '../pages/portfolioObjects/portfolioObject.vue'
+// import expanseLink from '../pages/portfolioObjects/expanseObject.vue'
+// import tubeLink from '../pages/portfolioObjects/tubeObject.vue'
+// import barnegatLink from '../pages/portfolioObjects/barnegatObject.vue'
+// import dropboxLink from '../pages/portfolioObjects/dropboxObject.vue'
+// import valiantLink from '../pages/portfolioObjects/valiantObject.vue'
+// import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
+// import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
+// import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
+// import signLink from '../pages/portfolioObjects/signObject.vue'
 // import blogskeletonLink from '../components/blog/skeleton.vue'
-import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
-import knn_cifarLink from '../components/blog/knn_cifar.vue'
-import bn_backpassLink from '../components/blog/bn_backpass.vue'
-import rnnLink from '../components/blog/rnn.vue'
-import bigo from '../components/blog/bigo.vue'
-import cnn from '../components/blog/cnn.vue'
+// import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
+// import knn_cifarLink from '../components/blog/knn_cifar.vue'
+// import bn_backpassLink from '../components/blog/bn_backpass.vue'
+// import rnnLink from '../components/blog/rnn.vue'
+// import bigo from '../components/blog/bigo.vue'
+// import cnn from '../components/blog/cnn.vue'
 
 
 
@@ -45,7 +45,7 @@ Vue.use(VueMeta, {
 
 const routes = [
   {
-    path: '',
+    path: '/',
     name: 'home',
     component: HomePage
   },
@@ -55,17 +55,17 @@ const routes = [
     meta: {
       title: 'About | Ryan Lin'
     },
-    component: CurriculumVitae
+    component: () => import('../pages/curriculum.vue')
   },
   {
     path: '/wip',
     name: 'wip',
-    component: wipLink
+    component: () => import('../pages/wip.vue')
   },
   {
     path: '/contact',
     name: 'contact',
-    component: contact
+    component: () => import('../pages/contact.vue')
   },
   // {
   //   path: '/sketches',
@@ -75,52 +75,52 @@ const routes = [
   {
     path: '/PortfolioTest',
     name: 'PortfolioTest',
-    component: portfolioLink
+    component: () => import('../pages/portfolioObjects/portfolioObject.vue')
   },
   {
     path: '/expanse',
     name: 'expanse',
-    component: expanseLink
+    component: () => import('../pages/portfolioObjects/expanseObject.vue')
   },
   {
     path: '/tube',
     name: 'tube',
-    component: tubeLink
+    component: () => import('../pages/portfolioObjects/tubeObject.vue')
   },
   {
     path: '/barnegat',
     name: 'barnegat',
-    component: barnegatLink
+    component: () => import('../pages/portfolioObjects/barnegatObject.vue')
   },
   {
     path: '/dropbox',
     name: 'dropbox',
-    component: dropboxLink
+    component: () => import('../pages/portfolioObjects/dropboxObject.vue')
   },
   {
     path: '/valiant',
     name: 'valiant',
-    component: valiantLink
+    component: () => import('../pages/portfolioObjects/valiantObject.vue')
   },
   {
     path: '/spotify',
     name: 'spotify',
-    component: spotifyLink
+    component: () => import('../pages/portfolioObjects/spotifyObject.vue')
   },
   {
     path: '/spdmagazine',
     name: 'spdmagazine',
-    component: spdmagazineLink
+    component: () => import('../pages/portfolioObjects/spdmagazineObject.vue')
   },
   {
     path: '/jawsposter',
     name: 'jawsposter',
-    component: jawsLink
+    component: () => import('../pages/portfolioObjects/jawsObject.vue')
   },
   {
     path: '/sign',
     name: 'sign',
-    component: signLink
+    component: () => import('../pages/portfolioObjects/signObject.vue')
   },
   {
     path: '/design',
@@ -128,22 +128,17 @@ const routes = [
     meta: {
       title: 'Design | Ryan Lin'
     },
-    component: designLink
+    component: () => import('../pages/design.vue')
   },
-  // {
-  //   path: '/blogskeleton',
-  //   name: 'blogskeleton',
-  //   component: blogskeletonLink
-  // },
   {
     path: '/blog/quadraticform',
     name: 'quadraticform',
-    component: blogQuadraticFormLink
+    component: () => import('../components/blog/quadraticform.vue')
   },
   {
     path: '/glossary',
     name: 'glossary',
-    component: glossaryLink,
+    component: () => import('../pages/glossary.vue'),
     meta: {
       title: 'Food | Ryan Lin',
     }
@@ -151,7 +146,7 @@ const routes = [
   {
     path: '/blog',
     name: 'blog',
-    component: speakLink,
+    component: () => import('../pages/cms.vue'),
     meta: {
       title: 'Blog | Ryan Lin',
     },
@@ -169,30 +164,27 @@ const routes = [
   {
     path: '/blog/knn',
     name: 'knn',
-    // meta: {
-    //   title: 'Implementing K Nearest Neighbors on CIFAR-10'
-    // },
-    component: knn_cifarLink
+    component: () => import('../components/blog/knn_cifar.vue')
   },
   {
     path: '/blog/bnbackpass',
     name: 'bnbackpass',
-    component: bn_backpassLink
+    component: () => import('../components/blog/bn_backpass.vue')
   },
   {
     path: '/blog/rnn',
     name: 'rnn',
-    component: rnnLink
+    component: () => import('../components/blog/rnn.vue')
   }, 
   {
     path: '/blog/bigo',
     name: 'bigo',
-    component: bigo
+    component: () => import('../components/blog/bigo.vue')
   },
   {
     path: '/blog/cnn',
     name: 'cnn',
-    component: cnn
+    component: () => import('../components/blog/cnn.vue')
   },
   
   {
