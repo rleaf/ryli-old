@@ -1,6 +1,6 @@
 <template>
    <div id="imgcontainer">
-      <router-link id="imgrouter" to="/dropbox">
+      <router-link id="imgrouter" :to="{name: 'dropbox'}">
          <div class="imagehover">
             <p>Dropbox Redesign</p>
             <div id="subtext">

@@ -1,6 +1,6 @@
 <template>
    <div id="imgcontainer">
-      <router-link id="imgrouter" to="/spdmagazine">
+      <router-link id="imgrouter" :to="{name: 'spdmagazine'}">
          <div class="imagehover">
             <p>Magazine Spread</p>
             <div id="subtext">

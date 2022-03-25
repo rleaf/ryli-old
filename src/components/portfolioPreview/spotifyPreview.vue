@@ -1,6 +1,6 @@
 <template>
    <div id="imgcontainer">
-      <router-link id="imgrouter" to="/spotify">
+      <router-link id="imgrouter" :to="{name: 'spotify'}">
          <div class="imagehover">
             <p>Spotify</p>
             <div id="subtext">

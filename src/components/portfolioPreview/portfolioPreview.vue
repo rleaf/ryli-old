@@ -1,6 +1,6 @@
 <template>
    <div id="imgcontainer">
-      <router-link id="imgrouter" to="/portfoliotest">
+      <router-link id="imgrouter" :to="{name: 'portfoliotest'}">
          <div @mouseover="cLog" class="imagehover">
             <p>The quick brown fox</p>
             <div id="subtext">

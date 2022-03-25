@@ -67,61 +67,16 @@ const routes = [
     name: 'contact',
     component: () => import('../pages/contact.vue')
   },
-  // {
-  //   path: '/sketches',
-  //   name: 'sketches',
-  //   component: sketches
-  // },
   {
-    path: '/PortfolioTest',
-    name: 'PortfolioTest',
-    component: () => import('../pages/portfolioObjects/portfolioObject.vue')
+    path: '/glossary',
+    name: 'glossary',
+    component: () => import('../pages/glossary.vue'),
+    meta: {
+      title: 'Food | Ryan Lin',
+    }
   },
-  {
-    path: '/expanse',
-    name: 'expanse',
-    component: () => import('../pages/portfolioObjects/expanseObject.vue')
-  },
-  {
-    path: '/tube',
-    name: 'tube',
-    component: () => import('../pages/portfolioObjects/tubeObject.vue')
-  },
-  {
-    path: '/barnegat',
-    name: 'barnegat',
-    component: () => import('../pages/portfolioObjects/barnegatObject.vue')
-  },
-  {
-    path: '/dropbox',
-    name: 'dropbox',
-    component: () => import('../pages/portfolioObjects/dropboxObject.vue')
-  },
-  {
-    path: '/valiant',
-    name: 'valiant',
-    component: () => import('../pages/portfolioObjects/valiantObject.vue')
-  },
-  {
-    path: '/spotify',
-    name: 'spotify',
-    component: () => import('../pages/portfolioObjects/spotifyObject.vue')
-  },
-  {
-    path: '/spdmagazine',
-    name: 'spdmagazine',
-    component: () => import('../pages/portfolioObjects/spdmagazineObject.vue')
-  },
-  {
-    path: '/jawsposter',
-    name: 'jawsposter',
-    component: () => import('../pages/portfolioObjects/jawsObject.vue')
-  },
-  {
-    path: '/sign',
-    name: 'sign',
-    component: () => import('../pages/portfolioObjects/signObject.vue')
-  },
+
+  // DESIGN SECTION
   {
     path: '/design',
     name: 'design',
@@ -131,18 +86,58 @@ const routes = [
     component: () => import('../pages/design.vue')
   },
   {
-    path: '/blog/quadraticform',
-    name: 'quadraticform',
-    component: () => import('../components/blog/quadraticform.vue')
+    path: '/PortfolioTest',
+    name: 'PortfolioTest',
+    component: () => import('../pages/portfolioObjects/portfolioObject.vue')
   },
   {
-    path: '/glossary',
-    name: 'glossary',
-    component: () => import('../pages/glossary.vue'),
-    meta: {
-      title: 'Food | Ryan Lin',
-    }
+    path: '/design/expanse',
+    name: 'expanse',
+    component: () => import('../pages/portfolioObjects/expanseObject.vue')
   },
+  {
+    path: '/tube',
+    name: 'tube',
+    component: () => import('../pages/portfolioObjects/tubeObject.vue')
+  },
+  {
+    path: '/design/barnegat',
+    name: 'barnegat',
+    component: () => import('../pages/portfolioObjects/barnegatObject.vue')
+  },
+  {
+    path: '/design/dropbox',
+    name: 'dropbox',
+    component: () => import('../pages/portfolioObjects/dropboxObject.vue')
+  },
+  {
+    path: '/design/valiant',
+    name: 'valiant',
+    component: () => import('../pages/portfolioObjects/valiantObject.vue')
+  },
+  {
+    path: '/design/spotify',
+    name: 'spotify',
+    component: () => import('../pages/portfolioObjects/spotifyObject.vue')
+  },
+  {
+    path: '/design/spdmagazine',
+    name: 'spdmagazine',
+    component: () => import('../pages/portfolioObjects/spdmagazineObject.vue')
+  },
+  {
+    path: '/jawsposter',
+    name: 'jawsposter',
+    component: () => import('../pages/portfolioObjects/jawsObject.vue')
+  },
+  {
+    path: '/design/sign',
+    name: 'sign',
+    component: () => import('../pages/portfolioObjects/signObject.vue')
+  },
+
+
+  // BLOG SECTION
   {
     path: '/blog',
     name: 'blog',
@@ -160,6 +155,11 @@ const routes = [
     //     component: knn_cifarLink
     //   },
     //   ]
+  },
+  {
+    path: '/blog/quadraticform',
+    name: 'quadraticform',
+    component: () => import('../components/blog/quadraticform.vue')
   },
   {
     path: '/blog/knn',
@@ -186,21 +186,10 @@ const routes = [
     name: 'cnn',
     component: () => import('../components/blog/cnn.vue')
   },
-  
   {
     path: '/*',
     component: 404
-  }
-
-  
-            // {
-            //   path: '/about',
-            //   name: 'about',
-            //   // route level code-splitting
-            //   // this generates a separate chunk (about.[hash].js) for this route
-            //   // which is lazy-loaded when the route is visited.
-            //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-            // },
+  } 
 ]
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
    <div id="imgcontainer">
-      <router-link id="imgrouter" to="/sign">
+      <router-link id="imgrouter" :to="{name: 'sign'}">
          <div class="imagehover">
             <p>Hand Gestures</p>
             <div id="subtext">
