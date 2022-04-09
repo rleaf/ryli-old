@@ -95,11 +95,11 @@ const routes = [
     name: 'expanse',
     component: () => import('../pages/portfolioObjects/expanseObject.vue')
   },
-  {
-    path: '/tube',
-    name: 'tube',
-    component: () => import('../pages/portfolioObjects/tubeObject.vue')
-  },
+  // {
+  //   path: '/tube',
+  //   name: 'tube',
+  //   component: () => import('../pages/portfolioObjects/tubeObject.vue')
+  // },
   {
     path: '/design/barnegat',
     name: 'barnegat',
@@ -125,11 +125,11 @@ const routes = [
     name: 'spdmagazine',
     component: () => import('../pages/portfolioObjects/spdmagazineObject.vue')
   },
-  {
-    path: '/jawsposter',
-    name: 'jawsposter',
-    component: () => import('../pages/portfolioObjects/jawsObject.vue')
-  },
+  // {
+  //   path: '/jawsposter',
+  //   name: 'jawsposter',
+  //   component: () => import('../pages/portfolioObjects/jawsObject.vue')
+  // },
   {
     path: '/design/sign',
     name: 'sign',
@@ -186,10 +186,69 @@ const routes = [
     name: 'cnn',
     component: () => import('../components/blog/cnn.vue')
   },
+  
+  // REDIRECT HANDLING (temporary?)
+
+  {
+    path: '/expanse',
+    redirect: {name: 'expanse'}
+  },
+  {
+    path: '/barnegat',
+    redirect: {name: 'barnegat'}
+  },
+  {
+    path: '/dropbox',
+    redirect: {name: 'dropbox'}
+  },
+  {
+    path: '/valiant',
+    redirect: {name: 'valiant'}
+  },
+  {
+    path: '/spotify',
+    redirect: {name: 'spotify'}
+  },
+  {
+    path: '/spdmagazine',
+    redirect: {name: 'spdmagazine'}
+  },
+  {
+    path: '/sign',
+    redirect: {name: 'sign'}
+  },
+
+  {
+    path: '/quadraticform',
+    redirect: {name: 'quadraticform'}
+  },
+  {
+    path: '/knn',
+    redirect: {name: 'knn'}
+  },
+  {
+    path: '/bnbackpass',
+    redirect: {name: 'bnbackpass'}
+  },
+  {
+    path: '/rnn',
+    redirect: {name: 'rnn'}
+  },
+  {
+    path: '/bigo',
+    redirect: {name: 'bigo'}
+  },
+  {
+    path: '/cnn',
+    redirect: {name: 'cnn'}
+  },
+
   {
     path: '/*',
-    component: 404
-  } 
+    // redirect: {name: 'home'}
+    component: () => import('../components/404.vue')
+  },
+
 ]
 
 const router = new VueRouter({
