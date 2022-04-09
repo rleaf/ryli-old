@@ -176,9 +176,13 @@
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
+
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css'
 import { highlight, languages } from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-python'
+import 'prismjs/themes/prism-nord.css'
+
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
 
