@@ -12,21 +12,25 @@
             </div>
             
             <p>
-               <!-- <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">kNN</a> classification is (my definition) an algorithm that classifies inputs to their "k" majoritarily closest neighbors. -->
-               The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. I'm going to say this again at the end, but feel free to get in touch with me if you have alternative
-               ways of representing some of the code, regardless if it's better or worse. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
+               <i>(2/18/22) Edit: Cleaned up some wording for clarity.</i>
+               <br>
+               <br>
+               The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
                498/598 Deep Learning for Computer Vision</a>.
+               <br>
                <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">CIFAR-10</a> is a well known dataset composed of 60,000
                colored 32x32 images. <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">kNN</a> classification is an algorithm to classify inputs by comparing their similarities to
                a training set accompanied with labels. There is the very similar <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm#k-NN_regression" target="_blank">kNN Regression</a>, which employs the
-               same idea, just different task. Throughout this explanation, I'm going to be sprinkling in print statements in code blocks represented with triple angle brackets: <i>>>></i>. The next section <i>"What is kNN / How does kNN work"</i>
-               assumes the reader has no prior understanding of kNN. The sections following, <i>"Loading CIFAR"</i> and beyond, assumes the reader to have basic understanding of Python, PyTorch, and Linear Algebra. If you aren't familiar with
+               same idea, just different task. The next section <a href="#whatIsKNN"><i>"What is kNN / How does kNN work"</i></a>
+               assumes the reader has no prior understanding of kNN. The sections following, <a href="#loadingCIFAR"><i>"Loading CIFAR"</i></a> and beyond, assumes the reader to have basic understanding of Python, PyTorch, and Linear Algebra. If you aren't familiar with
                these concepts but have read the <i>"What is kNN / How does kNN work"</i> section, then you may still be good. I will toss in some explanations in <span style="color: #81A1C1;">blue</span> for important things.
             </p>
-            <div id="blogSubHeader">
-               <!-- kNN Step 1: Qualify and Quantify the similarities -->
-               What is kNN / How does kNN work
-            </div>
+            <section id="whatIsKNN">
+               <div id="blogSubHeader">
+                  <!-- kNN Step 1: Qualify and Quantify the similarities -->
+                  What is kNN / How does kNN work
+               </div>
+            </section>
             <p>
                I broadly defined kNN in the last paragraph. This section is going to be dedicated to explaining further what kNN classification does, and how it works. I'm going to be using images as an example
                dataset to aid my explanation of kNN. I will not be defining concepts such as cross-validation for optimal <i>k</i> and means of optimizing for more efficient code here. When moving on to the next section where we will use kNN on the CIFAR-10 dataset,
@@ -35,20 +39,21 @@
             </p>
             <p>
                The goal is <i>classification</i>. We have a dataset, images in our case, and unfortunately a portion of the images are <i>unlabeled</i>, they do not have an accompanying label which classifies them.
-               kNN is a method to "intelligibly" label the unclassified by computing similarity with the labeled images. I'm going to use Euclidean distance to quantify the similarities, however there are a handful
+               kNN is a method to "intelligibly" label the unclassified by computing similarity with the labeled images. Euclidean distance is a popular metric to quantify the similarities, however there are a handful
                of other measures that have their own idiosyncrasies (Manhattan...Minkowsi). In the case of images, kNN computes the Euclidean distance by iterating over the pixel values of the images.
                This means that the first input image (unlabeled) is compared to every image in the labeled dataset by their pixel values. Once the first image iterates through the entire training set, the algorithm
                then moves onto the next testing (unlabeled) image to do it all again. The most similar labeled image is synonymous to having the lowest Euclidean distance.
                <!-- Afterwards the unlabeled images will be prescribed the same classification as their k nearest neighbors, k being an integer  -->
             </p>
-            <video id="img500" autoplay loop :src="knn_train" style="padding-bottom: 5px !important;"></video>
-            <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
+            <video id="img500" autoplay loop muted :src="knn_train" style="padding-bottom: 5px !important;"></video>
+            <span style="font-size:14px; padding-top: -10px;"><i>Visualization of computing the pixel values of a single <i>test</i> image (left) against every <i>train</i> image (right). <br>
+            Right click and toggle 'show controls' to stop the animation.</i></span>
             <p>
                Here's the formula for Euclidean distance: <vue-mathjax :formula='euclidean'></vue-mathjax>. Aside from the code, it is probably the only math I'm going to show. The animation above is my attempt at visualizing
                kNN where a test image iterates through the training images. Here, kNN is operating on a colored (RGB) dataset of 5x5 (height x width) dimensions - so in total 75 pixels per image (3x5x5).
                To compute the Eucliden distance (find similarity) between one test image and one training image, the squared difference in each corresponding pixel with respect to location in both images are taken and then every value
                is then summed and finally taken the square root of. To reiterate, we are taking 75 (total pixel count) differences, squaring each one, summing all that together, and then finally square rooting everything - for each test image
-               for each training image. Then as I said before, the test image proceeds to the next training image. Once the test image completes finding it's Euclidean distance with every image in the
+               against every training image. Then as I said before, the test image proceeds to the next training image. Once the test image completes finding it's Euclidean distance with every image in the
                training set, it steps aside for the proceeding test image to repeat the cycle. The distances, which are scalar values, are usually stored in a matrix/tensor.
                It's worth mentioning, in the animation I do not show the 5x5 green and blue pixel channels being iterated over
                like I did for the red channel; instead the green and blue layers are simplified with a "single blink".
@@ -56,8 +61,8 @@
                <br>
                We are almost understanding how kNN works. We understand how to qualify and quantify similarities between every test and training image and now want to classify those test images based off similarity to the training images.
                The <i>k</i> in kNN is a integer hyperparameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
-               If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors of the same class. Some considerations when
-               picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
+               If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors (lowest Euclidean distance) of the same class.
+               Some considerations when picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
                not picking multiples of the number of classes. Below is a visualization for different values of k. <a style="color: #81A1C1;" href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)" target="_blank">Hyperparameter
                definition</a>.
             </p>
@@ -65,9 +70,11 @@
             <img id="img1300" src="../../assets/blog/knn.png" alt="">
                <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
-            <div id="blogSubHeader">
-               Loading CIFAR
-            </div>
+            <section id="loadingCIFAR">
+               <div id="blogSubHeader">
+                  Loading CIFAR
+               </div>
+            </section>
             <p>
                Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>, <code style="background: #242424; border-radius: 5px;">x_test</code>,
                <code style="background: #242424; border-radius: 5px;">y_train</code>, and <code style="background: #242424; border-radius: 5px;">y_test</code>. They are declared simply with:
@@ -75,8 +82,7 @@
             <prism-editor class="codeblock" v-model="declaration" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Below is the <code style="background: #242424; border-radius: 5px;">cifar10()</code> definition. It isn't necessary to understand kNN's but I thought it was worth adding for the curious.
-               PyTorch ameliorates importing a handful of popular datasets and networks. By calling <code style="background: #242424; border-radius: 5px;">cifar10()</code>, we're populating tensors with the...CIFAR-10 dataset (shocker).
-               You can see it in the above print statements: <code style="background: #242424; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor (aka a rank 4 tensor) composed of 50,000 3x32x32 training images,
+               You can see it above in the comments: <code style="background: #242424; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor (aka a rank 4 tensor) composed of 50,000 3x32x32 training images,
                <code style="background: #242424; border-radius: 5px;">y_train</code> returns a 1 dimensional tensor composed of the labels for those same 50,000 images, <code style="background: #242424; border-radius: 5px;">x_test</code>
                returns a 10,000 testing images (of same dimensionality as x_train), and lastly <code style="background: #242424; border-radius: 5px;">y_test</code> returns the labels for those 10,000 images (of same dimensionality as x_test).
                <span style="color: #81A1C1;">A tensor can be thought of as a generalization to a scalar (0D tensor), vector (1D tensor), matrix (2D tensor), etc...</span>
@@ -97,21 +103,22 @@
             </div>
             <p>
                Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I did what's called subsampling. Subsampling takes a
-               smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. We subsample by looking back at the definition of
-               <code style="background: #242424; border-radius: 5px;">cifar10()</code>, there are two keyword aruments present in it's declaration <code style="background: #242424; border-radius: 5px;">num_train</code> and
+               smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. We subsample simply with two arguments when calling
+               <code style="background: #242424; border-radius: 5px;">cifar10()</code>: <code style="background: #242424; border-radius: 5px;">num_train</code> and
                <code style="background: #242424; border-radius: 5px;">num_test</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
                algorithm.
             </p>
             <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="blogSubHeader">
-               The actual part with kNN: Finding the Euclidean distance
+               kNN: Finding the Euclidean distance
             </div>
             <br>
             <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
                <code style="background: #242424; border-radius: 5px;">for</code> loops to populate
                our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> where each loop will iterate over an axis to populate every element. This method is not computationally efficient as it does not make use
-               of Linear Algebra operations and broadcasting. However, where it lacks in efficiency, it makes up for in intuition from a pedogogical standpoint. Because of this, I'm going over it first.
-               <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
+               of Linear Algebra operations and broadcasting. However, I think it's helpful from a pedagogical standpoint. A more efficient representation, <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code>
+               is shown in the next code block.
+               <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of higher dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
             </p>
             <prism-editor class="codeblock" v-model="nested_for_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -148,7 +155,7 @@
                faster than the two loop. This probably provides better intuition behind how powerful broadcasting can be.
             </p>
             <div id="blogSubHeader">
-               The actual part of kNN: Classifying our test images
+               kNN: Classifying our test images
             </div>
             <p>
                Our tensor of goodies is complete. Within each column of <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code> is the Euclidean distance of every training image with respect to a test image. We'd now like
@@ -162,7 +169,7 @@
                <code style="background: #242424; border-radius: 5px;">y_test_pred[i]</code> is then assigned the most frequent occuring label present in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. Once a column
                calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next.
             </p>
-            <video id="img800" autoplay loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
+            <video id="img800" autoplay muted loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
             <p>
                We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our hyperparameter k set to 5, our kNN results in a 27.8%
