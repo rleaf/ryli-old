@@ -186,6 +186,11 @@ const routes = [
     name: 'cnn',
     component: () => import('../components/blog/cnn.vue')
   },
+  {
+    path: '/blog/transformer',
+    name: 'transformer',
+    component: () => import('../components/blog/transformer.vue')
+  },
   
   // REDIRECT HANDLING (temporary?)
 

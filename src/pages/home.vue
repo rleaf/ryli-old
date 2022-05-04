@@ -553,7 +553,7 @@ body, html {
    position: relative;
    font-family: 'Lora', serif;
    color: var(--offWhite);
-   font-size: 16px;
+   font-size: 15px;
    line-height: 140%;
    width: 700px;
    padding: 25px 5vw;
