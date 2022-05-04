@@ -3,14 +3,14 @@
      Contents
      <ul>
          <li>
-           <a href="#toads">toad</a>
+           <a href="#toads">{{ one }}</a>
          </li>
          <li>
-           <a href="#toads">toad</a>
+           <a href="#toads">{{ two }}</a>
          </li>
         <ul>
             <li>
-            <a href="#toads">toad</a>
+            <a href="#toads">{{ three }}</a>
             </li>
             <li>
             <a href="#toads">toad</a>
@@ -28,7 +28,19 @@
 
 <script>
 export default {
-
+//  data() {
+//     return {
+//       one: String
+//     }
+//  },
+   // props: ['one', 'two', 'three']
+   props: {
+      one: String,
+      two: String,
+      three: String,
+      four: String,
+      five: String
+   },
 }
 </script>
 

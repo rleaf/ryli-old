@@ -12,7 +12,7 @@
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
-            <blogtoc />
+            <blogtoc v-bind="toc"/>
             <vue-mathjax :formula='formula'></vue-mathjax>
             <vue-mathjax :formula='jacobian'></vue-mathjax>
             <!-- <math-jax :latex="formula" />
@@ -68,13 +68,16 @@ export default {
    },
    data() {
       return {
-         blogs: [],
+         toc: {
+            one: 'blueberries',
+            two: 'waffles',
+            three: 'strawberries'
+         },
          error: null,
          formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
          jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$'
       }
    },
-
    mounted () {
 
       window.MathJax.Hub.Config({
