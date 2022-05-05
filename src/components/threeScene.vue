@@ -1,7 +1,7 @@
 <template>
    <keep-alive>
       <transition name="fade">
-         <canvas class="threeScene"></canvas>
+         <canvas v-if="blogRender" class="threeScene"></canvas>
       </transition>
    </keep-alive>
 </template>
@@ -14,10 +14,26 @@ export default {
    name: 'threeScene',
    components: {
       
-      },
+   },
+   data() {
+      return {
+         blogRender: false
+      }
+   },
    mounted() {
-      threeScene.init()
-      // new Experience()
+      // Break scene if path = /blog/
+      let blogPath = this.$route.path.slice(0,6)
+      if (blogPath != '/blog/') {
+         this.blogRender = true
+         setTimeout(() => {
+            threeScene.init()
+         })
+      }
+      // Reference...
+      // console.log(this.$route.name)
+      // console.log('toad', this.$route.path)
+      // console.log('asdfasdf', asdf)
+      // console.log('toad', this.$router.currentRoute)
    }
 }
 
