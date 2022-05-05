@@ -12,6 +12,22 @@
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#bigo_bigointroduction">Introduction</a></li>
+                  <li><a href="#bigo_definitions">The Definitions</a></li>
+                  <li>Examples</li>
+                  <ul>
+                     <li><a href="#bigo_functions">Implementing on Functions</a></li>
+                     <li><a href="#bigo_algorithms">Implementing on Algorithms</a></li>
+                  </ul>
+                  <li><a href="#bigo_elephant">Analysis & Addressing the Elephant</a></li>
+                  <li><a href="#bigo_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <div id="bigo_bigointroduction"></div>
+            <div id="blogSubHeader">Introduction</div>
             <p>
                <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">"Big Oh"</a> notation provides a way to analyze an algorithm's runtime as the input for that algorithm increases.
                I refer to this relationship, an algorithm's runtime to the input size of said algorithm, when I talk about the <i>efficiency</i> of the algorithm. Fueled on pure intuition, it is natural to presume an algorithm
@@ -32,6 +48,7 @@
                I say this not to dismiss questions that ask specifically about a function's value at any point in it's domain, just to provide pedagogical "direction" for understanding "Big Oh". Asking for the values of an algorithm when fed an arbitrarily sized input is certainly valuable.
                For example if there are two competing algorithms with similar efficiency, an enticing question could be "at what point does algorithm <i>x</i> become more efficient than algorithm <i>y</i>?"
             </p>
+            <div id="bigo_definitions"></div>
             <div id="blogSubHeader">
                The Definitions
             </div>
@@ -71,6 +88,7 @@
                in Skiena's book (or maybe I missed it), but it should seem apparent that <vue-mathjax :formula="`$c > 0$`"></vue-mathjax> otherwise we're subject to some funk. This is stated in
                <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">Introduction to Algorithms, 3rd Ed</a> on p. 50.
             </p>
+            <div id="bigo_functions"></div>
             <div id="blogSubHeader">
                The Implementation on Functions
             </div>
@@ -152,6 +170,7 @@
                One term I find useful is that when <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax> we can say that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> is a <i>tight bound</i> for
                <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, indicating it is sandwiched between an upper and lower bound.
             </p>
+            <div id="bigo_algorithms"></div>
             <div id="blogSubHeader">
                The Implementation on Algorithms
             </div>
@@ -234,6 +253,7 @@
                a <i>worst case scenario</i>. Food for thought though, what if input <i>n</i> is already perfectly sorted? If <i>n</i> were perfectly sorted from smallest to largest, then the while loop would never
                run, thus giving a lower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
             </p>
+            <div id="bigo_elephant"></div>
             <div id="blogSubHeader">
                Analysis & Addressing the Elephant
             </div>
@@ -253,6 +273,7 @@
                Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vue-mathjax :formula='`$O(lg(n))$`'></vue-mathjax>? What an insanely efficient runtime. I talk about why I omit them below,
                but the elephant is simply that I do not explain them at all here.
             </p>
+            <div id="bigo_thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -418,7 +439,9 @@ export default {
 
 .bgColor {
    background-color: #1d1d1d;
-   border-radius: 10px;
+   border-radius: 5px;
+   border: 1px solid;
+   border-color: var(--offwhite);
 }
 
 #curriculumBody {
@@ -431,7 +454,7 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -446,28 +469,56 @@ a {
    font-style: oblique;
 }
 
-h2 {
-   font-size: 16px;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
 }
-
 
 @media (max-width: 1255px) {
    p {
       padding: 2vw;
    }
 }
+
 @media (max-width: 735px) {
    p {
       padding: 0;
    }
 }
+
+h2 {
+   color: var(--white);
+   font-size: 16px;
+   font-style: italic;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
+}
+
 </style>

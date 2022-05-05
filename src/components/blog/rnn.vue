@@ -10,8 +10,24 @@
                   <p style="font-size: 18px; padding: 0 !important; ">11 &#8226; 6 &#8226; 2021</p>
                </div>
             </div>
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#rnn_rnnintroduction">Introduction</a></li>
+                  <li><a href="#rnn_sequenceprocessing">Sequence Processing</a></li>
+                  <li><a href="#rnn_forward">Forward Pass Transformations</a></li>
+                  <ul>
+                     <li><a href="#rnn_forwardhidden">Between hidden steps</a></li>
+                     <li><a href="#rnn_forwardhidpred">Between hidden steps & prediction</a></li>
+                  </ul>
+                  <li><a href="#rnn_onestepback">One Step Backwards</a></li>
+                  <li><a href="#rnn_fullback">All the way Back</a></li>
+                  <li><a href="#rnn_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <div id="rnn_rnnintroduction"></div>
             <div id="blogSubHeader">
-               Recurrent Neural Networks
+               Recurrent Neural Networks: Introduction
             </div>
             <p>
                Just as how a CNN's specialty is processing grid-like data such as images, an RNN specializes in procesing <i>sequential data</i> - data that can be discretized as steps in time - often referred to,
@@ -31,8 +47,9 @@
                of an RNN. The initial hidden state is either learnt (the output of  network <i>x</i> can be used to to populate <vue-mathjax :formula='`$h_0$`'></vue-mathjax> in RNN <i>y</i> ) or set to 0.
                <u>Five:</u> the total loss is a sum over every individual loss.
             </p>
+            <div id="rnn_sequenceprocessing"></div>
             <div id="blogSubHeader">
-               Three: Sequence Processing
+               Sequence Processing
             </div>
             <p>
                The points above are ranked somewhat crudely by importance. I currently consider understanding the transformations between states to be the most important, but I will start with the third point that discusses
@@ -46,8 +63,9 @@
             <span style="font-size:14px; padding-top: -10px;"><b>Examples:</b> <i>one to one</i>: Image classification, <i>one to many</i>: Image captioning, <i>many to one</i>: Video classification, <i>many to many</i>:
             Machine translation <br> Captioning refers to a sequence of symbols. For image captioning our output would be a sequence of, ideally coherent, words describing what's happening in the image.
             Another example of a caption could be a sequence of letters, which at the end, would produce a word.</span>
+            <div id="rnn_forward"></div>
             <div id="blogSubHeader">
-               One: Forward Pass Transformations
+              Forward Pass Transformations
             </div>
             <p>
                As mentioned above, a characteristic to RNN's is that weights are shared temporally. A simple Vanilla RNN can have three weight tensors: <vue-mathjax :formula='`$W_{hh}$`'></vue-mathjax>, <vue-mathjax :formula='`$W_{xh}$`'></vue-mathjax>,
@@ -56,6 +74,8 @@
                It helps me to think of the index of tensors as <vue-mathjax :formula='`$W_{(from)\\;(to)}$`'></vue-mathjax>
                to visualize where that particular tensor belongs. Note that there are many bells and whistles you can add, generally to increase efficacy, which will also change the amount of parameters present - an
                example being attention. Excluding the loss function, the two transformations shown below are fundamental to a Vanilla RNN. 
+            </p>
+            <div id="rnn_forwardhidden"></div>
             <p>
                <b>One:</b>
                <br>
@@ -64,6 +84,7 @@
             <vue-mathjax :formula='rnnStep'></vue-mathjax>
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph.png" alt="">
             <prism-editor class="codeblock" v-model="toad" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="rnn_forwardhidpred"></div>
             <p>
                <b>Two:</b>
                <br>
@@ -72,8 +93,9 @@
             <vue-mathjax :formula='yhatTransform'></vue-mathjax>
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph2.png" alt="">
             <prism-editor class="codeblock" v-model="toad2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="rnn_onestepback"></div>
             <div id="blogSubHeader">
-               Two: One Step Backwards
+               One Step Backwards
             </div>
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/combinedgraphs.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Combined picture of both computational graphs</i></span>
@@ -126,6 +148,10 @@
                <br>
             </p>
             <prism-editor class="codeblock" v-model="toad3" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="rnn_fullback"></div>
+            <div id="blogSubHeader">
+               Full Backpropagation
+            </div>
             <p>
                We can now implement backpropagation by repeating this process to reach the initial nodes. (Remember above where I talked about the idiosyncrasies in computing gradients between sequence styles? 
                This second concern is an example of one).
@@ -154,6 +180,7 @@
                Here it is in code:
             </p>
             <prism-editor class="codeblock" v-model="toad4" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="rnn_thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -354,6 +381,13 @@ export default {
 </script>
 <style scoped>
 
+.bgColor {
+   background-color: #1d1d1d;
+   border-radius: 5px;
+   border: 1px solid;
+   border-color: var(--offwhite);
+}
+
 #curriculumBody {
    width: auto !important;
    display: flex;
@@ -364,7 +398,7 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -379,14 +413,8 @@ a {
    font-style: oblique;
 }
 
-h2 {
-   font-size: 16px;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -402,6 +430,39 @@ h2 {
    p {
       padding: 0;
    }
+}
+
+h2 {
+   color: var(--white);
+   font-size: 16px;
+   font-style: italic;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
 }
 
 </style>

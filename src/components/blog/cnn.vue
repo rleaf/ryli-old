@@ -12,37 +12,49 @@
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
-            <p>
-               Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
-               in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
-               confuses. I focus on discussing the <i>forward</i> and <i>backward</i> transformations between layers in a CNN.
-               I may add transformations in the future, so everything will be listed in the <a href="#deconstructing">deconstructing</a> section just below. 
-            </p>
-            <p>
-               When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
-               be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
-            </p>
-            <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
-            <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
-            <section id="deconstructing">
-               <div id="blogSubHeader">
-                  Deconstructing
-               </div>
-            </section>
-            <p>
-               As stated above, I'm going to break down and talk about a CNN by transformations. In each of these sections you'll find <i>forward</i> and <i>backward</i> subsections. All sections are
-               accompanied with Python code.
-               As of 1/12/22 (mm/dd/yy), that means I will discuss:
-               <br>- <a href="#convolution">Convolution</a>
-               <br>- <a href="#activation">Activation</a> (with ReLU as example)
-               <br>- <a href="#pooling">Pooling</a> (with Max Pooling as example)
-            </p>
-            <section id="convolution">
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#cnn_cnnintroduction">Introduction</a></li>
+                  <li>Convolutional Layer</li>
+                  <ul>
+                     <li><a href="#cnn_convolutionforward">Forward</a></li>
+                     <li><a href="#cnn_convolutionbackward">Backward</a></li>
+                  </ul>
+                  <li>Activation (ReLU)</li>
+                  <ul>
+                     <li><a href="#cnn_activationforward">Forward</a></li>
+                     <li><a href="#cnn_activationbackward">Backward</a></li>
+                  </ul>
+                  <li>Pooling (Max Pooling)</li>
+                  <ul>
+                     <li><a href="#cnn_poolingforward">Forward</a></li>
+                     <li><a href="#cnn_poolingbackward">Backward</a></li>
+                  </ul>
+                  <li><a href="#cnn_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <div id="cnn_cnnintroduction"></div>
+            <div id="blogSubHeader">
+                  Introduction
+            </div>
+               <p>
+                  Convolutional neural networks are an architecture of neural nets designed to process grid-like data such as images. They're a nice architecture to move onto
+                  in the journey of learning neural nets because they help show the innate generalizing capabilites of networks, but not, in my opinion, too much such that it easily
+                  confuses. Here, I focus on discussing the <i>forward</i> and <i>backward</i> transformations between layers in a CNN.
+                  I may add transformations in the future, so everything will be listed in the table of contents provided above.
+               </p>
+               <p>
+                  When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
+                  be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
+               </p>
+               <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
+               <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
+               <div id="cnn_convolutionforward"></div>
                <div id="blogSubHeader">
                   Convolutional Layer
                </div>
-            </section>
-               <h2>Forward</h2>
+                  <h2>Forward</h2>
                <p>
                   CNNs, similar to MLPs operate under the same archetype of <vue-mathjax :formula='`$w^\\top x+b$`'></vue-mathjax>, except are designed to <i>preserve spatial
                   structure</i>. Because there is no dimension reduction, to deal with these high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i>
@@ -63,7 +75,7 @@
                   <br>
                   <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel.
                </p>
-               <video id="img500" autoplay loop :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
+               <video id="img500" autoplay loop muted :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Simple animation showing a 3x2x2 kernel interacting with a 3x5x5 input. Stride is 1 and there is no padding. <br>
                Right click on animation to toggle controls or open in a new tab to enlarge.</i></span>
                <p>
@@ -73,7 +85,8 @@
                <prism-editor class="codeblock" v-model="cnnForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <br>
                <br>
-               <h2>Backward</h2>
+               <div id="cnn_convolutionbackward"></div>
+                  <h2>Backward</h2>
                <p>
                   Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. Looking at the equation, it is very easy to find the desired local gradients
                   and then simply multiply them by the upstream:
@@ -103,11 +116,10 @@
                <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
 
-            <section id="activation">
+               <div id="cnn_activationforward"></div>
                <div id="blogSubHeader">
                   Activation
                </div>
-            </section>
                <h2>Forward</h2>
                <p>
                   The forward pass through activation layers operate element-wise. ReLU is shown below and iterates through each neuron to check if it is greater than 0. I discuss the forward pass for other
@@ -115,6 +127,7 @@
                   <a href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity" target="_blank">activation classes</a>.
                </p>
                <prism-editor class="codeblock" v-model="reluForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <div id="cnn_activationbackward"></div>
                <h2>Backward</h2>
                <p>
                   Backprop through this layer funtions similarly. A convenience of ReLU is that all the local gradients will equal to 1, so this transformation behaves like a mask that only allows the
@@ -139,11 +152,10 @@
                </p>
                <prism-editor class="codeblock" v-model="reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
-            <section id="pooling">
+               <div id="cnn_poolingforward"></div>
                <div id="blogSubHeader">
                   Pooling Layer
                </div>
-            </section>
                <h2>Forward</h2>
                <p>
                   The pooling transformation is similar to the convolutional layer. A kernel that extends the full depth slides across the face of the input to "pool" together the sectioned values.
@@ -162,6 +174,7 @@
                   in the convolutional layer is omitted.
                </p>
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <div id="cnn_poolingbackward"></div>
                <h2>Backward</h2>
                <p>
                   Backpass through a pooling transformation routes <code style="background: #242424; border-radius: 5px;">dout</code> values to the index of the largest value of the corresponding 
@@ -174,6 +187,7 @@
                   are indexed to the maximum value of every 2x2 square with stride 2.
                </p>
                <prism-editor class="codeblock" v-model="poolBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+               <div id="cnn_thoughts"></div>
                <div id="blogSubHeader">
                Thoughts
                </div>
@@ -558,7 +572,6 @@ export default {
 }
 </script>
 <style scoped>
-
 #curriculumBody {
    width: auto !important;
    display: flex;
@@ -569,7 +582,8 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   color: var(--white);
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -585,6 +599,7 @@ a {
 }
 
 h2 {
+   /* color: var(--white); */
    font-size: 16px;
    font-style: italic;
    padding-top: 10px;
@@ -593,6 +608,7 @@ h2 {
 }
 
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -608,6 +624,30 @@ h2 {
    p {
       padding: 0;
    }
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
 }
 
 </style>

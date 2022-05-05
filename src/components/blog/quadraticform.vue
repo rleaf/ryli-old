@@ -10,6 +10,24 @@
                   <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
                </div>
             </div>
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#quad_quadintroduction">Introduction</a></li>
+                  <li>Ways to go about it:</li>
+                  <ul>
+                     <li><a href="#quad_scalarsum">Rewriting to scalar sums</a></li>
+                     <li><a href="#quad_frechet">The Fréchet</a></li>
+                     <li><a href="#quad_gateaux">The Gateaux (incomplete)</a></li>
+                     <li><a href="#quad_chain">Chain Rule</a></li>
+                  </ul>
+                  <li><a href="#quad_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <div id="quad_quadintroduction"></div>
+            <div id="blogSubHeader">
+               Introduction
+            </div>
             <p>
                One of the many problems I've come across and spent 
                an unhealthy amount of time on is figuring out how to find the derivative of a quadratic form. By definition they are any polynomial
@@ -24,6 +42,7 @@
                for me to put together - just putting it together became quickly overwhelming. Segue into the <i>first</i> strategy for solving this problem:
                explicitly writing out the inner product.
             </p>
+            <div id="quad_scalarsum"></div>
             <div id="blogSubHeader">
                1) Rewriting to scalar sums
             </div>
@@ -72,6 +91,7 @@
                <vue-mathjax :formula='rowVector'></vue-mathjax>
                <br>
                <br>
+            <div id="quad_frechet"></div>
             <div id="blogSubHeader">
                2) The Fréchet
             </div>
@@ -117,6 +137,7 @@
                There's a pretty neat proof that exists for the Cauchy Schwarz inequality that uses the quadratic formula, I think it's worth a watch. Writing out the inequality for <vue-mathjax :formula='htAh'></vue-mathjax>
                this way provides a clear reason why it evaluates to 0. We can now finally say <vue-mathjax :formula='htAhelementOf'></vue-mathjax>.
             </p>
+            <div id="quad_gateaux"></div>
             <div id="blogSubHeader">
                3) The Gateaux
             </div>
@@ -127,6 +148,7 @@
                The Gateaux in concept, however, seems to tackle the problem very similarly to the Fréchet. Both derivatives are operable on vector spaces and just as the Fréchet generalizes the idea of the univariate derivative,
                the Gateaux generalizes the directional derivative.
             </p>
+            <div id="quad_chain"></div>
             <div id="blogSubHeader">
                4) Chain Rule
             </div>
@@ -157,6 +179,7 @@
                , but the trick of substituting and understanding the derivative of <vue-mathjax :formula='ytx'></vue-mathjax> and <vue-mathjax :formula='xty'></vue-mathjax> w.r.t the same variable evaulate to the same answer
                took some time for me to get down.
             </p>
+            <div id="quad_thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -313,7 +336,7 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -328,17 +351,10 @@ a {
    font-style: oblique;
 }
 
-h2 {
-   font-size: 16px;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
-
    padding-top: 50px;
 }
 
@@ -348,11 +364,44 @@ h2 {
    }
 }
 
-
 @media (max-width: 735px) {
    p {
       padding: 0;
    }
 }
+
+h2 {
+   color: var(--white);
+   font-size: 16px;
+   font-style: italic;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
+}
+
 
 </style>

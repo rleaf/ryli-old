@@ -12,6 +12,21 @@
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#bn_bnintroduction">Introduction</a></li>
+                  <li><a href="#bn_totalderivative">Total Derivative Representation</a></li>
+                  <li><a href="#bn_integratesum">Integrate Summations</a></li>
+                  <li><a href="#bn_solvepartials">Solving the Partials</a></li>
+                  <li><a href="#bn_substitutesimplify">Substitute in Partials & Simplify</a></li>
+                  <li><a href="#bn_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <div id="bn_bnintroduction"></div>
+            <div id="blogSubHeader">
+               Introduction
+            </div>
             <p>
                <i>This read may be a little ridiculous because
                   instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
@@ -33,8 +48,9 @@
 
              <prism-editor class="codeblock" v-model="bnChainCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
+            <div id="bn_totalderivative"></div>
             <div id="blogSubHeader">
-               The Shortcut
+               Total Derivative Representation
             </div>
             <p>
                <vue-mathjax :formula='dldxFullQuote'></vue-mathjax>
@@ -47,11 +63,12 @@
             </p>
             <vue-mathjax :formula="dxhatdmufull"></vue-mathjax>
             <p>
-               Now for the full represetation without quotes:
+               The full represetation without quotes:
             </p>
             <vue-mathjax :formula="dldxFull"></vue-mathjax>
+            <div id="bn_integratesum"></div>
             <div id="blogSubHeader">
-               Step 1
+               Integrate Summations
             </div>
             <p>
                The downstream gradient will always match the dimensionality of whatever you're differentiating with respect to.
@@ -70,8 +87,9 @@
             </p>
             <vue-mathjax :formula='dldxSimple3'></vue-mathjax>
             
+            <div id="bn_solvepartials"></div>
             <div id="blogSubHeader">
-               Step 2
+               Solving the Partials
             </div>
             <p>
                Solve for all of the partials shown above. This is the easiest part. The upstream gradient defined immediately below is automatically provided to the function when backpropagating.
@@ -95,8 +113,9 @@
             <vue-mathjax :formula='dmudxSolve'></vue-mathjax>
             <br>
             <vue-mathjax :formula='dsigdxSolve'></vue-mathjax>
+            <div id="bn_substitutesimplify"></div>
             <div id="blogSubHeader">
-               Step 3
+               Substitute in Partials & Simplify
             </div>
             <p>
                Every partial is evaluated. <b>Substitute in everything except dout</b> to the template from step 1. Leaving it's partial provides headspace for knowing what some of the summations will be operating on.
@@ -157,6 +176,7 @@
                Below is a codeblock implemented with equation 10. With a 276 character difference, the shortcut performs a backwards pass much faster than the original implementation.
             </p>
             <prism-editor class="codeblock" v-model="finalAnswerCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="bn_thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -377,7 +397,7 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -392,15 +412,8 @@ a {
    font-style: oblique;
 }
 
-h2 {
-   font-size: 16px;
-   color: #81A1C1;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -416,6 +429,39 @@ h2 {
    p {
       padding: 0;
    }
+}
+
+h2 {
+   color: var(--white);
+   font-size: 16px;
+   font-style: italic;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
 }
 
 </style>

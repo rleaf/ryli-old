@@ -10,11 +10,35 @@
                   <p style="font-size: 18px; padding: 0 !important; ">9 &#8226; 7 &#8226; 2021</p>
                </div>
             </div>
-            
+            <div class="blogtoc">
+               Contents
+               <ul>
+                  <li><a href="#knn_knnintroduction">Introduction</a></li>
+                  <ul>
+                     <li><a href="#knn_whatisknn">What is kNN</a></li>
+                  </ul>
+                  <li>Setting Up</li>
+                  <ul>
+                     <li><a href="#knn_loadingcifar">Loading CIFAR</a></li>
+                     <li><a href="#knn_visualizing">Visualizing</a></li>
+                     <li><a href="#knn_subsampling">Subsampling</a></li>
+                  </ul>
+                  <li>Building kNN</li>
+                  <ul>
+                     <li><a href="#knn_findingdistance">Finding the Euclidean distance</a></li>
+                     <li><a href="#knn_classify">Classifying our test images</a></li>
+                     <li><a href="#knn_xvalidation">Cross Validation</a></li>
+                     <li><a href="#knn_entireCIFAR">Running on the entire CIFAR-10</a></li>
+                  </ul>
+                  <li><a href="#knn_thoughts">Thoughts</a></li>
+               </ul>
+            </div>
+            <i>(2/18/22) Edit: Cleaned up some wording for clarity.</i>
+            <div id="knn_knnintroduction"></div>
+            <div id="blogSubHeader">
+               Introduction
+            </div>
             <p>
-               <i>(2/18/22) Edit: Cleaned up some wording for clarity.</i>
-               <br>
-               <br>
                The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
                498/598 Deep Learning for Computer Vision</a>.
                <br>
@@ -25,12 +49,10 @@
                assumes the reader has no prior understanding of kNN. The sections following, <a href="#loadingCIFAR"><i>"Loading CIFAR"</i></a> and beyond, assumes the reader to have basic understanding of Python, PyTorch, and Linear Algebra. If you aren't familiar with
                these concepts but have read the <i>"What is kNN / How does kNN work"</i> section, then you may still be good. I will toss in some explanations in <span style="color: #81A1C1;">blue</span> for important things.
             </p>
-            <section id="whatIsKNN">
-               <div id="blogSubHeader">
-                  <!-- kNN Step 1: Qualify and Quantify the similarities -->
-                  What is kNN / How does kNN work
-               </div>
-            </section>
+            <div id="knn_whatisknn"></div>
+            <h2>
+               What is kNN / How does kNN work
+            </h2>
             <p>
                I broadly defined kNN in the last paragraph. This section is going to be dedicated to explaining further what kNN classification does, and how it works. I'm going to be using images as an example
                dataset to aid my explanation of kNN. I will not be defining concepts such as cross-validation for optimal <i>k</i> and means of optimizing for more efficient code here. When moving on to the next section where we will use kNN on the CIFAR-10 dataset,
@@ -70,11 +92,10 @@
             <img id="img1300" src="../../assets/blog/knn.png" alt="">
                <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
-            <section id="loadingCIFAR">
+            <div id="knn_loadingcifar"></div>
                <div id="blogSubHeader">
                   Loading CIFAR
                </div>
-            </section>
             <p>
                Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>, <code style="background: #242424; border-radius: 5px;">x_test</code>,
                <code style="background: #242424; border-radius: 5px;">y_train</code>, and <code style="background: #242424; border-radius: 5px;">y_test</code>. They are declared simply with:
@@ -88,6 +109,7 @@
                <span style="color: #81A1C1;">A tensor can be thought of as a generalization to a scalar (0D tensor), vector (1D tensor), matrix (2D tensor), etc...</span>
             </p>
             <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_visualizing"></div>
             <div id="blogSubHeader">
                Visualizing
             </div>
@@ -98,6 +120,7 @@
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer label then corresponds to a list of classes:
             </p>
             <prism-editor class="codeblock" v-model="classes" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_subsampling"></div>
             <div id="blogSubHeader">
                Subsampling
             </div>
@@ -109,6 +132,7 @@
                algorithm.
             </p>
             <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_findingdistance"></div>
             <div id="blogSubHeader">
                kNN: Finding the Euclidean distance
             </div>
@@ -154,6 +178,7 @@
                store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>. For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
                faster than the two loop. This probably provides better intuition behind how powerful broadcasting can be.
             </p>
+            <div id="knn_classify"></div>
             <div id="blogSubHeader">
                kNN: Classifying our test images
             </div>
@@ -176,6 +201,7 @@
                accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
             </p>
             <prism-editor class="codeblock" v-model="running_kNN" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_xvalidation"></div>
             <div id="blogSubHeader">
                Optimizing kNN: Cross Validation
             </div>
@@ -198,6 +224,7 @@
                on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
             </p>
             <prism-editor class="codeblock" v-model="best_k" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_entireCIFAR"></div>
             <div id="blogSubHeader">
                Running on the entire CIFAR-10
             </div>
@@ -205,6 +232,7 @@
                We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instead of 5,000 images.
             </p>
             <prism-editor class="codeblock" v-model="full_cifar" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <div id="knn_thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -631,7 +659,7 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
@@ -646,14 +674,8 @@ a {
    font-style: oblique;
 }
 
-h2 {
-   font-size: 16px;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
 #blogSubHeader {
+   color: var(--white);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -671,6 +693,37 @@ h2 {
    }
 }
 
+h2 {
+   color: var(--white);
+   font-size: 16px;
+   font-style: italic;
+   padding-top: 10px;
+   margin: 0;
+   font-weight: 200;
+}
 
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
+}
 
 </style>
