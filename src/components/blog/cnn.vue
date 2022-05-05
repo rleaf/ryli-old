@@ -572,6 +572,7 @@ export default {
 }
 </script>
 <style scoped>
+
 #curriculumBody {
    width: auto !important;
    display: flex;
