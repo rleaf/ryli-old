@@ -53,6 +53,7 @@ export default {
       width: 300px;
       font-size: 95%;
       /* color: red; */
+      margin-bottom: 5vh;
    }
 
    .blogtoc a {

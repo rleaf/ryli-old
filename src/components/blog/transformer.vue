@@ -9,16 +9,18 @@
                   <p style="padding: 0 !important; margin: 0 !important;">The Transformations in a Transformer</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">5 &#8226; 4 &#8226; 2022</p>
+                  <p>wip</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
             <blogtoc v-bind="toc"/>
+            <p>
+               Transformers
+            </p>
             <vue-mathjax :formula='formula'></vue-mathjax>
             <vue-mathjax :formula='jacobian'></vue-mathjax>
             <!-- <math-jax :latex="formula" />
             <math-jax :latex="formula" :block="true" /> -->
-            <p>Transformers
-            </p>
             <!-- <p>{{ blogs[0].description }}</p> -->
          </div>
          <toTop />
@@ -125,7 +127,8 @@ export default {
 }
 
 #blogHeader {
-   padding-bottom: 20px;
+   /* padding-bottom: 100px; */
+   padding-bottom: 8vh;
    font-size: 22px;
 }
 
