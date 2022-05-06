@@ -22,6 +22,7 @@ export default {
    },
    mounted() {
       // Break scene if path = /blog/
+      // Gets the job done for now
       let blogPath = this.$route.path.slice(0,6)
       if (blogPath != '/blog/') {
          this.blogRender = true
