@@ -25,7 +25,7 @@
                      <li><a href="#xformer_posenc">Positional Encoding</a></li>
                   </ul>
                   <li><a href="#xformer_dotprod">Scaled Dot Product Attention</a></li>
-                  <li><a href="#xformer_attention">Attention</a></li>
+                  <li><a href="#xformer_attention">Attention Implementation</a></li>
                   <ul>
                      <li><a href="#xformer_selfattn">Self Attention</a></li>
                      <li><a href="#xformer_multiattn">Multi Headed Attention</a></li>
@@ -64,8 +64,8 @@
             <p>
                By decomposing transformers as such, it becomes easier to see the constituent parts. For example, you can see there's a lot of importance on the <i>Scaled dot product attention</i> because it is
                used heavily throughout the entire model. Every attention mechanism, whether it be masked, multiheaded, or cross employs the <i>SDP attention</i>.
-               Below is the visualization of a transformer from the orginitating paper (linked above). It is easy to see how information flows throughout the network and specifically how each attention block
-               takes in three arguments (queries, keys, values) and the skip connections to aid gradient flow.
+               Below is the visualization of a transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
+               each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
             <img id="img500" src="../../assets/blog/transformer.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Transformer layout from "Attention is All You Need"</i></span>
@@ -88,7 +88,7 @@
             <p>
                Scaled dot product attention takes takes three arguments as input: <i>queries</i>, <i>keys</i>, and <i>values</i>. These inputs are transformations
                from the prior block's output (or original input). These transformations happen using the weights initialized in the Self Attention class which we will explore in the next in
-               the <a href="#xformer_selfattn">section</a>.
+               the <a href="#xformer_selfattn">section</a>. 
             </p>
             <p>
                Supplied with our Q, K, and V (queries/keys/values respectively), scaled dot product attention on a <u>single element from the batch</u> will look like:
@@ -108,17 +108,31 @@
             <prism-editor class="codeblock" v-model="scaleddotproduct" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="xformer_attention"></div>
             <div id="blogSubHeader">
-               Attention
+               Attention Implementation
             </div>
             <p>
-               break time 
+               We can now construct the classes that house the SDP Attention. It's worth mentioning that there are <a href="https://www.catalyzex.com/paper/arxiv:1706.03762/code" target="_blank">different ways</a> how you can
+               code the model (<a href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer" target="_blank">Pytorch's Transformer</a>). The way shown here will certainly have it's idiosyncrasies,
+               so the goal is to really convey the main mechanisms present in all of these variations. I will try to discuss different characteristics of other Transformer models.
             </p>
             <div id="xformer_selfattn"></div>
             <h2>Self Attention</h2>
-
+            <p>
+               The purpose of the self attention class is to house the weights for transforming the input into the queries, keys, and values matrices. These values are then passed into the
+               <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention(q, k, v)</code> as defined above. I've noticed a lot of people usually leave the weights
+               initialized by <code style="background: #242424; border-radius: 5px;">nn.Linear</code> default, however it is not uncommon to see custom initializations displayed in the comments below.
+            </p>
+            <prism-editor class="codeblock" v-model="self_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br>
+            <br>
             <div id="xformer_multiattn"></div>
             <h2>Multi Headed Attention</h2>
-
+            <p>
+               Now we instantiate the <code style="background: #242424; border-radius: 5px;">Self Attention</code> inside a Module List based off the number of heads we have, which will be a hyperparameter. The
+               forward pass of multi headed attention calculates <code style="background: #242424; border-radius: 5px;">num_heads</code> forward passes for self attention. Each of those outputs are then concatenated
+               along the trailing dimension and then fed through a linear layer to reshape the tensor.
+            </p>
+            <prism-editor class="codeblock" v-model="multi_head_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="xformer_maskattn"></div>
             <h2>Masked Multi Headed Attention</h2>
 
@@ -258,7 +272,79 @@ export default {
    # Second batch mat-mul of weights_softmax with values
    y = torch.bmm(softmax_weights, v)
    
-   return y, softmax_weights`
+   return y, softmax_weights`,
+         self_attn:
+`class SelfAttention(nn.Module):
+   def __init__(self, dim_in: int, dim_q: int, dim_v: int):
+      super().__init__()
+      """
+      dim_in: input dimension size of query, key, and value
+      dim_q: output dimension size of query and key vectors
+      dim_v: output dimension size of value vector
+      """
+      
+      self.q = nn.Linear(dim_in, dim_q)
+      self.k = nn.Linear(dim_in, dim_q)
+      self.v = nn.Linear(dim_in, dim_v)
+      self.softmax_weights = None
+
+      # Weights initialized to different distribution using self.q as ex.
+      # self.c = (6/(dim_in + dim_q))**(1/2)
+      # torch.nn.init.uniform(self.q.weight, -self.c, self.c)
+      #
+      # torch.nn.init.xavier_uniform_(self.q.weight)
+      
+   def forward(self, q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
+      """
+      q: shape (B, K, E)
+      k: shape (B, K, E)
+      v: shape (B, K, E)
+      mask: shape (B, K, K)
+
+      y: shape (B, K, dim_v)
+      """
+      k = self.k(k) # (B, K, dim_q)
+      q = self.q(q) # (B, K, dim_q)
+      v = self.v(v) # (B, K, dim_v)
+      
+      y, self.softmax_weights = scaled_dot_product_attention(k, q, v, mask)
+      
+      return y`,
+         multi_head_attn:
+`class MultiHeadAttention(nn.Module):
+   def __init__(self, num_heads: int, dim_in: int, dim_out: int):
+      super().__init__()
+      """
+      num_heads: number of heads
+      dim_in: input dimension size of query, key, and value
+      dim_out: output dimension for each SA block
+      """
+   
+      self.multihead = \\
+         torch.nn.ModuleList([SelfAttention(dim_in, dim_out, dim_out) for i in range(num_heads)])
+      # self.linear adopts same concept for weight initialization from SelfAttention class
+      self.linear = nn.Linear(dim_out * num_heads, dim_in)
+   
+   def forward(self, q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
+      """
+      q: shape (B, K, E)
+      k: shape (B, K, E)
+      v: shape (B, K, E)
+      mask: shape (B, K, K)
+
+      y: shape (B, K, dim_in)
+      """
+
+      output_list = []
+      
+      for m in self.multihead:
+         y = m(q, k, v, mask) # (B, K, dim_out)
+         output_list.append(y)
+         
+      concat = torch.cat(output_list, dim=-1) # (B, K, num_heads * dim_out)
+      y = self.linear(concat) 
+      
+      return y # (B, K, dim_in)`
       }
    },
    methods: {
