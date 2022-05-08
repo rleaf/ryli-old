@@ -128,14 +128,17 @@
             <div id="xformer_multiattn"></div>
             <h2>Multi Headed Attention</h2>
             <p>
-               Now we instantiate the <code style="background: #242424; border-radius: 5px;">Self Attention</code> inside a Module List based off the number of heads we have, which will be a hyperparameter. The
-               forward pass of multi headed attention calculates <code style="background: #242424; border-radius: 5px;">num_heads</code> forward passes for self attention. Each of those outputs are then concatenated
-               along the trailing dimension and then fed through a linear layer to reshape the tensor.
+               Now we instantiate the <code style="background: #242424; border-radius: 5px;">Self Attention</code> class inside a Module List based off the number of heads we have, which will be a hyperparameter. The
+               forward pass of multi headed attention feeds the input through <code style="background: #242424; border-radius: 5px;">num_heads</code> self attention classes and then concatenates the each of the self attention
+               outputs along the trailing dimension. Lastly the concatenated tensor is fed through a linear layer to transform it back to the input shape.
             </p>
             <prism-editor class="codeblock" v-model="multi_head_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
             <div id="xformer_maskattn"></div>
             <h2>Masked Multi Headed Attention</h2>
-
+            <p>
+               el break
+            </p>
             <div id="xformer_xattn"></div>
             <h2>Cross Attention</h2>
 
@@ -252,14 +255,14 @@ export default {
       and E is the embedding dimension.
    mask: shape (B, K, K) where B is batch size and K is sequence length.
 
-   output: shape (B, K, E) where B is batch size, K is sequence length,
+   y: shape (B, K, E) where B is batch size, K is sequence length,
       and E is the embedding dimension.
    softmax_weights: (B, K, K) where B is batch size and K is sequence length.
    """
    B, K, E = q.shape
 
    # Similarity matrix 
-   e = torch.bmm(query, key.transpose(1, 2))
+   e = torch.bmm(query, key.transpose(1, 2)) # (B, K, K)
 
    # For Multi Headed Attention
    if mask is Not None:
@@ -272,7 +275,7 @@ export default {
    # Second batch mat-mul of weights_softmax with values
    y = torch.bmm(softmax_weights, v)
    
-   return y, softmax_weights`,
+   return y, softmax_weights # (B, K, E), (B, K, K)`,
          self_attn:
 `class SelfAttention(nn.Module):
    def __init__(self, dim_in: int, dim_q: int, dim_v: int):
@@ -309,7 +312,7 @@ export default {
       
       y, self.softmax_weights = scaled_dot_product_attention(k, q, v, mask)
       
-      return y`,
+      return y # (B, K, dim_v)`,
          multi_head_attn:
 `class MultiHeadAttention(nn.Module):
    def __init__(self, num_heads: int, dim_in: int, dim_out: int):
