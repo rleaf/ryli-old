@@ -32,11 +32,16 @@
                      <li><a href="#xformer_maskattn">Masked Multi Headed Attention</a></li>
                      <li><a href="#xformer_xattn">Cross Attention</a></li>
                   </ul>
+                  <li><a href="#xformer_mlp">Feed Forward Network</a></li>
                   <li><a href="#xformer_blocks">Blocks</a></li>
                   <ul>
+                     <!-- <ul>
+                        <li><a href="#xformer_layernorm">Layer Normalization</a></li>
+                     </ul> -->
                      <li><a href="#xformer_encblock">Encoder Block</a></li>
                      <li><a href="#xformer_decblock">Decoder Block</a></li>
                   </ul>
+                  <li><a href="#xformer_transformer">Transformer</a></li>
                   <li><a href="#xformer_">Thoughts</a></li>
                </ul>
             </div>
@@ -128,7 +133,7 @@
             <div id="xformer_multiattn"></div>
             <h2>Multi Headed Attention</h2>
             <p>
-               Now we instantiate the <code style="background: #242424; border-radius: 5px;">Self Attention</code> class inside a Module List based off the number of heads we have, which will be a hyperparameter. The
+               After creating our <code style="background: #242424; border-radius: 5px;">Self Attention</code> class, we can instantiate it inside a Module List based off the number of heads we have, which will be a hyperparameter. The
                forward pass of multi headed attention feeds the input through <code style="background: #242424; border-radius: 5px;">num_heads</code> self attention classes and then concatenates the each of the self attention
                outputs along the trailing dimension. Lastly the concatenated tensor is fed through a linear layer to transform it back to the input shape.
             </p>
@@ -137,22 +142,70 @@
             <div id="xformer_maskattn"></div>
             <h2>Masked Multi Headed Attention</h2>
             <p>
-               el break
+               Masking is simply the procedure to inhibit the decoder block from accessing information from future elements in the sequence. Because transformers operate on sequence elements in parallel, for certain
+               tasks such as translation, we set subsequent values in the <code style="background: #242424; border-radius: 5px;">softmax_weights</code> matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
+               With the code displayed above, all we have to is pass a mask into our instantiated <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> class. The mask will be a tensor of
+               boolean values, where <code style="background: #242424; border-radius: 5px;">true</code> will indicate masking that index in the matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
+               It is easier to think about the masking operation when looking at the hierarchy: the mask gets passed to the forward pass of <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code>, which
+               in turn passes the mask to each <code style="background: #242424; border-radius: 5px;">SelfAttention</code>, then finally passing the mask to each <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>.
+               The function below produces our mask which we will pass as a parameter down to the <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>. Below I've shown two different ways
+               of producing the mask.
             </p>
+            <prism-editor class="codeblock" v-model="getsubmask" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="xformer_xattn"></div>
+            <br><br>
             <h2>Cross Attention</h2>
-
+            <p>
+               Cross attention is the mechanism that enables communication to flow between the encoder block and decoder block. Cross attention accepts as inputs the queries from the previous output of the decoder sublayer and the keys and values
+               from the output of the encoder block. Even though I've not explained the block architecture (explained down below), I'm saying block to also encapsulate residual, normalization, and dropout.
+               There won't be any code in this section. Instead, refer to the <a href="#xformer_decblock">decoder block</a> and see how <code style="background: #242424; border-radius: 5px;">self.cross_attetion</code> interacts.
+            </p>
+            <div id="xformer_mlp"></div>
+            <div id="blogSubHeader">
+               Feed Forward Network
+            </div>
+            <p>
+               A standard feed forward network composed of a linear -> ReLU -> linear tranformation is used at the end of every block.
+               <br><br>
+               <vue-mathjax :formula='`$FFN(x) = max(0,\\;xW_2 + b_1)W_2 + b_2$`'></vue-mathjax>
+            </p>
+            <prism-editor class="codeblock" v-model="mlp" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
 
             <div id="xformer_blocks"></div>
             <div id="blogSubHeader">
                Blocks
             </div>
+            <p>
+               We can now build both the encoder and decoder blocks. Following along using the image of the Transformer at the top may help. The normalization, residual, and regularization techniques will also
+               be pointed out in the forward passes of each block here.
+            </p>
+
             <div id="xformer_encblock"></div>
             <h2>Encoder Block</h2>
+            <p>
+               To assemble the encoder block, we instantiate a <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code>, <code style="background: #242424; border-radius: 5px;">nn.LayerNorm</code>,
+               <code style="background: #242424; border-radius: 5px;">nn.Dropout</code>, and <code style="background: #242424; border-radius: 5px;">FeedForwardBlock</code>. In the forward pass, 
+            </p>
+            <prism-editor class="codeblock" v-model="encoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
 
             <div id="xformer_decblock"></div>
             <h2>Decoder Block</h2>
-
+            <p>
+               toad
+            </p>
+            <prism-editor class="codeblock" v-model="decoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
+            <div id="xformer_transformer"></div>
+            <h2>Transformer</h2>
+            <p>
+               toad
+            </p>
+            <prism-editor class="codeblock" v-model="encoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br>
+            <prism-editor class="codeblock" v-model="decoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
 
             <div id="xformer_thoughts"></div>
             <div id="blogSubHeader">
@@ -224,26 +277,28 @@ export default {
    - Embedding 
    - Positional Encoding
 
-   - Encoder Block
-      - MultiHeaded Attention
-         Self Attention
-            Scaled Dot Product Attn
-      - Feed Forward Block
-         Linear -> Act -> Linear
-      - Normalization
-      - Residual Connections
-
-   - Decoder Block
-      - Multi Headed Attention
-         Self Attention
-            Scaled Dot Product Attn
-      - Masked Multi Headed Attention
-         Self Attention
-            Scaled Dot Product Attn
-      - Feed Forward Block
-         Linear -> Act -> Linear
-      - Normalization
-      - Residual Connections`,
+   - Encoder
+      - Encoder Block
+         - MultiHeaded Attention
+            Self Attention
+               Scaled Dot Product Attn
+         - Feed Forward Block
+            Linear -> Act -> Linear
+         - Normalization
+         - Residual Connections
+   
+   - Decoder
+      - Decoder Block
+         - Multi Headed Attention
+            Self Attention
+               Scaled Dot Product Attn
+         - Masked Multi Headed Attention
+            Self Attention
+               Scaled Dot Product Attn
+         - Feed Forward Block
+            Linear -> Act -> Linear
+         - Normalization
+         - Residual Connections`,
          scaleddotproduct:
 `def scaled_dot_product_attention(q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
    """
@@ -347,7 +402,165 @@ export default {
       concat = torch.cat(output_list, dim=-1) # (B, K, num_heads * dim_out)
       y = self.linear(concat) 
       
-      return y # (B, K, dim_in)`
+      return y # (B, K, dim_in)`,
+         getsubmask:
+`def get_subsequent_mask(seq)
+   """
+   seq: shape (B, K) tensor
+
+   mask: shape (B, K, K) boolean tensor
+   """
+   # Pytorch's implementation
+   # https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer.forward
+   mask = torch.triu(torch.full( \\
+      (seq.shape[1], seq.shape[1]), float('-inf'), dtype=torch.bool), diagonal=1)
+   mask = mask.repeat((seq.shape[0], 1, 1))
+
+   # Alternative not using Pytorch source code
+   # mask = torch.ones((seq.shape[0], seq.shape[1], seq.shape[1]), dtype=torch.bool)
+   # for n in range(seq.shape[0]):
+   #     for k in range(seq.shape[1]):
+   #         mask[n, k, :k+1] = 0
+   
+   return mask # (B, K, K)`,
+         mlp: 
+`class FeedForward(nn.Module):
+   def __init__(self, inp_dim: int, hidden_dim_forward: int):
+      super().__init__()
+      """
+      inp_dim: embedding dimension
+      hidden_dim_forward: hidden dimension for linear layers
+      """
+      
+      self.mlp = nn.Sequential(
+            nn.Linear(inp_dim, hidden_dim_feedforward),
+            nn.ReLU(),
+            nn.Linear(hidden_dim_feedforward, inp_dim)
+      )
+      
+      # nn.Linear weight initialization adopts same concept as SelfAttention class
+      # self.c = (6/(inp_dim + hidden_dim_forward))**(1/2)
+      # torch.nn.init.uniform(self.q.weight, -self.c, self.c)
+      #
+      # torch.nn.init.xavier_uniform_(self.q.weight)
+      
+   def forward(self, x):
+      """
+      x: shape (B, K, E) tensor
+      
+      y: shape (B, K, E) tensor
+      """
+      y = self.mlp(x)
+      
+      return y`,
+         encoderblock:
+`class EncoderBlock(nn.Module):
+   def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, dropout: float)
+      super().__init__()
+      """
+      num_heads: number of heads
+      emb_dim: embedding dimension
+      feedforward_dim: feed forward dim
+      dropout: dropout probability
+      """
+      
+      self.multihead = MultiHeadAttention(num_heads, emb_dim, emb_dim // num_heads)
+      self.layernorm = nn.LayerNorm(emb_dim, eps=1e-10)
+      self.dropout = nn.Dropout(dropout)
+      self.feedforward = FeedForward(emb_dim, feedforward_dim)
+   
+   def forward(self, x):
+      """
+      x: shape (B, K, E) tensor
+
+      y: shape (B, K, E) tensor
+      """
+
+      y = self.layernorm(self.multihead(x, x, x) + x)
+      y = self.dropout(y)
+      y = self.layernorm(self.feedforward(y) + y)
+      y = self.dropout(y)
+      
+      return y`,
+         decoderblock:
+`class DecoderBlock(nn.Module):
+   def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, dropout: float)
+      super().__init__()
+      """
+      num_heads: number of heads
+      emb_dim: embedding dimension
+      feedforward_dim: feed forward dim
+      dropout: dropout probability
+      """
+
+      self.self_attention = MultiHeadAttention(num_heads, emb_dim, emb_dim // num_heads)
+      self.cross_attention = MultiHeadAttention(num_heads, emb_dim, emb_dim // num_heads)
+      self.feed_forward = FeedForward(emb_dim, feedforward_dim)
+      self.layernorm = nn.LayerNorm(emb_dim, eps=1e-10)
+      self.dropout = nn.Dropout(dropout)
+      
+   def forward(self, dec_inp: Tensor, enc_out: Tensor, mask: Tensor = None):
+      """
+      dec_inp: shape (B, K, E) tensor for input to the decoder block
+      enc_out: shape (B, K, E) tensor that is output from the last encoder block
+      mask: shape (B, K, K) tensor of boolean values
+
+      y: shape (B, K, E) tensor
+      """
+      
+      y = self.layernorm(self.attention_self(dec_inp, dec_inp, dec_inp, mask) + dec_inp)
+      y = self.dropout(y)
+
+      y = self.layernorm(self.attention_cross(y, enc_out, enc_out) + y)
+      y = self.dropout(y)
+
+      y = self.layernorm(self.feed_forward(y) + y)
+      y = self.dropout(y)
+      
+      return y`,
+         encoder:
+`class Encoder(nn.Module):
+   def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float)
+   super().__init__()   
+   """
+   """
+   
+   self.layers = nn.ModuleList(
+      [EncoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers]
+   )
+   
+   def forward(self, src_seq: Tensor):
+
+      for layer in self.layers:
+         src_seq = layer(srq_seq)
+      
+      return src_seq`,
+         decoder:
+`class Decoder(nn.Module):
+   def __init__(
+      self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float, vocab_len: int,
+   ):
+      super().__init__()
+
+      self.layers = nn.ModuleList(
+         [DecoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers)]
+      )
+      self.proj_to_vocab = nn.Linear(emb_dim, vocab_len)
+
+      # Weight initialization similar to Self Attention
+      # c = (6 / (emb_dim + vocab_len)) ** 0.5
+      # nn.init.uniform_(self.proj_to_vocab.weight, -c, c)
+
+    def forward(self, target_seq: Tensor, enc_out: Tensor, mask: Tensor):
+
+        out = target_seq.clone()
+        
+        for layer in self.layers:
+            out = layer(out, enc_out, mask)
+
+        out = self.proj_to_vocab(out)
+        return out`
+   
       }
    },
    methods: {
