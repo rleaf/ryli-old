@@ -40,7 +40,7 @@
                      <li><a href="#xformer_encblock">Encoder Block</a></li>
                      <li><a href="#xformer_decblock">Decoder Block</a></li>
                   </ul>
-                  <li><a href="#xformer_encdec">Encoder & Decoder layers</a></li>
+                  <li><a href="#xformer_encdec">Encoder & Decoder Layers</a></li>
                   <li><a href="#xformer_transformer">Transformer</a></li>
                   <li><a href="#xformer_">Thoughts</a></li>
                </ul>
@@ -50,9 +50,10 @@
                Introduction
             </div>
             <p>
-               I'm going to explain, hopefully thoroughly enough, the mechanisms present in <a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank">Transformers</a>. Usually, as evident in my prior discussions
-               about network architectures, I dedicate a portion to discussing the backwards pass; I will not be doing that here. I believe there will already be a lot of information just discussing the Transformer
-               architecture.
+               I'm going to explain, hopefully thoroughly enough, the mechanisms present in Transformers. I reference the accompanied paper to the network
+               <a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank"><i>Attention Is All You Need</i></a>
+               a couple times throughout this read. Feel free to click around through the
+               contents displayed above to read more about a particular section and the affiliated code. Similarly to other articles I've written, all code uses the PyTorch framework.
             <p>
                It is mentioned in the opening of the <i>Attention is All You Need</i> that the transformer model was introduced to ameliorate and <i>"push the boundaries of recurrent language
                models and encoder-decoder architectures"</i>. While this was certainly true back when transformers were new, it is worth mentioning that the impact of transformers has broached
@@ -67,8 +68,8 @@
             </p>
             <prism-editor class="codeblock" v-model="transformerArch" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               By decomposing transformers as such, it becomes easier to see the constituent parts. For example, you can see there's a lot of importance on the <i>Scaled dot product attention</i> because it is
-               used heavily throughout the entire model. Every attention mechanism, whether it be masked, multiheaded, or cross employs the <i>SDP attention</i>.
+               By decomposing transformers as such, it becomes easier to see the constituent parts. For example, you can see there's a lot of importance on <i>Scaled dot product attention</i> because it is
+               used heavily throughout the entire model. Every attention mechanism, whether it be masked, multiheaded, or cross employs <i>SDP attention</i>.
                Below is the visualization of a transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
                each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
@@ -80,12 +81,28 @@
                Preperation
             </div>
             <p>
-               Before the sequences input into the encoder and decoder, they go though an embedding layer and positional encoding. For the embedding layer, I am going to be using 
+               Before the sequence inputs can be fed into the encoder and decoder, they must be tokenized, pass go through an embedding layer, and then have positional encoding added to them.
+               Tokenization is the process of converting a sequence,
+               for example something that can be human interpretable, into a sequence of tokens represented as integers. For the embedding layer, I am going to be using 
                <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> available through <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank">PyTorch</a>.
+               Positional encoding is defined below.
                
             </p>
             <div id="xformer_posenc"></div>
             <h2>Positional Encoding</h2>
+            <p>
+               We positionally encode our sequences to fortify structure because there is no inherint order during operation due to the parallelization of Transformers. Here, I will use sinusoidal positional
+               encoding discussed in the original <i>Attention Is All You Need</i> paper, however there are many different ways to positionally encode a sequence such as
+               <a href="https://arxiv.org/pdf/1803.02155.pdf" target="_blank">Relative Positinal Encoding</a>. Sinusoidal encoding works by oscillating between two different functions based of the 
+               sequence index. If we have a sequence tensor of shape <code style="background: #242424; border-radius: 5px;">(K, E)</code> where <i>p</i> traverses the <i>Kth</i> dimension and <i>i</i> the <i>Eth</i>,
+               then:
+               <br><br>
+               <vue-mathjax :formula='PEsin'></vue-mathjax>
+               <br>
+               <vue-mathjax :formula='PEcos'></vue-mathjax>
+               <br>
+               <vue-mathjax :formula='`$$a = \\biggr\\lfloor{\\frac{2i}{E}}\\biggl\\rfloor$$`'></vue-mathjax>
+            </p>
             <prism-editor class="codeblock" v-model="positionalencoding" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
             <div id="xformer_dotprod"></div>
@@ -104,9 +121,9 @@
             <vue-mathjax :formula='sdp'></vue-mathjax>
                where shapes of inputs <i>Q, K, V</i> are: 
                <br>
-               <vue-mathjax :formula='`$Q \\in R^{k \\times e}$`'></vue-mathjax>,
-               <vue-mathjax :formula='`$K \\in R^{k \\times e}$`'></vue-mathjax>,
-               <vue-mathjax :formula='`$V \\in R^{k \\times e}$`'></vue-mathjax>
+               <vue-mathjax :formula='`$Q \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>,
+               <vue-mathjax :formula='`$K \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>,
+               <vue-mathjax :formula='`$V \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>
                <br>
                <br>
                Fortunately in code, we can perform batch operations to calculate the attention values all at once. I encourage looking at the PyTorch SDP Attention implementation found <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/functional.py#L4765" target="_blank">here</a>.
@@ -118,7 +135,7 @@
                Attention Implementation
             </div>
             <p>
-               We can now construct the classes that house the SDP Attention. It's worth mentioning that there are <a href="https://www.catalyzex.com/paper/arxiv:1706.03762/code" target="_blank">different ways</a> how you can
+               We can now construct the classes that house SDP Attention. It's worth mentioning that there are <a href="https://www.catalyzex.com/paper/arxiv:1706.03762/code" target="_blank">different ways</a> how you can
                code the model (<a href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer" target="_blank">Pytorch's Transformer</a>). The way shown here will certainly have it's idiosyncrasies,
                so the goal is to really convey the main mechanisms present in all of these variations. I will try to discuss different characteristics of other Transformer models.
             </p>
@@ -224,7 +241,8 @@
             <p>
                As mentioned in the <a href="#xformer_blocks">blocks</a> section, let us now  wrap everything in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
                class. This is so we can easily define a model with <i>N</i> encoder and decoder layers. The only thing I'd like to point out here is the final linear transformation present in the
-               <code style="background: #242424; border-radius: 5px;">Decoder</code> class. 
+               <code style="background: #242424; border-radius: 5px;">Decoder</code> class. After all we need to transform the embedding dimension of our tensor from the embedding size back to the size of
+               possible classifications for a sequence element. 
             </p>
             <prism-editor class="codeblock" v-model="encoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br>
@@ -235,7 +253,19 @@
                Transformer
             </div>
             <p>
-               Everything on the "laid out" Transformer architecture shown at the top has been created, all we have to do is put everything together.
+               The Transformer model can finally be put together. Everything up to line 41 should look normal. In the constructor we instantiate the required classes with the according hyperparameters. In the
+               forward pass, we pass both the tokenized <code style="background: #242424; border-radius: 5px;">enc_seq</code> and <code style="background: #242424; border-radius: 5px;">trg_seq</code> through
+               <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> and then add their positional encodings with <code style="background: #242424; border-radius: 5px;">positionalEncoding</code>.
+               The results <code style="background: #242424; border-radius: 5px;">src_inp</code> and <code style="background: #242424; border-radius: 5px;">trg_inp</code> are then fed to the encoder and decoder
+               respectively where the decoder will also take as input the output from the encoder to be used in the <a href="#xformer_xattn">cross attention</a> sublayer and a mask for the 
+               <a href="#xformer_maskattn">masked multi headed attention</a> sublayer.
+               <br><br>
+               The reshaping at the end, on line 42, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually deal with
+               <a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy" target="_blank">cross entropy</a>, in which case the prediction is shape
+               <code style="background: #242424; border-radius: 5px;">(B * K, class_len)</code> and the ground truth is shape <code style="background: #242424; border-radius: 5px;">(B * K)</code>. The prediction
+               variablehouses the unnormalized scores (hence not softmaxing as shown in the Transformer image) and the ground truth houses variable the corresponding ground truth indices for each element of each
+               sequence of every batch.
+
             </p>
             <prism-editor class="codeblock" v-model="transformer" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -303,6 +333,8 @@ export default {
             three: 'strawberries'
          },
          error: null,
+         PEsin: `$$PE_{(p, 2i)} = \\mathrm{sin}\\biggr(\\frac{p}{10000^a}\\biggl)$$`,
+         PEcos: `$$PE_{(p, 2i+1)} = \\mathrm{cos}\\biggr(\\frac{p}{10000^a}\\biggl)$$`,
          sdp: '$$SDP\\; Attention(Q, K, V) = Softmax_{d_k}\\biggl(\\frac{Q K^\\top}{\\sqrt{d_e}}\\biggr) V$$',
          transformerArch:
 `Transformer
@@ -572,17 +604,19 @@ export default {
       return y`,
          encoder:
 `class Encoder(nn.Module):
-   def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float)
-   super().__init__()   
-   """
-   """
-   
-   self.layers = nn.ModuleList(
-      [EncoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers]
-   )
+   def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float):
+      super().__init__()   
+      
+      self.layers = nn.ModuleList(
+         [EncoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers]
+      )
    
    def forward(self, src_seq: Tensor):
-
+      """
+      (input & output)
+      src_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension.
+      """
       for layer in self.layers:
          src_seq = layer(srq_seq)
       
@@ -590,28 +624,39 @@ export default {
          decoder:
 `class Decoder(nn.Module):
    def __init__(
-      self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float, vocab_len: int,
+      self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float, class_len: int,
    ):
       super().__init__()
 
       self.layers = nn.ModuleList(
          [DecoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers)]
       )
-      self.proj_to_vocab = nn.Linear(emb_dim, vocab_len)
+      self.proj_to_class = nn.Linear(emb_dim, class_len)
 
       # Weight initialization similar to Self Attention
-      # c = (6 / (emb_dim + vocab_len)) ** 0.5
-      # nn.init.uniform_(self.proj_to_vocab.weight, -c, c)
+      # c = (6 / (emb_dim + class_len)) ** 0.5
+      # nn.init.uniform_(self.proj_to_class.weight, -c, c)
 
-    def forward(self, target_seq: Tensor, enc_out: Tensor, mask: Tensor):
+   def forward(self, target_seq: Tensor, enc_out: Tensor, mask: Tensor):
+      """
+      The encoder sequence length K does not have to equal the decoder sequence length K!
+      
+      target_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension.
+      target_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension.
+      mask: shape (B, K, K) tensor
 
-        out = target_seq.clone()
-        
-        for layer in self.layers:
-            out = layer(out, enc_out, mask)
+      out = shape (B, K, class_len) tensor where B is batch size and K is sequence length
+      """
 
-        out = self.proj_to_vocab(out)
-        return out`,
+      out = target_seq.clone()
+      
+      for layer in self.layers:
+         out = layer(out, enc_out, mask)
+
+      out = self.proj_to_class(out)
+      return out`,
          transformer:
 `class Transformer(nn.Module):
    def __init__(
@@ -632,17 +677,30 @@ export default {
       self.decoder = Decoder(num_heads, emb_dim, feedforward_dim, num_dec_layers, dropout)
       
    def forward(self, src_seq, trg_seq):
-      src_emb = self.emb_layer(src_seq)
-      src_enc = positionalEncoding(src_emb.shape[0], src_emb.shape[1]) + src_emb
+      """
+      The encoder sequence length K does not have to equal the decoder sequence length K!
+      
+      src_seq: shape (B, K) tensor where B is batch size and K is sequence length
+      trg_seq: shape (B, K) tensor where B is batch size and K is sequence length
 
-      trg_emb = self.emb_layer(trg_seq)
-      trg_enc = positionalEncoding(trg_emb.shape[0], trg_emb.shape[1]) + trg_emb
+      dec_out: shape (B * K, class_len) where class_len possible classifications
+         for sequence element
+      """
 
-      mask = get_subsequent_mask(trg_seq)
-      y = self.encoder(src_inp)
-      dec_out = self.decoder(trg_inp, y, mask)
+      src_emb = self.emb_layer(src_seq) # (B, K, E)
+      src_inp = positionalEncoding(src_emb.shape[1], src_emb.shape[2]) + src_emb
+      # Above: src_inp = (1, K, E) + (B, K, E)
 
-      return dec_out.view(-1, dec_out.size(2))`
+      trg_emb = self.emb_layer(trg_seq) # (B, K, E)
+      trg_inp = positionalEncoding(trg_emb.shape[1], trg_emb.shape[2]) + trg_emb
+      # Above: src_inp = (1, K, E) + (B, K, E)
+
+      mask = get_subsequent_mask(trg_seq) # (B, K, K)
+      y = self.encoder(src_inp) # (B, K, E)
+      dec_out = self.decoder(trg_inp, y, mask) # (B, K, class_len)
+
+      dec_out = dec_out.view(-1, dec_out.size(2)) # (B * K, class_len)
+      return dec_out`
    
       }
    },
