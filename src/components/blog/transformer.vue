@@ -21,7 +21,6 @@
                   <li><a href="#xformer_introduction">Introduction</a></li>
                   <li><a href="#xformer_prep">Preparation</a></li>
                   <ul>
-                     <li><a href="#xformer_embed">Embedding</a></li>
                      <li><a href="#xformer_posenc">Positional Encoding</a></li>
                   </ul>
                   <li><a href="#xformer_dotprod">Scaled Dot Product Attention</a></li>
@@ -41,6 +40,7 @@
                      <li><a href="#xformer_encblock">Encoder Block</a></li>
                      <li><a href="#xformer_decblock">Decoder Block</a></li>
                   </ul>
+                  <li><a href="#xformer_encdec">Encoder & Decoder layers</a></li>
                   <li><a href="#xformer_transformer">Transformer</a></li>
                   <li><a href="#xformer_">Thoughts</a></li>
                </ul>
@@ -79,13 +79,11 @@
             <div id="blogSubHeader">
                Preperation
             </div>
-            <div id="xformer_embed"></div>
-            <h2>Embedding</h2>
 
             <div id="xformer_posenc"></div>
             <h2>Positional Encoding</h2>
-
-
+            <prism-editor class="codeblock" v-model="positionalencoding" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
             <div id="xformer_dotprod"></div>
             <div id="blogSubHeader">
                Scaled Dot Product Attention
@@ -165,9 +163,12 @@
                Feed Forward Network
             </div>
             <p>
-               A standard feed forward network composed of a linear -> ReLU -> linear tranformation is used at the end of every block.
+               A standard feed forward network composed of a linear -> ReLU -> linear tranformation is used at the end of every block. The first linear layer transforms the input into dimension
+               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax>, which will be a provided hyperparameter. <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
+               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax> vector back to a <vue-mathjax :formula='`$d_{in}$`'></vue-mathjax> dimensional tensor, another hyperparameter.
+               Retaining original shape is important as generally the feed forward nets will need to feed into another encoder or decoder block.
                <br><br>
-               <vue-mathjax :formula='`$FFN(x) = max(0,\\;xW_2 + b_1)W_2 + b_2$`'></vue-mathjax>
+               <vue-mathjax :formula='`$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$`'></vue-mathjax>
             </p>
             <prism-editor class="codeblock" v-model="mlp" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -177,15 +178,26 @@
                Blocks
             </div>
             <p>
-               We can now build both the encoder and decoder blocks. Following along using the image of the Transformer at the top may help. The normalization, residual, and regularization techniques will also
+               We can now build both the encoder and decoder blocks. All of the constituent pieces to the blocks have been built and we are ready to instantiate everything inside a
+               <code style="background: #242424; border-radius: 5px;">EncoderBlock</code> class and <code style="background: #242424; border-radius: 5px;">DecoderBlock</code> class. Once we've finished creating
+               the blocks, we then need to wrap them one more time in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
+               class respectively. This is to modularize them so we can have <i>N</i> layers for our encoder and decoder stack.
+               Following along using the image of the Transformer at the top may help. Normalization, residual, and regularization techniques will also
                be pointed out in the forward passes of each block here.
             </p>
 
             <div id="xformer_encblock"></div>
             <h2>Encoder Block</h2>
             <p>
-               To assemble the encoder block, we instantiate a <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code>, <code style="background: #242424; border-radius: 5px;">nn.LayerNorm</code>,
-               <code style="background: #242424; border-radius: 5px;">nn.Dropout</code>, and <code style="background: #242424; border-radius: 5px;">FeedForwardBlock</code>. In the forward pass, 
+               Defining the constructor of both the blocks will be simple, we define what we're going to use and distribute the hyperparameters accordingly. It is important
+               to notice that <code style="background: #242424; border-radius: 5px;">emb_dim // num_heads</code> is used as the parameter for <code style="background: #242424; border-radius: 5px;">dim_out</code>
+               in the <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> sublayer. Here is <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L262" target="_blank">
+               Pytorch's</a> implementation of the encoder block - look at lines 423 & 424 particularly. This is to ensure a smooth transformation between the concatenated tensor and the linear layer. The forward
+               pass is laid out in a manner such that:
+               <br><br>
+               <vue-mathjax :formula='`$sublayer_1(x) = dropout(layernorm(multihead(x, x, x) + residual))$`'></vue-mathjax>
+               <br>
+               <vue-mathjax :formula='`$sublayer_2(sublayer_1) = dropout(layernorm(feedforward(sublayer_1) + residual))$`'></vue-mathjax>
             </p>
             <prism-editor class="codeblock" v-model="encoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -193,18 +205,35 @@
             <div id="xformer_decblock"></div>
             <h2>Decoder Block</h2>
             <p>
-               toad
+               The decoder block follows along the same vein as the encoder block. We declare all of the constituent parts we are going to use in the constructor and then implement the forward pass accordingly.
+               Remember that the forward pass for the decoder block accepts two inputs: one from the predicted sequence and another from the output of the encoder block. First we do self attention with
+               <code style="background: #242424; border-radius: 5px;">dec_inp</code> making sure to also pass the mask, and then we feed that output as queries into the cross attention.
+               <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L443" target="_blank">Albeit added complexities</a>, you can see that Pytorch's decoder block follows the same
+               fundamentals (look at the forward method, specifically line 536 - 538).
             </p>
             <prism-editor class="codeblock" v-model="decoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
-            <div id="xformer_transformer"></div>
-            <h2>Transformer</h2>
+            <div id="xformer_encdec"></div>
+            <div id="blogSubHeader">
+               Encoder & Decoder Layers
+            </div>
             <p>
-               toad
+               As mentioned in the <a href="#xformer_blocks">blocks</a> section, let us now  wrap everything in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
+               class. This is so we can easily define a model with <i>N</i> encoder and decoder layers. The only thing I'd like to point out here is the final linear transformation present in the
+               <code style="background: #242424; border-radius: 5px;">Decoder</code> class. 
             </p>
             <prism-editor class="codeblock" v-model="encoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br>
             <prism-editor class="codeblock" v-model="decoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <br><br>
+            <div id="xformer_transformer"></div>
+            <div id="blogSubHeader">
+               Transformer
+            </div>
+            <p>
+               Everything on the "laid out" Transformer architecture shown at the top has been created, all we have to do is put everything together.
+            </p>
+            <prism-editor class="codeblock" v-model="transformer" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 
             <div id="xformer_thoughts"></div>
@@ -299,6 +328,25 @@ export default {
             Linear -> Act -> Linear
          - Normalization
          - Residual Connections`,
+         positionalencoding:
+`def positionalEncoding(k, e):
+   """
+   k: sequence dimension
+   e: embedding dimension
+
+   y: shape (1, K, E) tensor
+   """
+
+   y = torch.zeros(k, e)
+
+   p = torch.arange(0, k).unsqueeze(1) # Make column vector
+   i = torch.arange(0, e).unsqueeze(0) # Make row vector
+   a = torch.floor(2*i / e)
+
+   y[:, 0::2] = torch.sin(p / torch.pow(10000, a[0, 0::2]))
+   y[:, 1::2] = torch.cos(p / torch.pow(10000, a[0, 1::2]))
+
+   return y.unsqueeze(0)`,
          scaleddotproduct:
 `def scaled_dot_product_attention(q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
    """
@@ -508,10 +556,10 @@ export default {
       y: shape (B, K, E) tensor
       """
       
-      y = self.layernorm(self.attention_self(dec_inp, dec_inp, dec_inp, mask) + dec_inp)
+      y = self.layernorm(self.self_attention(dec_inp, dec_inp, dec_inp, mask) + dec_inp)
       y = self.dropout(y)
 
-      y = self.layernorm(self.attention_cross(y, enc_out, enc_out) + y)
+      y = self.layernorm(self.cross_attention(y, enc_out, enc_out) + y)
       y = self.dropout(y)
 
       y = self.layernorm(self.feed_forward(y) + y)
@@ -559,7 +607,38 @@ export default {
             out = layer(out, enc_out, mask)
 
         out = self.proj_to_vocab(out)
-        return out`
+        return out`,
+         transformer:
+`class Transformer(nn.Module):
+   def __init__(
+      self,
+      num_heads: int,
+      emb_dim: int,
+      feedforward_dim: int,
+      dropout: float,
+      num_enc_layers: int,
+      num_dec_layers: int,
+      vocab_len: int
+   ):
+
+      super().__init__()
+        
+      self.emb_layer = nn.Embedding(vocab_len, emb_dim)
+      self.encoder = Encoder(num_heads, emb_dim, feedforward_dim, num_enc_layers, dropout)
+      self.decoder = Decoder(num_heads, emb_dim, feedforward_dim, num_dec_layers, dropout)
+      
+   def forward(self, src_seq, trg_seq):
+      src_emb = self.emb_layer(src_seq)
+      src_enc = positionalEncoding(src_emb.shape[0], src_emb.shape[1]) + src_emb
+
+      trg_emb = self.emb_layer(trg_seq)
+      trg_enc = positionalEncoding(trg_emb.shape[0], trg_emb.shape[1]) + trg_emb
+
+      mask = get_subsequent_mask(trg_seq)
+      y = self.encoder(src_inp)
+      dec_out = self.decoder(trg_inp, y, mask)
+
+      return dec_out.view(-1, dec_out.size(2))`
    
       }
    },
