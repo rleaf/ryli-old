@@ -245,7 +245,7 @@
                possible classifications for a sequence element. 
             </p>
             <prism-editor class="codeblock" v-model="encoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <br>
+            <br><br>
             <prism-editor class="codeblock" v-model="decoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
             <div id="xformer_transformer"></div>
@@ -263,7 +263,7 @@
                The reshaping at the end, on line 42, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually deal with
                <a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy" target="_blank">cross entropy</a>, in which case the prediction is shape
                <code style="background: #242424; border-radius: 5px;">(B * K, class_len)</code> and the ground truth is shape <code style="background: #242424; border-radius: 5px;">(B * K)</code>. The prediction
-               variablehouses the unnormalized scores (hence not softmaxing as shown in the Transformer image) and the ground truth houses variable the corresponding ground truth indices for each element of each
+               variable houses the unnormalized scores (hence not softmaxing as shown in the Transformer image) and the ground truth variable houses the corresponding ground truth indices for each element of each
                sequence of every batch.
 
             </p>
@@ -365,7 +365,7 @@ export default {
          - Normalization
          - Residual Connections`,
          positionalencoding:
-`def positionalEncoding(k, e):
+`def positionalEncoding(K, E):
    """
    k: sequence dimension
    e: embedding dimension
@@ -373,11 +373,11 @@ export default {
    y: shape (1, K, E) tensor
    """
 
-   y = torch.zeros(k, e)
+   y = torch.zeros(K, E)
 
-   p = torch.arange(0, k).unsqueeze(1) # Make column vector
-   i = torch.arange(0, e).unsqueeze(0) # Make row vector
-   a = torch.floor(2*i / e)
+   p = torch.arange(0, K).unsqueeze(1) # Make column vector
+   i = torch.arange(0, E).unsqueeze(0) # Make row vector
+   a = torch.floor(2*i / E)
 
    y[:, 0::2] = torch.sin(p / torch.pow(10000, a[0, 0::2]))
    y[:, 1::2] = torch.cos(p / torch.pow(10000, a[0, 1::2]))
@@ -387,16 +387,16 @@ export default {
 `def scaled_dot_product_attention(q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
    """
    q: shape (B, K, E) where B is batch size, K is sequence length,
-      and E is the embedding dimension.
+      and E is the embedding dimension
    k: shape (B, K, E) where B is batch size, K is sequence length,
-      and E is the embedding dimension.
+      and E is the embedding dimension
    v: shape (B, K, E) where B is batch size, K is sequence length,
-      and E is the embedding dimension.
-   mask: shape (B, K, K) where B is batch size and K is sequence length.
+      and E is the embedding dimension
+   mask: shape (B, K, K) where B is batch size and K is sequence length
 
    y: shape (B, K, E) where B is batch size, K is sequence length,
-      and E is the embedding dimension.
-   softmax_weights: (B, K, K) where B is batch size and K is sequence length.
+      and E is the embedding dimension
+   softmax_weights: (B, K, K) where B is batch size and K is sequence length
    """
    B, K, E = q.shape
 
@@ -438,13 +438,18 @@ export default {
       
    def forward(self, q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
       """
-      q: shape (B, K, E)
-      k: shape (B, K, E)
-      v: shape (B, K, E)
-      mask: shape (B, K, K)
+      q: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      k: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      v: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      mask: shape (B, K, K) boolean tensor where B is batch size and K is
+      sequence length
 
-      y: shape (B, K, dim_v)
+      y: shape (B, K, dim_v) tensor where B is batch size and K is sequence length
       """
+
       k = self.k(k) # (B, K, dim_q)
       q = self.q(q) # (B, K, dim_q)
       v = self.v(v) # (B, K, dim_v)
@@ -458,7 +463,7 @@ export default {
       super().__init__()
       """
       num_heads: number of heads
-      dim_in: input dimension size of query, key, and value
+      dim_in: input dimension size for the query, key, and value
       dim_out: output dimension for each SA block
       """
    
@@ -469,12 +474,16 @@ export default {
    
    def forward(self, q: Tensor, k: Tensor, v: Tensor, mask: Tensor = None):
       """
-      q: shape (B, K, E)
-      k: shape (B, K, E)
-      v: shape (B, K, E)
-      mask: shape (B, K, K)
+      q: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      k: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      v: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      mask: shape (B, K, K) boolean tensor where B is batch size and K is
+      sequence length
 
-      y: shape (B, K, dim_in)
+      y: shape (B, K, dim_in) tensor where B is batch size and K is sequence length
       """
 
       output_list = []
@@ -490,9 +499,10 @@ export default {
          getsubmask:
 `def get_subsequent_mask(seq)
    """
-   seq: shape (B, K) tensor
+   seq: shape (B, K) tensor where B is batch size and K is sequence length
 
-   mask: shape (B, K, K) boolean tensor
+   mask: shape (B, K, K) boolean tensor where B is batch size and K is
+      sequence length
    """
    # Pytorch's implementation
    # https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer.forward
@@ -506,7 +516,7 @@ export default {
    #     for k in range(seq.shape[1]):
    #         mask[n, k, :k+1] = 0
    
-   return mask # (B, K, K)`,
+   return mask`,
          mlp: 
 `class FeedForward(nn.Module):
    def __init__(self, inp_dim: int, hidden_dim_forward: int):
@@ -530,9 +540,11 @@ export default {
       
    def forward(self, x):
       """
-      x: shape (B, K, E) tensor
+      x: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
       
-      y: shape (B, K, E) tensor
+      y: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
       """
       y = self.mlp(x)
       
@@ -542,10 +554,7 @@ export default {
    def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, dropout: float)
       super().__init__()
       """
-      num_heads: number of heads
-      emb_dim: embedding dimension
-      feedforward_dim: feed forward dim
-      dropout: dropout probability
+      Hyperparameters defined in Transformer class section
       """
       
       self.multihead = MultiHeadAttention(num_heads, emb_dim, emb_dim // num_heads)
@@ -555,15 +564,17 @@ export default {
    
    def forward(self, x):
       """
-      x: shape (B, K, E) tensor
-
-      y: shape (B, K, E) tensor
+      x: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+         
+      y: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
       """
 
       y = self.layernorm(self.multihead(x, x, x) + x)
-      y = self.dropout(y)
+      y = self.dropout(y) # (B, K, E)
       y = self.layernorm(self.feedforward(y) + y)
-      y = self.dropout(y)
+      y = self.dropout(y) # (B, K, E)
       
       return y`,
          decoderblock:
@@ -571,10 +582,7 @@ export default {
    def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, dropout: float)
       super().__init__()
       """
-      num_heads: number of heads
-      emb_dim: embedding dimension
-      feedforward_dim: feed forward dim
-      dropout: dropout probability
+      Hyperparameters defined in Transformer class section
       """
 
       self.self_attention = MultiHeadAttention(num_heads, emb_dim, emb_dim // num_heads)
@@ -585,28 +593,33 @@ export default {
       
    def forward(self, dec_inp: Tensor, enc_out: Tensor, mask: Tensor = None):
       """
-      dec_inp: shape (B, K, E) tensor for input to the decoder block
-      enc_out: shape (B, K, E) tensor that is output from the last encoder block
-      mask: shape (B, K, K) tensor of boolean values
+      dec_inp: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      enc_out: shape (B, K, E) tensor where B is batch size, K is sequence length,
+         and E is the embedding dimension
+      mask: shape (B, K, K) boolean tensor
 
       y: shape (B, K, E) tensor
       """
       
       y = self.layernorm(self.self_attention(dec_inp, dec_inp, dec_inp, mask) + dec_inp)
-      y = self.dropout(y)
+      y = self.dropout(y) # (B, K, E)
 
       y = self.layernorm(self.cross_attention(y, enc_out, enc_out) + y)
-      y = self.dropout(y)
+      y = self.dropout(y) # (B, K, E)
 
       y = self.layernorm(self.feed_forward(y) + y)
-      y = self.dropout(y)
+      y = self.dropout(y) # (B, K, E)
       
       return y`,
          encoder:
 `class Encoder(nn.Module):
    def __init__(self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float):
       super().__init__()   
-      
+      """
+      Hyperparameters defined in Transformer class section
+      """
+
       self.layers = nn.ModuleList(
          [EncoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers]
       )
@@ -615,10 +628,10 @@ export default {
       """
       (input & output)
       src_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
-         and E is the embedding dimension.
+         and E is the embedding dimension
       """
       for layer in self.layers:
-         src_seq = layer(srq_seq)
+         src_seq = layer(srq_seq) 
       
       return src_seq`,
          decoder:
@@ -626,7 +639,10 @@ export default {
    def __init__(
       self, num_heads: int, emb_dim: int, feedforward_dim: int, num_layers: int, dropout: float, class_len: int,
    ):
-      super().__init__()
+      super().__init__()'
+      """
+      Hyperparameters defined in Transformer class section
+      """
 
       self.layers = nn.ModuleList(
          [DecoderBlock(num_heads, emb_dim, feedforward_dim, dropout) for _ in range(num_layers)]
@@ -642,20 +658,21 @@ export default {
       The encoder sequence length K does not have to equal the decoder sequence length K!
       
       target_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
-         and E is the embedding dimension.
+         and E is the embedding dimension
       target_seq: shape (B, K, E) tensor where B is batch size, K is sequence length,
-         and E is the embedding dimension.
-      mask: shape (B, K, K) tensor
+         and E is the embedding dimension
+      mask: shape (B, K, K) boolean tensor
 
-      out = shape (B, K, class_len) tensor where B is batch size and K is sequence length
+      out = shape (B, K, class_len) tensor where B is batch size and K is sequence length,
+         and class_len is the total possible classifications
       """
 
-      out = target_seq.clone()
+      out = target_seq.clone() # (B, K, E)
       
       for layer in self.layers:
-         out = layer(out, enc_out, mask)
+         out = layer(out, enc_out, mask) # (B, K, E)
 
-      out = self.proj_to_class(out)
+      out = self.proj_to_class(out) # (B, K, class_len)
       return out`,
          transformer:
 `class Transformer(nn.Module):
@@ -667,12 +684,21 @@ export default {
       dropout: float,
       num_enc_layers: int,
       num_dec_layers: int,
-      vocab_len: int
+      class_len: int
    ):
+      """
+      num_heads: number of heads
+      emb_dim: embedding dimension
+      feedforward_dim: feed forward dimension
+      dropout: dropout probability
+      num_enc_layers: number of encoder blocks
+      num_dec_layers: number of decoder blocks
+      class_len: total possible classifications for a sequence element
+      """
 
       super().__init__()
         
-      self.emb_layer = nn.Embedding(vocab_len, emb_dim)
+      self.emb_layer = nn.Embedding(class_len, emb_dim)
       self.encoder = Encoder(num_heads, emb_dim, feedforward_dim, num_enc_layers, dropout)
       self.decoder = Decoder(num_heads, emb_dim, feedforward_dim, num_dec_layers, dropout)
       
