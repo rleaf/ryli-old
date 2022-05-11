@@ -79,7 +79,11 @@
             <div id="blogSubHeader">
                Preperation
             </div>
-
+            <p>
+               Before the sequences input into the encoder and decoder, they go though an embedding layer and positional encoding. For the embedding layer, I am going to be using 
+               <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> available through <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank">PyTorch</a>.
+               
+            </p>
             <div id="xformer_posenc"></div>
             <h2>Positional Encoding</h2>
             <prism-editor class="codeblock" v-model="positionalencoding" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
