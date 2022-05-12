@@ -13,28 +13,28 @@
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#knn_knnintroduction">Introduction</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
                   <ul>
                      <li><a href="#knn_whatisknn">What is kNN</a></li>
                   </ul>
                   <li>Setting Up</li>
                   <ul>
-                     <li><a href="#knn_loadingcifar">Loading CIFAR</a></li>
-                     <li><a href="#knn_visualizing">Visualizing</a></li>
-                     <li><a href="#knn_subsampling">Subsampling</a></li>
+                     <li><a href="#loadcifar">Loading CIFAR</a></li>
+                     <li><a href="#visualizing">Visualizing</a></li>
+                     <li><a href="#subsampling">Subsampling</a></li>
                   </ul>
                   <li>Building kNN</li>
                   <ul>
-                     <li><a href="#knn_findingdistance">Finding the Euclidean distance</a></li>
-                     <li><a href="#knn_classify">Classifying our test images</a></li>
-                     <li><a href="#knn_xvalidation">Cross Validation</a></li>
-                     <li><a href="#knn_entireCIFAR">Running on the entire CIFAR-10</a></li>
+                     <li><a href="#euclideandistance">Finding the Euclidean distance</a></li>
+                     <li><a href="#classifying">Classifying our test images</a></li>
+                     <li><a href="#crossvalidation">Cross Validation</a></li>
+                     <li><a href="#entirecifar">Running on the entire CIFAR-10</a></li>
                   </ul>
-                  <li><a href="#knn_thoughts">Thoughts</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
             <i>(2/18/22) Edit: Cleaned up some wording for clarity.</i>
-            <div id="knn_knnintroduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
             </div>
@@ -92,7 +92,7 @@
             <img id="img1300" src="../../assets/blog/knn.png" alt="">
                <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
-            <div id="knn_loadingcifar"></div>
+            <div id="loadcifar"></div>
                <div id="blogSubHeader">
                   Loading CIFAR
                </div>
@@ -109,7 +109,7 @@
                <span style="color: #81A1C1;">A tensor can be thought of as a generalization to a scalar (0D tensor), vector (1D tensor), matrix (2D tensor), etc...</span>
             </p>
             <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_visualizing"></div>
+            <div id="visualizing"></div>
             <div id="blogSubHeader">
                Visualizing
             </div>
@@ -120,7 +120,7 @@
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer label then corresponds to a list of classes:
             </p>
             <prism-editor class="codeblock" v-model="classes" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_subsampling"></div>
+            <div id="subsampling"></div>
             <div id="blogSubHeader">
                Subsampling
             </div>
@@ -132,7 +132,7 @@
                algorithm.
             </p>
             <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_findingdistance"></div>
+            <div id="euclideandistance"></div>
             <div id="blogSubHeader">
                kNN: Finding the Euclidean distance
             </div>
@@ -178,7 +178,7 @@
                store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>. For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
                faster than the two loop. This probably provides better intuition behind how powerful broadcasting can be.
             </p>
-            <div id="knn_classify"></div>
+            <div id="classifying"></div>
             <div id="blogSubHeader">
                kNN: Classifying our test images
             </div>
@@ -201,7 +201,7 @@
                accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
             </p>
             <prism-editor class="codeblock" v-model="running_kNN" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_xvalidation"></div>
+            <div id="crossvalidation"></div>
             <div id="blogSubHeader">
                Optimizing kNN: Cross Validation
             </div>
@@ -224,7 +224,7 @@
                on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
             </p>
             <prism-editor class="codeblock" v-model="best_k" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_entireCIFAR"></div>
+            <div id="entirecifar"></div>
             <div id="blogSubHeader">
                Running on the entire CIFAR-10
             </div>
@@ -232,7 +232,7 @@
                We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instead of 5,000 images.
             </p>
             <prism-editor class="codeblock" v-model="full_cifar" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="knn_thoughts"></div>
+            <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>

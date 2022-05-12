@@ -52,8 +52,8 @@
                a couple times throughout this read. Feel free to click around through the
                contents displayed above to read more about a particular section and the affiliated code. Similarly to other articles I've written, all code uses the PyTorch framework.
             <p>
-               It is mentioned in the opening of the <i>Attention is All You Need</i> that the transformer model was introduced to ameliorate and <i>"push the boundaries of recurrent language
-               models and encoder-decoder architectures"</i>. While this was certainly true back when transformers were new, it is worth mentioning that the impact of transformers has broached
+               It is mentioned in the opening of the <i>Attention is All You Need</i> that the Transformer model was introduced to ameliorate and <i>"push the boundaries of recurrent language
+               models and encoder-decoder architectures"</i>. While this was certainly true back when Transformers were new, it is worth mentioning that the impact of Transformers has broached
                well into other domains of machine learning. <a href="https://arxiv.org/pdf/2010.11929.pdf" target="_blank">Visual Transformers</a> and <a href="https://arxiv.org/pdf/2103.14030.pdf" target="_blank">Swin Transformers</a>
                are good examples. Although Computer Vision already has sequential tasks such as image captioning, those linked papers use the attention mechanism to process the image data itself, which is not inherently
                sequential.
@@ -65,9 +65,9 @@
             </p>
             <prism-editor class="codeblock" v-model="transformerArch" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               By decomposing transformers as such, it becomes easier to see the constituent parts. For example, you can see there's a lot of importance on <i>Scaled dot product attention</i> because it is
+               By decomposing Transformers as such, it becomes easier to see the constituent parts. For example, you can see there's a lot of importance on <i>Scaled dot product attention</i> because it is
                used heavily throughout the entire model. Every attention mechanism, whether it be masked, multiheaded, or cross employs <i>SDP attention</i>.
-               Below is the visualization of a transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
+               Below is the visualization of a Transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
                each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
             <img id="img500" src="../../assets/blog/transformer.png" alt="">
@@ -157,7 +157,7 @@
             <div id="maskedattention"></div>
             <h2>Masked Multi Headed Attention</h2>
             <p>
-               Masking is simply the procedure to inhibit the decoder block from accessing information from future elements in the sequence. Because transformers operate on sequence elements in parallel, for certain
+               Masking is simply the procedure to inhibit the decoder block from accessing information from future elements in the sequence. Because Transformers operate on sequence elements in parallel, for certain
                tasks such as translation, we set subsequent values in the <code style="background: #242424; border-radius: 5px;">softmax_weights</code> matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
                With the code displayed above, all we have to is pass a mask into our instantiated <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> class. The mask will be a tensor of
                boolean values, where <code style="background: #242424; border-radius: 5px;">true</code> will indicate masking that index in the matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
@@ -250,14 +250,14 @@
                Transformer
             </div>
             <p>
-               The Transformer model can finally be put together. Everything up to line 41 should look normal. In the constructor we instantiate the required classes with the according hyperparameters. In the
+               The Transformer model can finally be put together. Everything up to line 50 should look normal. In the constructor we instantiate the required classes with the according hyperparameters. In the
                forward pass, we pass both the tokenized <code style="background: #242424; border-radius: 5px;">enc_seq</code> and <code style="background: #242424; border-radius: 5px;">trg_seq</code> through
                <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> and then add their positional encodings with <code style="background: #242424; border-radius: 5px;">positionalEncoding</code>.
                The results <code style="background: #242424; border-radius: 5px;">src_inp</code> and <code style="background: #242424; border-radius: 5px;">trg_inp</code> are then fed to the encoder and decoder
                respectively where the decoder will also take as input the output from the encoder to be used in the <a href="#crossattention">cross attention</a> sublayer and a mask for the 
                <a href="#maskedattention">masked multi headed attention</a> sublayer.
                <br><br>
-               The reshaping at the end, on line 42, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually deal with
+               The reshaping at the end, on line 51, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually use
                <a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy" target="_blank">cross entropy</a>, in which case the prediction is shape
                <code style="background: #242424; border-radius: 5px;">(B * K, class_len)</code> and the ground truth is shape <code style="background: #242424; border-radius: 5px;">(B * K)</code>. The prediction
                variable houses the unnormalized scores (hence not softmaxing as shown in the Transformer image) and the ground truth variable houses the corresponding ground truth indices for each element of each
@@ -272,7 +272,20 @@
                Thoughts
             </div>
             <p>
-               toads?
+               I <i>*think*</i> Transformers are the architecture I've spent the longest time reading about. There was a discussion happening on the Clubhouse app which asked the question
+               <i>"what big changes do you expect to happen in ML"</i>, and one of the speakers was very confident that Transformers were going to take over industries as the flagship architecture. Not speaking
+               to the creedence of that statement, the only thing I was made curious about were Transformers themselves. At the time, I did not even know about <a href="/rnn">Recurrent Networks</a> so
+               when I read into Transformers, I knew I had skipped a couple of steps.
+               <br><br>
+               They're a pretty cool architecture though, no? The attention mechanism and all of it's variations have introduced, for me at least, very unique ways you can go about manipulating information. And
+               when consolidated appropiately into a single Transformer network, the strengths are very evident. It's fair to say the weaknesses are also apparent, however since one of it's biggest is tied to
+               hardware capability, I am a little forgiving.
+               <br><br>
+               I wanted to remain impartial to that one person who said Transformers are taking over every industry, but there's been some <a href="https://arxiv.org/pdf/2201.03545.pdf" target="_blank">retaliation</a>
+               on the side of CNNs.
+            </p>
+            <p>
+               Ryan
             </p>
          </div>
          <toTop />
@@ -313,7 +326,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'I try to provide a thorough explanation on the operations and overall construction of a Transformer Neural Network.'
+            content: 'A thorough explanation on the operations and overall construction of a Transformer Neural Network.'
          },
          {
             name: 'keywords',
@@ -321,7 +334,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'I try to provide a thorough explanation on the operations and overall construction of a Transformer Neural Network.'
+            content: 'A thorough explanation on the operations and overall construction of a Transformer Neural Network.'
          }
       ]
    },

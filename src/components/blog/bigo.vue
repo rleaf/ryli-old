@@ -15,18 +15,18 @@
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#bigo_bigointroduction">Introduction</a></li>
-                  <li><a href="#bigo_definitions">The Definitions</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
+                  <li><a href="#definitions">The Definitions</a></li>
                   <li>Examples</li>
                   <ul>
-                     <li><a href="#bigo_functions">Implementing on Functions</a></li>
-                     <li><a href="#bigo_algorithms">Implementing on Algorithms</a></li>
+                     <li><a href="#on_functions">Implementing on Functions</a></li>
+                     <li><a href="#on_algorithms">Implementing on Algorithms</a></li>
                   </ul>
-                  <li><a href="#bigo_elephant">Analysis & Addressing the Elephant</a></li>
-                  <li><a href="#bigo_thoughts">Thoughts</a></li>
+                  <li><a href="#elefante">Analysis & Addressing the Elephant</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <div id="bigo_bigointroduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">Introduction</div>
             <p>
                <a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">"Big Oh"</a> notation provides a way to analyze an algorithm's runtime as the input for that algorithm increases.
@@ -48,7 +48,7 @@
                I say this not to dismiss questions that ask specifically about a function's value at any point in it's domain, just to provide pedagogical "direction" for understanding "Big Oh". Asking for the values of an algorithm when fed an arbitrarily sized input is certainly valuable.
                For example if there are two competing algorithms with similar efficiency, an enticing question could be "at what point does algorithm <i>x</i> become more efficient than algorithm <i>y</i>?"
             </p>
-            <div id="bigo_definitions"></div>
+            <div id="definitions"></div>
             <div id="blogSubHeader">
                The Definitions
             </div>
@@ -88,7 +88,7 @@
                in Skiena's book (or maybe I missed it), but it should seem apparent that <vue-mathjax :formula="`$c > 0$`"></vue-mathjax> otherwise we're subject to some funk. This is stated in
                <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">Introduction to Algorithms, 3rd Ed</a> on p. 50.
             </p>
-            <div id="bigo_functions"></div>
+            <div id="on_functions"></div>
             <div id="blogSubHeader">
                The Implementation on Functions
             </div>
@@ -170,7 +170,7 @@
                One term I find useful is that when <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax> we can say that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> is a <i>tight bound</i> for
                <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, indicating it is sandwiched between an upper and lower bound.
             </p>
-            <div id="bigo_algorithms"></div>
+            <div id="on_algorithms"></div>
             <div id="blogSubHeader">
                The Implementation on Algorithms
             </div>
@@ -253,7 +253,7 @@
                a <i>worst case scenario</i>. Food for thought though, what if input <i>n</i> is already perfectly sorted? If <i>n</i> were perfectly sorted from smallest to largest, then the while loop would never
                run, thus giving a lower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
             </p>
-            <div id="bigo_elephant"></div>
+            <div id="elefante"></div>
             <div id="blogSubHeader">
                Analysis & Addressing the Elephant
             </div>
@@ -273,7 +273,7 @@
                Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vue-mathjax :formula='`$O(lg(n))$`'></vue-mathjax>? What an insanely efficient runtime. I talk about why I omit them below,
                but the elephant is simply that I do not explain them at all here.
             </p>
-            <div id="bigo_thoughts"></div>
+            <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>

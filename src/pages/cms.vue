@@ -11,7 +11,7 @@
          <div id="curriculumBody">
            
                <!-- <router-link :to="{ path: '/rnn'}" append> -->
-               <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed and Explained **wip!** (5/6/22)</router-link></li>
+               <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed and Explained</router-link></li>
                <li><router-link :to="{ name: 'cnn'}">The Transformations in a CNN</router-link></li>
                <li><router-link :to="{ name: 'bigo'}">Introduction to Big "Oh" Notation</router-link></li>
                <!-- <li>Time Complexity for Algorithms <i>**In the works (12/25/21)**</i></li> -->

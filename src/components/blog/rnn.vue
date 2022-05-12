@@ -13,19 +13,19 @@
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#rnn_rnnintroduction">Introduction</a></li>
-                  <li><a href="#rnn_sequenceprocessing">Sequence Processing</a></li>
-                  <li><a href="#rnn_forward">Forward Pass Transformations</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
+                  <li><a href="#sequenceprocessing">Sequence Processing</a></li>
+                  <li><a href="#forward">Forward Pass Transformations</a></li>
                   <ul>
-                     <li><a href="#rnn_forwardhidden">Between hidden steps</a></li>
-                     <li><a href="#rnn_forwardhidpred">Between hidden steps & prediction</a></li>
+                     <li><a href="#forwardhidden">Between hidden steps</a></li>
+                     <li><a href="#forwardpred">Between hidden steps & prediction</a></li>
                   </ul>
-                  <li><a href="#rnn_onestepback">One Step Backwards</a></li>
-                  <li><a href="#rnn_fullback">All the way Back</a></li>
+                  <li><a href="#onestepback">One Step Backwards</a></li>
+                  <li><a href="#fullback">All the way Back</a></li>
                   <li><a href="#rnn_thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <div id="rnn_rnnintroduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">
                Recurrent Neural Networks: Introduction
             </div>
@@ -47,7 +47,7 @@
                of an RNN. The initial hidden state is either learnt (the output of  network <i>x</i> can be used to to populate <vue-mathjax :formula='`$h_0$`'></vue-mathjax> in RNN <i>y</i> ) or set to 0.
                <u>Five:</u> the total loss is a sum over every individual loss.
             </p>
-            <div id="rnn_sequenceprocessing"></div>
+            <div id="sequenceprocessing"></div>
             <div id="blogSubHeader">
                Sequence Processing
             </div>
@@ -63,7 +63,7 @@
             <span style="font-size:14px; padding-top: -10px;"><b>Examples:</b> <i>one to one</i>: Image classification, <i>one to many</i>: Image captioning, <i>many to one</i>: Video classification, <i>many to many</i>:
             Machine translation <br> Captioning refers to a sequence of symbols. For image captioning our output would be a sequence of, ideally coherent, words describing what's happening in the image.
             Another example of a caption could be a sequence of letters, which at the end, would produce a word.</span>
-            <div id="rnn_forward"></div>
+            <div id="forward"></div>
             <div id="blogSubHeader">
               Forward Pass Transformations
             </div>
@@ -75,7 +75,7 @@
                to visualize where that particular tensor belongs. Note that there are many bells and whistles you can add, generally to increase efficacy, which will also change the amount of parameters present - an
                example being attention. Excluding the loss function, the two transformations shown below are fundamental to a Vanilla RNN. 
             </p>
-            <div id="rnn_forwardhidden"></div>
+            <div id="forwardhidden"></div>
             <p>
                <b>One:</b>
                <br>
@@ -84,7 +84,7 @@
             <vue-mathjax :formula='rnnStep'></vue-mathjax>
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph.png" alt="">
             <prism-editor class="codeblock" v-model="toad" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="rnn_forwardhidpred"></div>
+            <div id="forwardpred"></div>
             <p>
                <b>Two:</b>
                <br>
@@ -93,7 +93,7 @@
             <vue-mathjax :formula='yhatTransform'></vue-mathjax>
             <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph2.png" alt="">
             <prism-editor class="codeblock" v-model="toad2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="rnn_onestepback"></div>
+            <div id="onestepback"></div>
             <div id="blogSubHeader">
                One Step Backwards
             </div>
@@ -148,7 +148,7 @@
                <br>
             </p>
             <prism-editor class="codeblock" v-model="toad3" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="rnn_fullback"></div>
+            <div id="fullback"></div>
             <div id="blogSubHeader">
                Full Backpropagation
             </div>

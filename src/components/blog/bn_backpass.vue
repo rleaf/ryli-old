@@ -15,15 +15,15 @@
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#bn_bnintroduction">Introduction</a></li>
-                  <li><a href="#bn_totalderivative">Total Derivative Representation</a></li>
-                  <li><a href="#bn_integratesum">Integrate Summations</a></li>
-                  <li><a href="#bn_solvepartials">Solving the Partials</a></li>
-                  <li><a href="#bn_substitutesimplify">Substitute in Partials & Simplify</a></li>
-                  <li><a href="#bn_thoughts">Thoughts</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
+                  <li><a href="#total_derivative">Total Derivative Representation</a></li>
+                  <li><a href="#summations">Integrate Summations</a></li>
+                  <li><a href="#partials">Solving the Partials</a></li>
+                  <li><a href="#substitute">Substitute in Partials & Simplify</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <div id="bn_bnintroduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
             </div>
@@ -48,7 +48,7 @@
 
              <prism-editor class="codeblock" v-model="bnChainCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
-            <div id="bn_totalderivative"></div>
+            <div id="total_derivative"></div>
             <div id="blogSubHeader">
                Total Derivative Representation
             </div>
@@ -66,7 +66,7 @@
                The full represetation without quotes:
             </p>
             <vue-mathjax :formula="dldxFull"></vue-mathjax>
-            <div id="bn_integratesum"></div>
+            <div id="summations"></div>
             <div id="blogSubHeader">
                Integrate Summations
             </div>
@@ -87,7 +87,7 @@
             </p>
             <vue-mathjax :formula='dldxSimple3'></vue-mathjax>
             
-            <div id="bn_solvepartials"></div>
+            <div id="partials"></div>
             <div id="blogSubHeader">
                Solving the Partials
             </div>
@@ -113,7 +113,7 @@
             <vue-mathjax :formula='dmudxSolve'></vue-mathjax>
             <br>
             <vue-mathjax :formula='dsigdxSolve'></vue-mathjax>
-            <div id="bn_substitutesimplify"></div>
+            <div id="substitute"></div>
             <div id="blogSubHeader">
                Substitute in Partials & Simplify
             </div>
@@ -176,7 +176,7 @@
                Below is a codeblock implemented with equation 10. With a 276 character difference, the shortcut performs a backwards pass much faster than the original implementation.
             </p>
             <prism-editor class="codeblock" v-model="finalAnswerCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="bn_thoughts"></div>
+            <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
@@ -236,7 +236,7 @@ export default {
          },
          {
             name: 'keywords',
-            content: 'batch normalization, shortcut, neural networks, machine learning, artificial intelligence, ai, ml, backpropagation, backwards pass, regularization, optimization'
+            content: 'batch normalization, derivative, gradient, shortcut, neural networks, machine learning, artificial intelligence, ai, ml, backpropagation, backwards pass, regularization, optimization'
          },
          {
             property: 'og:description',

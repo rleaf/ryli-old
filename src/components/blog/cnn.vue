@@ -18,20 +18,20 @@
                   <li><a href="#cnn_cnnintroduction">Introduction</a></li>
                   <li>Convolutional Layer</li>
                   <ul>
-                     <li><a href="#cnn_convolutionforward">Forward</a></li>
-                     <li><a href="#cnn_convolutionbackward">Backward</a></li>
+                     <li><a href="#convolution_forward">Forward</a></li>
+                     <li><a href="#convolution_backward">Backward</a></li>
                   </ul>
                   <li>Activation (ReLU)</li>
                   <ul>
-                     <li><a href="#cnn_activationforward">Forward</a></li>
-                     <li><a href="#cnn_activationbackward">Backward</a></li>
+                     <li><a href="#activation_foward">Forward</a></li>
+                     <li><a href="#activation_backward">Backward</a></li>
                   </ul>
                   <li>Pooling (Max Pooling)</li>
                   <ul>
-                     <li><a href="#cnn_poolingforward">Forward</a></li>
-                     <li><a href="#cnn_poolingbackward">Backward</a></li>
+                     <li><a href="#pooling_forward">Forward</a></li>
+                     <li><a href="#pooling_backward">Backward</a></li>
                   </ul>
-                  <li><a href="#cnn_thoughts">Thoughts</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
             <div id="cnn_cnnintroduction"></div>
@@ -50,7 +50,7 @@
                </p>
                <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
-               <div id="cnn_convolutionforward"></div>
+               <div id="convolution_forward"></div>
                <div id="blogSubHeader">
                   Convolutional Layer
                </div>
@@ -85,7 +85,7 @@
                <prism-editor class="codeblock" v-model="cnnForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <br>
                <br>
-               <div id="cnn_convolutionbackward"></div>
+               <div id="convolution_backward"></div>
                   <h2>Backward</h2>
                <p>
                   Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. Looking at the equation, it is very easy to find the desired local gradients
@@ -116,7 +116,7 @@
                <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
 
-               <div id="cnn_activationforward"></div>
+               <div id="activation_foward"></div>
                <div id="blogSubHeader">
                   Activation
                </div>
@@ -127,7 +127,7 @@
                   <a href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity" target="_blank">activation classes</a>.
                </p>
                <prism-editor class="codeblock" v-model="reluForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-               <div id="cnn_activationbackward"></div>
+               <div id="activation_backward"></div>
                <h2>Backward</h2>
                <p>
                   Backprop through this layer funtions similarly. A convenience of ReLU is that all the local gradients will equal to 1, so this transformation behaves like a mask that only allows the
@@ -152,7 +152,7 @@
                </p>
                <prism-editor class="codeblock" v-model="reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
-               <div id="cnn_poolingforward"></div>
+               <div id="pooling_forward"></div>
                <div id="blogSubHeader">
                   Pooling Layer
                </div>
@@ -174,7 +174,7 @@
                   in the convolutional layer is omitted.
                </p>
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-               <div id="cnn_poolingbackward"></div>
+               <div id="pooling_backward"></div>
                <h2>Backward</h2>
                <p>
                   Backpass through a pooling transformation routes <code style="background: #242424; border-radius: 5px;">dout</code> values to the index of the largest value of the corresponding 
@@ -187,7 +187,7 @@
                   are indexed to the maximum value of every 2x2 square with stride 2.
                </p>
                <prism-editor class="codeblock" v-model="poolBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-               <div id="cnn_thoughts"></div>
+               <div id="thoughts"></div>
                <div id="blogSubHeader">
                Thoughts
                </div>
@@ -243,11 +243,11 @@ export default {
          },
          {
             name: 'keywords',
-            content: 'toads, are, green, sometimes'
+            content: 'convolutional neural networks, cnn, neural network, gradient, forward pass, backward pass, cnn transformations, computer vision'
          },
          {
             property: 'og:description',
-            content: 'Toads'
+            content: 'Forward & Backward of a CNN. I talk about the forward and backward pass of a Convolutional neural network with illustrations and codeblocks as examples.'
          }
       ]
    },

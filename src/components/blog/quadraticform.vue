@@ -13,18 +13,18 @@
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#quad_quadintroduction">Introduction</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
                   <li>Ways to go about it:</li>
                   <ul>
-                     <li><a href="#quad_scalarsum">Rewriting to scalar sums</a></li>
-                     <li><a href="#quad_frechet">The Fréchet</a></li>
-                     <li><a href="#quad_gateaux">The Gateaux (incomplete)</a></li>
-                     <li><a href="#quad_chain">Chain Rule</a></li>
+                     <li><a href="#scalarsums">Rewriting to scalar sums</a></li>
+                     <li><a href="#frechet">The Fréchet</a></li>
+                     <li><a href="#gateaux">The Gateaux (incomplete)</a></li>
+                     <li><a href="#chainrule">Chain Rule</a></li>
                   </ul>
-                  <li><a href="#quad_thoughts">Thoughts</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <div id="quad_quadintroduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
             </div>
@@ -42,7 +42,7 @@
                for me to put together - just putting it together became quickly overwhelming. Segue into the <i>first</i> strategy for solving this problem:
                explicitly writing out the inner product.
             </p>
-            <div id="quad_scalarsum"></div>
+            <div id="scalarsums"></div>
             <div id="blogSubHeader">
                1) Rewriting to scalar sums
             </div>
@@ -91,7 +91,7 @@
                <vue-mathjax :formula='rowVector'></vue-mathjax>
                <br>
                <br>
-            <div id="quad_frechet"></div>
+            <div id="frechet"></div>
             <div id="blogSubHeader">
                2) The Fréchet
             </div>
@@ -137,7 +137,7 @@
                There's a pretty neat proof that exists for the Cauchy Schwarz inequality that uses the quadratic formula, I think it's worth a watch. Writing out the inequality for <vue-mathjax :formula='htAh'></vue-mathjax>
                this way provides a clear reason why it evaluates to 0. We can now finally say <vue-mathjax :formula='htAhelementOf'></vue-mathjax>.
             </p>
-            <div id="quad_gateaux"></div>
+            <div id="gateaux"></div>
             <div id="blogSubHeader">
                3) The Gateaux
             </div>
@@ -148,7 +148,7 @@
                The Gateaux in concept, however, seems to tackle the problem very similarly to the Fréchet. Both derivatives are operable on vector spaces and just as the Fréchet generalizes the idea of the univariate derivative,
                the Gateaux generalizes the directional derivative.
             </p>
-            <div id="quad_chain"></div>
+            <div id="chainrule"></div>
             <div id="blogSubHeader">
                4) Chain Rule
             </div>
@@ -179,7 +179,7 @@
                , but the trick of substituting and understanding the derivative of <vue-mathjax :formula='ytx'></vue-mathjax> and <vue-mathjax :formula='xty'></vue-mathjax> w.r.t the same variable evaulate to the same answer
                took some time for me to get down.
             </p>
-            <div id="quad_thoughts"></div>
+            <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
