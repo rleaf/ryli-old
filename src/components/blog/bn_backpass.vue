@@ -29,9 +29,8 @@
                Introduction
             </div>
             <p>
-               <i>This read may be a little ridiculous because
-                  instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
-                  I link an alternative, maybe more interpretable, blog down below in the conclusion.</i>
+               <i>This read may be a little ridiculous because instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
+                  I link an alternative, maybe more interpretable, blog down below in the conclusion. This read is not very suitable for screens with width less ~1250px. </i>
                <br>
                <br>
                The image below defines "whitening". An application to a batch of inputs with the goal to reduce the <i>internal covariate shift</i>. This procedure occurs during the forward pass.
@@ -56,7 +55,7 @@
             <p>
                <vue-mathjax :formula='dldxFullQuote'></vue-mathjax>
                <br>
-               Above is a "full" representation of the total derivative of <vue-mathjax :formula='dldx'></vue-mathjax>.
+               Now lets find a better way to pass backwards through batch normalization using the derivative. Above is a "full" representation of the total derivative of <vue-mathjax :formula='dldx'></vue-mathjax>.
                I wrote the "full" (as opposed to the truly full) representation first for ease of understanding. The third term in the second summand: 
                <vue-mathjax :formula='dxhatdmu'></vue-mathjax>, can be further decomposed because <vue-mathjax :formula='mu'></vue-mathjax> is an argument of <vue-mathjax :formula='xhat'></vue-mathjax> and the
                intermediate variable <vue-mathjax :formula='sigmoid'></vue-mathjax>.
