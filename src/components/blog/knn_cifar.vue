@@ -33,7 +33,7 @@
                   <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <i>(2/18/22) Edit: Cleaned up some wording for clarity.</i>
+            <i>(4/18/22) Edit: Cleaned up some wording for clarity.</i>
             <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
