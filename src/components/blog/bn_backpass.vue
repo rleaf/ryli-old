@@ -23,6 +23,7 @@
                   <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
+            <i>(5/12/22) Edit: Highlighted in green the changes when simplifying</i>
             <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
