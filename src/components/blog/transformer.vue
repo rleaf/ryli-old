@@ -10,42 +10,39 @@
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">5 &#8226; 4 &#8226; 2022</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
-                  <p>
-                     This blog is currently being made, but feel free to follow along :)
-                  </p>
                </div>
             </div>
             <div class="blogtoc">
                Contents
                <ul>
-                  <li><a href="#xformer_introduction">Introduction</a></li>
-                  <li><a href="#xformer_prep">Preparation</a></li>
+                  <li><a href="#introduction">Introduction</a></li>
+                  <li><a href="#preparation">Preparation</a></li>
                   <ul>
-                     <li><a href="#xformer_posenc">Positional Encoding</a></li>
+                     <li><a href="#positionalencoding">Positional Encoding</a></li>
                   </ul>
-                  <li><a href="#xformer_dotprod">Scaled Dot Product Attention</a></li>
-                  <li><a href="#xformer_attention">Attention Implementation</a></li>
+                  <li><a href="#sdpa">Scaled Dot Product Attention</a></li>
+                  <li><a href="#attention">Attention Implementation</a></li>
                   <ul>
-                     <li><a href="#xformer_selfattn">Self Attention</a></li>
-                     <li><a href="#xformer_multiattn">Multi Headed Attention</a></li>
-                     <li><a href="#xformer_maskattn">Masked Multi Headed Attention</a></li>
-                     <li><a href="#xformer_xattn">Cross Attention</a></li>
+                     <li><a href="#selfattention">Self Attention</a></li>
+                     <li><a href="#multiheadedattention">Multi Headed Attention</a></li>
+                     <li><a href="#maskedattention">Masked Multi Headed Attention</a></li>
+                     <li><a href="#crossattention">Cross Attention</a></li>
                   </ul>
-                  <li><a href="#xformer_mlp">Feed Forward Network</a></li>
-                  <li><a href="#xformer_blocks">Blocks</a></li>
+                  <li><a href="#ffn">Feed Forward Network</a></li>
+                  <li><a href="#blocks">Blocks</a></li>
                   <ul>
                      <!-- <ul>
                         <li><a href="#xformer_layernorm">Layer Normalization</a></li>
                      </ul> -->
-                     <li><a href="#xformer_encblock">Encoder Block</a></li>
-                     <li><a href="#xformer_decblock">Decoder Block</a></li>
+                     <li><a href="#encoderblock">Encoder Block</a></li>
+                     <li><a href="#decoderblock">Decoder Block</a></li>
                   </ul>
-                  <li><a href="#xformer_encdec">Encoder & Decoder Layers</a></li>
-                  <li><a href="#xformer_transformer">Transformer</a></li>
-                  <li><a href="#xformer_">Thoughts</a></li>
+                  <li><a href="#encdec">Encoder & Decoder Layers</a></li>
+                  <li><a href="#transformer">Transformer</a></li>
+                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
-            <div id="xformer_introduction"></div>
+            <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
             </div>
@@ -76,7 +73,7 @@
             <img id="img500" src="../../assets/blog/transformer.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Transformer layout from "Attention is All You Need"</i></span>
             <br><br>
-            <div id="xformer_prep"></div>
+            <div id="preparation"></div>
             <div id="blogSubHeader">
                Preperation
             </div>
@@ -88,10 +85,10 @@
                Positional encoding is defined below.
                
             </p>
-            <div id="xformer_posenc"></div>
+            <div id="positionalencoding"></div>
             <h2>Positional Encoding</h2>
             <p>
-               We positionally encode our sequences to fortify structure because there is no inherint order during operation due to the parallelization of Transformers. Here, I will use sinusoidal positional
+               We positionally encode our sequences to fortify structure because there is no inherint order during operation due to the parallelization of Transformers. Displayed here is sinusoidal positional
                encoding discussed in the original <i>Attention Is All You Need</i> paper, however there are many different ways to positionally encode a sequence such as
                <a href="https://arxiv.org/pdf/1803.02155.pdf" target="_blank">Relative Positinal Encoding</a>. Sinusoidal encoding works by oscillating between two different functions based of the 
                sequence index. If we have a sequence tensor of shape <code style="background: #242424; border-radius: 5px;">(K, E)</code> where <i>p</i> traverses the <i>Kth</i> dimension and <i>i</i> the <i>Eth</i>,
@@ -105,14 +102,13 @@
             </p>
             <prism-editor class="codeblock" v-model="positionalencoding" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
-            <div id="xformer_dotprod"></div>
+            <div id="sdpa"></div>
             <div id="blogSubHeader">
                Scaled Dot Product Attention
             </div>
             <p>
-               Scaled dot product attention takes takes three arguments as input: <i>queries</i>, <i>keys</i>, and <i>values</i>. These inputs are transformations
-               from the prior block's output (or original input). These transformations happen using the weights initialized in the Self Attention class which we will explore in the next in
-               the <a href="#xformer_selfattn">section</a>. 
+               Scaled dot product attention takes three arguments as input: <i>queries</i>, <i>keys</i>, and <i>values</i>. These inputs originate from the same tensor and each go through the same shape
+               transformation except with unique weights. More is discussed specifically about this in the <a href="#selfattention">Self Attention</a> class section. 
             </p>
             <p>
                Supplied with our Q, K, and V (queries/keys/values respectively), scaled dot product attention on a <u>single element from the batch</u> will look like:
@@ -130,16 +126,16 @@
                I will sprinkle in the corresponding PyTorch code at every section.
             </p>
             <prism-editor class="codeblock" v-model="scaleddotproduct" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="xformer_attention"></div>
+            <div id="attention"></div>
             <div id="blogSubHeader">
                Attention Implementation
             </div>
             <p>
                We can now construct the classes that house SDP Attention. It's worth mentioning that there are <a href="https://www.catalyzex.com/paper/arxiv:1706.03762/code" target="_blank">different ways</a> how you can
                code the model (<a href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer" target="_blank">Pytorch's Transformer</a>). The way shown here will certainly have it's idiosyncrasies,
-               so the goal is to really convey the main mechanisms present in all of these variations. I will try to discuss different characteristics of other Transformer models.
+               so my goal is to really convey the main mechanisms present in all of these variations. I will occasionally toss in different characteristics of other Transformer models.
             </p>
-            <div id="xformer_selfattn"></div>
+            <div id="selfattention"></div>
             <h2>Self Attention</h2>
             <p>
                The purpose of the self attention class is to house the weights for transforming the input into the queries, keys, and values matrices. These values are then passed into the
@@ -149,7 +145,7 @@
             <prism-editor class="codeblock" v-model="self_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br>
             <br>
-            <div id="xformer_multiattn"></div>
+            <div id="multiheadedattention"></div>
             <h2>Multi Headed Attention</h2>
             <p>
                After creating our <code style="background: #242424; border-radius: 5px;">Self Attention</code> class, we can instantiate it inside a Module List based off the number of heads we have, which will be a hyperparameter. The
@@ -158,7 +154,7 @@
             </p>
             <prism-editor class="codeblock" v-model="multi_head_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
-            <div id="xformer_maskattn"></div>
+            <div id="maskedattention"></div>
             <h2>Masked Multi Headed Attention</h2>
             <p>
                Masking is simply the procedure to inhibit the decoder block from accessing information from future elements in the sequence. Because transformers operate on sequence elements in parallel, for certain
@@ -167,26 +163,27 @@
                boolean values, where <code style="background: #242424; border-radius: 5px;">true</code> will indicate masking that index in the matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
                It is easier to think about the masking operation when looking at the hierarchy: the mask gets passed to the forward pass of <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code>, which
                in turn passes the mask to each <code style="background: #242424; border-radius: 5px;">SelfAttention</code>, then finally passing the mask to each <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>.
-               The function below produces our mask which we will pass as a parameter down to the <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>. Below I've shown two different ways
-               of producing the mask.
+               The function below produces our mask which we will pass as a parameter down to the <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>. Below in
+               <code style="background: #242424; border-radius: 5px;">get_subsequent_mask</code>, I've shown two different ways of producing the mask.
             </p>
             <prism-editor class="codeblock" v-model="getsubmask" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <div id="xformer_xattn"></div>
             <br><br>
+            <div id="crossattention"></div>
             <h2>Cross Attention</h2>
             <p>
-               Cross attention is the mechanism that enables communication to flow between the encoder block and decoder block. Cross attention accepts as inputs the queries from the previous output of the decoder sublayer and the keys and values
-               from the output of the encoder block. Even though I've not explained the block architecture (explained down below), I'm saying block to also encapsulate residual, normalization, and dropout.
-               There won't be any code in this section. Instead, refer to the <a href="#xformer_decblock">decoder block</a> and see how <code style="background: #242424; border-radius: 5px;">self.cross_attetion</code> interacts.
+               Cross attention, like masked attention, is another unique mechanism inside a decoder block that enables communication to flow between the encoder and decoder.
+               Cross attention accepts as inputs the queries from the previous output of the decoder sublayer and the keys and values
+               from the output of the encoder. Refer to the <a href="#decoderblock">decoder block</a> and the visual aid on Transformers to see how
+               <code style="background: #242424; border-radius: 5px;">self.cross_attetion</code> interacts.
             </p>
-            <div id="xformer_mlp"></div>
+            <div id="ffn"></div>
             <div id="blogSubHeader">
                Feed Forward Network
             </div>
             <p>
                A standard feed forward network composed of a linear -> ReLU -> linear tranformation is used at the end of every block. The first linear layer transforms the input into dimension
-               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax>, which will be a provided hyperparameter. <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
-               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax> vector back to a <vue-mathjax :formula='`$d_{in}$`'></vue-mathjax> dimensional tensor, another hyperparameter.
+               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax>, which will be a provided hyperparameter - <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
+               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax> tensor back to a <vue-mathjax :formula='`$d_{in}$`'></vue-mathjax> dimensional tensor, another provided hyperparameter.
                Retaining original shape is important as generally the feed forward nets will need to feed into another encoder or decoder block.
                <br><br>
                <vue-mathjax :formula='`$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$`'></vue-mathjax>
@@ -194,7 +191,7 @@
             <prism-editor class="codeblock" v-model="mlp" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 
-            <div id="xformer_blocks"></div>
+            <div id="blocks"></div>
             <div id="blogSubHeader">
                Blocks
             </div>
@@ -207,7 +204,7 @@
                be pointed out in the forward passes of each block here.
             </p>
 
-            <div id="xformer_encblock"></div>
+            <div id="encoderblock"></div>
             <h2>Encoder Block</h2>
             <p>
                Defining the constructor of both the blocks will be simple, we define what we're going to use and distribute the hyperparameters accordingly. It is important
@@ -223,7 +220,7 @@
             <prism-editor class="codeblock" v-model="encoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 
-            <div id="xformer_decblock"></div>
+            <div id="decoderblock"></div>
             <h2>Decoder Block</h2>
             <p>
                The decoder block follows along the same vein as the encoder block. We declare all of the constituent parts we are going to use in the constructor and then implement the forward pass accordingly.
@@ -234,12 +231,12 @@
             </p>
             <prism-editor class="codeblock" v-model="decoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
-            <div id="xformer_encdec"></div>
+            <div id="encdec"></div>
             <div id="blogSubHeader">
                Encoder & Decoder Layers
             </div>
             <p>
-               As mentioned in the <a href="#xformer_blocks">blocks</a> section, let us now  wrap everything in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
+               As mentioned in the <a href="#blocks">blocks</a> section, let us now  wrap everything in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
                class. This is so we can easily define a model with <i>N</i> encoder and decoder layers. The only thing I'd like to point out here is the final linear transformation present in the
                <code style="background: #242424; border-radius: 5px;">Decoder</code> class. After all we need to transform the embedding dimension of our tensor from the embedding size back to the size of
                possible classifications for a sequence element. 
@@ -248,7 +245,7 @@
             <br><br>
             <prism-editor class="codeblock" v-model="decoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
-            <div id="xformer_transformer"></div>
+            <div id="transformer"></div>
             <div id="blogSubHeader">
                Transformer
             </div>
@@ -257,8 +254,8 @@
                forward pass, we pass both the tokenized <code style="background: #242424; border-radius: 5px;">enc_seq</code> and <code style="background: #242424; border-radius: 5px;">trg_seq</code> through
                <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> and then add their positional encodings with <code style="background: #242424; border-radius: 5px;">positionalEncoding</code>.
                The results <code style="background: #242424; border-radius: 5px;">src_inp</code> and <code style="background: #242424; border-radius: 5px;">trg_inp</code> are then fed to the encoder and decoder
-               respectively where the decoder will also take as input the output from the encoder to be used in the <a href="#xformer_xattn">cross attention</a> sublayer and a mask for the 
-               <a href="#xformer_maskattn">masked multi headed attention</a> sublayer.
+               respectively where the decoder will also take as input the output from the encoder to be used in the <a href="#crossattention">cross attention</a> sublayer and a mask for the 
+               <a href="#maskedattention">masked multi headed attention</a> sublayer.
                <br><br>
                The reshaping at the end, on line 42, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually deal with
                <a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy" target="_blank">cross entropy</a>, in which case the prediction is shape
@@ -270,10 +267,13 @@
             <prism-editor class="codeblock" v-model="transformer" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 
-            <div id="xformer_thoughts"></div>
+            <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
             </div>
+            <p>
+               toads?
+            </p>
          </div>
          <toTop />
    </div>
