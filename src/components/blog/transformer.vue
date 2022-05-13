@@ -272,17 +272,17 @@
                Thoughts
             </div>
             <p>
-               I <i>*think*</i> Transformers are the architecture I've spent the longest time reading about. There was a discussion happening on the Clubhouse app which asked the question
-               <i>"what big changes do you expect to happen in ML"</i>, and one of the speakers was very confident that Transformers were going to take over industries as the flagship architecture. Not speaking
-               to the creedence of that statement, the only thing I was made curious about were Transformers themselves. At the time, I did not even know about <a href="/rnn">Recurrent Networks</a> so
-               when I read into Transformers, I knew I had skipped a couple of steps.
+               I <i>*think*</i> Transformers are the architecture I've spent the longest time reading about. In mid 2021, I was listening in on a discussion where different people gave their reponse to the question
+               <i>"what big changes do you expect to happen in ML?"</i>. One of the speakers was very confident that Transformers were going to take over industries as the flagship architecture. Not speaking
+               to the creedence of that statement, the only thing I was made curious about were Transformers themselves. At the time, not only was I very unfamiliar with them, but I did not even know about
+               <a href="/rnn">Recurrent Networks</a>. I remember reading about Transformers the following day, specifically the <i>Attention Is All You Need</i> paper, and feeling as if I had skipped a couple steps.
                <br><br>
                They're a pretty cool architecture though, no? The attention mechanism and all of it's variations have introduced, for me at least, very unique ways you can go about manipulating information. And
-               when consolidated appropiately into a single Transformer network, the strengths are very evident. It's fair to say the weaknesses are also apparent, however since one of it's biggest is tied to
+               when arranged appropiately to constitute a single Transformer network, the strengths are very evident. The weaknesses are there too, however since one of it's biggest is tied to
                hardware capability, I am a little forgiving.
                <br><br>
-               I wanted to remain impartial to that one person who said Transformers are taking over every industry, but there's been some <a href="https://arxiv.org/pdf/2201.03545.pdf" target="_blank">retaliation</a>
-               on the side of CNNs.
+               I wanted to remain impartial to that one person who said Transformers are taking over every industry, but there has been some <a href="https://arxiv.org/pdf/2201.03545.pdf" target="_blank">retaliation</a>
+               in favor  of CNNs.
             </p>
             <p>
                Ryan

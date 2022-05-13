@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Forward & Backward of a RNN</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">The Forward & Backward of a RNN</p>
                   <p style="font-size: 18px; padding: 0 !important; ">11 &#8226; 6 &#8226; 2021</p>
                </div>
             </div>

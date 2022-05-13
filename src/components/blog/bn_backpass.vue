@@ -30,7 +30,7 @@
             </div>
             <p>
                <i>This read may be a little ridiculous because instead of substituting partials as needed when working through the math, I do everything at once in the most expanded form.
-                  I link an alternative, maybe more interpretable, blog down below in the conclusion. This read is not very suitable for screens with width less ~1250px. </i>
+                  I link an alternative, maybe more interpretable, blog down below in the conclusion. This read is not very suitable for screens with width less than ~1250px. </i>
                <br>
                <br>
                The image below defines "whitening". An application to a batch of inputs with the goal to reduce the <i>internal covariate shift</i>. This procedure occurs during the forward pass.
