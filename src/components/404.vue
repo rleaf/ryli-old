@@ -1,6 +1,6 @@
 <template>
   <div id="fourofour">
-     404
+     "404"
      <p>
         The URL does not exist
      </p>
