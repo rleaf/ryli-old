@@ -480,7 +480,7 @@ export default {
       dim_out: output dimension for each SA block
       """
    
-      self.multihead = \\
+      self.heads = \\
          torch.nn.ModuleList([SelfAttention(dim_in, dim_out, dim_out) for i in range(num_heads)])
       # self.linear adopts same concept for weight initialization from SelfAttention class
       self.linear = nn.Linear(dim_out * num_heads, dim_in)
@@ -501,7 +501,7 @@ export default {
 
       output_list = []
       
-      for m in self.multihead:
+      for m in self.heads:
          y = m(q, k, v, mask) # (B, K, dim_out)
          output_list.append(y)
          
