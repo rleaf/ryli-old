@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="barnegatTween" v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/barnegat/barnegat_cover.jpg" class="portimg">
+            <img src="../../assets/design/barnegat/barnegat_cover.webp" class="portimg">
          </div>
       </router-link>
    </div>
