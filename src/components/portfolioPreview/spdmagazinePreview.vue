@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="spdTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/spdmagazine/magazine_cover.jpg" class="portimg">
+            <img src="../../assets/design/spdmagazine/magazine_cover.webp" class="portimg">
          </div>
       </router-link>
    </div>

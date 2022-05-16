@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="dropboxTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/dropbox/dropbox_cover.jpg" class="portimg">
+            <img src="../../assets/design/dropbox/dropbox_cover.webp" class="portimg">
          </div>
       </router-link>
    </div>

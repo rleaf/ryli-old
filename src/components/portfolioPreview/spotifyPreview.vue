@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="spotifyTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/spotify/spotify_cover.jpg" class="portimg">
+            <img src="../../assets/design/spotify/spotify_cover.webp" class="portimg">
          </div>
       </router-link>
    </div>
