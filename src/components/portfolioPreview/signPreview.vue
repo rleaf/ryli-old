@@ -11,7 +11,7 @@
             </div>
          </div>
          <div id="signTween" v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
-            <img src="../../assets/design/signlanguage/sign_cover.webp" class="portimg">
+            <img src="../../assets/design/signlanguage/sign_cover.jpg" class="portimg">
          </div>
       </router-link>
    </div>

@@ -3,33 +3,6 @@ import VueRouter from 'vue-router'
 import VueMeta from 'vue-meta'
 
 import HomePage from '../pages/home.vue'
-// import CurriculumVitae from '../pages/curriculum.vue'
-// import wipLink from '../pages/wip.vue'
-// import contact from '../pages/contact.vue'
-// import sketches from '../pages/sketches.vue'
-// import designLink from '../pages/design.vue'
-// import speakLink from '../pages/cms.vue'
-// import glossaryLink from '../pages/glossary.vue'
-
-// import portfolioLink from '../pages/portfolioObjects/portfolioObject.vue'
-// import expanseLink from '../pages/portfolioObjects/expanseObject.vue'
-// import tubeLink from '../pages/portfolioObjects/tubeObject.vue'
-// import barnegatLink from '../pages/portfolioObjects/barnegatObject.vue'
-// import dropboxLink from '../pages/portfolioObjects/dropboxObject.vue'
-// import valiantLink from '../pages/portfolioObjects/valiantObject.vue'
-// import spotifyLink from '../pages/portfolioObjects/spotifyObject.vue'
-// import spdmagazineLink from '../pages/portfolioObjects/spdmagazineObject.vue'
-// import jawsLink from '../pages/portfolioObjects/jawsObject.vue'
-// import signLink from '../pages/portfolioObjects/signObject.vue'
-// import blogskeletonLink from '../components/blog/skeleton.vue'
-// import blogQuadraticFormLink from '../components/blog/quadraticform.vue'
-// import knn_cifarLink from '../components/blog/knn_cifar.vue'
-// import bn_backpassLink from '../components/blog/bn_backpass.vue'
-// import rnnLink from '../components/blog/rnn.vue'
-// import bigo from '../components/blog/bigo.vue'
-// import cnn from '../components/blog/cnn.vue'
-
-
 
 Vue.use(VueRouter)
 // Vue.use(VueMeta, {
