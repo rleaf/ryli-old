@@ -19,8 +19,8 @@
                   </ul>
                   <li>Setting Up</li>
                   <ul>
-                     <li><a href="#loadcifar">Loading CIFAR</a></li>
-                     <li><a href="#visualizing">Visualizing</a></li>
+                     <li><a href="#loadcifar">Loading CIFAR-10</a></li>
+                     <li><a href="#visualizing">Visualizing CIFAR-10</a></li>
                      <li><a href="#subsampling">Subsampling</a></li>
                   </ul>
                   <li>Building kNN</li>
@@ -93,7 +93,7 @@
             <span style="font-size:14px; padding-top: -10px;"><i>The stars reference labeled images and the translucent dots reference unlabled images.</i></span>
             <div id="loadcifar"></div>
                <div id="blogSubHeader">
-                  Loading CIFAR
+                  Loading CIFAR-10
                </div>
             <p>
                Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>,
@@ -112,7 +112,7 @@
             <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="visualizing"></div>
             <div id="blogSubHeader">
-               Visualizing
+               Visualizing CIFAR-10
             </div>
             <p>
                To see what we're working with, here are a 12 random images from each class with their corresponding label to the left:<br>
