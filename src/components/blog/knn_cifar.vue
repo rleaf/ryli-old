@@ -33,14 +33,16 @@
                   <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
+            <i>(5/17/22) Edit: Cleaned up a lot of the wording & redesigned some of the code to be better.</i>
             <i>(4/18/22) Edit: Cleaned up some wording for clarity.</i>
             <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
             </div>
             <p>
-               The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. Some code here is taken from <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
-               498/598 Deep Learning for Computer Vision</a>.
+               The purpose of this was to familiarize myself further with PyTorch and in general, tensor operations. Credit to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">UMichigan's
+               498/598 Deep Learning for Computer Vision</a> - I use some of their code.
+               <br>
                <br>
                <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">CIFAR-10</a> is a well known dataset composed of 60,000
                colored 32x32 images. <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm" target="_blank">kNN</a> classification is an algorithm to classify inputs by comparing their similarities to
@@ -54,35 +56,33 @@
                What is kNN / How does kNN work
             </h2>
             <p>
-               I broadly defined kNN in the last paragraph. This section is going to be dedicated to explaining further what kNN classification does, and how it works. I'm going to be using images as an example
-               dataset to aid my explanation of kNN. I will not be defining concepts such as cross-validation for optimal <i>k</i> and means of optimizing for more efficient code here. When moving on to the next section where we will use kNN on the CIFAR-10 dataset,
-               I will explain those concepts. Throughout this read, I frequently use "test", "unlabeled", and "input" interchangeably to refer to the input for kNN. Feel free to skip this section if you're just interested in the code and implementation.
+               I broadly defined kNN above. This section is going to be dedicated to explaining further what kNN classification does, and how it works. I'm going to be using images as an example
+               dataset to aid my explanation of kNN. Throughout this read, I frequently use "test", "unlabeled", and "input" interchangeably to refer to the input for kNN. Feel free to skip this section if you're just interested in the code and implementation.
                Feel free to also <i>only</i> read this section if you just want a synopsis of kNN classification.
             </p>
             <p>
                The goal is <i>classification</i>. We have a dataset, images in our case, and unfortunately a portion of the images are <i>unlabeled</i>, they do not have an accompanying label which classifies them.
-               kNN is a method to "intelligibly" label the unclassified by computing similarity with the labeled images. Euclidean distance is a popular metric to quantify the similarities, however there are a handful
-               of other measures that have their own idiosyncrasies (Manhattan...Minkowsi). In the case of images, kNN computes the Euclidean distance by iterating over the pixel values of the images.
-               This means that the first input image (unlabeled) is compared to every image in the labeled dataset by their pixel values. Once the first image iterates through the entire training set, the algorithm
-               then moves onto the next testing (unlabeled) image to do it all again. The most similar labeled image is synonymous to having the lowest Euclidean distance.
+               kNN is a method to "intelligibly" label the unclassified images by computing similarity with the labeled images. Euclidean distance is a popular metric to quantify the similarities, however there are a handful
+               of other measures that have their own idiosyncrasies (Manhattan & Minkowsi). In the case of images, kNN computes the Euclidean distance between an unlabled and labeled image by iterating over their pixel values.
+               The unlabeled image then takes the same majority classification as its <i>k nearest neighbors</i> or <i>k</i> neighbors with the lowest Euclidean distance, where <i>k</i> is a hyperparameter. 
+               This process produces a loop where each unlabeled input image is compared to every labeled image in the dataset by their pixel values.
+               Once the first unlabeled image iterates through the entire labeled training set, the algorithm
+               then moves onto the next image in the test set to do it all again.
                <!-- Afterwards the unlabeled images will be prescribed the same classification as their k nearest neighbors, k being an integer  -->
             </p>
             <video id="img500" autoplay loop muted :src="knn_train" style="padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Visualization of computing the pixel values of a single <i>test</i> image (left) against every <i>train</i> image (right). <br>
             Right click and toggle 'show controls' to stop the animation.</i></span>
             <p>
-               Here's the formula for Euclidean distance: <vue-mathjax :formula='euclidean'></vue-mathjax>. Aside from the code, it is probably the only math I'm going to show. The animation above is my attempt at visualizing
-               kNN where a test image iterates through the training images. Here, kNN is operating on a colored (RGB) dataset of 5x5 (height x width) dimensions - so in total 75 pixels per image (3x5x5).
-               To compute the Eucliden distance (find similarity) between one test image and one training image, the squared difference in each corresponding pixel with respect to location in both images are taken and then every value
-               is then summed and finally taken the square root of. To reiterate, we are taking 75 (total pixel count) differences, squaring each one, summing all that together, and then finally square rooting everything - for each test image
-               against every training image. Then as I said before, the test image proceeds to the next training image. Once the test image completes finding it's Euclidean distance with every image in the
-               training set, it steps aside for the proceeding test image to repeat the cycle. The distances, which are scalar values, are usually stored in a matrix/tensor.
-               It's worth mentioning, in the animation I do not show the 5x5 green and blue pixel channels being iterated over
-               like I did for the red channel; instead the green and blue layers are simplified with a "single blink".
+               For reference, the Euclidean distance is: <vue-mathjax :formula='euclidean'></vue-mathjax>. In the visualization above, kNN is operating on a colored (RGB) image dataset of 5x5 pixels - so in total 75 pixels per image (3x5x5).
+               To compute the Eucliden distance between one test image and one training image, the squared difference between corresponding pixels in both images are taken and then
+               then summed and finally taken the square root of. To reiterate, we are taking 75 differences, squaring each one, summing all that together, and then finally square rooting everything. And this occurs for each test image
+               against every training image. It's worth mentioning, in the animation I do not show the 5x5 green and blue pixel channels being iterated over
+               like I did for the red channel; instead the green and blue layers are simplified with a single "blink".
                <br>
                <br>
-               We are almost understanding how kNN works. We understand how to qualify and quantify similarities between every test and training image and now want to classify those test images based off similarity to the training images.
-               The <i>k</i> in kNN is a integer hyperparameter that moderates this aspect of the algorithm. It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then labels them in accordance with those neighbors.
+               As mentioned briefly before, the <i>k</i> in kNN is an integer hyperparameter that says how many neighbors our test image should pay attention to.
+               It tells each test image to find their <i>k</i> nearest neighbors of a particular label, then label them in accordance with those neighbors.
                If k = 1, then we're asking kNN to classify every test image with it's closest single neighbor. If k = 3, then we're asking kNN to classify a test image with it's 3 closest neighbors (lowest Euclidean distance) of the same class.
                Some considerations when picking a value for <i>k</i> is to not pick a value that would result in a tie - where the k closest neighbors are an even distribution between different classes. This can generally be avoided by 1) picking odd numbers for k and 2)
                not picking multiples of the number of classes. Below is a visualization for different values of k. <a style="color: #81A1C1;" href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)" target="_blank">Hyperparameter
@@ -90,23 +90,24 @@
             </p>
             <br>
             <img id="img1300" src="../../assets/blog/knn.png" alt="">
-               <!-- <video id="img500" autoplay loop :src="feature_map" style="padding-bottom: 5px !important;"></video>
-               <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span> -->
+            <span style="font-size:14px; padding-top: -10px;"><i>The stars reference labeled images and the translucent dots reference unlabled images.</i></span>
             <div id="loadcifar"></div>
                <div id="blogSubHeader">
                   Loading CIFAR
                </div>
             <p>
-               Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>, <code style="background: #242424; border-radius: 5px;">x_test</code>,
+               Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>,
+               <code style="background: #242424; border-radius: 5px;">x_test</code>,
                <code style="background: #242424; border-radius: 5px;">y_train</code>, and <code style="background: #242424; border-radius: 5px;">y_test</code>. They are declared simply with:
             </p>
             <prism-editor class="codeblock" v-model="declaration" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Below is the <code style="background: #242424; border-radius: 5px;">cifar10()</code> definition. It isn't necessary to understand kNN's but I thought it was worth adding for the curious.
-               You can see it above in the comments: <code style="background: #242424; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor (aka a rank 4 tensor) composed of 50,000 3x32x32 training images,
-               <code style="background: #242424; border-radius: 5px;">y_train</code> returns a 1 dimensional tensor composed of the labels for those same 50,000 images, <code style="background: #242424; border-radius: 5px;">x_test</code>
-               returns a 10,000 testing images (of same dimensionality as x_train), and lastly <code style="background: #242424; border-radius: 5px;">y_test</code> returns the labels for those 10,000 images (of same dimensionality as x_test).
-               <span style="color: #81A1C1;">A tensor can be thought of as a generalization to a scalar (0D tensor), vector (1D tensor), matrix (2D tensor), etc...</span>
+               You can see it above in the comments: <code style="background: #242424; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor composed of 50,000 3x32x32 training images,
+               <code style="background: #242424; border-radius: 5px;">y_train</code> returns a 1 dimensional tensor composed of corresponding labels for those 50,000 images, <code style="background: #242424; border-radius: 5px;">x_test</code>
+               returns a 10,000 3x32x32 testing images, and lastly <code style="background: #242424; border-radius: 5px;">y_test</code> returns the corresponding labels for those 10,000 images. I refer to the
+               training dataset as "unlabeled" despite having a tensor, <code style="background: #242424; border-radius: 5px;">y_train</code>, of labels because we will only use those labels to
+               determine the final accuracy of our kNN algorithm.
             </p>
             <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="visualizing"></div>
@@ -117,7 +118,7 @@
                To see what we're working with, here are a 12 random images from each class with their corresponding label to the left:<br>
                 <img src="../../assets/blog/output.png" alt=""> <br>
                Each image is composed of 3x32x32 pixel values. The 3x<b><u>32x32</u></b> references their height/width and the <b><u>3</u></b>x32x32 references the color channels, which most of computer vision (to my knowledge)
-               use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer label then corresponds to a list of classes:
+               use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer serves as an index to a corresponding list of classes:
             </p>
             <prism-editor class="codeblock" v-model="classes" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="subsampling"></div>
@@ -125,10 +126,9 @@
                Subsampling
             </div>
             <p>
-               Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I did what's called subsampling. Subsampling takes a
-               smaller partition from the whole dataset to work with while you build the kNN. Doing this, I no longer had my computer run through the entire dataset each time I ran code. We subsample simply with two arguments when calling
-               <code style="background: #242424; border-radius: 5px;">cifar10()</code>: <code style="background: #242424; border-radius: 5px;">num_train</code> and
-               <code style="background: #242424; border-radius: 5px;">num_test</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
+               Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I subsampled. Subsampling takes a
+               small portion of the whole dataset to work with while building the kNN. Doing this, I no longer had my computer run through the entire dataset each time I tested code. We subsample using the parameters provided in
+               <code style="background: #242424; border-radius: 5px;">cifar10()</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
                algorithm.
             </p>
             <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -138,28 +138,28 @@
             </div>
             <br>
             <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
-               <code style="background: #242424; border-radius: 5px;">for</code> loops to populate
-               our output matrix <code style="background: #242424; border-radius: 5px;">dists</code> where each loop will iterate over an axis to populate every element. This method is not computationally efficient as it does not make use
-               of Linear Algebra operations and broadcasting. However, I think it's helpful from a pedagogical standpoint. A more efficient representation, <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code>
-               is shown in the next code block.
+               loops to populate our output matrix <code style="background: #242424; border-radius: 5px;">dists</code>, where each loop will iterate over an axis.
+               Although this method is not very efficient because it does not make use of broadcasting, I think it's helpful from a pedagogical standpoint. A more efficient representation,
+               <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code> is shown immediately below. It is worth mentioning that PyTorch does have functions designed to do this already
+               such as: <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, but I'm also going to refrain
+               from using them.
                <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of higher dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
             </p>
             <prism-editor class="codeblock" v-model="nested_for_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a rank 4 tensor as [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
-               It is important to notice that prior to our loop, we flatten the tensors <span style="color: #81A1C1;">(reduce dimensionality)</span>.
-               I emphasize flattening because it transforms our before [500, 3, 32, 32] training image tensor into a [500, 3072] tensor. Now you can think of our reshaped tensor as a matrix where each row houses every single
-               pixel value (3x32x32) of every training image. We repeat the same to the test images yielding a [250, 3072] tensor. The purpose of flattening can be thought of as the final preprocessing step before we evaluate anything with our data.
-               We are further simplifying our data to make it easier to implement in a kNN.
+               As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a tensor of shape [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
+               We <a href="https://pytorch.org/docs/stable/generated/torch.flatten.html" target="_blank">flatten</a> both the the <code style="background: #242424; border-radius: 5px;">x_train</code>
+               and <code style="background: #242424; border-radius: 5px;">x_test</code> tensors to transform our [500, 3, 32, 32] and [250, 3, 32, 32] training image tensor into [500, 3072] and [250, 3072] tensors respectively.
+               Now you can think of our reshaped tensors as matrices where each row houses every single
+               pixel value (3x32x32) of an image. The purpose of flattening can be thought of as the final preprocessing step before we compute the Euclidean distance using two loops.
                <br>
                <br>
                The first <code style="background: #242424; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the
                <i>jth</i> training image and <i>ith</i> testing image two and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor in its respective position.
             </p>
             <p>
-               Without using functions like <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, here is a more
-               optimal variation of finding the Euclidean distance that has no loops:
+               Here is a more optimal variation of finding the Euclidean distance that has no loops and instead makes use of broadcasting:
             </p>
             <prism-editor class="codeblock" v-model="no_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
@@ -168,37 +168,41 @@
                <br>
                <vue-mathjax :formula='distributed_euclidean'></vue-mathjax>
                <br>
-               On this no-loop version of computing the Euclidean, we are evaluating all arithmetic independently and then compiling everything together so that it represents the right hand side of the equality above.
-               Instead of going through element by element, we square the <code style="background: #242424; border-radius: 5px; color: #636f88;">train</code> and <code style="background: #242424; border-radius: 5px; color: #636f88;">test</code>
-               tensors immediately then take the sum of their rows as shown above below
-               <code style="background: #242424; border-radius: 5px; color: #636f88;">### Find Euclidean distance ###</code>. Then, the sum of <vue-mathjax :formula='midterm'></vue-mathjax> is evaluated through the matrix multiplication of the
-               <code style="background: #242424; border-radius: 5px; color: #636f88;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: #242424; border-radius: 5px; color: #636f88;">test</code> <i>[3072, 250]</i> tensors.
-               The convenience of this step is that matrix multiplication is doing both steps we did for <code style="background: #242424; border-radius: 5px; color: #636f88;">train_sum_sq</code> and
-               <code style="background: #242424; border-radius: 5px; color: #636f88;">test_sum_sq</code> in a single step. Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
-               store it in <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code>. For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
-               faster than the two loop. This probably provides better intuition behind how powerful broadcasting can be.
+               On this no-loop variant of computing the Euclidean, we are evaluating all arithmetic independently and then compiling everything together so that it represents the right hand side of the formula above.
+               Instead of going through element by element, after we preprocess the inputs,
+               we square the <code style="background: #242424; border-radius: 5px;">train</code> and <code style="background: #242424; border-radius: 5px;">test</code>
+               tensors immediately then take the sum of their rows. Then, <vue-mathjax :formula='midterm'></vue-mathjax> is evaluated through the matrix multiplication of the
+               <code style="background: #242424; border-radius: 5px;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: #242424; border-radius: 5px;">test</code> <i>[3072, 250]</i> tensors.
+               Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
+               store it in <code style="background: #242424; border-radius: 5px;">dists</code>. 
+               Within each column of <code style="background: #242424; border-radius: 5px;">dists</code> is the Euclidean distance of every training image with respect to a test image.
+               For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
+               faster than the two loop. This probably provides better intuition behind how powerful broadcasting (and <a href="https://pytorch.org/docs/stable/generated/torch.matmul.html" target="_blank">matmul</a>) can be.
             </p>
             <div id="classifying"></div>
             <div id="blogSubHeader">
                kNN: Classifying our test images
             </div>
             <p>
-               Our tensor of goodies is complete. Within each column of <code style="background: #242424; border-radius: 5px; color: #636f88;">dists</code> is the Euclidean distance of every training image with respect to a test image. We'd now like
-               to have our algorithm find the k lowest values of the same class within each column and classify that test image in accordance with the label of those training images.
+               Using the <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code> function, we can now build a classifier. I will be focusing on the
+               <code style="background: #242424; border-radius: 5px;">predict</code> method. <code style="background: #242424; border-radius: 5px;">check_accuracy</code> is simply to determine how well our classifier
+               performs.
             </p>
             <prism-editor class="codeblock" v-model="classify" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               The goal is to return the rank 1 tensor <code style="background: #242424; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
+               The goal is to return a tensor <code style="background: #242424; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
                of how the classification works on a <code style="background: #242424; border-radius: 5px;">dists</code> of size [5x3]. The algorithm finds the index of the <i>k</i> lowest Euclidean distances within each column. Then it corresponds
-               that index with the <code style="background: #242424; border-radius: 5px;">classes</code> list and stores those values in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. 
+               that index with <code style="background: #242424; border-radius: 5px;">self.y_train</code> and stores those values in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. 
                <code style="background: #242424; border-radius: 5px;">y_test_pred[i]</code> is then assigned the most frequent occuring label present in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. Once a column
-               calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next.
+               calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next. Each column can be thought of as a test image and every element in the column
+               represents the Euclidean distance between that test image with every training image.
             </p>
             <video id="img800" autoplay muted loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
             <p>
-               We've finished implementing kNN and using it on a subsample of the CIFAR-10 dataset. Now all that's left is to run everything and see how well it performs, shown below. With our hyperparameter k set to 5, our kNN results in a 27.8%
-               accuracy for properlly classifying a partition of the CIFAR-10 dataset. It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
+               We've finished implementing kNN and can begin testing the algorithm on larger portions of the dataset to see how well it performs.
+               With k set to 5, 5000 training images, and 500 testing images, our kNN results in a 27.8% accuracy for proper classification on a portion of the CIFAR-10 dataset.
+               It's certainly no convolutional neural network, however it shows how far computer vision has come (kNN was developed in 1951).
             </p>
             <prism-editor class="codeblock" v-model="running_kNN" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="crossvalidation"></div>
@@ -206,8 +210,9 @@
                Optimizing kNN: Cross Validation
             </div>
             <p>
-               A problem with the our current kNN is that after we've successfully automated a process of "intelligebly" classifying images, we are still left with manually setting parameters. As our algorithm currently
-               exists, we have to manually tune the hyperparameter <i>k</i> to some integer value; then the follow up question comes - is that the best value for k?
+               A problem with the current kNN is that after we've successfully automated a process of "intelligebly" classifying images, we are still left with "guessing" the best <i>k</i> for the algorithm.
+               As our algorithm currently
+               exists, we have to manually tune the hyperparameter <i>k</i> to some integer value, which raises the question - is that the best value for k?
                Cross validation is a procedure to automate selecting an optimal value for <i>k</i>. The problem with this is that to evaluate the efficacy of some value <i>k</i>, we currently use the test set. If we want to evaluate numerous values
                for <i>k</i> it breaks the convention of segregating the test set until final testing. Finding some optimal k through using the same test set on each evaluation, would have our kNN algorithm fall victim to overfitting. Our model
                would be too well trained to the test set, and because of this, may not generalize well to new and unseen data.
@@ -215,7 +220,7 @@
                <br>
                <br>
                Cross validation further segregates our training set into "chunks". For our subsample of 5,000 test images and labels, we can create 5 tensors of shape [1,000, 3072]. One of those 5 chunks becomes what is called
-               the validation set to evaluate an optimal <i>k</i>. The validation set does the job for what was previously the test set's. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
+               the validation set to evaluate an optimal <i>k</i>. The validation set does the job of the previously defined test set. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
             </p>
             <prism-editor class="codeblock" v-model="cross_validation" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <img id="img500" src="../../assets/blog/optimalk.png" alt="">
@@ -229,7 +234,7 @@
                Running on the entire CIFAR-10
             </div>
             <p>
-               We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset instead of 5,000 images.
+               We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset.
             </p>
             <prism-editor class="codeblock" v-model="full_cifar" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="thoughts"></div>
@@ -314,7 +319,7 @@ export default {
 
    torch.manual_seed(0)
    x_train_all, y_train_all, x_test_all, y_test_all = cifar10()
-
+   
    classifier = KnnClassifier(x_train_all, y_train_all)
    classifier.check_accuracy(x_test_all, y_test_all, k=best_k)
 
@@ -355,15 +360,15 @@ export default {
 `   def knn_cross_validate(x_train, y_train, num_folds=5, k_choices=None):
       """
       Inputs:
-      - x_train: Tensor of shape (num_train, C, H, W) giving all training data
-      - y_train: int64 tensor of shape (num_train,) giving labels for training data
-      - num_folds: Integer giving the number of folds to use
-      - k_choices: List of integers giving the values of k to try
+      x_train: Tensor of shape (num_train, C, H, W) giving all training data
+      y_train: int64 tensor of shape (num_train,) giving labels for training data
+      num_folds: Integer giving the number of folds to use
+      k_choices: List of integers giving the values of k to try
 
       Returns:
-      - k_to_accuracies: Dictionary mapping values of k to lists, where
-      k_to_accuracies[k][i] is the accuracy on the ith fold of a KnnClassifier
-      that uses k nearest neighbors.
+      k_to_accuracies: Dictionary mapping values of k to lists, where
+         k_to_accuracies[k][i] is the accuracy on the ith fold of a KnnClassifier
+         that uses k nearest neighbors.
       """
       # Create a list of k's for testing
       if k_choices is None:
@@ -374,7 +379,7 @@ export default {
       y_train_folds = []
 
       # Flatten x_train from [5000, 3, 32, 32] to [5000, 3072]
-      x_train_flat = x_train.view(x_train.shape[0], x_train[1].view(1, -1).shape[1])
+      x_train_flat = x_train.view(x_train.shape[0], -1)
 
       # Partition our training set to 5 tensors of training images of shape [1000, 3072] and 5 labels of shape [1000]
       x_train_folds = torch.chunk(x_train_flat, num_folds, dim=0)
@@ -429,111 +434,131 @@ export default {
    # >>> Got 139 / 500 correct; accuracy is 27.80%
    # >>> 27.8`,
          classify: 
-`   # Create tensor to house all labels of test images
-   y_test_pred = torch.zeros(x_test.shape[0], dtype=torch.int64)
+`   class KnnClassifier:
+      def __init__(self, x_train, y_train):
+         """
+         x_train: shape (num_train, C, H, W) tensor where num_train is batch size,
+            C is channel size, H is height, and W is width.
+         y_train: shape (num_train) tensor where num_train is batch size providing labels
+         """
 
-   # Iterate through the columns of dists
-   for i in range(dists.shape[1]):
-      # Create list to store labels for k lowest values of ith column
-      k_lowest_labels = []
-      # Index over column elements to find the location (index) of k lowest values
-      x = torch.topk(dists[:,i], k, largest=False).indices
-      # Correspond each location to the respective label
-      k_lowest_labels = self.y_train[x[0:k]]
+         self.x_train = x_train
+         self.y_train = y_train
 
-      # Populate y_test_pred with the majority label in k_lowest_labels.
-      # If there is no majority, populates with the lowest value
-      y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))`,
+      def predict(self, x_test, k=1):
+         """
+         x_test: shape (num_test, C, H, W) tensor where num_test is batch size,
+            C is channel size, H is height, and W is width.
+         k: The number of neighbors to use for prediction
+         """
+
+         y_test_pred = torch.zeros(x_test.shape[0], dtype=torch.int64)
+         dists = compute_distances_no_loops(self.x_train, x_test)
+
+         for i in range(dists.shape[1]):
+            # Index over each column to find k lowest values
+            x = torch.topk(dists[:,i], k, largest=False).indices
+            k_lowest_labels = self.y_train[x[0:k]]
+
+            y_test_pred[i] = torch.argmax(torch.bincount(y))
+         
+         return y_test_pred
+
+      def check_accuracy(self, x_test, y_test, k=1, quiet=False):
+         """
+         x_test: shape (num_test, C, H, W) tensor where num_test is batch size,
+            C is channel size, H is height, and W is width.
+         y_test: shape (num_test) tensor where num_test is batch size providing labels
+         k: The number of neighbors to use for prediction
+         quiet: If True, don't print a message.
+
+         Returns:
+         accuracy: Accuracy of this classifier on the test data, as a percent.
+            Python float in the range [0, 100]
+         """
+
+         y_test_pred = self.predict(x_test, k=k)
+         num_samples = x_test.shape[0]
+         num_correct = (y_test == y_test_pred).sum().item()
+         accuracy = 100.0 * num_correct / num_samples
+         msg = (f'Got {num_correct} / {num_samples} correct; '
+               f'accuracy is {accuracy:.2f}%')
+         if not quiet:
+            print(msg)
+         return accuracy`,
          no_loops:
 `   def compute_distances_no_loops(x_train, x_test):
       """
       Inputs:
-      - x_train: Torch tensor of shape (num_train, C, H, W)
-      - x_test: Torch tensor of shape (num_test, C, H, W)
+      x_train: shape (num_train, C, H, W) tensor.
+      x_test: shape (num_test, C, H, W) tensor.
 
       Returns:
-      - dists: Torch tensor of shape (num_train, num_test) where dists[i, j] is the
-         squared Euclidean distance between the ith training point and the jth test
-         point.
+      dists: shape (num_train, num_test) tensor where dists[i, j] is the
+         Euclidean distance between the ith training image and the jth test
+         image.
       """
       # Get number of training and testing images
       num_train = x_train.shape[0]
       num_test = x_test.shape[0]
 
       # Create return tensor with desired dimensions
-      dists = x_train.new_zeros(num_train, num_test)
-      # >>> dists shape: torch.Size([500, 250])
+      dists = x_train.new_zeros(num_train, num_test) # (500, 250)
 
       # Flattening tensors
-      train = x_train.flatten(1)
-      # >>> train shape: torch.Size([500, 3072])
-      test = x_test.flatten(1)
-      # >>> test shape: torch.Size([250, 3072])
+      train = x_train.flatten(1) # (500, 3072)
+      test = x_test.flatten(1) # (250, 3072)
 
-      ### Find Euclidean distance ###
+      # Find Euclidean distance
       # Squaring elements
       train_sq = torch.square(train)
       test_sq = torch.square(test)
 
       # Summing row elements
-      train_sum_sq = torch.sum(train_sq, 1)
-      # >>> torch.Size([500])
-      test_sum_sq = torch.sum(test_sq, 1)
-      # >>> torch.Size([250])
+      train_sum_sq = torch.sum(train_sq, 1) # (500)
+      test_sum_sq = torch.sum(test_sq, 1) # (250)
 
       # Matrix multiplying train tensor with the transpose of test tensor
-      mul = torch.matmul(train, test.transpose(0, 1))
+      mul = torch.matmul(train, test.transpose(0, 1)) # (500, 250)
 
-      # Reshape enables proper broadcasting, reshapes train to a [100, 1] column vector and test to a [1, 100] row vector.
+      # Reshape enables proper broadcasting.
+      # train_sum_sq = [500, 1] shape tensor and test_sum_sq = [1, 250] shape tensor.
       # This enables broadcasting to match desired dimensions of dists
       dists = torch.sqrt(train_sum_sq.reshape(-1, 1) + test_sum_sq.reshape(1, -1) - 2*mul)
 
-
-      return dists
-
-   ### Function call
-   x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
-   dists = compute_distances_no_loops(x_train, x_test)`,
+      return dists`,
          nested_for_loops:
 `   def compute_distances_two_loops(x_train, x_test):
       """
       Inputs:
-      - x_train: Torch tensor of shape (num_train, D1, D2, ...)
-      - x_test: Torch tensor of shape (num_test, D1, D2, ...)
+      x_train: shape (num_train, C, H, W) tensor.
+      x_test: shape (num_test, C, H, W) tensor.
 
       Returns:
-      - dists: Torch tensor of shape (num_train, num_test) where dists[j, i] is the
-      squared Euclidean distance between the ith training point and the jth test
-      point. It should have the same dtype as x_train.
+      dists: shape (num_train, num_test) tensor where dists[j, i] is the
+         Euclidean distance between the ith training image and the jth test
+         image.
       """
 
       # Get the number of training and testing images
-      num_train = x_train.shape[0]
-      # >>> 500
-      num_test = x_test.shape[0]
-      # >>> 250
+      num_train = x_train.shape[0] # (500)
+      num_test = x_test.shape[0] # (250)
+      
 
       # dists will be the tensor housing all distance measurements between testing and training
-      dists = x_train.new_zeros(num_train, num_test)
-      # >>> dists shape: torch.Size([500, 250])
+      dists = x_train.new_zeros(num_train, num_test) # (500, 250)
 
       # Flatten tensors
-      train = x_train.flatten(1)
-      # >>> train shape: torch.Size([500, 3072])
-      test = x_test.flatten(1)
-      # >>> test shape: torch.Size([250, 3072])
+      train = x_train.flatten(1) # (500, 3072)
+      test = x_test.flatten(1) # (250, 3072)
 
-      ### Find Euclidean distance ###
+      # Find Euclidean distance using loops
       for i in range(num_test):
          for j in range(num_train):
             dists[j, i] = torch.sqrt(torch.sum(torch.square(train[j] - test[i])))
 
 
-      return dists
-
-   ### Function call
-   x_train, y_train, x_test, y_test = cifar10(num_train, num_test)
-   dists = compute_distances_two_loops(x_train, x_test)`,
+      return dists`,
          subsample:
 `   # Subsample size
    num_train = 500
@@ -558,22 +583,33 @@ export default {
    # plane = 0, car = 1, bird = 2 ... truck = 9
       
    print(x_train[0].shape)
-   # Seeing shape/dimensionality of the 0th image (Python starts at 0)
    # >>> torch.Size([3, 32, 32])
-   print(y_train[0]) 
+
    # Finding integer label of corresponding 0th image
+   print(y_train[0]) 
    # >>> tensor(6)
-   # Element 6 in list classes is a frog (which is correct, just take my word for it)`,
+   # Element 6 in 'classes' list is a frog (which is correct, just take my word for it)`,
          declaration:
 `   x_train, y_train, x_test, y_test = cifar10()
+   """
+   x_train: shape (B, C, H, W) tensor where B is batch size, C is channel size, H
+      is height, and W is width.
+   y_train: shape (B) tensor where B is batch size.
+   x_test: shape (B, C, H, W) tensor where B is batch size, C is channel size, H
+      is height, and W is width.
+   y_test: shape(B) tensor where B is batch size.
+   """
 
-   # Training Set
+   
+   # Training Set.
+   # x_train is composed of 50,000 images where y_train references the corresponding labels
    print('data shape:', x_train.shape)
    print('labels shape:', y_train.shape)
    # >>> data shape: torch.Size([50000, 3, 32, 32])
    # >>> labels shape: torch.Size([50000])
 
    # Test Set
+   # x_test is composed of 10,000 images where y_test references the corresponding labels
    print('data shape:', x_test.shape)
    print('labels shape', y_test.shape)
    # >>> data shape: torch.Size([10000, 3, 32, 32])
