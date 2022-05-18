@@ -212,11 +212,11 @@
                in the <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> sublayer. Here is <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L262" target="_blank">
                Pytorch's</a> implementation of the encoder block - look at lines 423 & 424 particularly. This is to ensure a smooth transformation between the concatenated tensor and the linear layer. The forward
                pass is laid out in a manner such that:
-               <br><br>
-               <vue-mathjax :formula='`$sublayer_1(x) = dropout(layernorm(multihead(x, x, x) + residual))$`'></vue-mathjax>
-               <br>
-               <vue-mathjax :formula='`$sublayer_2(sublayer_1) = dropout(layernorm(feedforward(sublayer_1) + residual))$`'></vue-mathjax>
             </p>
+               <vue-mathjax :formula='`$$sublayer_1(x) = dropout(layernorm(multihead(x, x, x) + residual))$$`'></vue-mathjax>
+               <br>
+               <vue-mathjax :formula='`$$sublayer_2(sublayer_1) = dropout(layernorm(feedforward(sublayer_1) + residual))$$`'></vue-mathjax>
+               <br><br>
             <prism-editor class="codeblock" v-model="encoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 

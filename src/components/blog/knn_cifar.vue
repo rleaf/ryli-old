@@ -116,7 +116,9 @@
             </div>
             <p>
                To see what we're working with, here are a 12 random images from each class with their corresponding label to the left:<br>
-                <img src="../../assets/blog/output.png" alt=""> <br>
+            </p>
+            <img id="img600" src="../../assets/blog/output.png" alt="">
+            <p>
                Each image is composed of 3x32x32 pixel values. The 3x<b><u>32x32</u></b> references their height/width and the <b><u>3</u></b>x32x32 references the color channels, which most of computer vision (to my knowledge)
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer serves as an index to a corresponding list of classes:
             </p>
@@ -197,7 +199,7 @@
                calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next. Each column can be thought of as a test image and every element in the column
                represents the Euclidean distance between that test image with every training image.
             </p>
-            <video id="img800" autoplay muted loop :src="knn_classify" style="width: 700px !important; padding-bottom: 5px !important;"></video>
+            <video id="img700" autoplay muted loop :src="knn_classify" style="padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
             <p>
                We've finished implementing kNN and can begin testing the algorithm on larger portions of the dataset to see how well it performs.

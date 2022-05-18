@@ -330,6 +330,25 @@ body, html {
    max-width: 800px;
 }
 
+@media (max-width: 850px) {
+   #img800 {
+      width: 100%;
+   }
+}
+
+#img700 {
+   width: 100%;
+   box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
+   max-width: 700px;
+}
+
+@media (max-width: 750px) {
+   #img700 {
+      width: 100%;
+   }
+}
+
+
 #img1000 {
    width: 100%;
    box-shadow: 0 3px 5px rgb(0 0 0 / 0.5);
@@ -357,7 +376,7 @@ body, html {
 
 #img500 {
    width: 500px;
-   padding: 25px 50px !important;
+   padding: 25px 50px;
    user-select: none;
    -moz-user-select: none;
    -webkit-user-drag: none;
@@ -365,9 +384,27 @@ body, html {
    -ms-user-select: none;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 625px) {
    #img500 {
       width: 100%;
+      padding: 25px 0;
+   }
+}
+
+#img600 {
+   width: 600px;
+   padding: 25px 50px;
+   user-select: none;
+   -moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+}
+
+@media (max-width: 725px) {
+   #img600 {
+      width: 100%;
+      padding: 25px 0;
    }
 }
 
