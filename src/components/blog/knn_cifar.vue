@@ -460,7 +460,7 @@ export default {
             x = torch.topk(dists[:,i], k, largest=False).indices
             k_lowest_labels = self.y_train[x[0:k]]
 
-            y_test_pred[i] = torch.argmax(torch.bincount(y))
+            y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))
          
          return y_test_pred
 
