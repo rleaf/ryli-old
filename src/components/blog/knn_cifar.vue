@@ -452,14 +452,21 @@ export default {
          k: The number of neighbors to use for prediction
          """
 
+         # Init output shape
          y_test_pred = torch.zeros(x_test.shape[0], dtype=torch.int64)
+
+         # Find & store Euclidean distance between test & train
          dists = compute_distances_no_loops(self.x_train, x_test)
 
+         # Index over test images
          for i in range(dists.shape[1]):
-            # Index over each column to find k lowest values
+            # Find index of k lowest values
             x = torch.topk(dists[:,i], k, largest=False).indices
+
+            # Index the labels according to x
             k_lowest_labels = self.y_train[x]
 
+            # y_test_pred[i] = the most frequent occuring index
             y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))
          
          return y_test_pred
