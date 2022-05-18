@@ -235,6 +235,7 @@
             </div>
             <p>
                We've finished creating our kNN algorithm which also makes use of cross validation to pick an optimal k based off the validation sets. Now we can finally operate on the entire CIFAR-10 dataset.
+               If you have clicked to here from a Google search and are quickly looking to find the relevant code for kNN, it's in <a href="#classifying">Classifying our test images</a>.
             </p>
             <prism-editor class="codeblock" v-model="full_cifar" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="thoughts"></div>
