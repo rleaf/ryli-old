@@ -8,7 +8,7 @@
             <i style="font-size: 18px;">---</i>
          </div>
          <p>A place for talking. Usually about math, food, music, design, ml/ai, dev, and the things in between.
-         <div id="curriculumBody">
+         <!-- <div id="curriculumBody"> -->
            
                <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed and Explained</router-link></li>
                <li><router-link :to="{ name: 'cnn'}">The Forward & Backward of a CNN</router-link></li>
@@ -21,7 +21,7 @@
                <!-- <li v-for='(blog, index) in blogs' :key="blog.id">
                   <a :href="links[index]">{{ blog.name }}</a>
                </li> -->
-         </div>
+         <!-- </div> -->
      </div>
   </div> 
 </template>

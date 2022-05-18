@@ -356,7 +356,7 @@ body, html {
 }
 
 #img500 {
-   width: 500px !important;
+   width: 500px;
    padding: 25px 50px !important;
    user-select: none;
    -moz-user-select: none;
@@ -364,6 +364,13 @@ body, html {
    -webkit-user-select: none;
    -ms-user-select: none;
 }
+
+@media (max-width: 550px) {
+   #img500 {
+      width: 100%;
+   }
+}
+
 #img500nopad {
    width: 500px !important;
    user-select: none;
@@ -559,7 +566,14 @@ body, html {
    padding: 25px 5vw;
    z-index: 10;
    /* float: left; */
-} 
+}
+
+@media (max-width: 850px) {
+   #curriculumBody {
+      width: 100% !important;
+      padding: 0;
+   }
+}
 
 #homefooter {
    position: absolute;
