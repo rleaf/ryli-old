@@ -458,7 +458,7 @@ export default {
          for i in range(dists.shape[1]):
             # Index over each column to find k lowest values
             x = torch.topk(dists[:,i], k, largest=False).indices
-            k_lowest_labels = self.y_train[x[0:k]]
+            k_lowest_labels = self.y_train[x]
 
             y_test_pred[i] = torch.argmax(torch.bincount(k_lowest_labels))
          
