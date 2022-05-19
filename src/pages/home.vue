@@ -412,13 +412,19 @@ body, html {
 }
 
 #img350 {
-   width: 350px !important;
+   width: 350px;
    user-select: none;
    -moz-user-select: none;
    -webkit-user-drag: none;
    -webkit-user-select: none;
    -ms-user-select: none;
 
+}
+
+@media screen and (max-width: 375px) {
+   #img350 {
+      width: 100%;
+   }
 }
 
 #imgH400 {
@@ -540,9 +546,17 @@ body, html {
    width: 100%;
 } */
 
+
 .designOffsetContainer {
    min-width: 425px;
    width: 50%;
+}
+
+@media screen and (max-width: 450px) {
+   .designOffsetContainer {
+      min-width: 100%;
+      /* width: 100%; */
+   }  
 }
 
 .designOffsetImageContainer {
