@@ -5,9 +5,7 @@
    </div> -->
   <div id="landing">
       <!-- <NavBar /> -->
-      <div id="portfolio">
-         <homeIntro />
-      </div>
+      <homeIntro />
       <div id="homefooter">
          <!-- <a href="https://youtu.be/wupToqz1e2g" target="_blank">Made by Ryan Lin</a> -->
       </div>
@@ -93,19 +91,8 @@ body, html {
    clear: both;
 }
 
-.nav {
-   padding-top: 6vh;
-   font-size: 16px;
-   /* display: block; */
-}
-
 .nav:hover a {
    color: var(--green);
-}
-
-.nav img {
-   float: left;
-   padding-right: 40px;
 }
 
 #bar, #bar2 {
@@ -140,8 +127,14 @@ body, html {
    display: inline-block;
 }
 
-.nav ul a {
+#mainnav ul a {
    margin: 0 40px 0 40px;
+}
+
+@media (max-width: 1100px) {
+   #mainnav ul a {
+      margin: 0 20px;
+   }
 }
 
 .nav ul li:hover {
@@ -177,6 +170,7 @@ body, html {
 }
 
 #portfolio {
+   position: relative;
    display: flex;
    flex-wrap: wrap;
    /* flex-direction: row; */
@@ -437,13 +431,14 @@ body, html {
 }
 
 #textContainerHeader {
+   position: relative;
    font-size: 40px;
    font-family: 'Inconsolata';
    color: var(--white);
    text-transform: uppercase;
    padding-top: 80px;
    padding-bottom: 75px;
-   z-index: 5;
+   z-index: 2;
 }
 
 #subHeader {
@@ -471,17 +466,10 @@ body, html {
    z-index: 10;
 }
 .designContainerHeader {
-   /* padding-left: 30px;
-   padding-right: 30px; */
-   /* padding: 45px 40px; */
    align-items: center;
-   z-index: 10;
    top: calc(50% - 35vmin / 2);
    position: relative;
-   /* left: 0; */
    width: 100%;
-   /* padding-top: 80px;
-   padding-bottom: 75px; */
 }
 
 .textDesignContainer {
@@ -489,7 +477,6 @@ body, html {
    font-family: 'Lora';
    color: var(--white);
    text-shadow: 1px 1px 8px #0e0e0e;
-   /* text-transform: uppercase; */
    text-align: center;
 }
 
@@ -601,11 +588,11 @@ body, html {
    line-height: 140%;
    width: 700px;
    padding: 25px 5vw;
-   z-index: 10;
+   z-index: 9;
    /* float: left; */
 }
 
-@media (max-width: 850px) {
+@media (max-width: 870px) {
    #curriculumBody {
       width: 100% !important;
       padding: 0;

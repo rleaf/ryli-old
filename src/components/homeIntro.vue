@@ -70,19 +70,15 @@ export default {
    height: 100px;
    text-align: center;
    line-height: normal;
-   margin-top: 18vh;
+   top: calc(60vh/ 2);
+   /* margin-top: 18vh; */
    position: relative;
+   z-index: 1;
 }
 
 #subda {
    padding-top: 14px;
    font-size: 18px;
-}
-
-@media screen and (max-height: 850px) {
-   #landingintro {
-      margin-top: 10vh;
-   }
 }
 
 .introword, .subwordhomeIntro {
