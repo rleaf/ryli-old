@@ -48,7 +48,7 @@
                <div id="mobilemain">
 
                   <router-link  :to="{ name: 'home' }">
-                     <img class="logoimgmobile" src="../assets/logo.png" alt="">
+                     <img @click="isActive = true" class="logoimgmobile" src="../assets/logo.png" alt="">
                   </router-link>
                   <div class="burger" @click="isActive = !isActive" style="cursor: pointer;">
                      <span class="bread"></span>
@@ -99,9 +99,35 @@ export default {
 
    watch: {
       isActive() {
-         console.log('wee', this.isActive);
-         let x = document.querySelector('#mobilepad')
-         this.isActive ? (x.style.transform = 'translate(0, -100%)') : (x.style.transform = 'none')
+         let menu = document.querySelector('#mobilepad')
+         let bread = document.getElementsByClassName('bread')
+         // bread.classList.toggle('bread')
+         // this.isActive ?
+         //    // Menu is inactive
+         //    (menu.style.transform = 'translate(0, -100%)') &
+         //    (bread[0].style.transform = 'none') &
+         //    (bread[1].style.transform = 'scale(1)') &
+         //    (bread[1].style.opacity = '1') &
+         //    (bread[2].style.transform = 'none') :
+         //    // Menu is active
+         //    (menu.style.transform = 'none') &
+         //    (bread[0].style.transform = 'translate(4px, -3px) rotate(45deg) ') &
+         //    (bread[1].style.transform = 'scale(0.2)') &
+         //    (bread[1].style.opacity = '0') &
+         //    (bread[2].style.transform = 'translate(4px, 3px) rotate(-45deg) ')
+
+         // Easier way to understand. Group style changes under classes and then append classes when desired
+         this.isActive ?
+            (menu.style.transform = 'translate(0, -100%)') &
+            bread[0].classList.remove('topbun') &
+            bread[1].classList.remove('meet') &
+            bread[2].classList.remove('botbun') :
+            (menu.style.transform = 'none') &
+            bread[0].classList.add('topbun') &
+            bread[1].classList.add('meet') &
+            bread[2].classList.add('botbun')
+         
+            // window.addEventListener('click', this.isActive = true)
       }
    },
 
@@ -113,10 +139,8 @@ export default {
 
       emailnotif() {
 
-         console.log('toadies');
          const x = document.getElementsByClassName("emailnotif")[0];
          const y = document.getElementsByClassName("email")[0];
-         console.log(x, y);
 
          gsap.to(x, {duration: 2, opacity: 1, x: 50, onComplete: tweenFin});
          
@@ -175,14 +199,39 @@ export default {
    z-index: 12;
 }
 
+.burger span:first-child {
+   transform-origin: left center;
+}
+
+.burger span:last-child {
+   transform-origin: left center;
+}
+
+.topbun {
+   transform: translate(4px, -3px) rotate(45deg)
+}
+
+.meet {
+   transform: scale(0.2);
+   opacity: 0;
+}
+
+.botbun {
+   transform: translate(4px, 3px) rotate(-45deg);
+}
+
 .bread {
    left: 50% - 13px;
    background: var(--green);
    display: block;
-   width: 30px;
+   width: 26px;
    height: 1px;
    margin-bottom: 5px;
    position: relative;
+
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
 }
 
 #mobilenav {

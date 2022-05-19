@@ -17,24 +17,36 @@ export default {
    },
    data() {
       return {
-         blogRender: false
+         blogRender: null
       }
    },
+
+   watch: {
+      // $route(to) {
+      //    let x = to.path.split('/')
+
+      //    x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
+      //    // threeScene.init()
+      //    console.log(this.blogRender);
+      // }  
+   },
+   
    mounted() {
+      // Stop initial three render if click straight to a blog post
       // Break scene if path = /blog/
-      // Gets the job done for now
-      let blogPath = this.$route.path.slice(0,6)
-      if (blogPath != '/blog/') {
-         this.blogRender = true
-         setTimeout(() => {
-            threeScene.init()
-         })
-      }
-      // Reference...
-      // console.log(this.$route.name)
-      // console.log('toad', this.$route.path)
-      // console.log('asdfasdf', asdf)
-      // console.log('toad', this.$router.currentRoute)
+      // console.log(this.$route.path.slice(0,6));
+      // let blogPath = this.$route.path.slice(0,6)
+      // if (blogPath != '/blog/') {
+      //    console.log(blogPath);
+      //    console.log('rendering...');
+      // }
+
+      // Wait for mount to render to prevent "blinking" canvas when clicking directly
+      // to blog post
+      this.blogRender = true
+      setTimeout(() => {
+         threeScene.init()
+      })
    }
 }
 

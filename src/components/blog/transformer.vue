@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <backdrop />
+      <!-- <backdrop /> -->
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -294,7 +294,7 @@
 
 <script>
 // import axios from 'axios'
-import backdrop from '../backdrop.vue'
+// // import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
 import threeScene from '../../assets/js/threeScene'
@@ -311,7 +311,7 @@ import 'prismjs/themes/prism-nord.css'
 export default {
    name: 'blogskeleton',
    components: {
-      backdrop,
+      // backdrop,
       toTop,
       PrismEditor,
       'vue-mathjax': VueMathjax
