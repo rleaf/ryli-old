@@ -145,7 +145,7 @@
                <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code> is shown immediately below. It is worth mentioning that PyTorch does have functions designed to do this already
                such as: <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, but I'm also going to refrain
                from using them.
-               <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of higher dimensionality, read more
+               <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
             </p>
             <prism-editor class="codeblock" v-model="nested_for_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
