@@ -291,12 +291,14 @@
             </p>
          </div>
          <toTop />
+         <!-- <themeSwitch /> -->
    </div>
 </template>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
 <script>
 // // import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
+// // import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css'
@@ -312,6 +314,7 @@ export default {
    components: {
       // backdrop,
       toTop,
+      // themeSwitch,
       PrismEditor,
       'vue-mathjax': VueMathjax
       // MathJax
