@@ -69,7 +69,7 @@
   background: #2c2c2c; /* Gecko Browsers */
 }
 
-body, html {
+html {
    /* overflow: auto; */
    margin: 0;
    padding: 0;

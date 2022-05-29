@@ -1,8 +1,11 @@
 <template>
    <keep-alive>
       <transition name="fade">
-         <canvas v-if="blogRender" class="threeScene"></canvas>
+      <!-- <div  class="threeshow"> -->
+         <canvas v-show="blogRender" class="threeScene"></canvas>
+      <!-- </div> -->
       </transition>
+
    </keep-alive>
 </template>
 
@@ -22,13 +25,13 @@ export default {
    },
 
    watch: {
-      // $route(to) {
-      //    let x = to.path.split('/')
+      $route(to) {
+         let x = to.path.split('/')
 
-      //    x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
-      //    // threeScene.init()
-      //    console.log(this.blogRender);
-      // }  
+         x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
+         // threeScene.init()
+         console.log(this.blogRender);
+      }  
    },
    
    mounted() {
@@ -41,8 +44,7 @@ export default {
       //    console.log('rendering...');
       // }
 
-      // Wait for mount to render to prevent "blinking" canvas when clicking directly
-      // to blog post
+      // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
       setTimeout(() => {
          threeScene.init()

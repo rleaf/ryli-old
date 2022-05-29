@@ -23,7 +23,7 @@ export default {
    methods: {
       toTop() {
          // const buttonToTop = document.querySelector('#toTopButton')
-         if(document.body.scrollTop > 300 ||  document.documentElement.scrollTop > 300) {
+         if(document.body.scrollTop > 150 ||  document.documentElement.scrollTop > 150) {
             gsap.to('#toTopButton', {duration: .25, display: 'block', opacity: 1, bottom: 20})
             // buttonToTop.style.display = "block"
          } else {
