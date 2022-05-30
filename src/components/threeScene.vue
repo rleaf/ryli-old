@@ -30,7 +30,7 @@ export default {
 
          x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
          // threeScene.init()
-         console.log(this.blogRender);
+         // console.log('three', to);
       }  
    },
    

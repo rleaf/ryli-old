@@ -29,6 +29,11 @@ export default {
          }
       ]
    },
+   watch: {
+      $route(to) {
+         console.log('asdf', to);
+      }
+   },
    mounted() {
 
       gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})

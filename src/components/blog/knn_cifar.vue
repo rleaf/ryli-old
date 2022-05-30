@@ -747,29 +747,4 @@ h2 {
    margin: 0;
    font-weight: 200;
 }
-
-.blogtoc {
-   color: var(--offwhite);
-   /* border-color: #4a4d4f */
-   border: 1px solid;
-   border-color: var(--white);
-   width: 300px;
-   font-size: 95%;
-   /* color: red; */
-   margin-bottom: 5vh;
-}
-
-.blogtoc a {
-   color: var(--offwhite);
-}
-
-.blogtoc a:hover {
-   color: var(--white);
-}
-
-.blogtoc ul {
-   text-align: left;
-   list-style: numbers;
-}
-
 </style>

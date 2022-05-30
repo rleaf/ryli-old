@@ -118,12 +118,6 @@ html {
    position: relative;
 }
 
-.daymode {
-   color: #0e0e0e !important;
-   border-color: black;
-   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
-}
-
 .nav ul li{
    color: var(--white);
    font-family: 'Inconsolata', sans-serif;
@@ -656,6 +650,10 @@ html {
    border-radius: 7px;
 }
 
+.daymode {
+   color: #0e0e0e !important;
+}
+
 .daymodecode {
    background: #292d3e;
 }
@@ -678,6 +676,19 @@ html {
 .daymodetoc {
    color: #0e0e0e;
    border-color: #0e0e0e;
+}
+
+.blogtoc a {
+   color: var(--offwhite);
+}
+
+.blogtoc a:hover {
+   color: var(--white);
+}
+
+.blogtoc ul {
+   text-align: left;
+   list-style: numbers;
 }
 
 </style>

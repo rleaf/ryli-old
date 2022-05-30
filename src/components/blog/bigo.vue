@@ -381,6 +381,7 @@ export default {
 # Algorithm equals n(1+n(1+1)) -> 2n^2 + n`,
       }
    },
+   
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
@@ -500,22 +501,15 @@ h2 {
    font-weight: 200;
 }
 
-.blogtoc a {
-   color: var(--offwhite);
-}
-
-.blogtoc a:hover {
-   color: var(--white);
-}
-
-.blogtoc ul {
-   text-align: left;
-   list-style: numbers;
-}
-
 .daymodeimg {
    filter: invert(1);
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+}
+
+.daymodespan {
+   color: #0e0e0e !important;
+   background-color: #fff;
+   border-color: black;
 }
 
 </style>

@@ -1,7 +1,11 @@
 <template>
+   <keep-alive> 
+
   <div class="themeSwitch">
-     <button class="themeButton" @click="changeTheme()">Change Theme</button>
+     <!-- <button class="themeButton" @click="changeTheme()">Change Theme</button> -->
+     <button class="themeButton" @click="theme = !theme">Change Theme</button>
   </div>
+   </keep-alive>
 </template>
 
 <script>
@@ -9,10 +13,26 @@ export default {
 
    data() {
       return{
-         theme: null
+         theme: false
       }
    },
-   
+
+   watch: {
+      theme() {
+         // console.log(this.theme);
+         this.changeTheme()
+         console.log(this.$route);
+
+      },
+
+      // This doesn't work because componenent is being destroyed on route change.
+      // $route(to) {
+      //    setTimeout(() => {
+      //       console.log('themeSwitch', to)
+      //    })
+      // },
+   },
+
    methods: {
       changeTheme() {
          // console.log(this.theme);
@@ -22,11 +42,12 @@ export default {
          let theme = document.querySelector('.themeButton')
          let p = document.querySelectorAll('p')
          let a = document.querySelectorAll('a')
-         let li = document.querySelectorAll('li')
+         let navli = document.querySelectorAll('.nav li')
          let img = document.querySelectorAll('img')
          let span = document.querySelectorAll('.theme')
          let bSubHeader = document.querySelectorAll('#blogSubHeader')
          let codeblock = document.querySelectorAll('.codeblock')
+         // console.log(navli);
       
          blogtoc.classList.toggle('daymodetoc')
          backdrop.classList.toggle('daymode2')
@@ -49,7 +70,7 @@ export default {
             a.classList.toggle('daymode')
          })
 
-         li.forEach((li) => {
+         navli.forEach((li) => {
             li.classList.toggle('daymode')
          })
 
@@ -58,14 +79,10 @@ export default {
          })
 
          span.forEach((span) => {
-            span.classList.toggle('daymode')
+            span.classList.toggle('daymodespan')
          })
 
       }
-   },
-
-   unmounted() {
-
    }
 }
 </script>

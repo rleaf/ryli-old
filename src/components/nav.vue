@@ -128,6 +128,25 @@ export default {
             bread[2].classList.add('botbun')
          
             // window.addEventListener('click', this.isActive = true)
+      },
+
+      // Remove themeswitch class upon route change
+      // Do it here because can use $route() {}
+      $route() {
+         let navli = document.querySelectorAll('.nav li')
+         let navimg = document.querySelector('.nav img')
+
+         console.log(navimg);
+         
+         if (navli[0].classList.contains('daymode')) {
+            // li elements
+            navli.forEach((li) => {
+               li.classList.toggle('daymode')
+            })
+            
+            // img element
+            navimg.classList.toggle('daymodeimg')
+         }
       }
    },
 
@@ -259,7 +278,7 @@ export default {
 
    transform-origin: 0% 0%;
    transform: translate(0, -100%);
-   /* transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0); */
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
 .mobilemenu {
@@ -316,8 +335,7 @@ export default {
 }
 
 .daymodeimg {
-   filter: invert(.94);
-   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+   filter: invert(1);
 }
 
 

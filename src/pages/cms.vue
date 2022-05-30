@@ -39,6 +39,12 @@ export default {
    components: {
       // backdrop
    },
+
+   watch: {
+      $route(to) {
+         console.log('cms', to);
+      }
+   },
    /* Code for Strapi if I decide to use it */
    // data () {
    //    return {
