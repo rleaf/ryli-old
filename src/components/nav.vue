@@ -175,6 +175,7 @@ export default {
    width: 50px;
    float: left;
    padding-right: 40px;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 .logoimgmobile {
@@ -258,7 +259,7 @@ export default {
 
    transform-origin: 0% 0%;
    transform: translate(0, -100%);
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+   /* transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 .mobilemenu {
@@ -312,6 +313,11 @@ export default {
    #landingintro {
       top: calc(80vh/2) !important;
    }
+}
+
+.daymodeimg {
+   filter: invert(.94);
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 

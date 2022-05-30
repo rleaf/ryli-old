@@ -50,7 +50,7 @@ export default {
    text-align: center;
 }
 
-#toTop > a {
+/* #toTop > a {
 
    font-size: 18px;
    font-family: 'Inconsolata', sans-serif;
@@ -58,7 +58,7 @@ export default {
    text-decoration: none;
    list-style-type: none;
    padding-bottom: 150px;
-}
+} */
 
 button {
    display: none; 
@@ -74,7 +74,15 @@ button {
    color: var(--white); 
    cursor: pointer; /* Add a mouse pointer on hover */
    padding: 5px 10px; 
-   font-size: 14px; 
+   font-size: 14px;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+}
+
+.daymodeButton {
+   color: black !important;
+   background-color: #e0e0e0;
+   box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 </style>

@@ -22,6 +22,7 @@ export default {
       background: #0e0e0e;
       opacity: 1;
       z-index: 2;
+      /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
       }
 
    .imageBackdrop {
@@ -33,6 +34,11 @@ export default {
       background: #0e0e0e;
       opacity: 0;
       z-index: 1;
+      /* transition: 1.5s; */
+   }
 
+   .daymode2 {
+      background: #fff;
+      /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
    }
 </style>

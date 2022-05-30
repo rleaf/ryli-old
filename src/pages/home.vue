@@ -118,6 +118,12 @@ html {
    position: relative;
 }
 
+.daymode {
+   color: #0e0e0e !important;
+   border-color: black;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+}
+
 .nav ul li{
    color: var(--white);
    font-family: 'Inconsolata', sans-serif;
@@ -125,6 +131,7 @@ html {
    list-style-type: none;
    text-decoration: none;
    display: inline-block;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 #mainnav ul a {
@@ -649,8 +656,28 @@ html {
    border-radius: 7px;
 }
 
+.daymodecode {
+   background: #292d3e;
+}
+
 .prism-editor__textarea:focus {
    outline: none;
+}
+
+.blogtoc {
+   color: var(--offwhite);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--white);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.daymodetoc {
+   color: #0e0e0e;
+   border-color: #0e0e0e;
 }
 
 </style>

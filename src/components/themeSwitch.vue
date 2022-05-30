@@ -1,6 +1,5 @@
 <template>
   <div class="themeSwitch">
-     <p>toads</p>
      <button class="themeButton" @click="changeTheme()">Change Theme</button>
   </div>
 </template>
@@ -10,50 +9,93 @@ export default {
 
    data() {
       return{
-
+         theme: null
       }
    },
    
    methods: {
       changeTheme() {
-         let text = document.querySelectorAll('p')
+         // console.log(this.theme);
+         let blogtoc = document.querySelector('.blogtoc')
+         let backdrop = document.querySelector('.backdrop')
+         let toTop = document.querySelector('#toTopButton')
+         let theme = document.querySelector('.themeButton')
+         let p = document.querySelectorAll('p')
          let a = document.querySelectorAll('a')
-         let bsubHeader = document.querySelectorAll('#blogSubHeader')
-         let body = document.querySelector('html')
+         let li = document.querySelectorAll('li')
+         let img = document.querySelectorAll('img')
+         let span = document.querySelectorAll('.theme')
+         let bSubHeader = document.querySelectorAll('#blogSubHeader')
+         let codeblock = document.querySelectorAll('.codeblock')
       
-         body.style.backgroundColor = '#e4e4e4'
-         console.log(body);
+         blogtoc.classList.toggle('daymodetoc')
+         backdrop.classList.toggle('daymode2')
+         toTop.classList.toggle('daymodeButton')
+         theme.classList.toggle('daymodeButton')
 
-         text.forEach((text) => {
-            text.style.color = 'black'
+         codeblock.forEach((cb) => {
+            cb.classList.toggle('daymodecode')
+         })
+
+         p.forEach((p) => {
+            p.classList.toggle('daymode')
+         })
+
+         bSubHeader.forEach((lol) => {
+            lol.classList.toggle('daymode')
          })
 
          a.forEach((a) => {
-            a.style.color = 'black'
+            a.classList.toggle('daymode')
          })
 
-         // bsubHeader.style.color = 'black'
-
-         bsubHeader.forEach((x) => {
-            x.style.color = 'black'
+         li.forEach((li) => {
+            li.classList.toggle('daymode')
          })
-         
-         console.log(text[0]);
-         // text.style.color = 'black'
+
+         img.forEach((img) => {
+            img.classList.toggle('daymodeimg')
+         })
+
+         span.forEach((span) => {
+            span.classList.toggle('daymode')
+         })
+
       }
+   },
+
+   unmounted() {
+
    }
 }
 </script>
 
-<style>
+<style scoped>
    .ok {
       color: #e4e4e4
    }
-   .themeSwitch {
+
+   .themeSwitch > button {
+      /* display: none; */
       z-index: 10;
-      position: absolute;
-      top: 0;
-      right: 30vw;
-      width: 400px;
+      position: fixed;
+      border: none;
+      box-shadow: -1px 0 var(--offWhite), 0 1px var(--offWhite), 1px 0 var(--offWhite), 0 -1px var(--offWhite);
+      outline: none;
+      background-color: #0e0e0e; 
+      color: var(--white);
+      padding: 5px 10px;
+      right: 30px;
+      top: 20px;
+      /* width: 400px; */
    }
+   
+   .daymodeButton {
+   color: black !important;
+   /* border-color: black !important; */
+   background-color: #e0e0e0 !important;
+   box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+}
+
 </style>

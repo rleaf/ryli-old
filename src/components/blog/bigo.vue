@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <!-- <backdrop /> -->
+      <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -55,7 +55,7 @@
             <br>
             <br>
             <img id="img1000" style="box-shadow: none;" src="../../assets/blog/bigo3.png" alt="">
-            <span style="font-size:14px; padding-top: -10px;">Visually, the graphs show that all points <i>n</i> beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> adhere to the rules of their respective set.
+            <span class="theme" style="font-size:14px; padding-top: -10px;">Visually, the graphs show that all points <i>n</i> beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> adhere to the rules of their respective set.
             <i>(a)</i> shows <vue-mathjax :formula='`$f(n) = O(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\lt c \\cdot g(n)$`'></vue-mathjax> at all points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> thus making <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> an 
             <i>upper bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. <i>(b)</i> shows <vue-mathjax :formula='`$f(n) = \\Omega(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\gt c \\cdot g(n)$`'></vue-mathjax>
             for all <i>n</i> points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, making <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> a <i>lower bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
@@ -96,9 +96,9 @@
                Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. I will be using 3 examples for <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
                where <vue-mathjax :formula='`$n = n, n = n^2, n = n^3$`'></vue-mathjax> We can assert:
             </p>
-            <div class="bgColor">
+            <div class="bgColor theme">
                   <br>
-                  <vue-mathjax :formula='`$$g(n) = n$$`'></vue-mathjax>
+                  <vue-mathjax class="theme" :formula='`$$g(n) = n$$`'></vue-mathjax>
                <p>
                   <vue-mathjax :formula='`$f(n) = n^2+4n \\neq O(n)$`'></vue-mathjax>, because there exists no constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
                   is always <vue-mathjax :formula='`$\\leq c \\cdot g(n)$`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>. At no point, <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, will <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> always
@@ -115,9 +115,9 @@
                </p>
             </div>
             <br>
-            <div class="bgColor">
+            <div class="bgColor theme">
                   <br>
-                  <vue-mathjax :formula='`$$g(n) = n^2$$`'></vue-mathjax>
+                  <vue-mathjax class="theme" :formula='`$$g(n) = n^2$$`'></vue-mathjax>
                <p>
                   <vue-mathjax :formula='`$f(n) = n^2+4n = O(n^2)$`'></vue-mathjax>, because there exists a constant, for example <vue-mathjax :formula='`$c=2$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n) \\leq 2n^2$`'></vue-mathjax>
                   for all <vue-mathjax :formula='`$n \\geq 4$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/csj6cj3d4z" target="_blank">Link</a> to graphing calculator mapping the two functions showing this.
@@ -132,11 +132,10 @@
                </p>
             </div>
             <br>
-            <div class="bgColor">
+            <div class="bgColor theme">
                   <br>
-                  <vue-mathjax :formula='`$$g(n) = n^3$$`'></vue-mathjax>
-                  <br>
-                  <span style='font-size: 13px;'><i>In plain English</i></span>
+                  <vue-mathjax class="theme" :formula='`$$g(n) = n^3$$`'></vue-mathjax>
+                  <span class="theme" style='font-size: 13px;'><i>In plain English</i></span>
                <p>
                   <vue-mathjax :formula='`$f(n) = n^2+4n = O(n^3)$`'></vue-mathjax>, because there exists coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n" will <b>always</b> be an
                   <i>upper bound</i> of "f of n" for all <i>n</i> greater than <i>n sub 0</i>.
@@ -296,7 +295,7 @@
 </template>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
 <script>
-// // import backdrop from '../backdrop.vue'
+import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
@@ -312,7 +311,7 @@ import 'prismjs/themes/prism-nord.css'
 export default {
    name: 'blogskeleton',
    components: {
-      // backdrop,
+      backdrop,
       toTop,
       themeSwitch,
       PrismEditor,
@@ -445,6 +444,7 @@ export default {
    border-radius: 5px;
    border: 1px solid;
    border-color: var(--offwhite);
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 #curriculumBody {
@@ -500,17 +500,6 @@ h2 {
    font-weight: 200;
 }
 
-.blogtoc {
-   color: var(--offwhite);
-   /* border-color: #4a4d4f */
-   border: 1px solid;
-   border-color: var(--white);
-   width: 300px;
-   font-size: 95%;
-   /* color: red; */
-   margin-bottom: 5vh;
-}
-
 .blogtoc a {
    color: var(--offwhite);
 }
@@ -522,6 +511,11 @@ h2 {
 .blogtoc ul {
    text-align: left;
    list-style: numbers;
+}
+
+.daymodeimg {
+   filter: invert(1);
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
 </style>
