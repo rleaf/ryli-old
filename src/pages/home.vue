@@ -40,6 +40,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Amiri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
 
 :root {
@@ -58,6 +59,8 @@
    --codeblock: #131313;
    --codeSnippet: #242424;
    --mobilePad: #050505;
+   --type: 'Lora', sans-serif;
+   --typeSize: 15px;
 
 }
 
@@ -615,7 +618,7 @@ html {
    position: relative;
    font-family: 'Lora', serif;
    color: var(--shadeWhite2);
-   font-size: 15px;
+   font-size: var(--typeSize);
    line-height: 140%;
    width: 700px;
    padding: 25px 5vw;
@@ -719,6 +722,14 @@ html {
    --mobilePad: #c0c0c0;
    --selection: #bbbbbb;
    /* --selection: #ffdce2; */
+}
+
+.serif {
+   --type: 'Open Sans', sans-serif;
+}
+
+.typeSize {
+   --typeSize: 16px;
 }
 
 </style>

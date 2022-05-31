@@ -451,10 +451,16 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
+   font-size: var(--typeSize);
    flex-direction: column;
    align-items: center;
    justify-content: center;
    text-align: center;
+}
+
+#curriculumHeader {
+   font-family: var(--type);
 }
 
 #blogHeader {
@@ -478,7 +484,7 @@ a:not(.blogtoc a) {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }
