@@ -795,7 +795,7 @@ export default {
 }
 
 #blogHeader {
-   color: var(--white);
+   color: var(--shadeWhite1);
    padding-bottom: 8vh;
    font-size: 22px;
 }
@@ -805,14 +805,17 @@ p {
    line-height: 2;
 }
 
-a {
-   color: var(--white);
+a { 
    text-decoration: underline;
    font-style: oblique;
 }
 
+a:not(.blogtoc a) {
+   color: var(--shadeWhite1);
+}
+
 h2 {
-   /* color: var(--white); */
+   /* color: var(--shadeWhite1); */
    font-size: 16px;
    font-style: italic;
    padding-top: 10px;
@@ -821,7 +824,7 @@ h2 {
 }
 
 #blogSubHeader {
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;

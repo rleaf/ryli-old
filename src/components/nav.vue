@@ -133,12 +133,11 @@ export default {
       // Remove themeswitch class upon route change
       // Do it here because can use $route() {}
       $route() {
+         console.log('toadies');
          let nav = document.querySelector('.nav')
          // Grab mainnav & mobilenav img
          let navimg = document.querySelectorAll('.nav img')
 
-         console.log(nav);
-         
          if (nav.classList.contains('day')) {
             // li elements
             nav.classList.toggle('day')

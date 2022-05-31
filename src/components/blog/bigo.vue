@@ -467,10 +467,13 @@ p {
    line-height: 2;
 }
 
-a {
-   color: var(--shadeWhite1);
+a { 
    text-decoration: underline;
    font-style: oblique;
+}
+
+a:not(.blogtoc a) {
+   color: var(--shadeWhite1);
 }
 
 #blogSubHeader {
@@ -500,26 +503,5 @@ h2 {
    margin: 0;
    font-weight: 200;
 }
-
-.blogtoc {
-   color: var(--shadeWhite2);
-   /* border-color: #4a4d4f */
-   border: 1px solid;
-   border-color: var(--shadeWhite2);
-   width: 300px;
-   font-size: 95%;
-   /* color: red; */
-   margin-bottom: 5vh;
-}
-
-.blogtoc a {
-   color: var(--shadeWhite2);
-}
-
-.blogtoc a:hover {
-   color: var(--shadeWhite1);
-}
-
-
 
 </style>

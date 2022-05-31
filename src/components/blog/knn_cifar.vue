@@ -714,14 +714,17 @@ p {
    line-height: 2;
 }
 
-a {
-   color: var(--white);
+a { 
    text-decoration: underline;
    font-style: oblique;
 }
 
+a:not(.blogtoc a) {
+   color: var(--shadeWhite1);
+}
+
 #blogSubHeader {
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -740,7 +743,7 @@ a {
 }
 
 h2 {
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-size: 16px;
    font-style: italic;
    padding-top: 10px;

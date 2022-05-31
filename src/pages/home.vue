@@ -688,6 +688,25 @@ html {
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
+.blogtoc {
+   color: var(--shadeWhite2);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--shadeWhite2);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
+}
+
+.blogtoc a {
+   color: var(--shadeWhite2);
+}
+
+.blogtoc a:hover {
+   color: var(--shadeWhite1);
+}
+
 .day {
    --primaryDark: #fff;
    --white: #000;

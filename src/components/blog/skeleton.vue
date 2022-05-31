@@ -148,10 +148,13 @@ p {
    line-height: 2;
 }
 
-a {
-   color: var(--white);
+a { 
    text-decoration: underline;
    font-style: oblique;
+}
+
+a:not(.blogtoc a) {
+   color: var(--shadeWhite1);
 }
 
 h2 {
