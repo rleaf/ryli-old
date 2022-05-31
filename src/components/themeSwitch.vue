@@ -4,9 +4,7 @@
   <div class="themeSwitch">
      <!-- <button class="themeButton" @click="changeTheme()">Change Theme</button> -->
      <button class="themeButton" @click="changeTheme()">{{ theme }}</button>
-     <br>
      <button class="themeButton" @click="changeType()">{{ type }}</button>
-     <br>
      <button class="themeButton" @click="changeSize()">{{ size }}</button>
   </div>
    </keep-alive>
@@ -117,7 +115,7 @@ export default {
       border-color: var(--shadeWhite2);
       background: var(--primaryDark);
       position: fixed;
-      padding: 0 5px 5px 5px;
+      padding: 5px 5px 5px 0;
       /* width: 5vw; */
       text-align: center;
       right: 30px;
@@ -133,7 +131,7 @@ export default {
       background-color: var(--primaryDark); 
       color: var(--white);
       padding: 5px 10px;
-      margin-top: 5px;
+      margin-left: 5px;
       /* width: 400px; */
    }
    
