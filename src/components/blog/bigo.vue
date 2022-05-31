@@ -441,10 +441,10 @@ export default {
 <style scoped>
 
 .bgColor {
-   background-color: #1d1d1d;
+   background-color: var(--bgColor);
    border-radius: 5px;
    border: 1px solid;
-   border-color: var(--offwhite);
+   border-color: var(--shadeWhite2);
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
@@ -468,13 +468,13 @@ p {
 }
 
 a {
-   color: var(--white);
+   color: var(--shadeWhite1);
    text-decoration: underline;
    font-style: oblique;
 }
 
 #blogSubHeader {
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-family: 'Lora', sans-serif;
    font-size: 19px;
    padding-top: 50px;
@@ -493,7 +493,7 @@ a {
 }
 
 h2 {
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-size: 16px;
    font-style: italic;
    padding-top: 10px;
@@ -501,15 +501,25 @@ h2 {
    font-weight: 200;
 }
 
-.daymodeimg {
-   filter: invert(1);
-   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+.blogtoc {
+   color: var(--shadeWhite2);
+   /* border-color: #4a4d4f */
+   border: 1px solid;
+   border-color: var(--shadeWhite2);
+   width: 300px;
+   font-size: 95%;
+   /* color: red; */
+   margin-bottom: 5vh;
 }
 
-.daymodespan {
-   color: #0e0e0e !important;
-   background-color: #fff;
-   border-color: black;
+.blogtoc a {
+   color: var(--shadeWhite2);
 }
+
+.blogtoc a:hover {
+   color: var(--shadeWhite1);
+}
+
+
 
 </style>

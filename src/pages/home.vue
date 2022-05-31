@@ -43,37 +43,53 @@
 
 
 :root {
-   --green: #ffffff;
-   --white: #dddddd;
-   --offWhite: #b1b1b1;
+   /* green */
+   --white: #ffffff;
+   --black: #000000;
+   /* white */
+   --shadeWhite1: #dddddd;
+   /* offWhite */
+   --shadeWhite2: #b1b1b1;
+   --primaryDark: #0e0e0e;
+   --scrollbarThumb: #3f3f3f;
+   --selection: #2c2c2c;
+   --designSelection: #bbbbbb;
+   --bgColor: #1d1d1d;
+   --codeblock: #131313;
+   --mobilePad: #050505;
+
 }
 
 ::-webkit-scrollbar {
    /* display: none; */
-   background: #0e0e0e;
-   width: 14px;
+   background: #1d1d1d;
+   width: 13px;
 }
 
 ::-webkit-scrollbar-thumb {
-   background: #3f3f3f;
+   background: var(--scrollbarThumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-   background: var(--offWhite);
+   background: var(--shadeWhite2);
 }
 
 ::selection {
-  background: #2c2c2c; /* WebKit/Blink Browsers */
+  background: var(--selection); /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #2c2c2c; /* Gecko Browsers */
+  background: var(--selection); /* Gecko Browsers */
+}
+
+body {
+ margin: 0;
+ padding: 0;
 }
 
 html {
-   /* overflow: auto; */
    margin: 0;
    padding: 0;
-   background-color: #0e0e0e;
+   background-color: var(--primaryDark);
    width: 100%;
    height: 100%;
 }
@@ -92,7 +108,7 @@ html {
 }
 
 .nav:hover a {
-   color: var(--green);
+   color: var(--white);
 }
 
 #bar, #bar2 {
@@ -112,14 +128,14 @@ html {
 }
 
 .barsvg {
-   fill: var(--white);
+   fill: var(--shadeWhite1);
    padding: 0;
    margin: 0;
    position: relative;
 }
 
 .nav ul li{
-   color: var(--white);
+   color: var(--shadeWhite1);
    font-family: 'Inconsolata', sans-serif;
    text-transform: uppercase;
    list-style-type: none;
@@ -139,7 +155,7 @@ html {
 }
 
 .nav ul li:hover {
-   color: var(--green);
+   color: var(--white);
    /* add fade transition */
 }
 
@@ -156,7 +172,7 @@ html {
    right: 0;
    width: 0;
    bottom: -12px;
-   background: var(--green);
+   background: var(--white);
    height: 1px;
    transition-property: left right;
    transition-duration: 0.3s;
@@ -167,7 +183,7 @@ html {
    left: 0;
    right: auto;
    width: 100%;
-   color: var(--green);
+   color: var(--white);
 }
 
 #portfolio {
@@ -211,15 +227,15 @@ html {
    font-family: 'Inconsolata', sans-serif;
    margin-top: 45px;
    margin-bottom: 0;
-   color: var(--white);
-   border-bottom: 1px solid var(--white);
+   color: var(--shadeWhite1);
+   border-bottom: 1px solid var(--shadeWhite1);
    text-transform: uppercase;
 }
 
 #subtext > p {
    font-size: 16px;
    font-family: 'Inconsolata', sans-serif;
-   color: var(--white);
+   color: var(--shadeWhite1);
    text-transform: uppercase;
 }
 
@@ -227,7 +243,7 @@ html {
    display: inline-block;
    font-size: 20px;
    font-family: 'Inconsolata', sans-serif;
-   color: var(--white);
+   color: var(--shadeWhite1);
    margin-top: 30px;
    text-transform: uppercase;
 
@@ -441,7 +457,7 @@ html {
    position: relative;
    font-size: 40px;
    font-family: 'Inconsolata';
-   color: var(--white);
+   color: var(--shadeWhite1);
    text-transform: uppercase;
    padding-top: 80px;
    padding-bottom: 75px;
@@ -482,7 +498,7 @@ html {
 .textDesignContainer {
    font-size: 46px;
    font-family: 'Lora';
-   color: var(--white);
+   color: var(--shadeWhite1);
    text-shadow: 1px 1px 8px #0e0e0e;
    text-align: center;
 }
@@ -501,7 +517,7 @@ html {
    padding-top: 50px;
    /* margin-left: 4em;
    margin-right: 4em; */
-   background-color: #fff;
+   background-color: var(--white);
    max-width: 90vw;
 }
 
@@ -515,15 +531,14 @@ html {
 
 .designTextContainerBody {
    padding: 50px 10vw;
-   /* color: var(--offWhite); */
-   color: #000;
+   color: var(--black);
    font-family: 'Lora', serif;
    font-size: 16px;
    line-height: 140%;
 }
 
 .designImageSubText {
-   color: #000;
+   color: var(--black);
    font-family: 'Lora', serif;
    font-size: 14px;
    font-style: oblique;
@@ -567,8 +582,8 @@ html {
 
 .offsetImgText {
    padding: 0 6em;
-   /* color: var(--offWhite); */
-   color: #000;
+   /* color: var(--shadeWhite2); */
+   color: var(--black);
    font-family: 'Lora', serif;
    font-size: 16px;
    line-height: 140%;
@@ -577,7 +592,7 @@ html {
 
 #textContainerBody {
    padding: 25px 10vw;
-   color: var(--offWhite);
+   color: var(--shadeWhite2);
    font-family: 'Lora', serif;
    font-size: 16px;
    /* font-weight: 300; */
@@ -598,7 +613,7 @@ html {
    display: inherit;
    position: relative;
    font-family: 'Lora', serif;
-   color: var(--offWhite);
+   color: var(--shadeWhite2);
    font-size: 15px;
    line-height: 140%;
    width: 700px;
@@ -617,7 +632,7 @@ html {
 #homefooter {
    position: absolute;
    font-family: 'Inconsolata', sans-serif;
-   color: var(--offWhite);
+   color: var(--shadeWhite2);
    font-size: 16px;
    margin-left: auto;
    margin-right: auto;
@@ -629,15 +644,15 @@ html {
 
 #homefooter, a {
    text-decoration: none;
-   color: var(--offWhite);
+   color: var(--shadeWhite2);
 }
 
 #homefooter, a:hover {
-   color: var(--white);
+   color: var(--shadeWhite1);
 }
 
 .codeblock {
-   background: #131313;
+   background: var(--codeblock);
    color: #ccc;
    /* max-width: 950px; */
    max-width: max-content;
@@ -650,45 +665,39 @@ html {
    border-radius: 7px;
 }
 
-.daymode {
-   color: #0e0e0e !important;
-}
-
-.daymodecode {
-   background: #292d3e;
-}
-
 .prism-editor__textarea:focus {
    outline: none;
 }
 
-.blogtoc {
-   color: var(--offwhite);
-   /* border-color: #4a4d4f */
-   border: 1px solid;
-   border-color: var(--white);
-   width: 300px;
-   font-size: 95%;
-   /* color: red; */
-   margin-bottom: 5vh;
-}
 
-.daymodetoc {
-   color: #0e0e0e;
-   border-color: #0e0e0e;
-}
-
-.blogtoc a {
-   color: var(--offwhite);
+/* .blogtoc a {
+   color: var(--shadeWhite2) !important;
 }
 
 .blogtoc a:hover {
-   color: var(--white);
-}
+   color: var(--white) !important;
+} */
 
 .blogtoc ul {
    text-align: left;
    list-style: numbers;
+}
+
+.daymodeimg {
+   filter: invert(1);
+   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
+}
+
+.day {
+   --primaryDark: #fff;
+   --white: #000;
+   --shadeWhite1: #0e0e0e;
+   --shadeWhite2: #0e0e0e;
+   --bgColor: #b1b1b1;
+   --codeblock: #292d3e;
+   --mobilePad: #c0c0c0;
+   --selection: #bbbbbb;
+   /* --selection: #ffdce2; */
 }
 
 </style>

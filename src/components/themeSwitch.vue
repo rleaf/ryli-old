@@ -3,7 +3,7 @@
 
   <div class="themeSwitch">
      <!-- <button class="themeButton" @click="changeTheme()">Change Theme</button> -->
-     <button class="themeButton" @click="theme = !theme">Change Theme</button>
+     <button class="themeButton" @click="changeTheme()">Change Theme</button>
   </div>
    </keep-alive>
 </template>
@@ -21,7 +21,6 @@ export default {
       theme() {
          // console.log(this.theme);
          this.changeTheme()
-         console.log(this.$route);
 
       },
 
@@ -35,51 +34,20 @@ export default {
 
    methods: {
       changeTheme() {
-         // console.log(this.theme);
-         let blogtoc = document.querySelector('.blogtoc')
-         let backdrop = document.querySelector('.backdrop')
-         let toTop = document.querySelector('#toTopButton')
-         let theme = document.querySelector('.themeButton')
-         let p = document.querySelectorAll('p')
-         let a = document.querySelectorAll('a')
-         let navli = document.querySelectorAll('.nav li')
+         console.log('click');
+
+         let landing = document.querySelector('#landing')
+         landing.classList.toggle('day')
+
+         let nav = document.querySelectorAll('.nav')
          let img = document.querySelectorAll('img')
-         let span = document.querySelectorAll('.theme')
-         let bSubHeader = document.querySelectorAll('#blogSubHeader')
-         let codeblock = document.querySelectorAll('.codeblock')
-         // console.log(navli);
-      
-         blogtoc.classList.toggle('daymodetoc')
-         backdrop.classList.toggle('daymode2')
-         toTop.classList.toggle('daymodeButton')
-         theme.classList.toggle('daymodeButton')
 
-         codeblock.forEach((cb) => {
-            cb.classList.toggle('daymodecode')
-         })
-
-         p.forEach((p) => {
-            p.classList.toggle('daymode')
-         })
-
-         bSubHeader.forEach((lol) => {
-            lol.classList.toggle('daymode')
-         })
-
-         a.forEach((a) => {
-            a.classList.toggle('daymode')
-         })
-
-         navli.forEach((li) => {
-            li.classList.toggle('daymode')
+         nav.forEach((li) => {
+            li.classList.toggle('day')
          })
 
          img.forEach((img) => {
             img.classList.toggle('daymodeimg')
-         })
-
-         span.forEach((span) => {
-            span.classList.toggle('daymodespan')
          })
 
       }
@@ -88,18 +56,15 @@ export default {
 </script>
 
 <style scoped>
-   .ok {
-      color: #e4e4e4
-   }
 
    .themeSwitch > button {
       /* display: none; */
       z-index: 10;
       position: fixed;
       border: none;
-      box-shadow: -1px 0 var(--offWhite), 0 1px var(--offWhite), 1px 0 var(--offWhite), 0 -1px var(--offWhite);
+      box-shadow: -1px 0 var(--shadeWhite2), 0 1px var(--shadeWhite2), 1px 0 var(--shadeWhite2), 0 -1px var(--shadeWhite2);
       outline: none;
-      background-color: #0e0e0e; 
+      background-color: var(--primaryDark); 
       color: var(--white);
       padding: 5px 10px;
       right: 30px;

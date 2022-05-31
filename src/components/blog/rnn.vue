@@ -381,13 +381,6 @@ export default {
 </script>
 <style scoped>
 
-.bgColor {
-   background-color: #1d1d1d;
-   border-radius: 5px;
-   border: 1px solid;
-   border-color: var(--offwhite);
-}
-
 #curriculumBody {
    width: auto !important;
    display: flex;

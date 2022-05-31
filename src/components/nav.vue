@@ -133,19 +133,19 @@ export default {
       // Remove themeswitch class upon route change
       // Do it here because can use $route() {}
       $route() {
-         let navli = document.querySelectorAll('.nav li')
-         let navimg = document.querySelector('.nav img')
+         let nav = document.querySelector('.nav')
+         // Grab mainnav & mobilenav img
+         let navimg = document.querySelectorAll('.nav img')
 
-         console.log(navimg);
+         console.log(nav);
          
-         if (navli[0].classList.contains('daymode')) {
+         if (nav.classList.contains('day')) {
             // li elements
-            navli.forEach((li) => {
-               li.classList.toggle('daymode')
-            })
-            
+            nav.classList.toggle('day')
             // img element
-            navimg.classList.toggle('daymodeimg')
+            navimg.forEach((toads) => {
+               toads.classList.toggle('daymodeimg')
+            })
          }
       }
    },
@@ -242,7 +242,7 @@ export default {
 
 .bread {
    left: 50% - 13px;
-   background: var(--green);
+   background: var(--white);
    display: block;
    width: 26px;
    height: 1px;
@@ -273,7 +273,7 @@ export default {
 #mobilepad {
    position: relative;
    padding-top: 10vh;
-   background: #050505;
+   background: var(--mobilePad);
    height: 480px;
 
    transform-origin: 0% 0%;

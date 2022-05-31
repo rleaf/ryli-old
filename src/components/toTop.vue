@@ -68,9 +68,9 @@ button {
    right: 30px;
    z-index: 99; 
    border: none;
-   box-shadow: -1px 0 var(--offWhite), 0 1px var(--offWhite), 1px 0 var(--offWhite), 0 -1px var(--offWhite);
+   box-shadow: -1px 0 var(--shadeWhite2), 0 1px var(--shadeWhite2), 1px 0 var(--shadeWhite2), 0 -1px var(--shadeWhite2);
    outline: none;
-   background-color: #0e0e0e; 
+   background-color: var(--primaryDark); 
    color: var(--white); 
    cursor: pointer; /* Add a mouse pointer on hover */
    padding: 5px 10px; 

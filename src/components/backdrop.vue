@@ -19,7 +19,7 @@ export default {
       top: 0;
       left: 0;
       position: fixed;
-      background: #0e0e0e;
+      background: var(--primaryDark);
       opacity: 1;
       z-index: 2;
       /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
@@ -31,14 +31,14 @@ export default {
       top: 0;
       left: 0;
       position: fixed;
-      background: #0e0e0e;
+      background: var(--primaryDark);
       opacity: 0;
       z-index: 1;
       /* transition: 1.5s; */
    }
 
    .daymode2 {
-      background: #fff;
+      background: var(--white);
       /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
    }
 </style>
