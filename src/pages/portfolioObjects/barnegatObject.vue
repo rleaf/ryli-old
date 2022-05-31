@@ -115,10 +115,10 @@ export default {
 
    
 ::selection {
-  background: #bbbbbb !important; /* WebKit/Blink Browsers */
+  background: var(--designSelection) !important; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-  background: #bbbbbb !important; /* Gecko Browsers */
+  background: var(--designSelection) !important; /* Gecko Browsers */
 }
 
 </style>
