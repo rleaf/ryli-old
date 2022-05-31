@@ -132,19 +132,22 @@ export default {
 
       // Remove themeswitch class upon route change
       // Do it here because can use $route() {}
-      $route() {
-         console.log('toadies');
-         let nav = document.querySelector('.nav')
-         // Grab mainnav & mobilenav img
-         let navimg = document.querySelectorAll('.nav img')
+      $route(to, from) {
 
-         if (nav.classList.contains('day')) {
-            // li elements
-            nav.classList.toggle('day')
-            // img element
-            navimg.forEach((toads) => {
-               toads.classList.toggle('daymodeimg')
-            })
+         // Prohibit theme transition when clicking on section header in a read
+         if(!(to.path == from.path)){
+            let nav = document.querySelector('.nav')
+            // Grab mainnav & mobilenav img
+            let navimg = document.querySelectorAll('.nav img')
+
+            if (nav.classList.contains('day')) {
+               // li elements
+               nav.classList.toggle('day')
+               // img element
+               navimg.forEach((toads) => {
+                  toads.classList.toggle('daymodeimg')
+               })
+            }
          }
       }
    },

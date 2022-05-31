@@ -47,7 +47,9 @@ export default {
          })
 
          img.forEach((img) => {
-            img.classList.toggle('daymodeimg')
+            if (!img.classList.contains('noInvert')) {
+               img.classList.toggle('daymodeimg')
+            }
          })
 
       }

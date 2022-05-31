@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <!-- <backdrop /> -->
+      <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -48,7 +48,7 @@
                   When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
                   be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
                </p>
-               <img id="img800" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
+               <img id="img800" class="noInvert" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
                <div id="convolution_forward"></div>
                <div id="blogSubHeader">
@@ -106,11 +106,11 @@
                   <br>
                   1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, match dimensionality of what is being differentiated wrt to.
                   <br>
-                  2) Calculating the entire gradient is a running sum (note the <code style="background: #242424; border-radius: 5px;">+=</code> on lines 39, 46, and 47 where the gradient formulas are shown).
+                  2) Calculating the entire gradient is a running sum (note the <code style="background: var(--codeSnippet); border-radius: 5px;">+=</code> on lines 39, 46, and 47 where the gradient formulas are shown).
                   <br>
                   3) Make sure to properly "locate" where a gradient belongs. Consider what needs to be indexed in order to compute a gradient. For instance,
-                  <code style="background: #242424; border-radius: 5px;">db</code> on line 39 <i>can</i> be next to <code style="background: #242424; border-radius: 5px;">dw</code> and <code>dx</code>,
-                  but unlike <code style="background: #242424; border-radius: 5px;">dw</code> and <code style="background: #242424; border-radius: 5px;">dx</code>, it doesn't <i>need</i> to be since we're only indexing along f.
+                  <code style="background: var(--codeSnippet); border-radius: 5px;">db</code> on line 39 <i>can</i> be next to <code style="background: var(--codeSnippet); border-radius: 5px;">dw</code> and <code>dx</code>,
+                  but unlike <code style="background: var(--codeSnippet); border-radius: 5px;">dw</code> and <code style="background: var(--codeSnippet); border-radius: 5px;">dx</code>, it doesn't <i>need</i> to be since we're only indexing along f.
                </p>
 
                <prism-editor class="codeblock" v-model="cnnBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -131,8 +131,8 @@
                <h2>Backward</h2>
                <p>
                   Backprop through this layer funtions similarly. A convenience of ReLU is that all the local gradients will equal to 1, so this transformation behaves like a mask that only allows the
-                  corresponding index between the activated neurons and <code style="background: #242424; border-radius: 5px;">dout</code> to progress backwards unchanged.
-                  <a href="https://pytorch.org/docs/stable/generated/torch.gt.html" target="_blank">Link</a> to <code style="background: #242424; border-radius: 5px;">torch.gt()</code>.
+                  corresponding index between the activated neurons and <code style="background: var(--codeSnippet); border-radius: 5px;">dout</code> to progress backwards unchanged.
+                  <a href="https://pytorch.org/docs/stable/generated/torch.gt.html" target="_blank">Link</a> to <code style="background: var(--codeSnippet); border-radius: 5px;">torch.gt()</code>.
                </p>
                <prism-editor class="codeblock" v-model="reluBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <p>
@@ -148,7 +148,7 @@
                   which will provide 1's and 0's. Further shown below is max pooling where there's not much math and it strictly routes the upstream values.
                   <br>
                   <br>
-                  2) Multiply that local computation by the upstream. I use <code style="background: #242424; border-radius: 5px;">dout</code> to refer to the upstream.
+                  2) Multiply that local computation by the upstream. I use <code style="background: var(--codeSnippet); border-radius: 5px;">dout</code> to refer to the upstream.
                </p>
                <prism-editor class="codeblock" v-model="reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
@@ -170,20 +170,20 @@
                   <br>
                   <b>Stride</b>: Determines the step distance of the kernel after each dot product
                   <br>
-                  <b>Padding</b>: Adds a border to the input. Not common (to my knowledge), so the <code style="background: #242424; border-radius: 5px;">xpad</code> seen in the forward pass
+                  <b>Padding</b>: Adds a border to the input. Not common (to my knowledge), so the <code style="background: var(--codeSnippet); border-radius: 5px;">xpad</code> seen in the forward pass
                   in the convolutional layer is omitted.
                </p>
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <div id="pooling_backward"></div>
                <h2>Backward</h2>
                <p>
-                  Backpass through a pooling transformation routes <code style="background: #242424; border-radius: 5px;">dout</code> values to the index of the largest value of the corresponding 
+                  Backpass through a pooling transformation routes <code style="background: var(--codeSnippet); border-radius: 5px;">dout</code> values to the index of the largest value of the corresponding 
                   partition. Because pooling is a form of spatial <i>reduction</i>, on the backpass we have to upscale to produce a valid output tensor shape. Down below, I immediately produce the desired
                   shape for dx and populate it with zeros (line 24), then mutate the values of the desired index (line 26-40). 
                </p>
                <prism-editor class="codeblock" v-model="poolBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <p>
-                  An example below. With pooling kernel size of 2 and stride 2, look how the values (<code style="background: #242424; border-radius: 5px;">dout</code>) that get through the backwards pass
+                  An example below. With pooling kernel size of 2 and stride 2, look how the values (<code style="background: var(--codeSnippet); border-radius: 5px;">dout</code>) that get through the backwards pass
                   are indexed to the maximum value of every 2x2 square with stride 2.
                </p>
                <prism-editor class="codeblock" v-model="poolBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -201,6 +201,7 @@
                   Ryan
                </p>
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
@@ -209,7 +210,8 @@
 // import axios from 'axios'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
-// // import backdrop from '../backdrop.vue'
+import backdrop from '../backdrop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
 
@@ -224,8 +226,9 @@ import 'prismjs/themes/prism-nord.css'
 export default {
    name: 'blogskeleton',
    components: {
-      // backdrop,
+      backdrop,
       toTop,
+      themeSwitch,
       'vue-mathjax': VueMathjax,
       PrismEditor
 

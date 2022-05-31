@@ -173,6 +173,7 @@ export default {
    padding: 20px 10px;
    /* width: 400px; */
    /* max-width: 900px; */
+   color: var(--shadeWhite2);
    z-index: 2;
    overflow: none;
    /* backdrop is 1 */

@@ -56,6 +56,7 @@
    --designSelection: #bbbbbb;
    --bgColor: #1d1d1d;
    --codeblock: #131313;
+   --codeSnippet: #242424;
    --mobilePad: #050505;
 
 }
@@ -714,6 +715,7 @@ html {
    --shadeWhite2: #0e0e0e;
    --bgColor: #b1b1b1;
    --codeblock: #292d3e;
+   --codeSnippet: #d8d8d8;
    --mobilePad: #c0c0c0;
    --selection: #bbbbbb;
    /* --selection: #ffdce2; */

@@ -1,6 +1,6 @@
 <template>
    <div id="landing">
-      <!-- <backdrop /> -->
+      <backdrop />
       <div id="textContainerHeader">
       </div>
          <div id="curriculumBody">
@@ -70,7 +70,7 @@
                Below is the visualization of a Transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
                each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
-            <img id="img500" src="../../assets/blog/transformer.png" alt="">
+            <img id="img500" class="noInvert" src="../../assets/blog/transformer.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Transformer layout from "Attention is All You Need"</i></span>
             <br><br>
             <div id="preparation"></div>
@@ -81,7 +81,7 @@
                Before the sequence inputs can be fed into the encoder and decoder, they must be tokenized, pass go through an embedding layer, and then have positional encoding added to them.
                Tokenization is the process of converting a sequence,
                for example something that can be human interpretable, into a sequence of tokens represented as integers. For the embedding layer, I am going to be using 
-               <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> available through <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank">PyTorch</a>.
+               <code style="background: var(--codeSnippet); border-radius: 5px;">nn.Embedding</code> available through <a href="https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html" target="_blank">PyTorch</a>.
                Positional encoding is defined below.
                
             </p>
@@ -91,7 +91,7 @@
                We positionally encode our sequences to fortify structure because there is no inherint order during operation due to the parallelization of Transformers. Displayed here is sinusoidal positional
                encoding discussed in the original <i>Attention Is All You Need</i> paper, however there are many different ways to positionally encode a sequence such as
                <a href="https://arxiv.org/pdf/1803.02155.pdf" target="_blank">Relative Positinal Encoding</a>. Sinusoidal encoding works by oscillating between two different functions based of the 
-               sequence index. If we have a sequence tensor of shape <code style="background: #242424; border-radius: 5px;">(K, E)</code> where <i>p</i> traverses the <i>Kth</i> dimension and <i>i</i> the <i>Eth</i>,
+               sequence index. If we have a sequence tensor of shape <code style="background: var(--codeSnippet); border-radius: 5px;">(K, E)</code> where <i>p</i> traverses the <i>Kth</i> dimension and <i>i</i> the <i>Eth</i>,
                then:
                <br><br>
                <vue-mathjax :formula='PEsin'></vue-mathjax>
@@ -139,8 +139,8 @@
             <h2>Self Attention</h2>
             <p>
                The purpose of the self attention class is to house the weights for transforming the input into the queries, keys, and values matrices. These values are then passed into the
-               <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention(q, k, v)</code> as defined above. I've noticed a lot of people usually leave the weights
-               initialized by <code style="background: #242424; border-radius: 5px;">nn.Linear</code> default, however it is not uncommon to see custom initializations displayed in the comments below.
+               <code style="background: var(--codeSnippet); border-radius: 5px;">scaled_dot_product_attention(q, k, v)</code> as defined above. I've noticed a lot of people usually leave the weights
+               initialized by <code style="background: var(--codeSnippet); border-radius: 5px;">nn.Linear</code> default, however it is not uncommon to see custom initializations displayed in the comments below.
             </p>
             <prism-editor class="codeblock" v-model="self_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br>
@@ -148,8 +148,8 @@
             <div id="multiheadedattention"></div>
             <h2>Multi Headed Attention</h2>
             <p>
-               After creating our <code style="background: #242424; border-radius: 5px;">Self Attention</code> class, we can instantiate it inside a Module List based off the number of heads we have, which will be a hyperparameter. The
-               forward pass of multi headed attention feeds the input through <code style="background: #242424; border-radius: 5px;">num_heads</code> self attention classes and then concatenates the each of the self attention
+               After creating our <code style="background: var(--codeSnippet); border-radius: 5px;">Self Attention</code> class, we can instantiate it inside a Module List based off the number of heads we have, which will be a hyperparameter. The
+               forward pass of multi headed attention feeds the input through <code style="background: var(--codeSnippet); border-radius: 5px;">num_heads</code> self attention classes and then concatenates the each of the self attention
                outputs along the trailing dimension. Lastly the concatenated tensor is fed through a linear layer to transform it back to the input shape.
             </p>
             <prism-editor class="codeblock" v-model="multi_head_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -158,13 +158,13 @@
             <h2>Masked Multi Headed Attention</h2>
             <p>
                Masking is simply the procedure to inhibit the decoder block from accessing information from future elements in the sequence. Because Transformers operate on sequence elements in parallel, for certain
-               tasks such as translation, we set subsequent values in the <code style="background: #242424; border-radius: 5px;">softmax_weights</code> matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
-               With the code displayed above, all we have to is pass a mask into our instantiated <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> class. The mask will be a tensor of
-               boolean values, where <code style="background: #242424; border-radius: 5px;">true</code> will indicate masking that index in the matrix to <code style="background: #242424; border-radius: 5px;">-1e9</code>.
-               It is easier to think about the masking operation when looking at the hierarchy: the mask gets passed to the forward pass of <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code>, which
-               in turn passes the mask to each <code style="background: #242424; border-radius: 5px;">SelfAttention</code>, then finally passing the mask to each <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>.
-               The function below produces our mask which we will pass as a parameter down to the <code style="background: #242424; border-radius: 5px;">scaled_dot_product_attention</code>. Below in
-               <code style="background: #242424; border-radius: 5px;">get_subsequent_mask</code>, I've shown two different ways of producing the mask.
+               tasks such as translation, we set subsequent values in the <code style="background: var(--codeSnippet); border-radius: 5px;">softmax_weights</code> matrix to <code style="background: var(--codeSnippet); border-radius: 5px;">-1e9</code>.
+               With the code displayed above, all we have to is pass a mask into our instantiated <code style="background: var(--codeSnippet); border-radius: 5px;">MultiHeadAttention</code> class. The mask will be a tensor of
+               boolean values, where <code style="background: var(--codeSnippet); border-radius: 5px;">true</code> will indicate masking that index in the matrix to <code style="background: var(--codeSnippet); border-radius: 5px;">-1e9</code>.
+               It is easier to think about the masking operation when looking at the hierarchy: the mask gets passed to the forward pass of <code style="background: var(--codeSnippet); border-radius: 5px;">MultiHeadAttention</code>, which
+               in turn passes the mask to each <code style="background: var(--codeSnippet); border-radius: 5px;">SelfAttention</code>, then finally passing the mask to each <code style="background: var(--codeSnippet); border-radius: 5px;">scaled_dot_product_attention</code>.
+               The function below produces our mask which we will pass as a parameter down to the <code style="background: var(--codeSnippet); border-radius: 5px;">scaled_dot_product_attention</code>. Below in
+               <code style="background: var(--codeSnippet); border-radius: 5px;">get_subsequent_mask</code>, I've shown two different ways of producing the mask.
             </p>
             <prism-editor class="codeblock" v-model="getsubmask" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -174,7 +174,7 @@
                Cross attention, like masked attention, is another unique mechanism inside a decoder block that enables communication to flow between the encoder and decoder.
                Cross attention accepts as inputs the queries from the previous output of the decoder sublayer and the keys and values
                from the output of the encoder. Refer to the <a href="#decoderblock">decoder block</a> and the visual aid on Transformers to see how
-               <code style="background: #242424; border-radius: 5px;">self.cross_attetion</code> interacts.
+               <code style="background: var(--codeSnippet); border-radius: 5px;">self.cross_attetion</code> interacts.
             </p>
             <div id="ffn"></div>
             <div id="blogSubHeader">
@@ -197,8 +197,8 @@
             </div>
             <p>
                We can now build both the encoder and decoder blocks. All of the constituent pieces to the blocks have been built and we are ready to instantiate everything inside a
-               <code style="background: #242424; border-radius: 5px;">EncoderBlock</code> class and <code style="background: #242424; border-radius: 5px;">DecoderBlock</code> class. Once we've finished creating
-               the blocks, we then need to wrap them one more time in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
+               <code style="background: var(--codeSnippet); border-radius: 5px;">EncoderBlock</code> class and <code style="background: var(--codeSnippet); border-radius: 5px;">DecoderBlock</code> class. Once we've finished creating
+               the blocks, we then need to wrap them one more time in an <code style="background: var(--codeSnippet); border-radius: 5px;">Encoder</code> and <code style="background: var(--codeSnippet); border-radius: 5px;">Decoder</code>
                class respectively. This is to modularize them so we can have <i>N</i> layers for our encoder and decoder stack.
                Following along using the image of the Transformer at the top may help. Normalization, residual, and regularization techniques will also
                be pointed out in the forward passes of each block here.
@@ -208,8 +208,8 @@
             <h2>Encoder Block</h2>
             <p>
                Defining the constructor of both the blocks will be simple, we define what we're going to use and distribute the hyperparameters accordingly. It is important
-               to notice that <code style="background: #242424; border-radius: 5px;">emb_dim // num_heads</code> is used as the parameter for <code style="background: #242424; border-radius: 5px;">dim_out</code>
-               in the <code style="background: #242424; border-radius: 5px;">MultiHeadAttention</code> sublayer. Here is <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L262" target="_blank">
+               to notice that <code style="background: var(--codeSnippet); border-radius: 5px;">emb_dim // num_heads</code> is used as the parameter for <code style="background: var(--codeSnippet); border-radius: 5px;">dim_out</code>
+               in the <code style="background: var(--codeSnippet); border-radius: 5px;">MultiHeadAttention</code> sublayer. Here is <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L262" target="_blank">
                Pytorch's</a> implementation of the encoder block - look at lines 423 & 424 particularly. This is to ensure a smooth transformation between the concatenated tensor and the linear layer. The forward
                pass is laid out in a manner such that:
             </p>
@@ -225,7 +225,7 @@
             <p>
                The decoder block follows along the same vein as the encoder block. We declare all of the constituent parts we are going to use in the constructor and then implement the forward pass accordingly.
                Remember that the forward pass for the decoder block accepts two inputs: one from the predicted sequence and another from the output of the encoder block. First we do self attention with
-               <code style="background: #242424; border-radius: 5px;">dec_inp</code> making sure to also pass the mask, and then we feed that output as queries into the cross attention.
+               <code style="background: var(--codeSnippet); border-radius: 5px;">dec_inp</code> making sure to also pass the mask, and then we feed that output as queries into the cross attention.
                <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/transformer.py#L443" target="_blank">Albeit added complexities</a>, you can see that Pytorch's decoder block follows the same
                fundamentals (look at the forward method, specifically line 536 - 538).
             </p>
@@ -236,9 +236,9 @@
                Encoder & Decoder Layers
             </div>
             <p>
-               As mentioned in the <a href="#blocks">blocks</a> section, let us now  wrap everything in an <code style="background: #242424; border-radius: 5px;">Encoder</code> and <code style="background: #242424; border-radius: 5px;">Decoder</code>
+               As mentioned in the <a href="#blocks">blocks</a> section, let us now  wrap everything in an <code style="background: var(--codeSnippet); border-radius: 5px;">Encoder</code> and <code style="background: var(--codeSnippet); border-radius: 5px;">Decoder</code>
                class. This is so we can easily define a model with <i>N</i> encoder and decoder layers. The only thing I'd like to point out here is the final linear transformation present in the
-               <code style="background: #242424; border-radius: 5px;">Decoder</code> class. After all we need to transform the embedding dimension of our tensor from the embedding size back to the size of
+               <code style="background: var(--codeSnippet); border-radius: 5px;">Decoder</code> class. After all we need to transform the embedding dimension of our tensor from the embedding size back to the size of
                possible classifications for a sequence element. 
             </p>
             <prism-editor class="codeblock" v-model="encoder" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -251,15 +251,15 @@
             </div>
             <p>
                The Transformer model can finally be put together. Everything up to line 50 should look normal. In the constructor we instantiate the required classes with the according hyperparameters. In the
-               forward pass, we pass both the tokenized <code style="background: #242424; border-radius: 5px;">enc_seq</code> and <code style="background: #242424; border-radius: 5px;">trg_seq</code> through
-               <code style="background: #242424; border-radius: 5px;">nn.Embedding</code> and then add their positional encodings with <code style="background: #242424; border-radius: 5px;">positionalEncoding</code>.
-               The results <code style="background: #242424; border-radius: 5px;">src_inp</code> and <code style="background: #242424; border-radius: 5px;">trg_inp</code> are then fed to the encoder and decoder
+               forward pass, we pass both the tokenized <code style="background: var(--codeSnippet); border-radius: 5px;">enc_seq</code> and <code style="background: var(--codeSnippet); border-radius: 5px;">trg_seq</code> through
+               <code style="background: var(--codeSnippet); border-radius: 5px;">nn.Embedding</code> and then add their positional encodings with <code style="background: var(--codeSnippet); border-radius: 5px;">positionalEncoding</code>.
+               The results <code style="background: var(--codeSnippet); border-radius: 5px;">src_inp</code> and <code style="background: var(--codeSnippet); border-radius: 5px;">trg_inp</code> are then fed to the encoder and decoder
                respectively where the decoder will also take as input the output from the encoder to be used in the <a href="#crossattention">cross attention</a> sublayer and a mask for the 
                <a href="#maskedattention">masked multi headed attention</a> sublayer.
                <br><br>
                The reshaping at the end, on line 51, is such that the loss function takes in an appropiately sized input outputted from the Transformer. I usually use
                <a href="https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html#torch.nn.functional.cross_entropy" target="_blank">cross entropy</a>, in which case the prediction is shape
-               <code style="background: #242424; border-radius: 5px;">(B * K, class_len)</code> and the ground truth is shape <code style="background: #242424; border-radius: 5px;">(B * K)</code>. The prediction
+               <code style="background: var(--codeSnippet); border-radius: 5px;">(B * K, class_len)</code> and the ground truth is shape <code style="background: var(--codeSnippet); border-radius: 5px;">(B * K)</code>. The prediction
                variable houses the unnormalized scores (hence not softmaxing as shown in the Transformer image) and the ground truth variable houses the corresponding ground truth indices for each element of each
                sequence of every batch.
 
@@ -288,13 +288,15 @@
                Ryan
             </p>
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
 
 <script>
 // import axios from 'axios'
-// // import backdrop from '../backdrop.vue'
+import backdrop from '../backdrop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
 import threeScene from '../../assets/js/threeScene'
@@ -311,7 +313,8 @@ import 'prismjs/themes/prism-nord.css'
 export default {
    name: 'blogskeleton',
    components: {
-      // backdrop,
+      backdrop,
+      themeSwitch,
       toTop,
       PrismEditor,
       'vue-mathjax': VueMathjax
