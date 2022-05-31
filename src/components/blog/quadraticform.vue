@@ -197,6 +197,7 @@
                <!-- I isolate and then open up one of the derivatives.
                Lets look at: <vue-mathjax :formula='isolatedDerivative'></vue-mathjax>. -->
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
@@ -206,6 +207,7 @@
 import backdrop from '../../components/backdrop.vue'
 import { VueMathjax } from 'vue-mathjax'
 import toTop from '../../components/toTop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import quadForm from '../../assets/json/quadraticForm.json'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
@@ -217,6 +219,7 @@ export default {
    components: {
       backdrop,
       toTop,
+      themeSwitch,
       'vue-mathjax': VueMathjax 
    },
    metaInfo: {
@@ -329,6 +332,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -356,7 +360,7 @@ a:not(.blogtoc a) {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

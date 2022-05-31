@@ -195,6 +195,7 @@
                Ryan
             </p>
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
@@ -202,6 +203,7 @@
 <script>
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
 
 import { PrismEditor } from 'vue-prism-editor'
@@ -220,6 +222,7 @@ export default {
    components: {
       backdrop,
       toTop,
+      themeSwitch,
       'vue-mathjax': VueMathjax,
       PrismEditor
    },
@@ -384,6 +387,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -411,7 +415,7 @@ a:not(.blogtoc a) {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

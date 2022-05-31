@@ -40,6 +40,7 @@
             </p>
             <!-- <p>{{ blogs[0].description }}</p> -->
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
@@ -48,6 +49,7 @@
 // import axios from 'axios'
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
@@ -59,6 +61,7 @@ export default {
    components: {
       backdrop,
       toTop,
+      themeSwitch, 
       'vue-mathjax': VueMathjax
       // MathJax
    },
@@ -132,6 +135,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -165,7 +169,7 @@ h2 {
 }
 
 #blogSubHeader {
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

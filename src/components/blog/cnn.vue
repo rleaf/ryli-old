@@ -579,6 +579,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -616,7 +617,7 @@ h2 {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

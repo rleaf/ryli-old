@@ -89,24 +89,24 @@
                definition</a>.
             </p>
             <br>
-            <img id="img1300" src="../../assets/blog/knn.png" alt="">
+            <img id="img1300" src="../../assets/blog/knn.png" class="noInvert" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>The stars reference labeled images and the translucent dots reference unlabled images.</i></span>
             <div id="loadcifar"></div>
                <div id="blogSubHeader">
                   Loading CIFAR-10
                </div>
             <p>
-               Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: #242424; border-radius: 5px;">x_train</code>,
-               <code style="background: #242424; border-radius: 5px;">x_test</code>,
-               <code style="background: #242424; border-radius: 5px;">y_train</code>, and <code style="background: #242424; border-radius: 5px;">y_test</code>. They are declared simply with:
+               Lets now look at using kNN on CIFAR-10. Our data is going to be stored simply in the four variables: <code style="background: var(--codeSnippet);; border-radius: 5px;">x_train</code>,
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">x_test</code>,
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">y_train</code>, and <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test</code>. They are declared simply with:
             </p>
             <prism-editor class="codeblock" v-model="declaration" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               Below is the <code style="background: #242424; border-radius: 5px;">cifar10()</code> definition. It isn't necessary to understand kNN's but I thought it was worth adding for the curious.
-               You can see it above in the comments: <code style="background: #242424; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor composed of 50,000 3x32x32 training images,
-               <code style="background: #242424; border-radius: 5px;">y_train</code> returns a 1 dimensional tensor composed of corresponding labels for those 50,000 images, <code style="background: #242424; border-radius: 5px;">x_test</code>
-               returns a 10,000 3x32x32 testing images, and lastly <code style="background: #242424; border-radius: 5px;">y_test</code> returns the corresponding labels for those 10,000 images. I refer to the
-               training dataset as "unlabeled" despite having a tensor, <code style="background: #242424; border-radius: 5px;">y_train</code>, of labels because we will only use those labels to
+               Below is the <code style="background: var(--codeSnippet);; border-radius: 5px;">cifar10()</code> definition. It isn't necessary to understand kNN's but I thought it was worth adding for the curious.
+               You can see it above in the comments: <code style="background: var(--codeSnippet);; border-radius: 5px;">x_train</code> returns a 4 dimensional tensor composed of 50,000 3x32x32 training images,
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">y_train</code> returns a 1 dimensional tensor composed of corresponding labels for those 50,000 images, <code style="background: var(--codeSnippet);; border-radius: 5px;">x_test</code>
+               returns a 10,000 3x32x32 testing images, and lastly <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test</code> returns the corresponding labels for those 10,000 images. I refer to the
+               training dataset as "unlabeled" despite having a tensor, <code style="background: var(--codeSnippet);; border-radius: 5px;">y_train</code>, of labels because we will only use those labels to
                determine the final accuracy of our kNN algorithm.
             </p>
             <prism-editor class="codeblock" v-model="load" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -117,7 +117,7 @@
             <p>
                To see what we're working with, here are a 12 random images from each class with their corresponding label to the left:<br>
             </p>
-            <img id="img600" src="../../assets/blog/output.png" alt="">
+            <img id="img600" src="../../assets/blog/output.png" class="noInvert" alt="">
             <p>
                Each image is composed of 3x32x32 pixel values. The 3x<b><u>32x32</u></b> references their height/width and the <b><u>3</u></b>x32x32 references the color channels, which most of computer vision (to my knowledge)
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer serves as an index to a corresponding list of classes:
@@ -130,7 +130,7 @@
             <p>
                Before actually implementing kNN, iterating over 60000 images and labels when testing code is exhaustive. To keep my 1070 GPU happy, I subsampled. Subsampling takes a
                small portion of the whole dataset to work with while building the kNN. Doing this, I no longer had my computer run through the entire dataset each time I tested code. We subsample using the parameters provided in
-               <code style="background: #242424; border-radius: 5px;">cifar10()</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">cifar10()</code>. We can set these to any integer value to determine the size of the subsample. These will be the tensors we work with while building the kNN
                algorithm.
             </p>
             <prism-editor class="codeblock" v-model="subsample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -140,10 +140,10 @@
             </div>
             <br>
             <p>Everything is set - we've preprocessed and subsampled our dataset. I'm going to show a couple ways to find the Euclidean distance between testing and training images. The first is with using nested
-               loops to populate our output matrix <code style="background: #242424; border-radius: 5px;">dists</code>, where each loop will iterate over an axis.
+               loops to populate our output matrix <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code>, where each loop will iterate over an axis.
                Although this method is not very efficient because it does not make use of broadcasting, I think it's helpful from a pedagogical standpoint. A more efficient representation,
-               <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code> is shown immediately below. It is worth mentioning that PyTorch does have functions designed to do this already
-               such as: <code style="background: #242424; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, but I'm also going to refrain
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">compute_distances_no_loops</code> is shown immediately below. It is worth mentioning that PyTorch does have functions designed to do this already
+               such as: <code style="background: var(--codeSnippet);; border-radius: 5px;"><a href="https://pytorch.org/docs/stable/generated/torch.cdist.html" target="_blank">torch.cdist</a></code>, but I'm also going to refrain
                from using them.
                <span style="color: #81A1C1;">Broadcasting is a term that enables arithmetic for tensors of different dimensionality, read more
                <a href="https://pytorch.org/docs/stable/notes/broadcasting.html" target="_blank" style="color: #81A1C1 !important;">here</a>.</span>
@@ -151,14 +151,14 @@
             <prism-editor class="codeblock" v-model="nested_for_loops" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                As stated before, CIFAR-10 images are 3x32x32. The entire training dataset can be represented with a tensor of shape [50000, 3, 32, 32]. Because of our subsampling, we drastically reduce the training size to [500, 3, 32, 32].
-               We <a href="https://pytorch.org/docs/stable/generated/torch.flatten.html" target="_blank">flatten</a> both the the <code style="background: #242424; border-radius: 5px;">x_train</code>
-               and <code style="background: #242424; border-radius: 5px;">x_test</code> tensors to transform our [500, 3, 32, 32] and [250, 3, 32, 32] training image tensor into [500, 3072] and [250, 3072] tensors respectively.
+               We <a href="https://pytorch.org/docs/stable/generated/torch.flatten.html" target="_blank">flatten</a> both the the <code style="background: var(--codeSnippet);; border-radius: 5px;">x_train</code>
+               and <code style="background: var(--codeSnippet);; border-radius: 5px;">x_test</code> tensors to transform our [500, 3, 32, 32] and [250, 3, 32, 32] training image tensor into [500, 3072] and [250, 3072] tensors respectively.
                Now you can think of our reshaped tensors as matrices where each row houses every single
                pixel value (3x32x32) of an image. The purpose of flattening can be thought of as the final preprocessing step before we compute the Euclidean distance using two loops.
                <br>
                <br>
-               The first <code style="background: #242424; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the
-               <i>jth</i> training image and <i>ith</i> testing image two and populates the <code style="background: #242424; border-radius: 5px;">dists</code> tensor in its respective position.
+               The first <code style="background: var(--codeSnippet);; border-radius: 5px;">for</code> loop iterates over every test image. The second iterates over every training image. Like discussed before, it computes the Euclidean distance between the
+               <i>jth</i> training image and <i>ith</i> testing image two and populates the <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code> tensor in its respective position.
             </p>
             <p>
                Here is a more optimal variation of finding the Euclidean distance that has no loops and instead makes use of broadcasting:
@@ -172,12 +172,12 @@
                <br>
                On this no-loop variant of computing the Euclidean, we are evaluating all arithmetic independently and then compiling everything together so that it represents the right hand side of the formula above.
                Instead of going through element by element, after we preprocess the inputs,
-               we square the <code style="background: #242424; border-radius: 5px;">train</code> and <code style="background: #242424; border-radius: 5px;">test</code>
+               we square the <code style="background: var(--codeSnippet);; border-radius: 5px;">train</code> and <code style="background: var(--codeSnippet);; border-radius: 5px;">test</code>
                tensors immediately then take the sum of their rows. Then, <vue-mathjax :formula='midterm'></vue-mathjax> is evaluated through the matrix multiplication of the
-               <code style="background: #242424; border-radius: 5px;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: #242424; border-radius: 5px;">test</code> <i>[3072, 250]</i> tensors.
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: var(--codeSnippet);; border-radius: 5px;">test</code> <i>[3072, 250]</i> tensors.
                Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
-               store it in <code style="background: #242424; border-radius: 5px;">dists</code>. 
-               Within each column of <code style="background: #242424; border-radius: 5px;">dists</code> is the Euclidean distance of every training image with respect to a test image.
+               store it in <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code>. 
+               Within each column of <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code> is the Euclidean distance of every training image with respect to a test image.
                For comparison, the two loop version takes (for me) 7.27 seconds. The no loop version takes 0.02 seconds. The no loop version is 455.7x
                faster than the two loop. This probably provides better intuition behind how powerful broadcasting (and <a href="https://pytorch.org/docs/stable/generated/torch.matmul.html" target="_blank">matmul</a>) can be.
             </p>
@@ -186,17 +186,17 @@
                kNN: Classifying our test images
             </div>
             <p>
-               Using the <code style="background: #242424; border-radius: 5px;">compute_distances_no_loops</code> function, we can now build a classifier. I will be focusing on the
-               <code style="background: #242424; border-radius: 5px;">predict</code> method. <code style="background: #242424; border-radius: 5px;">check_accuracy</code> is simply to determine how well our classifier
+               Using the <code style="background: var(--codeSnippet);; border-radius: 5px;">compute_distances_no_loops</code> function, we can now build a classifier. I will be focusing on the
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">predict</code> method. <code style="background: var(--codeSnippet);; border-radius: 5px;">check_accuracy</code> is simply to determine how well our classifier
                performs.
             </p>
             <prism-editor class="codeblock" v-model="classify" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               The goal is to return a tensor <code style="background: #242424; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
-               of how the classification works on a <code style="background: #242424; border-radius: 5px;">dists</code> of size [5x3]. The algorithm finds the index of the <i>k</i> lowest Euclidean distances within each column. Then it corresponds
-               that index with <code style="background: #242424; border-radius: 5px;">self.y_train</code> and stores those values in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. 
-               <code style="background: #242424; border-radius: 5px;">y_test_pred[i]</code> is then assigned the most frequent occuring label present in <code style="background: #242424; border-radius: 5px;">k_lowest_labels</code>. Once a column
-               calculates it's value for <code style="background: #242424; border-radius: 5px;">y_test_pred</code>, it proceeds to the next. Each column can be thought of as a test image and every element in the column
+               The goal is to return a tensor <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test_pred</code> where the <i>ith</i> index is the assigned label to <i>ith</i> test image by the kNN algorithm. Below is a visualization
+               of how the classification works on a <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code> of size [5x3]. The algorithm finds the index of the <i>k</i> lowest Euclidean distances within each column. Then it corresponds
+               that index with <code style="background: var(--codeSnippet);; border-radius: 5px;">self.y_train</code> and stores those values in <code style="background: var(--codeSnippet);; border-radius: 5px;">k_lowest_labels</code>. 
+               <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test_pred[i]</code> is then assigned the most frequent occuring label present in <code style="background: var(--codeSnippet);; border-radius: 5px;">k_lowest_labels</code>. Once a column
+               calculates it's value for <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test_pred</code>, it proceeds to the next. Each column can be thought of as a test image and every element in the column
                represents the Euclidean distance between that test image with every training image.
             </p>
             <video id="img700" autoplay muted loop :src="knn_classify" style="padding-bottom: 5px !important;"></video>
@@ -225,7 +225,7 @@
                the validation set to evaluate an optimal <i>k</i>. The validation set does the job of the previously defined test set. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
             </p>
             <prism-editor class="codeblock" v-model="cross_validation" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <img id="img500" src="../../assets/blog/optimalk.png" alt="">
+            <img id="img500" class="noInvert" src="../../assets/blog/optimalk.png" alt="">
             <p>
                A total of 50 different accuracies result from our 10 different <i>k's</i> and 5 partitions from cross validation. We'd now like kNN to select the value for k that yielded the highest average accuracy for the 5 folds. We can see
                on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
@@ -255,6 +255,7 @@
                - Ryan Lin
             </p>
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 
@@ -263,6 +264,7 @@
 <script>
 import { VueMathjax } from 'vue-mathjax'
 import toTop from '../../components/toTop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import backdrop from '../../components/backdrop.vue'
 
 import { PrismEditor } from 'vue-prism-editor'
@@ -281,6 +283,7 @@ export default {
    name: 'knn_cifar',
    components: {
       toTop,
+      themeSwitch,
       backdrop,
       'vue-mathjax': VueMathjax,
       PrismEditor
@@ -698,6 +701,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -725,7 +729,7 @@ a:not(.blogtoc a) {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

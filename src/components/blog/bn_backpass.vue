@@ -38,13 +38,13 @@
                the gradient for batch normalization can also undergo a similar process to promote computational efficiency (<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank">link to paper</a>).
                <br>
             </p>
-               <img id="img500" src="../../assets/blog/bn_forward.png" alt=""> 
+               <img id="img500" class="noInvert" src="../../assets/blog/bn_forward.png" alt=""> 
             <p>
                During training, the chain rule is shown to backpropagate through the batch normalization transformation (page 4 of the paper). The code block was my implementation.
                <!-- Shown below is referred to as the "Staged Computation" for backpropagation.
                It is also sometimes referred to as the "flat" implementation for backprop, it uses the chain rule to derive the impact a parameter has upon an output.  -->
             </p>
-               <img id="img500" src="../../assets/blog/bn_backward.png" alt="">
+               <img id="img500" class="noInvert" src="../../assets/blog/bn_backward.png" alt="">
 
              <prism-editor class="codeblock" v-model="bnChainCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
@@ -194,12 +194,14 @@
                Ryan Lin
             </p>
          </div>
+         <themeSwitch />
          <toTop />
    </div>
 </template>
 
 <script>
 import backdrop from '../../components/backdrop.vue'
+import themeSwitch from '../../components/themeSwitch.vue'
 import toTop from '../../components/toTop.vue'
 import bnBackpass from '../../assets/json/bnBackpass.json'
 
@@ -218,6 +220,7 @@ export default {
    components: {
       backdrop,
       toTop,
+      themeSwitch,
       'vue-mathjax': VueMathjax,
       // CodeHighlight,
       PrismEditor
@@ -390,6 +393,7 @@ export default {
 #curriculumBody {
    width: auto !important;
    display: flex;
+   font-family: var(--type);
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -417,7 +421,7 @@ a:not(.blogtoc a) {
 
 #blogSubHeader {
    color: var(--shadeWhite1);
-   font-family: 'Lora', sans-serif;
+   font-family: var(--type);
    font-size: 19px;
    padding-top: 50px;
 }

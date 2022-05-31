@@ -452,7 +452,6 @@ export default {
    width: auto !important;
    display: flex;
    font-family: var(--type);
-   font-size: var(--typeSize);
    flex-direction: column;
    align-items: center;
    justify-content: center;
