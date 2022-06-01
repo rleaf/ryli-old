@@ -119,8 +119,8 @@
                <vue-mathjax :formula='rnnStep'></vue-mathjax>
                <vue-mathjax :formula='yhatTransform'></vue-mathjax>
                <br>
-               The first step is to look at the upstream gradient <vue-mathjax :formula='`$\\frac{\\partial{L_t}}{\\partial{\\hat{y_t}}}$`'></vue-mathjax>. This is the derivative of the loss wrt to the prediction
-               of the model at the current timestep and the gradient is represented as the <i>output_grad</i>. We can now begin finding the desired gradients. Note that when differentiating wrt to a bias parameter, I sum along the Nth
+               Above are the local gradients. The upstream gradient will be the derivative of the loss wrt to the prediction
+               of the model at the subsequent timestep and will be represented as <i>output_grad</i>. We can now begin finding the desired gradients. Note that when differentiating wrt to a bias parameter, I sum along the Nth
                dimension to match the shape of said bias parameter.
                <br>
                <br>
@@ -131,11 +131,9 @@
                <br>
                <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{h_t}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}=output\\_grad\\;\\cdot W_{hy}^\\top$$`'></vue-mathjax>
                <br>
-               Everything beyond <vue-mathjax :formula='`$h_t$`'></vue-mathjax> runs through the element-wise <i>tanh</i> non-linearity, so I create an intermediary variable which I will call <vue-mathjax :formula='`$dtanh$`'></vue-mathjax>, that uses a hyperbolic identity:
-               <vue-mathjax :formula='`$\\frac{\\mathrm{d}tanh(x)}{\\mathrm{d}} = sech^2(x) = 1-tanh^2(x)$`'></vue-mathjax> to find the derivative. I will also be multiplying it element-wise with
-               <vue-mathjax :formula='`$\\frac{\\partial{L}}{\\partial{h_t}}$`'></vue-mathjax> to account for the preceeding partials in the chain rule. Doing this will provide more head space so I don't have to keep writing it down.
-               In one succinct formula: <vue-mathjax :formula='`$ dtanh = \\frac{\\partial{L}}{\\partial{h_t}} \\odot (1-tanh^2(x))$`'></vue-mathjax>. For clarification, the <i>x</i> argument inside the <i>tanh</i> function
-               is the argument in the forward pass at the current timestep.
+               Everything beyond <vue-mathjax :formula='`$h_t$`'></vue-mathjax> runs through the element-wise <i>tanh</i> non-linearity so I create an intermediary variable which I will call <vue-mathjax :formula='`$dtanh$`'></vue-mathjax> that uses a hyperbolic identity:
+               <vue-mathjax :formula='`$\\frac{\\mathrm{d}tanh(x)}{\\mathrm{d}} = sech^2(x) = 1-tanh^2(x)$`'></vue-mathjax> to simplify finding the derivative since <vue-mathjax :formula='`$tanh(x)$`'></vue-mathjax> is already provided to us in from the forward pass.
+               For clarification, the <i>x</i> argument inside the <i>tanh</i> function is the argument in the forward pass at the current timestep.
                <br>
                <br>
                <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{W_{hh}}} = \\frac{\\partial{L}}{\\partial{\\hat{y_t}}}\\cdot\\frac{\\partial{\\hat{y_t}}}{\\partial{h_t}}\\cdot\\frac{\\partial{h_t}}{\\partial{W_{hh}}}=dtanh\\;\\cdot h_{t-1}^\\top$$`'></vue-mathjax>
