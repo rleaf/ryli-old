@@ -30,15 +30,17 @@
                Recurrent Neural Networks: Introduction
             </div>
             <p>
-               Just as how a CNN's specialty is processing grid-like data such as images, an RNN specializes in procesing <i>sequential data</i> - data that can be discretized as steps in time - often referred to,
-               as indicated by it's name, a sequence. Depending on the design and intended use of the RNN, we can parse a sequence in a handful of different ways. Below is a representation of a standard / Vanilla 
-               RNN. Complimentary color coding for clarity.
+               Just as how a CNN's specialty is processing grid-like data such as images, a RNN specializes in procesing <i>sequential data</i> - data that is discretized. A very common example of a sequence
+               could be a sentence. Each word in a sentence stands wholly on its own but when strung together constitute something new. Depending on the design and intended use of the RNN, we can parse a sequence in a
+               handful of different ways. This "parsing" is specifically <a href="#sequenceprocessing">sequence processing</a>, which I briefly talk
+               about soon. I want to mention this now however since there is a lot of nuance in the math between different types of sequence processing. Because of this, the sections
+               <a href="#forward">Forward Pass Transformations</a> and beyond presume the type of sequence shown immediately below called a <i>many to many</i>.
             </p>
             <img id="img1000" style="box-shadow: none;" src="../../assets/blog/rnn4.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i><vue-mathjax :formula='`$x_t$`'></vue-mathjax> represents the input sequence, <vue-mathjax :formula='`$h_t$`'></vue-mathjax> the hidden states,
             <vue-mathjax :formula='`$y_t$`'></vue-mathjax> the prediction, and <vue-mathjax :formula='`$L_t$`'></vue-mathjax>, the individual loss</i></span>
             <p>
-               A couple of "top level" things to look at. I discuss some of these points further below, but they're nice to acknowledge in the beginning; confusion is okay. <u>One:</u> every timestep function
+               A couple of "top level" things to look at. I discuss some of these points further below, but they're nice to acknowledge in the beginning - confusion is okay. <u>One:</u> every timestep function
                <vue-mathjax :formula='`$f_h$`'></vue-mathjax> requires, as arguments, it's corresponding input <vue-mathjax :formula='`$x_t$`'></vue-mathjax> and prior hidden state
                <vue-mathjax :formula='`$h_{t - 1}$`'></vue-mathjax> to produce the next hidden state <vue-mathjax :formula='`$h_t$`'></vue-mathjax>. <u>Two:</u> The gradients in backpropagation will be summed at each
                step as RNN's use shared weights at every timestep. <u>Three:</u> both the input and output sequence, shown as red and
@@ -52,11 +54,10 @@
                Sequence Processing
             </div>
             <p>
-               The points above are ranked somewhat crudely by importance. I currently consider understanding the transformations between states to be the most important, but I will start with the third point that discusses
-               the input and output sequence for intuition. The picture above is referred to as a <i>"many to many"</i> RNN. Using the colors in the above image, it would be a <i>"red to yellow"</i> RNN. Depending on the task of the network,
-               there are different ways of processing the data. For the many to many shown above , consider our input sequence to be frames of a video: <vue-mathjax :formula='`$x_1$`'></vue-mathjax> would be the first frame,
+               The picture above is referred to as a <i>"many to many"</i> RNN. Depending on the task of the network,
+               there are different ways of processing the data. For the many to many shown above, consider a video as input where the frames of the video compose the sequence. <vue-mathjax :formula='`$x_1$`'></vue-mathjax> would be the first frame,
                <vue-mathjax :formula='`$x_2$`'></vue-mathjax> would be the second... and so on. For this type of many-to-many, our output at each timestep could then be some decision/classification
-               based off the input at that same timestep. So our RNN would be producing some prediction for every frame of video. Below are different types of models for processing different sequences.
+               based off the input at that same timestep. So our RNN would be producing some output for every frame of video. Below are different types of models for processing different sequences.
                Note that although labeling and some intricacies are omitted, the many to many show below is not the same as the one shown above.  
             </p>
             <img id="img1000" style="box-shadow: none;" src="../../assets/blog/types.png" alt="">
@@ -68,12 +69,11 @@
               Forward Pass Transformations
             </div>
             <p>
-               As mentioned above, a characteristic to RNN's is that weights are shared temporally. A simple Vanilla RNN can have three weight tensors: <vue-mathjax :formula='`$W_{hh}$`'></vue-mathjax>, <vue-mathjax :formula='`$W_{xh}$`'></vue-mathjax>,
+               As mentioned above, a characteristic to RNNs is that weights are shared temporally, between all time steps. A simple Vanilla RNN can have three weight tensors: <vue-mathjax :formula='`$W_{hh}$`'></vue-mathjax>, <vue-mathjax :formula='`$W_{xh}$`'></vue-mathjax>,
                <vue-mathjax :formula='`$W_{hy}$`'></vue-mathjax> and only a couple of bias parameters <vue-mathjax :formula='`$b_h$`'></vue-mathjax> and <vue-mathjax :formula='`$b_y$`'></vue-mathjax>. Each of these parameters
                are recycled at each hidden step to compute either a local prediction or the next hidden step.
                It helps me to think of the index of tensors as <vue-mathjax :formula='`$W_{(from)\\;(to)}$`'></vue-mathjax>
-               to visualize where that particular tensor belongs. Note that there are many bells and whistles you can add, generally to increase efficacy, which will also change the amount of parameters present - an
-               example being attention. Excluding the loss function, the two transformations shown below are fundamental to a Vanilla RNN. 
+               to visualize where that particular tensor belongs. Excluding the loss function, the two transformations shown below are fundamental to a Vanilla RNN. 
             </p>
             <div id="forwardhidden"></div>
             <p>
