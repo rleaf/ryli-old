@@ -63,7 +63,7 @@
                   when this is not true. The output of the series of dot products composes the <i>activation map</i>. As the input traverses through a CNN, it is typically expected for
                   it to get progressively "<a href="https://i.imgur.com/H1pU0yu.png" target="_blank">stumpier</a>",
                   where what it loses in width & height grows in depth. The linked image shows 4 activation maps, producing a 4x4x4 output, from the original 3x5x5 input.
-                  <br>
+                  <!-- <br>
                   <br>
                   Hyperparameters include:
                   <br>
@@ -73,7 +73,7 @@
                   <br>
                   <b>Stride</b>: Determines the step distance of the kernel after each dot product
                   <br>
-                  <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel.
+                  <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel. -->
                </p>
                <video id="img500" autoplay loop muted :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Simple animation showing a 3x2x2 kernel interacting with a 3x5x5 input. Stride is 1 and there is no padding. <br>
@@ -162,7 +162,7 @@
                   I show max pooling, but there are <a href="https://pytorch.org/docs/stable/nn.html#pooling-layers" target="_blank">other forms of pooling</a>. Even though the pooling kernel operates
                   on the full depth of the input, the pooling operation operates uniquely on each slice of the depth. So an arbitrary tensor, lets say [6x20x20], going through a pooling layer with
                   kernel of size 2 and stride 2 would output to [6x10x10].
-                  <br>
+                  <!-- <br>
                   <br>
                   Hyperparameters include:
                   <br>
@@ -171,7 +171,7 @@
                   <b>Stride</b>: Determines the step distance of the kernel after each dot product
                   <br>
                   <b>Padding</b>: Adds a border to the input. Not common (to my knowledge), so the <code style="background: var(--codeSnippet); border-radius: 5px;">xpad</code> seen in the forward pass
-                  in the convolutional layer is omitted.
+                  in the convolutional layer is omitted. -->
                </p>
                <prism-editor class="codeblock" v-model="poolForward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <div id="pooling_backward"></div>
