@@ -8,7 +8,6 @@
          </div>
       <!-- <div id="textContainerBody" style="font-size: 16px;"> -->
          <div id="curriculumBody">
-            <div>
                <div id="curriculumHeader">
                   <u style="font-size: 18px;">About</u>
                </div>
@@ -16,7 +15,12 @@
                <p>
                   <curriculumAbout/>
                </p>
-            </div>
+         </div>
+         <div id="curriculumBody">
+            <u style="font-size: 18px;">Education</u>
+            <p>Rider University 2016-2020 <br>
+            Bachelor of Arts: Graphic Design</p>
+            <p></p>
          </div>
       <div id="curriculumStructure">
          <div id="curriculumBody">
@@ -123,9 +127,6 @@ export default {
 
 <style scoped>
 
-.curriculumul {
-   margin-bottom: 100px;
-}
 
 .curriculumul ul {
    list-style-type: disc;
