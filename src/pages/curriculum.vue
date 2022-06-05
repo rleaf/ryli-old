@@ -22,27 +22,28 @@
          <div id="curriculumBody">
             <div>
                <div id="curriculumHeader">
-                  <u style="font-size: 18px;">Resume</u>
+                  <u style="font-size: 18px;">Skills</u>
                </div>
                <div  style="padding-bottom: 0;">
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
                </div>
-               <ul class="curriculumul">
-                  <li>Bachelor of Arts in Graphic Design & Minor in Web Design</li>
-                  <li>Branding / UI & UX / Photography / Development</li>
-                  <p>Skills:</p>
-                  <ul style="list-style-type: none;">
-                     <li><i>Adobe CC</i></li>
+               <!-- <li>Bachelor of Arts in Graphic Design & Minor in Web Design</li>
+               <li>Branding / UI & UX / Photography / Development</li> -->
+               <ul class="curriculumul" style="list-style-type: none;">
+                  <li><i>Design:</i></li>
                      <ul>
-                        <ul>
-                           <li>Photoshop</li>
-                           <li>Illustrator</li>
-                           <li>InDesign</li>
-                           <li>After Effects</li>
-                           <li>Premiere</li>
-                        </ul>
+                        <li>Adobe CC (PhotoShop, Illustrator, After Effects, Premiere, InDesign)</li>
+                        <li>Figma</li>
+                        <li>HTML & CSS</li>
                      </ul>
-                     <li><i>MS Office</i></li>
+                     <br>
+                  <li><i>Development:</i></li>
+                     <ul>
+                        <li>Python (PyTorch, Pandas, NumPy)</li>
+                        <li>JavaScript (Vue, Node.js, Three.js, GSAP)</li>
+                        <li>GLSL Shaders</li>
+                     </ul>
+                     <!-- <li><i>MS Office</i></li>
                         <ul>
                            <ul>
                               <li>Word</li>
@@ -50,8 +51,8 @@
                               <li>Excel</li>
                               <li>Access</li>
                            </ul>
-                        </ul>
-                     <li><i>HTML, CSS</i></li>
+                        </ul> -->
+                     <!-- <li><i>HTML, CSS</i></li>
                      <li><i>JavaScript</i></li>
                      <ul>
                         <li style="list-style-type: none; font-size: 14px;"><i>Have worked with: </i></li>
@@ -74,9 +75,8 @@
                            <li>Scikit-learn</li>
                            <li>NumPy</li>
                         </ul>
-                        </ul>
+                        </ul> -->
                   </ul>
-               </ul>
             </div>
          </div>
 
