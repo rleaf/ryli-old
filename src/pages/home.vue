@@ -59,6 +59,7 @@
    --codeblock: #131313;
    --codeSnippet: #242424;
    --mobilePad: #050505;
+   --toc: #171717;
    --type: 'Lora', sans-serif;
    --typeSize: 15px;
 
@@ -687,13 +688,9 @@ html {
    list-style: numbers;
 }
 
-.daymodeimg {
-   filter: invert(1);
-   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
-}
-
 .blogtoc {
    color: var(--shadeWhite2);
+   background-color: var(--toc);
    /* border-color: #4a4d4f */
    border: 1px solid;
    border-color: var(--shadeWhite2);
@@ -721,15 +718,20 @@ html {
    --codeSnippet: #d8d8d8;
    --mobilePad: #c0c0c0;
    --selection: #bbbbbb;
+   --toc: #dadada;
    /* --selection: #ffdce2; */
 }
+
+.daymodeimg {
+      filter: invert(100%) hue-rotate(180deg) contrast(90%) grayscale(50%) !important;
+   }
 
 .serif {
    --type: 'Open Sans', sans-serif;
 }
 
 .typeSize {
-   --typeSize: 16px;
+   --typeSize: 17px;
 }
 
 </style>

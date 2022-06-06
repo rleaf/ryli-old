@@ -100,7 +100,7 @@ export default {
          landing.classList.toggle('typeSize')
 
          this.sizeBool = !this.sizeBool
-         this.sizeBool ? this.size = '16px': this.size = '15px'
+         this.sizeBool ? this.size = '17px': this.size = '15px'
 
       }
    }
@@ -142,5 +142,5 @@ export default {
    box-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black !important;
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
-
+   
 </style>

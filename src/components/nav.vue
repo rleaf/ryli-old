@@ -184,7 +184,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .nav {
    font-size: 16px;
    position: relative;
@@ -336,9 +336,8 @@ export default {
    }
 }
 
-.daymodeimg {
+/* .daymodeimg {
    filter: invert(1);
-}
-
+} */
 
 </style>
