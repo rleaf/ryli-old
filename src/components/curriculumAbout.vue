@@ -2,16 +2,20 @@
   <div id="linkhover"> 
       Hello I'm Ryan Lin. Here you'll find more of who I am and things I enjoy doing.
       Amongst what is briefly mentioned below, I also enjoy
-      <a href='https://www.youtube.com/channel/UCe8X-Ib4hEc7keoBQ7cMdmA' target='_blank'><u><i>power/olympic lifting</i></u></a>,
-      <a href='https://www.instagram.com/rylikefood/' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & uke, reading, and 
-      playing games. Check out the blog section for more in depth discussion on my interests.
-      <br>
+      <a :href='youtube' target='_blank'><u><i>power/olympic lifting</i></u></a>,
+      <a :href='insta' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & uke, reading, and 
+      playing games. Check out the <router-link :to="{ name: 'blog'}" :style="{ textDecoration: 'underline', fontStyle: 'oblique'}">blog</router-link> section for more in depth discussion on my interests.
    </div>
 </template>
 
 <script>
 export default {
-
+   data() {
+      return {
+         youtube: 'https://www.youtube.com/channel/UCe8X-Ib4hEc7keoBQ7cMdmA',
+         insta: 'https://www.instagram.com/rylikefood/'
+      }
+   }
 }
 </script>
 
@@ -26,7 +30,7 @@ export default {
 }
 
 #linkhover > a:hover {
-   color: var(--green) !important;
+   color: var(--shadeWhite2) !important;
 }
 
 </style> 

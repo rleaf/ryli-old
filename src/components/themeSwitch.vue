@@ -28,21 +28,21 @@ export default {
       }
    },
 
-   watch: {
-      theme() {
-         // console.log(this.theme);
-         // this.changeTheme()
+   // watch: {
+   //    theme() {
+   //       console.log(this.theme);
+   //       this.changeTheme()
          
-         // this.theme ? this.mode = 'Day': this.mode = 'Night'
-      },
+   //       this.theme ? this.mode = 'Day': this.mode = 'Night'
+   //    },
 
-      // This doesn't work because componenent is being destroyed on route change.
-      // $route(to) {
-      //    setTimeout(() => {
-      //       console.log('themeSwitch', to)
-      //    })
-      // },
-   },
+   //    // This doesn't work because componenent is being destroyed on route change.
+   //    // $route(to) {
+   //    //    setTimeout(() => {
+   //    //       console.log('themeSwitch', to)
+   //    //    })
+   //    // },
+   // },
 
    mounted() {
       window.addEventListener('scroll', this.themeRender)

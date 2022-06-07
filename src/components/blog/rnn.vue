@@ -399,7 +399,7 @@ export default {
 
 p {
    padding: 25px 6vw;
-   line-height: 2em;
+   line-height: 2;
 }
 
 a { 
