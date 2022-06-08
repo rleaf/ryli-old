@@ -70,7 +70,7 @@
                Below is the visualization of a Transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
                each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
-            <img id="img500" class="noInvert" src="../../assets/blog/transformer.png" alt="">
+            <img id="img500" @click="imageZoom()" class="noInvert" src="../../assets/blog/transformer.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Transformer layout from "Attention is All You Need"</i></span>
             <br><br>
             <div id="preparation"></div>
@@ -757,6 +757,15 @@ export default {
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      },
+
+      imageZoom() {
+         // Testing
+         // Do it later so I can queryselectall images present in a blog
+         // and individually append 'scaleup' class to that ith image.
+         console.log('toads');
+         let img = document.querySelector('#img500')
+         img.classList.toggle('scaledUp')
       }
    },
    mounted () {
@@ -852,5 +861,15 @@ h2 {
    p {
       padding: 0;
    }
+}
+
+#img500 {
+   transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
+   cursor: zoom-in; 
+}
+
+.scaledUp {
+   transform: scale(1.5);
+   cursor: zoom-out !important;
 }
 </style>
