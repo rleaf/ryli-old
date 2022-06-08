@@ -226,8 +226,10 @@ export default {
       PrismEditor
 
    },
-   metaInfo: {
-      title: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization',
+   head: {
+      title: {
+         inner: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization',
+      },
       meta: [
          {
             name: 'author',
@@ -246,6 +248,12 @@ export default {
             content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'
          }
       ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/bnbackpass'
+         }
+      ]
    },
    data() {
       return {

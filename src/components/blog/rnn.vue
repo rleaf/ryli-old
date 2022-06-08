@@ -224,8 +224,10 @@ export default {
       'vue-mathjax': VueMathjax,
       PrismEditor
    },
-   metaInfo: {
-      title: 'Forward & Backward of a RNN',
+   head: {
+      title: {
+         inner: 'Forward & Backward of a RNN',
+      },
       meta: [
          {
             name: 'author',
@@ -242,6 +244,12 @@ export default {
          {
             property: 'og:description',
             content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',
+         }
+      ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/rnn'
          }
       ]
    },

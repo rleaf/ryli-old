@@ -318,8 +318,10 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
-   metaInfo: {
-      title: 'Introduction to Big "Oh" Notation',
+   head: {
+      title: {
+         inner: 'Introduction to Big "Oh" Notation'
+      },
       meta: [
          {
             name: 'author',
@@ -327,17 +329,23 @@ export default {
          },
          {
             name: 'description',
-            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
+            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth represents algorithm efficiency.'
          },
          {
             name: 'keywords',
-            content: 'big oh, big o, big omega, big theta, algorithms, time complexity, asymptotic growth, functions, efficiency, code, dev, introductory, beginners, part 1'
+            content: 'big oh, big o, big omega, big theta, algorithms, time complexity, asymptotic growth, functions, efficiency, code, dev, introductory, beginner'
          },
          {
             property: 'og:description',
-            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth can represent the efficiency of algorithms.'
+            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth represents algorithm efficiency.'
          },
          
+      ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/bigo'
+         }
       ]
    },
    data() {

@@ -288,8 +288,10 @@ export default {
       'vue-mathjax': VueMathjax,
       PrismEditor
    },
-   metaInfo: {
-      title: 'Implementing K Nearest Neighbors on CIFAR-10',
+   head: {
+      title: {
+         inner: 'Implementing K Nearest Neighbors on CIFAR-10'
+      },
       meta: [
          {
             name: 'author',
@@ -308,7 +310,40 @@ export default {
             content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
          }
       ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/knn'
+         }
+      ]
    },
+   // metaInfo: {
+   //    title: 'Implementing K Nearest Neighbors on CIFAR-10',
+   //    meta: [
+   //       {
+   //          name: 'author',
+   //          content: 'Ryan Lin'
+   //       },
+   //       { 
+   //          name: 'description',
+   //          content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
+   //       },
+   //       {
+   //          name: 'keywords',
+   //          content: 'knn, classification, k nearest neighbors, cifar 10, artificial intelligence, ai, machine learning, ml, introduction, beginners, python, cross validation'
+   //       },
+   //       {
+   //          property: 'og:description',
+   //          content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
+   //       }
+   //    ],
+   //    link: [
+   //       {
+   //          rel: 'canonical',
+   //          href: 'https://ryli.design/blog/knn'
+   //       }
+   //    ]
+   // },
    data() {
       return {
          lineNumbers: true,

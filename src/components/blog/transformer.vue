@@ -320,8 +320,10 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
-   metaInfo: {
-      title: 'Transformers Deconstructed and Explained',
+   head: {
+      title: {
+         inner: 'Transformers Deconstructed and Explained',
+      },
       meta: [
          {
             name: 'author',
@@ -338,6 +340,12 @@ export default {
          {
             property: 'og:description',
             content: 'A thorough explanation on the operations and overall construction of a Transformer Neural Network.'
+         }
+      ],
+      link: [
+         {
+            rel: 'canonical',
+           href: 'https://ryli.design/blog/transformer'
          }
       ]
    },

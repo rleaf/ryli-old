@@ -222,8 +222,10 @@ export default {
       themeSwitch,
       'vue-mathjax': VueMathjax 
    },
-   metaInfo: {
-      title: 'Learning to find the derivative of the quadratic form',
+   head: {
+      title: {
+         inner: 'Learning to find the derivative of the quadratic form',
+      },
       meta: [
          {
             name: 'author',
@@ -240,6 +242,12 @@ export default {
          {
             property: 'og:description',
             content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'
+         }
+      ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/quadraticform'
          }
       ]
    },

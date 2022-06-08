@@ -233,8 +233,10 @@ export default {
       PrismEditor
 
    },
-   metaInfo: {
-      title: 'The Transformations in a CNN',
+   head: {
+      title: {
+         inner: 'The Transformations in a CNN'
+      },
       meta: [
          {
             name: 'author',
@@ -251,6 +253,12 @@ export default {
          {
             property: 'og:description',
             content: 'Forward & Backward of a CNN. I talk about the forward and backward pass of a Convolutional neural network with illustrations and codeblocks as examples.'
+         }
+      ],
+      link: [
+         {
+            rel: 'canonical',
+            href: 'https://ryli.design/blog/cnn'
          }
       ]
    },
