@@ -763,7 +763,7 @@ export default {
          // Testing
          // Do it later so I can queryselectall images present in a blog
          // and individually append 'scaleup' class to that ith image.
-         console.log('toads');
+         // BTW consider porting over all image tags to use margin > padding
          let img = document.querySelector('#img500')
          img.classList.toggle('scaledUp')
       }

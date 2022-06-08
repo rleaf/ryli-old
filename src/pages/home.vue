@@ -392,7 +392,7 @@ html {
 
 #img500 {
    width: 500px;
-   padding: 25px 50px;
+   margin: 25px 50px;
    user-select: none;
    -moz-user-select: none;
    -webkit-user-drag: none;
@@ -403,7 +403,7 @@ html {
 @media (max-width: 625px) {
    #img500 {
       width: 100%;
-      padding: 25px 0;
+      margin: 25px 0;
    }
 }
 
