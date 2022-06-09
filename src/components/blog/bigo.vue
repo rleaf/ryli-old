@@ -54,7 +54,7 @@
             </div>
             <br>
             <br>
-            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/bigo3.png" alt="">
+            <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/bigo3.png" alt="">
             <span class="theme" style="font-size:14px; padding-top: -10px;">Visually, the graphs show that all points <i>n</i> beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> adhere to the rules of their respective set.
             <i>(a)</i> shows <vue-mathjax :formula='`$f(n) = O(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\lt c \\cdot g(n)$`'></vue-mathjax> at all points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> thus making <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> an 
             <i>upper bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. <i>(b)</i> shows <vue-mathjax :formula='`$f(n) = \\Omega(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\gt c \\cdot g(n)$`'></vue-mathjax>
@@ -265,7 +265,7 @@
                operations. In <a href="https://www.algorist.com/" target="_blank">Skiena's</a> book (p. 38), you can find an extremely helpful table that compares algorithm runtimes between each other. It is shown
                below.
             </p>
-            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/bigoscaling.png" alt="">
+            <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/bigoscaling.png" alt="">
             <p>
                Okay now the elephant. If you're already familiar with "Big Oh" or may have derived from the bigocheatsheet and table resources above, you will notice I only talk about a portion of the complexities.
                <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> is certainly "horrible", but nowhere as horrible as <vue-mathjax :formula='`$O(n!)$`'></vue-mathjax> or <vue-mathjax :formula='`$O(2^n)$`'></vue-mathjax>.
@@ -393,6 +393,11 @@ export default {
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      },
+
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
 
@@ -446,75 +451,6 @@ export default {
    } 
 }
 </script>
-<style scoped>
 
-.bgColor {
-   background-color: var(--bgColor);
-   border-radius: 5px;
-   border: 1px solid;
-   border-color: var(--shadeWhite2);
-   /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
-}
-
-#curriculumBody {
-   width: auto !important;
-   display: flex;
-   font-family: var(--type);
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-}
-
-#curriculumHeader {
-   font-family: var(--type);
-}
-
-#blogHeader {
-   padding-bottom: 8vh;
-   font-size: 22px;
-}
-
-p {
-   padding: 25px 6vw;
-   line-height: 2;
-}
-
-a { 
-   text-decoration: underline;
-   font-style: oblique;
-}
-
-a:not(.blogtoc a) {
-   color: var(--shadeWhite1);
-}
-
-#blogSubHeader {
-   color: var(--shadeWhite1);
-   font-family: var(--type);
-   font-size: 19px;
-   padding-top: 50px;
-}
-
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
-
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
-
-h2 {
-   color: var(--shadeWhite1);
-   font-size: 16px;
-   font-style: italic;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
+<style scoped src='./css/blog.css'>
 </style>

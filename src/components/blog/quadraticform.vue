@@ -299,6 +299,13 @@ export default {
       }
    },
 
+   methods: {
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
+      }
+   },
+
    mounted () {
 
       window.MathJax.Hub.Config({
@@ -335,62 +342,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-#curriculumBody {
-   width: auto !important;
-   display: flex;
-   font-family: var(--type);
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-}
-
-#blogHeader {
-   padding-bottom: 8vh;
-   font-size: 22px;
-}
-
-p {
-   padding: 25px 6vw;
-   line-height: 2;
-}
-
-a { 
-   text-decoration: underline;
-   font-style: oblique;
-}
-
-a:not(.blogtoc a) {
-   color: var(--shadeWhite1);
-}
-
-#blogSubHeader {
-   color: var(--shadeWhite1);
-   font-family: var(--type);
-   font-size: 19px;
-   padding-top: 50px;
-}
-
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
-
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
-
-h2 {
-   color: var(--shadeWhite1);
-   font-size: 16px;
-   font-style: italic;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
+<style scoped src='./css/blog.css'>
 </style>

@@ -70,7 +70,7 @@
                then moves onto the next image in the test set to do it all again.
                <!-- Afterwards the unlabeled images will be prescribed the same classification as their k nearest neighbors, k being an integer  -->
             </p>
-            <video id="img500" autoplay loop muted :src="knn_train" style="padding-bottom: 5px !important;"></video>
+            <video id="img500" @click="imageZoom" autoplay loop muted :src="knn_train" style="padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Visualization of computing the pixel values of a single <i>test</i> image (left) against every <i>train</i> image (right). <br>
             Right click and toggle 'show controls' to stop the animation.</i></span>
             <p>
@@ -89,7 +89,7 @@
                definition</a>.
             </p>
             <br>
-            <img id="img1300" src="../../assets/blog/knn.png" class="noInvert" alt="">
+            <img id="img1300" @click="imageZoom" src="../../assets/blog/knn.png" class="noInvert" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>The stars reference labeled images and the translucent dots reference unlabled images.</i></span>
             <div id="loadcifar"></div>
                <div id="blogSubHeader">
@@ -117,7 +117,7 @@
             <p>
                To see what we're working with, here are a 12 random images from each class with their corresponding label to the left:<br>
             </p>
-            <img id="img600" src="../../assets/blog/output.png" class="noInvert" alt="">
+            <img id="img600" @click="imageZoom" src="../../assets/blog/output.png" class="noInvert" alt="">
             <p>
                Each image is composed of 3x32x32 pixel values. The 3x<b><u>32x32</u></b> references their height/width and the <b><u>3</u></b>x32x32 references the color channels, which most of computer vision (to my knowledge)
                use RGB. The labels are simply a  tensor of integers ranging from [0,9]. Each integer serves as an index to a corresponding list of classes:
@@ -199,7 +199,7 @@
                calculates it's value for <code style="background: var(--codeSnippet);; border-radius: 5px;">y_test_pred</code>, it proceeds to the next. Each column can be thought of as a test image and every element in the column
                represents the Euclidean distance between that test image with every training image.
             </p>
-            <video id="img700" autoplay muted loop :src="knn_classify" style="padding-bottom: 5px !important;"></video>
+            <video id="img700" @click="imageZoom" autoplay muted loop :src="knn_classify" style="padding-bottom: 5px !important;"></video>
             <span style="font-size:14px; padding-top: -10px;"><i>Right click and toggle 'show controls' to stop the animation</i></span>
             <p>
                We've finished implementing kNN and can begin testing the algorithm on larger portions of the dataset to see how well it performs.
@@ -225,7 +225,7 @@
                the validation set to evaluate an optimal <i>k</i>. The validation set does the job of the previously defined test set. By partioning our data, we circumvent the issue of overfitting - our test set is untouched until the final...test.
             </p>
             <prism-editor class="codeblock" v-model="cross_validation" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
-            <img id="img500" class="noInvert" src="../../assets/blog/optimalk.png" alt="">
+            <img id="img500" @click="imageZoom" class="noInvert" src="../../assets/blog/optimalk.png" alt="">
             <p>
                A total of 50 different accuracies result from our 10 different <i>k's</i> and 5 partitions from cross validation. We'd now like kNN to select the value for k that yielded the highest average accuracy for the 5 folds. We can see
                on the graph above, a k of around 12 provides the highest average. Below returns the k that has the highest average.
@@ -691,7 +691,12 @@ export default {
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
-      } 
+      },
+      
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
+      }
    },
 
    mounted () {
@@ -731,62 +736,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-#curriculumBody {
-   width: auto !important;
-   display: flex;
-   font-family: var(--type);
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-}
-
-#blogHeader {
-   padding-bottom: 8vh;
-   font-size: 22px;
-}
-
-p {
-   padding: 25px 6vw;
-   line-height: 2;
-}
-
-a { 
-   text-decoration: underline;
-   font-style: oblique;
-}
-
-a:not(.blogtoc a) {
-   color: var(--shadeWhite1);
-}
-
-#blogSubHeader {
-   color: var(--shadeWhite1);
-   font-family: var(--type);
-   font-size: 19px;
-   padding-top: 50px;
-}
-
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
-
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
-
-h2 {
-   color: var(--shadeWhite1);
-   font-size: 16px;
-   font-style: italic;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
+<style scoped src='./css/blog.css'>
 </style>

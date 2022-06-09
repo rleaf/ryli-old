@@ -130,60 +130,6 @@ export default {
    } 
 }
 </script>
-<style scoped>
 
-#curriculumBody {
-   width: auto !important;
-   display: flex;
-   font-family: var(--type);
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-}
-
-#blogHeader {
-   padding-bottom: 20px;
-   font-size: 22px;
-}
-
-p {
-   padding: 25px 6vw;
-   line-height: 2;
-}
-
-a { 
-   text-decoration: underline;
-   font-style: oblique;
-}
-
-a:not(.blogtoc a) {
-   color: var(--shadeWhite1);
-}
-
-h2 {
-   font-size: 16px;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
-
-#blogSubHeader {
-   font-family: var(--type);
-   font-size: 19px;
-   padding-top: 50px;
-}
-
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
-
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
-
+<style scoped src='./css/blog.css'>
 </style>

@@ -38,13 +38,13 @@
                the gradient for batch normalization can also undergo a similar process to promote computational efficiency (<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank">link to paper</a>).
                <br>
             </p>
-               <img id="img500" class="noInvert" src="../../assets/blog/bn_forward.png" alt=""> 
+               <img id="img500" @click="imageZoom" class="noInvert" src="../../assets/blog/bn_forward.png" alt=""> 
             <p>
                During training, the chain rule is shown to backpropagate through the batch normalization transformation (page 4 of the paper). The code block was my implementation.
                <!-- Shown below is referred to as the "Staged Computation" for backpropagation.
                It is also sometimes referred to as the "flat" implementation for backprop, it uses the chain rule to derive the impact a parameter has upon an output.  -->
             </p>
-               <img id="img500" class="noInvert" src="../../assets/blog/bn_backward.png" alt="">
+               <img id="img500" @click="imageZoom" class="noInvert" src="../../assets/blog/bn_backward.png" alt="">
 
              <prism-editor class="codeblock" v-model="bnChainCode" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
 
@@ -357,6 +357,11 @@ export default {
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      },
+
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
    
@@ -396,62 +401,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-#curriculumBody {
-   width: auto !important;
-   display: flex;
-   font-family: var(--type);
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   text-align: center;
-}
-
-#blogHeader {
-   padding-bottom: 8vh;
-   font-size: 22px;
-}
-
-p {
-   padding: 25px 6vw;
-   line-height: 2;
-}
-
-a { 
-   text-decoration: underline;
-   font-style: oblique;
-}
-
-a:not(.blogtoc a) {
-   color: var(--shadeWhite1);
-}
-
-#blogSubHeader {
-   color: var(--shadeWhite1);
-   font-family: var(--type);
-   font-size: 19px;
-   padding-top: 50px;
-}
-
-@media (max-width: 1255px) {
-   p {
-      padding: 2vw;
-   }
-}
-
-@media (max-width: 735px) {
-   p {
-      padding: 0;
-   }
-}
-
-h2 {
-   color: var(--shadeWhite1);
-   font-size: 16px;
-   font-style: italic;
-   padding-top: 10px;
-   margin: 0;
-   font-weight: 200;
-}
+<style scoped src='./css/blog.css'>
 </style>
