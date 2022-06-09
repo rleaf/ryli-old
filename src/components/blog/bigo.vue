@@ -63,16 +63,16 @@
             <vue-mathjax :formula='`$n_0$`'></vue-mathjax>. </span>
             <br>
             <p>
-               (a) <vue-mathjax :formula='bigO'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
+               (a) <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
                some constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> is always <vue-mathjax :formula='`$\\leq c \\cdot g(n)$`'></vue-mathjax>, for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
-               <!-- We say a function <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> belongs to "Big Oh" of the function g when <vue-mathjax :formula='bigO'></vue-mathjax> -->
+               <!-- We say a function <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> belongs to "Big Oh" of the function g when <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> -->
                <br>
                <br>
-               (b) <vue-mathjax :formula='bigOmega'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is a <i>lower bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
+               (b) <vue-mathjax :formula='bigoAssets.bigOmega'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is a <i>lower bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
                some constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> is always <vue-mathjax :formula='`$\\geq c \\cdot g(n)$`'></vue-mathjax>, for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
                <br>
                <br>
-               (c) <vue-mathjax :formula='bigTheta'></vue-mathjax> means <vue-mathjax :formula='`$c_1 \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> and
+               (c) <vue-mathjax :formula='bigoAssets.bigTheta'></vue-mathjax> means <vue-mathjax :formula='`$c_1 \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> and
                <vue-mathjax :formula='`$c_2 \\cdot g(n)$`'></vue-mathjax> is a <i>lower bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists constants <vue-mathjax :formula='`$c_1$`'></vue-mathjax>
                and <vue-mathjax :formula='`$c_2$`'></vue-mathjax> such that <vue-mathjax :formula='`$c_2 \\cdot g(n) \\leq f(n) \\leq c_1\\cdot g(n) $`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
                <br>
@@ -83,7 +83,7 @@
             </p>
             <p>
                The picture and definitions are from <a href="https://www.algorist.com/" target="_blank">The Algorithm Design Manuel, by Steven Skiena</a> (p 35-36 of 2nd edition). Before we go through examples, a couple
-               of things to note: 1) Some people consider <vue-mathjax :formula='bigO'></vue-mathjax> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
+               of things to note: 1) Some people consider <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
                "<i>f(n)</i> is a member of set <i>O(g(n))</i>" which usually is represented in set notation as <vue-mathjax :formula='`$f(x) \\in O(g(n))$`'></vue-mathjax>. 2) It doesn't seem to be stated definitively
                in Skiena's book (or maybe I missed it), but it should seem apparent that <vue-mathjax :formula="`$c > 0$`"></vue-mathjax> otherwise we're subject to some funk. This is stated in
                <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">Introduction to Algorithms, 3rd Ed</a> on p. 50.
@@ -201,7 +201,7 @@
                There is also an alternative description of the RAM on page 23 in <i>Introduction to Algorithms</i> linked above.
                With our hypothetical computer, we can now represent a simple algorithm as a function.
             </p>
-            <prism-editor class="codeblock" v-model="forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <prism-editor class="codeblock" v-model="bigoAssets.forLoop" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Not bad right? Line 3 is constant no matter the size of our input <i>n</i> for algorithm <i>simple</i> so it is always equal to 1 time step.
                The for loop however is dependent on the size of input <i>n</i> because it runs exactly <i>n</i> times. Because of this, we multiply the inner operations, represented vaguely as (...), 
@@ -219,7 +219,7 @@
             <p>
                Let us look at an actual algorithm, <a href="https://en.wikipedia.org/wiki/Insertion_sort" target="_blank">insertion sort</a>:
             </p>
-            <prism-editor class="codeblock" v-model="insertionSort" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <prism-editor class="codeblock" v-model="bigoAssets.insertionSort" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                Insertion sort is a very popular algorithm that, as it sounds, sorts a list/array (depending on what language you like) by the smallest value to the largest value. A top level understanding of how it
                works is that as the for loop iterates through a list, the while loop checks to see if the non-zero indexed value the for loop is on is less than the preceeding value in the list.
@@ -227,7 +227,7 @@
                until it it no longer flags truthy, thus terminating and proceeding to the next value in the for loop to begin again until the end of the list is reached.
                Let us decompose it and translate it to a math function using the considerations of our RAM computer.
             </p>
-            <prism-editor class="codeblock" v-model="insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
+            <prism-editor class="codeblock" v-model="bigoAssets.insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
                A little more complex than the previous simple algorithm! We conclude with the unrefined function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>. Here is a very specific explanation. Everything
                in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times (line 3). This is why everything in our polynomial is multiplied by the outermost <i>n</i>.
@@ -306,6 +306,7 @@ import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
 import 'prismjs/components/prism-python'
 import 'prismjs/themes/prism-nord.css'
+import bigojs from './assets/bigo.js'
 
 
 export default {
@@ -350,43 +351,7 @@ export default {
    },
    data() {
       return {
-         blogs: [],
-         error: null,
-         formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
-         bigO: '$f(n) = O(g(n))$',
-         bigOmega: '$f(n) = \\Omega(g(n))$',
-         bigTheta: '$f(n) = \\Theta(g(n))$',
-         forLoop: 
-`def simple(n):
-   # Memory access
-   x = n
-
-   # Loop
-   for i in range(x):
-      ...
-      
-# Algorithm equals 1 + n(...)`,
-         insertionSort: 
-`def insertionSort(n):
-   for i in range(len(n)):
-      j = i
-      while ((j>0) and s[j] < s[j-1])):
-         swap(s[j], s[j-1])
-         j -= 1`,
-         insertionSort2: 
-`def insertionSort(n):
-   # Loop going around n times
-   for i in range(len(n)):
-      # Memory access
-      j = i
-      # Loop going around n times in *worst case scenario*
-      while ((j>0) and s[j] < s[j-1])):
-         # Simple call operation
-         swap(s[j], s[j-1])
-         # Memory access
-         j -= 1
-         
-# Algorithm equals n(1+n(1+1)) -> 2n^2 + n`,
+         bigoAssets: bigojs,
       }
    },
    
