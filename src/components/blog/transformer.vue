@@ -70,7 +70,7 @@
                Below is the visualization of a Transformer from the orginitating paper (linked above). It is easy to see features such as the information flow throughout the network and finer detail such as how
                each attention block takes in three arguments (queries, keys, values) and skip connections to aid gradient flow.
             </p>
-            <img id="img500" @click="imageZoom()" class="noInvert" src="../../assets/blog/transformer.png" alt="">
+            <img id="img500" @click="imageZoom" class="noInvert" src="../../assets/blog/transformer.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Transformer layout from "Attention is All You Need"</i></span>
             <br><br>
             <div id="preparation"></div>
@@ -759,13 +759,9 @@ export default {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
       },
 
-      imageZoom() {
-         // Testing
-         // Do it later so I can queryselectall images present in a blog
-         // and individually append 'scaleup' class to that ith image.
-         // BTW consider porting over all image tags to use margin > padding
-         let img = document.querySelector('#img500')
-         img.classList.toggle('scaledUp')
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
    mounted () {
@@ -863,9 +859,11 @@ h2 {
    }
 }
 
-#img500 {
+img, video {
    transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
-   cursor: zoom-in; 
+   cursor: zoom-in;
+   /* Put in front of codeblocks */
+   z-index: 1;
 }
 
 .scaledUp {

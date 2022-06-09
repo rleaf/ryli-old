@@ -36,7 +36,7 @@
                about soon. I want to mention this now however since there is a lot of nuance in the math between different types of sequence processing. Because of this, the sections
                <a href="#forward">Forward Pass Transformations</a> and beyond presume the type of sequence shown immediately below called a <i>many to many</i>.
             </p>
-            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/rnn4.png" alt="">
+            <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/rnn4.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i><vue-mathjax :formula='`$x_t$`'></vue-mathjax> represents the input sequence, <vue-mathjax :formula='`$h_t$`'></vue-mathjax> the hidden states,
             <vue-mathjax :formula='`$y_t$`'></vue-mathjax> the prediction, and <vue-mathjax :formula='`$L_t$`'></vue-mathjax>, the individual loss</i></span>
             <p>
@@ -60,7 +60,7 @@
                based off the input at that same timestep. So our RNN would be producing some output for every frame of video. Below are different types of models for processing different sequences.
                Note that although labeling and some intricacies are omitted, the many to many show below is not the same as the one shown above.  
             </p>
-            <img id="img1000" style="box-shadow: none;" src="../../assets/blog/types.png" alt="">
+            <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/types.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><b>Examples:</b> <i>one to one</i>: Image classification, <i>one to many</i>: Image captioning, <i>many to one</i>: Video classification, <i>many to many</i>:
             Machine translation <br> Captioning refers to a sequence of symbols. For image captioning our output would be a sequence of, ideally coherent, words describing what's happening in the image.
             Another example of a caption could be a sequence of letters, which at the end, would produce a word.</span>
@@ -82,7 +82,7 @@
                Transformation between hidden steps <vue-mathjax :formula='`$h_{t-1} \\rightarrow h_t$`'></vue-mathjax>
             </p>
             <vue-mathjax :formula='rnnStep'></vue-mathjax>
-            <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph.png" alt="">
+            <img id="img500" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/graph.png" alt="">
             <prism-editor class="codeblock" v-model="toad" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="forwardpred"></div>
             <p>
@@ -91,13 +91,13 @@
                Transformation between hidden step and prediction <vue-mathjax :formula='`$h_{t} \\rightarrow \\hat{y}$`'></vue-mathjax>
             </p>
             <vue-mathjax :formula='yhatTransform'></vue-mathjax>
-            <img id="img500" style="box-shadow: none;" src="../../assets/blog/graph2.png" alt="">
+            <img id="img500" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/graph2.png" alt="">
             <prism-editor class="codeblock" v-model="toad2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="onestepback"></div>
             <div id="blogSubHeader">
                One Step Backwards
             </div>
-            <img id="img500" style="box-shadow: none;" src="../../assets/blog/combinedgraphs.png" alt="">
+            <img id="img500" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/combinedgraphs.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Combined picture of both computational graphs</i></span>
             <p>
                Time to go backwards. Before talking about anything, there are a handful of idiosyncrasies between the different sequence styles of RNN's. <b>Everything below assumes a many to many sequence</b>, very similar
@@ -344,12 +344,18 @@ export default {
          # the final dprev_h will be the initial hidden state.
          dh0 = dprev_h
 
-         return dWhy, dby, dht, dWhh, dbh, dWxh, dh0`
+         return dWhy, dby, dht, dWhh, dbh, dWxh, dh0`,
+         img: null
       }
    },
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      },
+
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
 
@@ -445,5 +451,17 @@ h2 {
    padding-top: 10px;
    margin: 0;
    font-weight: 200;
+}
+
+img, video {
+   transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
+   cursor: zoom-in;
+   /* Put in front of codeblocks */
+   z-index: 1;
+}
+
+.scaledUp {
+   transform: scale(1.5);
+   cursor: zoom-out !important;
 }
 </style>

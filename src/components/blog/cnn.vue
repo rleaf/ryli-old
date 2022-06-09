@@ -48,7 +48,7 @@
                   When understanding CNNs, colored RGB images are a solid example to think of as input because they are able to easily <i>and intuitively</i>
                   be represented as 3d tensors. Whenever I talk about inputs for a CNN here, I will be thinking of colored images.
                </p>
-               <img id="img800" class="noInvert" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
+               <img id="img800" @click="imageZoom" class="noInvert" style="box-shadow: none;" src="../../assets/blog/cnnImage.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i>On the left shows the image isolated to the 3 color channels. When layered and blended properly, shown on the right, we get a properly colored image.</i></span>
                <div id="convolution_forward"></div>
                <div id="blogSubHeader">
@@ -75,7 +75,7 @@
                   <br>
                   <b>Padding</b>: Adds a border to the input to ameliorate edge learning. By enabling the kernel to "sit" offset with the input, edges have greater coverage of the kernel. -->
                </p>
-               <video id="img500" autoplay loop muted :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
+               <video id="img500" @click="imageZoom" autoplay loop muted :src="cnn_anim" style="padding-bottom: 5px !important;"></video>
                <span style="font-size:14px; padding-top: -10px;"><i>Simple animation showing a 3x2x2 kernel interacting with a 3x5x5 input. Stride is 1 and there is no padding. <br>
                Right click on animation to toggle controls or open in a new tab to enlarge.</i></span>
                <p>
@@ -543,6 +543,11 @@ export default {
    methods: {
       highlighter(code) {
         return highlight(code, languages.py); // languages.<insert language> to return html with markup
+      },
+
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
 
@@ -640,5 +645,17 @@ h2 {
    p {
       padding: 0;
    }
+}
+
+img, video {
+   transition: transform 300ms cubic-bezier(0.2, 0, 0.2, 1);
+   cursor: zoom-in;
+   /* Put in front of codeblocks */
+   z-index: 1; 
+}
+
+.scaledUp {
+   transform: scale(1.5);
+   cursor: zoom-out !important;
 }
 </style>
