@@ -164,6 +164,11 @@ const routes = [
     name: 'transformer',
     component: () => import('../components/blog/transformer.vue')
   },
+  {
+    path: '/blog/entropy',
+    name: 'entropy',
+    component: () => import('../components/blog/entropy.vue')
+  },
   
   // REDIRECT HANDLING (temporary?)
 
@@ -232,9 +237,9 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: 'history',
-  scrollBehavior() {
-    return {x:0, y:0};
-  }
+  // scrollBehavior() {
+  //   return {x:0, y:0};
+  // }
 })
 
 router.beforeEach((toRoute, fromRoute, next) => {
