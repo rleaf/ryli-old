@@ -243,7 +243,11 @@ const router = new VueRouter({
 })
 
 router.beforeEach((toRoute, fromRoute, next) => {
-  window.document.title = toRoute.meta && toRoute.meta.title ? toRoute.meta.title : 'Ryan Lin';
+
+  // Stop changing title back to default on toc clicks in blogs
+  if (toRoute.meta.title != undefined) {
+    window.document.title = toRoute.meta && toRoute.meta.title ? toRoute.meta.title : 'Ryan Lin';
+  }
 
   next();
 })

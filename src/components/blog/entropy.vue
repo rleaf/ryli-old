@@ -23,6 +23,9 @@
                   </ul>
                   <li><a href="#selfinformation">Self Information</a></li>
                   <li><a href="#cross">Cross Entropy</a></li>
+                  <ul>
+                     <li><a href="#crossexample">Example</a></li>
+                  </ul>
                   <li><a href="#joint">Joint Entropy</a></li>
                   <li><a href="#conditional">Conditional Entropy</a></li>
                   <!-- <li>KL Divergence</li>
@@ -91,6 +94,7 @@
             </p>
             <p>
                A couple more examples to solidify understanding:
+            
                <br><br>
                <vue-mathjax :formula="`$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 3)$`"></vue-mathjax>
                <br>
@@ -153,10 +157,9 @@
                Cross Entropy
             </div>
             <p>
-               Cross entropy quantifies the difference between two probability distributions when acting on the same random variable. It is the measurement of the expected uncertainty of sampling an event from a 
-               random variable's distribution, <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>, when encoded to distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>.
-               Cross entropy can also be interpreted as the expectation of one distribution,
-               <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>, multiplied with the self information of another distribution, <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
+               Cross entropy quantifies the difference between two probability distributions when acting on the same random variable. It is the measurement of the expected uncertainty of
+               distribution, <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>, when encoded to distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>.
+               Cross entropy can also be interpreted as the average, generated from <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>, of self information for all values in <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
                Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax> the cross entropy of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> between distributions
                <vue-mathjax :formula="`$p$`"></vue-mathjax> and <vue-mathjax :formula="`$q$`"></vue-mathjax> is:
             </p>
@@ -164,11 +167,16 @@
             <p>
                Cross entropy is inclusively lower bounded by the originating distribution's entropy, <vue-mathjax :formula="`$\\mathbb{H}(p(X))$`"></vue-mathjax> and has no upper bound. The lower the cross entropy
                between distributions <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> and <vue-mathjax :formula="`$q(x)$`"></vue-mathjax> the more similar the two distributions are. If
-               <vue-mathjax :formula="`$\\mathbb{H}(p,q) = \\mathbb{H}(p)$`"></vue-mathjax>, then <vue-mathjax :formula="`$q(x) = p(x)$`"></vue-mathjax>.
+               <vue-mathjax :formula="`$\\mathbb{H}(p,q) = \\mathbb{H}(p)$`"></vue-mathjax>, then <vue-mathjax :formula="`$q(x) = p(x)$`"></vue-mathjax>. Conversely, the higher the cross entropy, or the expected bits
+               between two distributions, the more stochasticity is present.
+               <br><br>
+               <!-- In machine learning, this viewed. Talk about how phat, q, is used as an predicted distribution to model after the ground truth distribution p_data -->
             </p>
+            <div id="crossexample"></div>
             <h2>Example</h2>
             <p>
                Let random variable <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax> and
+            
                <br>
                <br>
                <vue-mathjax :formula='`$p(x) = \\begin{cases} 
@@ -177,17 +185,16 @@
                   0.20 & \\text{if}\\; x = 3 \\\\  
                   0.35 & \\text{if}\\; x = 4 \\\\  
                   \\end{cases} \\qquad$`'></vue-mathjax>
-               <!-- <br> -->
                <vue-mathjax :formula='`$q(x) = \\begin{cases} 
                   0.25 & \\text{if}\\; x = 1 \\\\  
                   0.10 & \\text{if}\\; x = 2 \\\\  
                   0.40 & \\text{if}\\; x = 3 \\\\  
                   0.25 & \\text{if}\\; x = 4 \\\\  
                   \\end{cases} $`'></vue-mathjax>
-               <br><br>
+            </p>
                <vue-mathjax :formula='entropy.crossEntropyExample1'></vue-mathjax>
                <vue-mathjax :formula='entropy.crossEntropyExample2'></vue-mathjax>
-               <br><br>
+            <p>
                Unless <vue-mathjax :formula="`$q(x)=p(x)$`"></vue-mathjax>, <vue-mathjax :formula="`$\\mathbb{H}(p, q) \\neq \\mathbb{H}(q, p)$`"></vue-mathjax>. Introducing a third distribution, which will be <i>very</i>
                similar to <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> to better illustrate the lower bounds of cross entropy, let
                <br><br>
@@ -197,10 +204,10 @@
                   0.20 & \\text{if}\\; x = 3 \\\\  
                   0.35 & \\text{if}\\; x = 4 \\\\  
                   \\end{cases}$`'></vue-mathjax>
-               <br><br>
-               <vue-mathjax :formula='entropy.crossEntropyExample3'></vue-mathjax>
-               <vue-mathjax :formula='entropy.crossEntropyExample4'></vue-mathjax>
-               <br><br>
+            </p>
+            <vue-mathjax :formula='entropy.crossEntropyExample3'></vue-mathjax>
+            <vue-mathjax :formula='entropy.crossEntropyExample4'></vue-mathjax>
+            <p>
                It may be discussed later, but the difference between <vue-mathjax :formula="`$\\mathbb{H}(p, z)$`"></vue-mathjax> and <vue-mathjax :formula="`$\\mathbb{H}(p)$`"></vue-mathjax>
                is known as the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank">Kullback-Leibler divergence / Relative entropy</a>.
                <vue-mathjax :formula="`$$D_\\mathbb{KL}(p\\;\\lvert\\rvert \\;z) = \\mathbb{H}(p, z) - \\mathbb{H}(p) = 0.00277$$`"></vue-mathjax>
