@@ -7,6 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Entropy in Machine Learning</p>
+                  <p style="font-size:18px"><i>Currently being worked on</i></p>
                   <p style="font-size: 18px; padding: 0 !important; ">6 &#8226; 11 &#8226; 2022</p>
                </div>
             </div>
@@ -20,9 +21,10 @@
                      <li><a href="#entropymath">Mathematical Formalism</a></li>
                      <li><a href="#entropyexamples">Examples</a></li>
                   </ul>
-                  <li><a href="#">Cross Entropy</a></li>
-                  <li><a href="#">Joint Entropy</a></li>
-                  <li><a href="#">Conditional Entropy</a></li>
+                  <li><a href="#selfinformation">Self Information</a></li>
+                  <li><a href="#cross">Cross Entropy</a></li>
+                  <li><a href="#joint">Joint Entropy</a></li>
+                  <li><a href="#conditional">Conditional Entropy</a></li>
                   <!-- <li>KL Divergence</li>
                   <ul>
                      <li></li>
@@ -46,25 +48,29 @@
             <h2>Intuition & Definition</h2>
             <p>
                Entropy, in the domain of <a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank">Information Theory</a>, is the innate uncertainty of a random variable with it's associated probability
-               distribution. The word "uncertainty" is synonymous to other interpretations used to define entropy such as "information", "surprisal", and "lack of predictability". The higher the entropy, the more
+               distribution. The word "uncertainty" is synonymous to other interpretations used to define entropy such as "missing information", "surprisal", and "lack of predictability". The higher the entropy, the more
                uncertainty there is encoded into a random variable. By this logic a uniform distribution encodes the maximum entropy on a discrete random variable as each value is equally probable - there is total
                uncertainty as to which value will be sampled. 
                <br>
                <br>
                As an example and to briefly
-               generalize outside of Machine Learning, entropy is a measurement of information. If I say to you, <i>"The rain in Spain falls mainly on the..."</i>, you might infer the next word in that statement
+               generalize outside of Machine Learning, entropy is the measurement of information. <i>"To be sure, this word information in communication theory
+               relates not so much to what you do say, as to what you could say. That is, information is a measure of one's freedom of choice when one selects a message"
+               (<a href="https://pure.mpg.de/rest/items/item_2383164/component/file_2383163/content" target="_blank">Preface of A Mathematical Theory of Communication, p. 9</a></i>). 
+               <!-- <br> -->
+               If I say to you, <i>"The rain in Spain falls mainly on the..."</i>, you might infer the next word in that statement
                to be <i>"plain"</i>. For context, this is a famous quote from the film <a href="https://en.wikipedia.org/wiki/My_Fair_Lady_(film)" target="_blank">My Fair Lady</a>. In the example the word
                is the random variable and what is inferred, "plain", is what is sampled from the distribution of possible values.
                We can say, because of the quote's fame, that there is high certainty of the random variable to be the word "plain" thus yielding low entropy. However, it may
-               be too ambitious to assert that there is <i>no</i> entropy at all, indicating certainty, ie: <vue-mathjax :formula="`$p(X = \\textit{plain}) = 1$`"></vue-mathjax>, because maybe I lied about attributing 
-               my partially finished quote to <i>My Fair Lady</i> and instead just wanted to say "The rain in Spain falls mainly on the ground".
+               be too ambitious to assert that there is <i>no</i> entropy at all, indicating certainty, <vue-mathjax :formula="`$p(X = \\textit{plain}) = 1$`"></vue-mathjax>, because maybe I lied about attributing 
+               my partially finished quote to <i>My Fair Lady</i> and instead just wanted to say <i>"The rain in Spain falls mainly on the ground"</i>.
             </p>
             <div id="entropymath"></div>
             <h2>Mathematical Formalism of Entropy</h2>
             <p>
                Entropy can be represented with different units depending on the base of the logarithm: nats (<vue-mathjax :formula="`$\\ln$`"></vue-mathjax>),
                bits &  shannons (<vue-mathjax :formula="`$\\log_2$`"></vue-mathjax>), or bans (<vue-mathjax :formula="`$\\log_{10}$`"></vue-mathjax>); anecdotally, I have never seen entropy defined in bans.
-               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, we say the entropy of the random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution
+               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the entropy of the random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution
                <vue-mathjax :formula="`$p$`"></vue-mathjax> is: 
             </p>
                <vue-mathjax :formula='entropy.entropy'></vue-mathjax>
@@ -79,12 +85,13 @@
             <p>
                Let's pretend we're rolling a fair 4 sided die where each vertex has equal probability of pointing up (you look at the vertices on a 4 sided die, not
                the face). Taking the uniform distribution where the random variable, the die, has 4 possible outcomes, <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax>, we can calculate the entropy simply with
-               <vue-mathjax :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vue-mathjax>. As mentioned previously about the uniform distribution, the answer not only represents the amount of entropy
-               present in our die random variable, but it is also the upper bound for random variables with only four possible values as no distribution is more uncertain than the uniform.
+               <vue-mathjax :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vue-mathjax>. With a 6 sided die, this would be <vue-mathjax :formula="`$\\log_2{6} = 2.58\\dots\\text{bits}$`"></vue-mathjax>.
+               As mentioned previously about the uniform distribution, these answers not only represents the amount of entropy
+               present in our dice random variables, but they are also the upper bound for random variables with four and six possible values respectively as no distribution is more uncertain than the uniform. 
             </p>
             <p>
                A couple more examples to solidify understanding:
-               <br>
+               <br><br>
                <vue-mathjax :formula="`$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 3)$`"></vue-mathjax>
                <br>
                <vue-mathjax :formula='entropy.uniformThree'></vue-mathjax>
@@ -94,26 +101,117 @@
                <vue-mathjax :formula='entropy.uniformBernoulli'></vue-mathjax>
                <br><br>
                <vue-mathjax :formula="`$\\mathbb{H}(X),\\; X \\sim p$`"></vue-mathjax> where
-               <vue-mathjax :formula='`$p = \\begin{cases} 
-                  0.8 & \\text{if}\\; x = 0 \\\\  
+               <vue-mathjax :formula='`$p(x) = \\begin{cases} 
+                  0.8 & \\text{if}\\; x = 0 \\\\
                   0.2 & \\text{if}\\; x = 1 \\\\  
                   \\end{cases} $`'></vue-mathjax>
                <br>
                <vue-mathjax :formula='entropy.unfairBernoulli'></vue-mathjax>
                <br><br>
                <vue-mathjax :formula="`$\\mathbb{H}(X),\\; X \\sim p$`"></vue-mathjax> where
-               <vue-mathjax :formula='`$p = \\begin{cases} 
+               <vue-mathjax :formula='`$p(x) = \\begin{cases} 
                   0.95 & \\text{if}\\; x = 0 \\\\  
                   0.05 & \\text{if}\\; x = 1 \\\\  
                   \\end{cases} $`'></vue-mathjax>
                <vue-mathjax :formula='entropy.extremeBernoulli'></vue-mathjax>
             </p>
             <p>
-               The amount of entropy is predicated on the amount of values in a random variable and the distribution that random variable follows. You can see that as the values of random variable
+               The amount of entropy is predicated primarily on the distribution a random variable follows. It may seem that the amount of values in a random variable participates to the entropy given the examples:
+               <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,4) = 2\\,\\text{bits}$`"></vue-mathjax> and <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,3) = 1.58\\dots\\text{bits}$`"></vue-mathjax> where the only difference
+               is <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax> versus <vue-mathjax :formula="`$X=\\{1, 2, 3\\}$`"></vue-mathjax>, however this is not true. We can see this by assigning a categorical
+               distribution to random variable <vue-mathjax :formula="`$Z=\\{1, 2, 3, 4\\}$`"></vue-mathjax> such that <vue-mathjax :formula="`$p(Z=1)=0$`"></vue-mathjax> and
+               <vue-mathjax :formula="`$ p(Z=2) = p(Z=3) = p(Z=4) = \\frac{1}{3}$`"></vue-mathjax>. This random variable, <vue-mathjax :formula="`$Z$`"></vue-mathjax>, although composed of four values yields the same
+               entropy as <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,3)$`"></vue-mathjax> composed of three. Of course if we know that there is no impossible value in a random variable,
+               <vue-mathjax :formula="`$p(X=x)=0$`"></vue-mathjax>, we can then attribute the amount of values to the entropy.
+               <br><br>
+               Looking at entropy like this we can decompose the measurement to be a combination of a random variable's probability distribution and, i.f.f the random variable has no impossible values, the total amount
+               of values in that random variable.
+               <!-- You can see that as the values of random variable
                <vue-mathjax :formula="`$X$`"></vue-mathjax> decrement while following the same uniform distribution, <vue-mathjax :formula="`$\\mathcal{U}$`"></vue-mathjax>, the entropy reduces accordingly.
-               You can also see that as we fix the values of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> to be the same but bias the probabilities to further promote certainty, the entropy reduces.
+               You can also see that as we fix the values of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> to be the same but bias the probabilities to further promote certainty, the entropy reduces. -->
             </p>
-            
+            <div id="selfinformation"></div>
+            <div id="blogSubHeader">
+               Self Information
+            </div>
+            <p>
+               If entropy is the measure of the expected uncertainty of a random variable and it's associated probability distribution, self information is the measure of uncertainty for a specific value in a random
+               variable and it's associated probability distribution. Self information is the basic quantity that tells us how much uncertainty is present in a particular event. 
+               Defined as <vue-mathjax :formula="`$I$`"></vue-mathjax> the self information of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+            </p>
+            <vue-mathjax :formula="`$I(x) \\triangleq -\\log_bp(X = x)$`"></vue-mathjax>
+            <p>
+               where once again the base <vue-mathjax :formula="`$b$`"></vue-mathjax> in <vue-mathjax :formula="`$\\log_b$`"></vue-mathjax> denotes the unit. Using the most recent example in the <a href="#entropyexamples">entropy</a>
+               section with the Bernoulli distribution where <vue-mathjax :formula="`$p(X=0) = 0.95$`"></vue-mathjax>, we can calculate entropy of that event as
+               <vue-mathjax :formula="`$I(X=0) = -\\log_20.95 = 0.07400\\dots\\text{bits}$`"></vue-mathjax>. This event encodes approximately 3.8x less information
+               compared to it's entropy of
+               <vue-mathjax :formula="`$0.28639\\dots\\text{bits}$`"></vue-mathjax>. Using self information, we can reformulate entropy itself as:
+            </p>
+               <vue-mathjax :formula="entropy.entropySelfInformation"></vue-mathjax>
+            <div id="cross"></div>
+            <div id="blogSubHeader">
+               Cross Entropy
+            </div>
+            <p>
+               Cross entropy quantifies the difference between two probability distributions when acting on the same random variable. It is the measurement of the expected uncertainty of sampling an event from a 
+               random variable's distribution, <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>, when encoded to distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>.
+               Cross entropy can also be interpreted as the expectation of one distribution,
+               <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>, multiplied with the self information of another distribution, <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
+               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax> the cross entropy of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> between distributions
+               <vue-mathjax :formula="`$p$`"></vue-mathjax> and <vue-mathjax :formula="`$q$`"></vue-mathjax> is:
+            </p>
+            <vue-mathjax :formula='entropy.crossEntropy'></vue-mathjax>
+            <p>
+               Cross entropy is inclusively lower bounded by the originating distribution's entropy, <vue-mathjax :formula="`$\\mathbb{H}(p(X))$`"></vue-mathjax> and has no upper bound. The lower the cross entropy
+               between distributions <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> and <vue-mathjax :formula="`$q(x)$`"></vue-mathjax> the more similar the two distributions are. If
+               <vue-mathjax :formula="`$\\mathbb{H}(p,q) = \\mathbb{H}(p)$`"></vue-mathjax>, then <vue-mathjax :formula="`$q(x) = p(x)$`"></vue-mathjax>.
+            </p>
+            <h2>Example</h2>
+            <p>
+               Let random variable <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax> and
+               <br>
+               <br>
+               <vue-mathjax :formula='`$p(x) = \\begin{cases} 
+                  0.15 & \\text{if}\\; x = 1 \\\\  
+                  0.30 & \\text{if}\\; x = 2 \\\\  
+                  0.20 & \\text{if}\\; x = 3 \\\\  
+                  0.35 & \\text{if}\\; x = 4 \\\\  
+                  \\end{cases} \\qquad$`'></vue-mathjax>
+               <!-- <br> -->
+               <vue-mathjax :formula='`$q(x) = \\begin{cases} 
+                  0.25 & \\text{if}\\; x = 1 \\\\  
+                  0.10 & \\text{if}\\; x = 2 \\\\  
+                  0.40 & \\text{if}\\; x = 3 \\\\  
+                  0.25 & \\text{if}\\; x = 4 \\\\  
+                  \\end{cases} $`'></vue-mathjax>
+               <br><br>
+               <vue-mathjax :formula='entropy.crossEntropyExample1'></vue-mathjax>
+               <vue-mathjax :formula='entropy.crossEntropyExample2'></vue-mathjax>
+               <br><br>
+               Unless <vue-mathjax :formula="`$q(x)=p(x)$`"></vue-mathjax>, <vue-mathjax :formula="`$\\mathbb{H}(p, q) \\neq \\mathbb{H}(q, p)$`"></vue-mathjax>. Introducing a third distribution, which will be <i>very</i>
+               similar to <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> to better illustrate the lower bounds of cross entropy, let
+               <br><br>
+               <vue-mathjax :formula='`$z(x) = \\begin{cases} 
+                  0.17 & \\text{if}\\; x = 1 \\\\  
+                  0.28 & \\text{if}\\; x = 2 \\\\  
+                  0.20 & \\text{if}\\; x = 3 \\\\  
+                  0.35 & \\text{if}\\; x = 4 \\\\  
+                  \\end{cases}$`'></vue-mathjax>
+               <br><br>
+               <vue-mathjax :formula='entropy.crossEntropyExample3'></vue-mathjax>
+               <vue-mathjax :formula='entropy.crossEntropyExample4'></vue-mathjax>
+               <br><br>
+               It may be discussed later, but the difference between <vue-mathjax :formula="`$\\mathbb{H}(p, z)$`"></vue-mathjax> and <vue-mathjax :formula="`$\\mathbb{H}(p)$`"></vue-mathjax>
+               is known as the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank">Kullback-Leibler divergence / Relative entropy</a>.
+               <vue-mathjax :formula="`$$D_\\mathbb{KL}(p\\;\\lvert\\rvert \\;z) = \\mathbb{H}(p, z) - \\mathbb{H}(p) = 0.00277$$`"></vue-mathjax>
+            </p>
+            <div id="joint"></div>
+            <div id="blogSubHeader">
+               Joint entropy
+            </div>
+            <p>
+               toads
+            </p>
          </div>
          <themeSwitch />
          <toTop />
@@ -121,11 +219,6 @@
 </template>
 
 <script>
-// joint distribution
-// marginal distribution
-// chain rule of probability
-// conditional probability
-// log rules
 import entropyjs from './assets/entropy'
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
@@ -146,7 +239,7 @@ export default {
       // MathJax
    },
    metaInfo: {
-      title: 'Entropy',
+      title: 'Entropy in Machine Learning',
       meta: [
          {
             name: 'author',
@@ -154,15 +247,15 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Toads'
+            content: 'An explanation on Entropy from a Machine Learning perspective. Incorporates philosophy drawn from Information Theory and provides examples on the different types of entropy.'
          },
          {
             name: 'keywords',
-            content: 'toads, are, green, sometimes'
+            content: 'entropy, machine learning, self information, cross entropy, cross entropy loss, joint entropy, conditional entropy, kullback leibler divergence, kl divergence, relative entropy'
          },
          {
             property: 'og:description',
-            content: 'Toads'
+            content: 'An explanation on Entropy from a Machine Learning perspective. Incorporates philosophy drawn from Information Theory and provides examples on the different types of entropy.'
          }
       ]
    },

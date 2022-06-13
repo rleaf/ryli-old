@@ -49,6 +49,7 @@ a:not(.blogtoc a) {
 h2 {
    color: var(--shadeWhite1);
    font-size: 16px;
+   font-weight: bold;
    font-style: italic;
    padding-top: 10px;
    margin: 0;

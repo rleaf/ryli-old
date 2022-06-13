@@ -10,6 +10,7 @@
          <p>A place for talking. Usually about math, food, music, design, ml/ai, dev, and the things in between.
          <!-- <div id="curriculumBody"> -->
            
+               <li><router-link :to="{ name: 'entropy'}">Entropy in Machine Learning <i>(wip)</i> </router-link></li>
                <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed and Explained</router-link></li>
                <li><router-link :to="{ name: 'cnn'}">The Forward & Backward of a CNN</router-link></li>
                <li><router-link :to="{ name: 'bigo'}">Introduction to Big "Oh" Notation</router-link></li>
