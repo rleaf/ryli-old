@@ -330,7 +330,7 @@ export default {
          },
          {
             name: 'description',
-            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth represents algorithm efficiency.'
+            content: `A beginners introduction to Big "Oh" notation and time complexity. Understanding how asymptotic growth represents algorithm efficiency while providing examples in math, code, and *literally* plain english to aid intuition.`
          },
          {
             name: 'keywords',
@@ -338,7 +338,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'Introduction to Big "Oh" notation. Understanding how time complexity and asymptotic growth represents algorithm efficiency.'
+            content: `A beginners introduction to Big "Oh" notation and time complexity. Understanding how asymptotic growth represents algorithm efficiency while providing examples in math, code, and *literally* plain english to aid intuition.`
          },
          
       ],

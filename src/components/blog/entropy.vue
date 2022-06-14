@@ -302,7 +302,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'An explanation on Entropy from a Machine Learning perspective. Incorporates philosophy drawn from Information Theory and provides examples on the different types of entropy.'
+            content: `An explanation on entropy from a Machine Learning perspective. I incorporate philosophy drawn from Claude Shannon's "A Mathematical Theory of Communication" and provides examples, while walking through the math, of the different types of entropy.`,
          },
          {
             name: 'keywords',
@@ -310,7 +310,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'An explanation on Entropy from a Machine Learning perspective. Incorporates philosophy drawn from Information Theory and provides examples on the different types of entropy.'
+            content: `An explanation on entropy from a Machine Learning perspective. I incorporate philosophy drawn from Claude Shannon's "A Mathematical Theory of Communication" and provides examples, while walking through the math, of the different types of entropy.`,
          }
       ]
    },

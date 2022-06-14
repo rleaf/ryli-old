@@ -300,7 +300,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
+            content: `A beginners introduction to kNN classification by implementing it on the CIFAR-10 dataset. I thoroughly walk through each of the operations behind the entire kNN process with code, visuals, and math.`,
          },
          {
             name: 'keywords',
@@ -308,7 +308,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'Implementing K Nearest Neighbors on CIFAR-10. Introduction to kNN classification by implementing it on the CIFAR-10 dataset. A simple and thorough explanation.',
+            content: `A beginners introduction to kNN classification by implementing it on the CIFAR-10 dataset. I thoroughly walk through each of the operations behind the entire kNN process with code, visuals, and math.`,
          }
       ],
       link: [

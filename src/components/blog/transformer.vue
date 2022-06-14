@@ -333,7 +333,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'A thorough explanation on the operations and overall construction of a Transformer Neural Network.'
+            content: `A thorough breakdown on the operations and overall construction of a Transformer neural network. I show code for each module of the Transformer while also explaining the purpose of each one.`,
          },
          {
             name: 'keywords',
@@ -341,7 +341,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'A thorough explanation on the operations and overall construction of a Transformer Neural Network.'
+            content: `A thorough breakdown on the operations and overall construction of a Transformer neural network. I show code for each module of the Transformer while also explaining the purpose of each one.`,
          }
       ],
       link: [

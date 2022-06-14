@@ -233,7 +233,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'
+            content: `I explain 3.5 different procedures, along with my own experiences, on learning how to derive the quadratic form x^tAx.`,
          },
          {
             name: 'keywords',
@@ -241,7 +241,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'Learning to find the derivative of the quadratic form. Numerous ways and explanations to go about differentiating the quadratic form.'
+            content: `I explain 3.5 different procedures, along with my own experiences, on learning how to derive the quadratic form x^tAx.`,
          }
       ],
       link: [

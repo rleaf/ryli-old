@@ -240,7 +240,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'
+            content: `An explanation on providing faster means to derive the gradient of the batch normalization process. A step by step walkthrough through all of the needed math with some code.`
          },
          {
             name: 'keywords',
@@ -248,7 +248,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization. Seeing how we can more optimally traverse through batch normalization during back propagation.'
+            content: `An explanation on providing faster means to derive the gradient of the batch normalization process. A step by step walkthrough through all of the needed math with some code.`
          }
       ],
       link: [

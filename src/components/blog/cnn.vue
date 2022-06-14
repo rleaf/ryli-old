@@ -245,7 +245,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Forward & Backward of a CNN. I talk about the forward and backward pass of a Convolutional neural network with illustrations and codeblocks as examples.'
+            content: `A discussion about both the forward and backward pass of a convolutional neural network. Accompanied with code, mathematical explanation, and visuals, I go into detail about the popular transformations.`,
          },
          {
             name: 'keywords',
@@ -253,7 +253,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'Forward & Backward of a CNN. I talk about the forward and backward pass of a Convolutional neural network with illustrations and codeblocks as examples.'
+            content: `A discussion about both the forward and backward pass of a convolutional neural network. Accompanied with code, mathematical explanation, and visuals, I go into detail about the popular transformations.`,
          }
       ],
       link: [

@@ -86,8 +86,6 @@ export default {
             batchnorm: `An explanation on providing faster means to derive the gradient of the batch normalization process. A step by step walkthrough through all of the needed math with some code.`,
             knn: `A beginners introduction to kNN classification by implementing it on the CIFAR-10 dataset. I thoroughly walk through each of the operations behind the entire kNN process with code, visuals, and math.`,
             quadratic: `I explain 3.5 different procedures, along with my own experiences, on learning how to derive the quadratic form x^tAx.`,
-
-
          }
       }
    },

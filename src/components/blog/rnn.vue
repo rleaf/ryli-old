@@ -236,7 +236,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',
+            content: `A discussion about the philosophy of a recurrent neural network and both it's forward and backward transformations. Accompanied with code, mathematical explanation, and visuals, I go into detail about the popular transformations and focus heavily on the intuition behind some operations.`,
          },
          {
             name: 'keywords',
@@ -244,7 +244,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'Forward & Backward of a RNN. A thorough explanation behind the math used in a forward and backward pass in a standard recurrent neural network.',
+            content: `A discussion about the philosophy of a recurrent neural network and both it's forward and backward transformations. Accompanied with code, mathematical explanation, and visuals, I go into detail about the popular transformations and focus heavily on the intuition behind some operations.`,
          }
       ],
       link: [
