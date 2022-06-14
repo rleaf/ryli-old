@@ -67,3 +67,17 @@ img, video {
    transform: scale(1.5);
    cursor: zoom-out !important;
 }
+
+table {
+   margin-left: auto;
+   margin-right: auto;
+}
+
+table, td, th {
+   /* border: 1px solid; */
+   border-color: var(--shadeWhite1);
+   border-collapse: collapse;
+}
+td, th {
+   padding: 0.5em;
+}

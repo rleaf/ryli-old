@@ -225,6 +225,46 @@
                Joint entropy
             </div>
             <p>
+               Joint entropy carries analagous concept and definition as <a href="#intuition">entropy</a> however operates on a set of random variables as opposed to one.
+               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the joint entropy of the random variables <vue-mathjax :formula="`$X$`"></vue-mathjax> and <vue-mathjax :formula="`$Y$`"></vue-mathjax>
+               with joint distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+            </p>
+            <vue-mathjax :formula='entropy.jointEntropy'></vue-mathjax>
+            <p>
+               Although similar to entropy, <vue-mathjax :formula="`$\\mathbb{H}(X)$`"></vue-mathjax>, an important difference is the potential correlation between the multiple random variables. As correlation is a metric
+               of interdependence of data, it should be obvious that higher the correlation, the more certainty or information we will have, which will result in lower entropy. Because of this relationship
+               we can say that unless the events sampled from random variables of a joint distribution indicate independence, the joint entropy will usually be less than the sum of each random variable's entropy:
+               <vue-mathjax :formula="`$\\mathbb{H}(X, Y) \\lt \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vue-mathjax> and if they are independent:
+               <vue-mathjax :formula="`$\\mathbb{H}(X, Y) = \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vue-mathjax>.
+            </p>
+            <h2>Example</h2>
+            <p>
+               Given the joint distribution between <vue-mathjax :formula="`$X$`"></vue-mathjax> and <vue-mathjax :formula="`$Y$`"></vue-mathjax>:
+               <table>
+                  <tr>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vue-mathjax :formula="`$p(X,Y)$`"></vue-mathjax></th>
+                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 0 $`"></vue-mathjax></th>
+                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 1 $`"></vue-mathjax></th>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 0$`"></vue-mathjax></th>
+                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
+                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 1$`"></vue-mathjax></th>
+                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
+                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                  </tr>
+               </table>
+            </p>
+            <vue-mathjax :formula='entropy.jointEntropy2'></vue-mathjax>
+            
+            <div id="conditional"></div>
+            <div id="blogSubHeader">
+               Conditional Entropy
+            </div>
+            <p>
                toads
             </p>
          </div>

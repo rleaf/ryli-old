@@ -23,4 +23,17 @@ export default {
    \\mathbb{H}(p,z) & = -\\Bigl(0.15\\log_2{0.17}+0.30\\log_2{0.28}+0.20\\log_2{0.20}+0.35\\log_2{0.35}\\Bigr) \\\\
       & = 1.92889\\dots\\text{bits}
    \\end{align}`,
+   jointEntropy: `$$\\mathbb{H}(X, Y) \\triangleq -\\sum_{x,\\,y}p(X=x,Y=y)\\log_2{p(X=x,Y=y)}$$`,
+   jointEntropy2: `\\begin{align}
+   \\mathbb{H}(X, Y) & = -\\Bigl(\\frac{1}{6}\\log_2{\\frac{1}{6}}+\\frac{2}{6}\\log_2{\\frac{2}{6}}+\\frac{1}{6}\\log_2{\\frac{1}{6}}+\\frac{2}{6}\\log_2{\\frac{2}{6}}\\Bigr) \\\\
+      & = 1.91829\\dots\\text{bits} \\lt \\mathbb{H}(X) + \\mathbb{H}(Y) = 2\\text{bits}
+   \\end{align}`,
+   jointEntropy3: `\\begin{align}
+   \\mathbb{H}(X) & = -\\Bigl(\\frac{3}{6}\\log_2{\\frac{3}{6}}+\\frac{3}{6}\\log_2{\\frac{3}{6}}\\Bigr) \\\\
+      & = 1\\,\\text{bit}
+   \\end{align}`,
+   jointEntropy4: `\\begin{align}
+   \\mathbb{H}(Y) & = -\\Bigl(\\frac{2}{6}\\log_2{\\frac{2}{6}}+\\frac{4}{6}\\log_2{\\frac{4}{6}}\\Bigr) \\\\
+      & = 0.91829\\dots\\text{bits}
+   \\end{align}`,
 }
