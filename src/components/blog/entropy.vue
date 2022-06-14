@@ -265,7 +265,9 @@
                Conditional Entropy
             </div>
             <p>
-               toads
+               <!-- The conditional entropy tells us how much uncertainty there will be in calculating <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
+               <vue-mathjax :formula="`$X$`"></vue-mathjax>. -->
+               toads (wip)
             </p>
          </div>
          <themeSwitch />
