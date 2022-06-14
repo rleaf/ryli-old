@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Learning to find the derivative of the quadratic form</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">Learning to Find the Derivative of the Quadratic Form</p>
                   <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
                </div>
             </div>

@@ -22,7 +22,7 @@
             <p class="blogdescription">
                {{description.transformers}}
             </p>
-            <li><router-link :to="{ name: 'cnn'}">The Forward & Backward of a Convolutional Neural Network</router-link></li>
+            <li><router-link :to="{ name: 'cnn'}">The Forward and Backward of a Convolutional Neural Network</router-link></li>
             <p class="date">1/12/22</p>
             <p class="blogdescription">
                {{description.cnn}}
@@ -47,7 +47,7 @@
             <p class="blogdescription">
                {{description.knn}}
             </p>
-            <li><router-link :to="{ name: 'quadraticform'}">Learning to find the derivative of the quadratic form</router-link></li>
+            <li><router-link :to="{ name: 'quadraticform'}">Learning to Find the Derivative of the Quadratic Form</router-link></li>
             <p class="date">8/26/21</p>
             <p class="blogdescription">
                {{description.quadratic}}
@@ -71,7 +71,7 @@
 
 
 export default {
-   name: 'speak',
+   name: 'cms',
    components: {
       // backdrop
    },

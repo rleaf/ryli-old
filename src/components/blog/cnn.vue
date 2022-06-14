@@ -6,7 +6,7 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">The Forward & Backward of a CNN</p>
+                  <p style="padding: 0 !important; margin: 0 !important;">The Forward and Backward of a Convolutional Neural Network</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">1 &#8226; 12 &#8226; 2022</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
