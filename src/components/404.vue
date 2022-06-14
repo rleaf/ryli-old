@@ -2,7 +2,12 @@
   <div id="fourofour">
      "404"
      <p>
-        The URL does not exist
+        <i>
+         "Never half-ass two things. Whole-ass one thing."
+         <br><br>
+         Ronald Ulysses Swanson
+        </i>
+        <br>
      </p>
   </div>
 </template>
@@ -23,11 +28,12 @@ export default {
    text-align: center;
    font-size: 40px;
    width: 100%;
-   color: var(--offWhite);
+   color: var(--shadeWhite1);
 }
 
 #fourofour > p {
-   font-size: 20px;
+   margin-top: 4em;
+   font-size: 16px;
 }
 
 </style>
