@@ -237,11 +237,12 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: 'history',
-  scrollBehavior(to) {
-
+  scrollBehavior(to, from) {
+    console.log(to);
+    console.log(from);
     let path = to.path.slice(1).split('/')
 
-    if (path.length > 1) {
+    if (path.length > 1 && to.name != from.name) {
       if (path[0] === 'blog' || path[0] === 'design') {
 
         return new Promise((resolve) => {
