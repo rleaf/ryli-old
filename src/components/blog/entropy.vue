@@ -7,7 +7,6 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Entropy in Machine Learning</p>
-                  <p style="font-size:18px"><i>Currently being worked on</i></p>
                   <p style="font-size: 18px; padding: 0 !important; ">6 &#8226; 11 &#8226; 2022</p>
                </div>
             </div>
@@ -28,6 +27,12 @@
                   </ul>
                   <li><a href="#joint">Joint Entropy</a></li>
                   <li><a href="#conditional">Conditional Entropy</a></li>
+                  <ul>
+                     <li><a href="#61">Equation 6.1</a></li>
+                     <li><a href="#645">Equation 6.4 & 6.5</a></li>
+                     <li><a href="#70">Equation 7.0</a></li>
+                  </ul>
+                  <li><a href="#thoughts">Thoughts</a></li>
                   <!-- <li>KL Divergence</li>
                   <ul>
                      <li></li>
@@ -42,7 +47,7 @@
                Although this read
                is catered to explaining entropy through a Machine Learning perspective, I encourage reading through some of the originating paper:
                <a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf" target="_blank">A Mathematical Theory of Communication</a>. All random variables mentioned here, unless
-               specifically mentioned otherwise, are discrete.
+               specifically mentioned otherwise, are discrete. I currently do not discuss <a href="https://en.wikipedia.org/wiki/Differential_entropy" target="_blank">differential entropy</a>.
             </p>
             <div id="intuition"></div>
             <div id="blogSubHeader">
@@ -158,7 +163,7 @@
             </div>
             <p>
                Cross entropy tells us how much more entropy there will be on a random variable with it's associated innate distribution if we sample it from a new prescribed distribution.
-               Because a single random variable embeds characteristics from two distributions, cross entropy is a metric that quantifies the difference between those two probability distributions.
+               Because two distributions are embedding onto a random variable, cross entropy is a metric that quantifies the difference between those two probability distributions.
                It tells us how many more expected bits we will need, assuming <vue-mathjax :formula="`$\\log_2$`"></vue-mathjax>, if we calculate information that has distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>
                using a new distribution <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
                Cross entropy can also be thought of as the average uncertainty of information, generated from <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>,
@@ -222,7 +227,7 @@
             </p>
             <div id="joint"></div>
             <div id="blogSubHeader">
-               Joint entropy
+               Joint Entropy
             </div>
             <p>
                Joint entropy carries analagous concept and definition as <a href="#intuition">entropy</a> however operates on a set of random variables as opposed to one.
@@ -265,9 +270,115 @@
                Conditional Entropy
             </div>
             <p>
-               <!-- The conditional entropy tells us how much uncertainty there will be in calculating <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
-               <vue-mathjax :formula="`$X$`"></vue-mathjax>. -->
-               toads (wip)
+               The conditional entropy tells us how much uncertainty there will be in calculating <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax>. Because of
+               the relationship between joint and conditional probability, specifically the <a href="https://en.wikipedia.org/wiki/Chain_rule_(probability)" target="_blank">chain rule of probability</a>:
+               <vue-mathjax :formula="`$p(x, y) = p(x\\,|\\, y)\\,p(y) = p(y\\,|\\,x) \\,p(x)$`"></vue-mathjax>, there are a 
+               handful of different interpretations to the conditional entropy. Most, if not all, of these interpretations are built directly on concepts defined above. As such, I would like to initially
+               define conditional entropy with what seems the most intuitive and then work through the remaining rigor to show those other interpretations. Defined as
+               <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the conditional entropy of the random variable <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax>
+               with distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+            </p>
+            <div style="justify-content: left"></div>
+            <vue-mathjax :formula='entropy.conditionalEntropy1'></vue-mathjax>
+            <p>
+               Equation 6.1, 6.4, 6.5, and 7.0 are the different interpretations I am going to focus on. The differences between these interpretations is that they each require a different combination of understanding
+               for concepts in probability theory and <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. An example will setup here then later
+               referenced to use at each interpretation.
+               <br><br>
+               Rolling a fair die, let <vue-mathjax :formula="`$X=1$`"></vue-mathjax> to indicate the rolled number is even and <vue-mathjax :formula="`$X=0$`"></vue-mathjax> otherwise. Let
+               <vue-mathjax :formula="`$Y=1 $`"></vue-mathjax> to indicate the rolled number is prime and <vue-mathjax :formula="`$Y = 0$`"></vue-mathjax> otherwise.
+               <br>
+               <br>
+               <table>
+                  <tr>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;"><vue-mathjax :formula="`$n$`"></vue-mathjax></th>
+                     <th style="border-bottom: 1px solid;">1</th>
+                     <th style="border-bottom: 1px solid;">2</th>
+                     <th style="border-bottom: 1px solid;">3</th>
+                     <th style="border-bottom: 1px solid;">4</th>
+                     <th style="border-bottom: 1px solid;">5</th>
+                     <th style="border-bottom: 1px solid;">6</th>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X$`"></vue-mathjax></th>
+                     <th>0</th>
+                     <th>1</th>
+                     <th>0</th>
+                     <th>1</th>
+                     <th>0</th>
+                     <th>1</th>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$Y$`"></vue-mathjax></th>
+                     <th>0</th>
+                     <th>1</th>
+                     <th>1</th>
+                     <th>0</th>
+                     <th>1</th>
+                     <th>0</th>
+                  </tr>
+               </table>
+               <br>
+               <table>
+                  <tr>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vue-mathjax :formula="`$p(X,Y)$`"></vue-mathjax></th>
+                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 0 $`"></vue-mathjax></th>
+                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 1 $`"></vue-mathjax></th>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 0$`"></vue-mathjax></th>
+                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
+                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                  </tr>
+                  <tr>
+                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 1$`"></vue-mathjax></th>
+                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
+                  </tr>
+               </table>
+            </p>
+            <div id="61"></div>
+            <h2>6.1</h2>
+            <p>
+               Equation 6.1 most succinctly defines the relationship, in terms of entropy, between joint and conditional probability. Conditional probability is joint probability except the only difference is that, in
+               the case of two random variables, one of those random variables are fixed. This means the distribution is forced to find the probability of an event of a subspace of the total sample space. This
+               intuition is directly transferable to the concept of uncertainty. If I have <vue-mathjax :formula="`$p(y\\,|\\,x)$`"></vue-mathjax> - because the event of random variable
+               <vue-mathjax :formula="`$X$`"></vue-mathjax> is predetermined, the entropy it provides is equal to 0. We can reformulate this concept as the joint entropy,
+               <vue-mathjax :formula="`$\\mathbb{H}(X, Y)$`"></vue-mathjax>, except again because a random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> should be 0 as it has no entropy, we must subtract it. 
+               This provides us with equation 6.1.
+            </p>
+            <vue-mathjax :formula='entropy.conditionalEntropy2'></vue-mathjax>
+            <br><br>
+            <div id="645"></div>
+            <h2>6.4 & 6.5</h2>
+            <p>
+               Both 6.4 and 6.5 have a couple "sub" interpretations. One way to look at it is taking the joint cross entropy where <vue-mathjax :formula="`$P = p(x, y)$`"></vue-mathjax> and
+               <vue-mathjax :formula="`$Q = p(y\\,|\\,x)$`"></vue-mathjax>. Through this lens, we are calculating the combined expected entropy between random variables <vue-mathjax :formula="`$X$`"></vue-mathjax>
+               and <vue-mathjax :formula="`$Y$`"></vue-mathjax> of their joint distribution when encoded to a new conditional distribution. This is synonymous to quantifying the difference between the two distributions.
+               The second way to look at it is by taking the self information generated from distribution <vue-mathjax :formula="`$P$`"></vue-mathjax> of the self information of distribution
+               <vue-mathjax :formula="`$Q$`"></vue-mathjax>.
+            </p>
+            <vue-mathjax :formula='entropy.conditionalEntropy3'></vue-mathjax>
+            <br><br>
+            <div id="70"></div>
+            <h2>7.0</h2>
+            <p>
+               Equation 7.0 says "the conditional entropy of <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax> is equal to the expectation, generated
+               from the marginal distribution of <vue-mathjax :formula="`$X$`"></vue-mathjax>, of the entropy of the distribution of <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
+               <vue-mathjax :formula="`$X$`"></vue-mathjax>. It is subtle, but the right hand term inside the expectation is not a conditional entropy - it is the entropy of the conditional distribution.  
+            </p>
+            <vue-mathjax :formula='entropy.conditionalEntropy4'></vue-mathjax>
+            <div id="thoughts"></div>
+            <div id="blogSubHeader">
+               Thoughts
+            </div>
+            <p>
+               My first run-in with entropy was cross entropy loss maybe half a year ago at the time of writing this. My second was with the KL divergence very quickly after that. My third happened about a week ago and
+               is what made me want to write this, I was reading about the lower variational bound on a variational autoencoder. Originally I did not intend to delve into the different ways you can view some of the
+               entropies such as the conditional entropy but the more I thought about it, the more I realized "Oh...you can look at it like this too, let me quickly write that down". Turns out it was pretty fun.
+            </p>
+            <p>
+               Ryan
             </p>
          </div>
          <themeSwitch />

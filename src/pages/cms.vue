@@ -12,7 +12,7 @@
          </p>
          <div id="links">
 
-            <li><router-link :to="{ name: 'entropy'}">Entropy in Machine Learning <i>(wip)</i> </router-link></li>
+            <li><router-link :to="{ name: 'entropy'}">Entropy in Machine Learning</router-link></li>
             <p class="date">6/11/22</p>
             <p class="blogdescription">
                {{description.entropy}}
@@ -161,6 +161,7 @@ a {
 }
 #links {
    margin-top: 6em;
+   margin-bottom: 6em;
 }
 
 .blogdescription {
