@@ -320,7 +320,8 @@ html {
 }
 
 #img1300 {
-   width: 1300px !important;
+   width: 1300px;
+   max-width: 100%;
    user-select: none;
    -moz-user-select: none;
    -webkit-user-drag: none;
