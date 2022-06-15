@@ -39,9 +39,6 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Amiri&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
-
 
 :root {
    /* green */
@@ -61,6 +58,7 @@
    --mobilePad: #050505;
    --toc: #171717;
    --type: 'Lora', sans-serif;
+   --type2: 'Lora', sans-serif;
    --typeSize: 15px;
 
 }
