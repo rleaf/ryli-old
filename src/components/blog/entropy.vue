@@ -28,9 +28,9 @@
                   <li><a href="#joint">Joint Entropy</a></li>
                   <li><a href="#conditional">Conditional Entropy</a></li>
                   <ul>
-                     <li><a href="#61">Equation 6.1</a></li>
-                     <li><a href="#645">Equation 6.4 & 6.5</a></li>
-                     <li><a href="#70">Equation 7.0</a></li>
+                     <li><a href="#61">Example (6.1)</a></li>
+                     <li><a href="#645">Example (6.4) & (6.5)</a></li>
+                     <li><a href="#70">Example (7.0)</a></li>
                   </ul>
                   <li><a href="#thoughts">Thoughts</a></li>
                   <!-- <li>KL Divergence</li>
@@ -355,8 +355,8 @@
                Both 6.4 and 6.5 have a couple "sub" interpretations. One way to look at it is taking the joint cross entropy where <vue-mathjax :formula="`$P = p(x, y)$`"></vue-mathjax> and
                <vue-mathjax :formula="`$Q = p(y\\,|\\,x)$`"></vue-mathjax>. Through this lens, we are calculating the combined expected entropy between random variables <vue-mathjax :formula="`$X$`"></vue-mathjax>
                and <vue-mathjax :formula="`$Y$`"></vue-mathjax> of their joint distribution when encoded to a new conditional distribution. This is synonymous to quantifying the difference between the two distributions.
-               The second way to look at it is by taking the self information generated from distribution <vue-mathjax :formula="`$P$`"></vue-mathjax> of the self information of distribution
-               <vue-mathjax :formula="`$Q$`"></vue-mathjax>.
+               A second way to look at it is by taking the expectation generated from distribution <vue-mathjax :formula="`$P$`"></vue-mathjax> of the self information of distribution
+               <vue-mathjax :formula="`$Q$`"></vue-mathjax>. A third way can be seen as finding the KL Divergence <vue-mathjax :formula="`$D_{\\mathbb{KL}}(p(x, y)\\,||\\,p(x))$`"></vue-mathjax>.
             </p>
             <vue-mathjax :formula='entropy.conditionalEntropy3'></vue-mathjax>
             <br><br>

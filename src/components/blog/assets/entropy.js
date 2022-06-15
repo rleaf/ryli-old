@@ -63,7 +63,7 @@ export default {
    \\mathbb{H}(Y\\,|\\,X) & =\\mathbb{E}_{X\\sim\\,{p}(x)}[\\mathbb{H}(p(Y\\,|\\,X))] \\\\[2ex]
       & = -\\sum_{x}p(x)\\sum_{y}p(y\\,|\\,x)\\log_2{p(y\\,|\\,x)} \\\\[2ex]
       & = -\\sum_{x}p(x)\\sum_{y}\\frac{p(y,x)}{p(x)}\\log_2{\\frac{p(y,x)}{p(x)}} \\\\[2ex]
-      & = -\\Bigl(\\frac{3}{6}\\bigl(\\frac{1/6}{3/6}\\log_2{\\frac{1/6}{3/6}}+\\frac{2/6}{3/6}\\log_2{\\frac{2/6}{3/6}}\\bigr)+\\frac{3}{6}\\bigl(\\frac{2/6}{3/6}\\log_2{\\frac{2/6}{3/6}}+\\frac{1/6}{3/6}\\log_2{\\frac{1/6}{3/6}}\\bigr)\\Bigr) \\\\[2ex]
+      & = -\\Bigl(\\frac{3}{6}\\Bigl(\\frac{1/6}{3/6}\\log_2{\\frac{1/6}{3/6}}+\\frac{2/6}{3/6}\\log_2{\\frac{2/6}{3/6}}\\Bigr)+\\frac{3}{6}\\Bigl(\\frac{2/6}{3/6}\\log_2{\\frac{2/6}{3/6}}+\\frac{1/6}{3/6}\\log_2{\\frac{1/6}{3/6}}\\Bigr)\\Bigr) \\\\[2ex]
       & = 0.91829\\dots\\text{bits}
    \\end{align}`,
 }
