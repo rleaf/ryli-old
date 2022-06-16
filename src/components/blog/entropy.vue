@@ -282,8 +282,8 @@
             <vue-mathjax :formula='entropy.conditionalEntropy1'></vue-mathjax>
             <p>
                Equation 6.1, 6.4, 6.5, and 7.0 are the different interpretations I am going to focus on. The differences between these interpretations is that they each require a different combination of understanding
-               for concepts in probability theory and <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. An example will setup here then later
-               referenced to use at each interpretation.
+               for concepts in probability theory, <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. The examples of each equation refer to the
+               distribution shown immediately below.
                <br><br>
                Rolling a fair die, let <vue-mathjax :formula="`$X=1$`"></vue-mathjax> to indicate the rolled number is even and <vue-mathjax :formula="`$X=0$`"></vue-mathjax> otherwise. Let
                <vue-mathjax :formula="`$Y=1 $`"></vue-mathjax> to indicate the rolled number is prime and <vue-mathjax :formula="`$Y = 0$`"></vue-mathjax> otherwise.
