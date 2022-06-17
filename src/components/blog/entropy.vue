@@ -95,10 +95,10 @@
                the face). Taking the uniform distribution where the random variable, the die, has 4 possible outcomes, <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax>, we can calculate the entropy simply with
                <vue-mathjax :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vue-mathjax>. With a 6 sided die, this would be <vue-mathjax :formula="`$\\log_2{6} = 2.58\\dots\\text{bits}$`"></vue-mathjax>.
                As mentioned previously about the uniform distribution, these answers not only represents the amount of entropy
-               present in our dice random variables, but they are also the upper bound for random variables with four and six possible values respectively as no distribution is more uncertain than the uniform. 
+               present in our dice random variables, but they are also the upper bound the possible entropy. 
             </p>
             <p>
-               A couple more examples to solidify understanding:
+               A couple more examples:
             
                <br><br>
                <vue-mathjax :formula="`$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 3)$`"></vue-mathjax>
@@ -133,7 +133,7 @@
                entropy as <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,3)$`"></vue-mathjax> composed of three. Of course if we know that there is no impossible value in a random variable,
                <vue-mathjax :formula="`$p(X=x)=0$`"></vue-mathjax>, we can then attribute the amount of values to the entropy.
                <br><br>
-               Looking at entropy like this we can decompose the measurement to be a combination of a random variable's probability distribution and, i.f.f the random variable has no impossible values, the total amount
+               Looking at entropy like this we can decompose the measurement to be a combination of a random variable's probability distribution and i.f.f the random variable has no impossible values, the total amount
                of values in that random variable.
                <!-- You can see that as the values of random variable
                <vue-mathjax :formula="`$X$`"></vue-mathjax> decrement while following the same uniform distribution, <vue-mathjax :formula="`$\\mathcal{U}$`"></vue-mathjax>, the entropy reduces accordingly.
