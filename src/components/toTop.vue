@@ -61,6 +61,7 @@ export default {
 } */
 
 button {
+   font-family: 'Inconsolata', sans-serif;
    display: none; 
    /* opacity: 0; */
    position: fixed;

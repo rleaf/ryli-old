@@ -3,9 +3,11 @@
 
   <div class="themeSwitch">
      <!-- <button class="themeButton" @click="changeTheme()">Change Theme</button> -->
-     <button class="themeButton" @click="changeTheme()">{{ theme }}</button>
-     <button class="themeButton" @click="changeType()">{{ type }}</button>
-     <button class="themeButton" @click="changeSize()">{{ size }}</button>
+     <span class="themeButton" @click="changeTheme()">
+      <div class="themeIcon"></div>
+     </span>
+     <span class="themeButton" @click="changeType()">{{ type }}</span>
+     <span class="themeButton" @click="changeSize()">{{ size }}</span>
   </div>
    </keep-alive>
 </template>
@@ -55,7 +57,7 @@ export default {
    methods: {
       themeRender() {
          if(document.body.scrollTop > 150 ||  document.documentElement.scrollTop > 150) {
-            gsap.to('.themeSwitch', {duration: .25, display: 'block', opacity: 1, top: 20})
+            gsap.to('.themeSwitch', {duration: .25, display: 'flex', opacity: 1, top: 20})
             // buttonToTop.style.display = "block"
          } else {
             gsap.to('.themeSwitch', {duration: .25, display: 'none', opacity: 0, top: 0})
@@ -66,6 +68,8 @@ export default {
       changeTheme() {
 
          let landing = document.querySelector('#landing')
+         let themeIcon = document.querySelector('.themeIcon')
+
          landing.classList.toggle('day')
 
          let nav = document.querySelectorAll('.nav')
@@ -83,6 +87,8 @@ export default {
 
          this.themeBool = !this.themeBool
          this.themeBool ? this.theme = 'Day': this.theme = 'Night'
+         // this.themeBool ? themeIcon.style.maskImage = `url('../assets/moon2.svg')` : themeIcon.style.maskImage = `url('../assets/sun.svg')`
+         themeIcon.classList.toggle('dayIcon')
       },
 
       changeType() {
@@ -109,30 +115,59 @@ export default {
 
 <style scoped>
 
+   
+
    .themeSwitch {
       display: none;
+      align-items: center;
+      justify-content: center;
       border: 1px solid;
       border-color: var(--shadeWhite2);
       background: var(--primaryDark);
       position: fixed;
-      padding: 5px 5px 5px 0;
-      /* width: 5vw; */
-      text-align: center;
+      /* line-height: 34px; */
+      height: 36px;
+      padding-right: 5px;
       right: 30px;
-      /* width: 90px; */
-      /* top: 20px; */
       z-index: 10;
+
    }
-   .themeSwitch > button {
-      /* display: none; */
+
+   .themeSwitch > span {
       border: none;
+      /* height: 15px; */
       box-shadow: -1px 0 var(--shadeWhite2), 0 1px var(--shadeWhite2), 1px 0 var(--shadeWhite2), 0 -1px var(--shadeWhite2);
+      font-family: 'Inconsolata', sans-serif;
+      font-size: 14px;
       outline: none;
-      background-color: var(--primaryDark); 
       color: var(--white);
-      padding: 5px 10px;
       margin-left: 5px;
-      /* width: 400px; */
+      cursor: pointer;
+   }
+
+   .themeSwitch > span:not(:first-child) {
+   /* .themeSwitch > span { */
+      padding: 5px 10px 5px 10px;
+      /* background-color: var(--primaryDark); */
+   }
+
+   .themeSwitch > span:first-child {
+      padding: 0;
+   }
+
+   .themeIcon {
+      background-color: var(--primaryDark);
+      width: 25px;
+      height: 25px;
+      background-color: var(--white);
+      mask-image: url('../assets/moon.svg');
+      mask-position: center;
+      mask-size: 70%;
+      mask-repeat: no-repeat;
+   }
+
+   .dayIcon {
+      mask-image: url('../assets/sun.svg');
    }
    
    .daymodeButton {

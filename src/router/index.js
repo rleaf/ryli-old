@@ -238,8 +238,6 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   scrollBehavior(to, from) {
-    console.log(to);
-    console.log(from);
     let path = to.path.slice(1).split('/')
 
     if (path.length > 1 && to.name != from.name) {
