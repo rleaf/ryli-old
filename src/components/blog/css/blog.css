@@ -13,6 +13,12 @@
    font-size: 24px;
 }
 
+.bgColor {
+   background-color: var(--bgColor);
+   border-radius: 5px;
+   border: 1px solid
+}
+
 p {
    padding: 25px 6vw;
    line-height: 2;

@@ -712,7 +712,7 @@ html {
    --white: #000;
    --shadeWhite1: #0e0e0e;
    --shadeWhite2: #0e0e0e;
-   --bgColor: #b1b1b1;
+   --bgColor: #c2c2c2;
    --codeblock: #292d3e;
    --codeSnippet: #d8d8d8;
    --mobilePad: #c0c0c0;
