@@ -17,6 +17,7 @@
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">About The Project</h2>
                      Expanse is a header typeface designed with tech and sci-fi aesthetics. I incorporated minimalistic and geometric aesthetics into the typeface while
                      attempting to preserve readability.
                   </div>

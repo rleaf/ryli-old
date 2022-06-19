@@ -6,7 +6,7 @@
             <div class="textDesignContainer">
             Dropbox Redesign
             <div class="textDesignSubHeader">
-               Web Design & Development
+               Web Design / Development
             </div>
 
             </div>
@@ -16,8 +16,8 @@
          <div class="designBodyContainer">
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
-
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">About The Project</h2>
                      A redesign intended to convey a simple and cleaner aesthetic
                   </div>
                   

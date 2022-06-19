@@ -17,6 +17,7 @@
          <div class="designContainerBox">
             <div class="designContainerBoxPadding">
                <div class="designTextContainerBody">
+                  <h2 class="designSubTitle">About The Project</h2>
                   I spent the weekend at Barnegat Light, NJ during the winter.
                </div>
                <img src="../../assets/design/barnegat/beach.jpg" class="designImg1300">
@@ -62,6 +63,7 @@
                   </div>
                   <div class="designOffsetContainer">
                      <div class="offsetImgText">
+                        <h2 class="designSubTitle">Thoughts</h2>
                         The picture on the left (or below depending on your screen width), was taken while I was taking shots for the first picture. If you go to the beach at 4 am in the middle
                         of January, bring a lot of jackets - I forgot how windy it gets. All of these shots were taken on my Rebel T2i.
                      </div>

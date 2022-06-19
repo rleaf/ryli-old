@@ -18,6 +18,7 @@
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">About The Project</h2>
                      I designed and illustrated 50 various hand gestures for <a href="https://titles.cognella.com/advanced-public-speaking-9781793513274" target="_blank"><i>"Advanced Public Speaking: Theory and Technique"</i></a>. The book involves
                      incorporating these gestures into public speaking to increase effective communication. Original inspiration
                      came from the American Sign Language, however many gestures have been redesigned to be more suitable
@@ -26,7 +27,7 @@
                   <img src="../../assets/design/signlanguage/mock.jpg" class="designImg1300">
                   <img src="../../assets/design/signlanguage/mock2.jpg" class="designImg1300">
                   <div class="designImageSubText">
-                     <p> Shown above are mockups found online, not the actual book. </p>
+                     <p>Shown above are mockups</p>
                   </div>
                   <div class="designSpace"></div>
                   <div class="designOffsetImageLeft">
@@ -37,14 +38,18 @@
                      </div>
                      <div class="designOffsetContainer">
                         <div class="offsetImgText">
-                           Before I could begin illustrating and designing the gestures, I needed to create them. The author marked the desired ASL signs he wanted me to replicate, but also
-                           emphasized that if the sign wasn't intuitive in a presentation environment, to consider variations. An overlap I realized while creating the gestures,
-                           was that most people, when they present actually use the <i>same</i> hand movements - or at the very least, similar variations. I wanted to evenly incorporate the
+                           <h2 class="designSubTitle">Problems & Resolutions</h2>
+                           Before I could begin illustrating and designing the gestures, I needed to create them. The author marked the desired ASL signs to pull inspiration from, however also
+                           emphasized that if the sign wasn't intuitive in a presentation environment, to consider variations.
+                           <br>
+                           <br>
+                           An overlap I realized while creating the gestures
+                           was that most people, when they present actually use the <i>same</i> hand movements - or at the very least similar variations. The goal was to evenly incorporate the
                            idiosyncratic movement that came with ASL while also maintaining the generality of "regular hand waving".
                            <br>
                            <br>
-                           I decided to used my arms as a model for the gestures and first trace everything in Photoshop. This helped tremendously speed up drawing all 50 gestures. During the first draft,
-                           I would check in with the author every ~10 drawings to confirm the gestures.
+                           I decided to used my arms as a model for the gestures and first trace everything in Photoshop. This helped tremendously speed up drawing all 50 gestures. To account for any awkward drawings
+                           that did not intuitively convey meaning or was too complex to be used in public speaking I frequently talked to other artists, designers, and the client.
                         </div>
                      </div>
                   </div>
@@ -55,8 +60,9 @@
                   </div>
                   <div class="designSpace"></div>
                   <div class="designTextContainerBody">
-                     Below are 55 illustrations of the final gestures. I added indicator arrows and a gray-to-white color change to help communicate <i>"where to start"</i> and <i>"how to move"</i>. I did not
-                     illustrate the finer characteristics of hands such as fingernails and knuckles to keep everything simple.
+                     <h2 class="designSubTitle">Further Improvements</h2>
+                     Below are 55 illustrations of the final gestures. Arrows and a grey-to-white color change were added to help communicate <i>"where to start"</i> and <i>"how to move"</i>. I did not
+                     illustrate the finer characteristics of hands such as fingernails and knuckles to keep detail simple.
                   </div>
                   <img src="../../assets/design/signlanguage/illustrations1.jpg" class="designImg1300">
                   <div class="designSpace"></div>
@@ -66,9 +72,13 @@
                   </div>
                   <div class="designSpace"></div>
                   <div class="designTextContainerBody">
-                     I was initially apprehensive doing this project because I did not have a lot of experience illustrating. I started everything by Googling <i>"*insert sign name here* ASL"</i> and trying to trace
-                     out the images I found. This was problematic because the process wasn't reliable (different perspective & different hands). However, after coming up with the idea to use my own hands to create the gesture
-                     and then draw/illustrate those, everything became more rhythmic.
+                     <h2 class="designSubTitle">Thoughts</h2>
+                     I was initially apprehensive doing this project because I did not have a lot familiarity with drawing; I'd like to believe that most artists are in the <i>"same boat"</i> on the topic of
+                     hands being one of the more difficult parts of a human body to draw. Before even thinking of using my own hands as a model, I started by searching <i>"*insert sign name here* ASL"</i> and tracing
+                     out the images I found. 
+                     <br><br>
+                     This process of tracing images I found online became very quickly problematic because it wasn't reliable. Different hand shapes and perspectives removed all cohesion between my drawings.
+                     After using my own hands as a model to create the gestures in a much more controlled environment, everything became more rhythmic.
                   </div>
                   <div class="designSpace"></div>
                </div>

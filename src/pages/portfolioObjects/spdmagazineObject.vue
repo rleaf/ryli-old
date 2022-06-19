@@ -16,6 +16,7 @@
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">About The Project</h2>
                      My entry to the SPD design competition composed of a four page magazine spread. I decided to go with a spread layout that had a science fiction and computer-esque aesthetic.
                      I focused on illustrating "bundles" of threads together to resemble the connectionism that is frequently associated with AI while keeping them spread out enough to appear organic.
                   </div>
@@ -28,6 +29,7 @@
                      At the time I was a little interested in AI so I decided to dedicate my entry to the subject. The text is from the Wikipedia page.
                   </div> -->
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">Creative Process</h2>
                      I had the idea already of incorporating threads and dots into the design and used Illustrator to create some concepts. The goal at this stage was to simply create as much of anything
                      as possible. Even if I knew that I wouldn't use a particular asset, as long as it aligned with the aesthetic I was pursuing, I wanted it on the artboard.
                   </div>
@@ -55,6 +57,7 @@
                      </div>
                      <div class="designOffsetContainer">
                         <div class="offsetImgText">
+                           <h2 class="designSubTitle">Creative Process</h2>
                            For lighter designs where I didn't want to detriment legibility, I added "flairs" and subtle rings of dots behind the text.
                            I also lighten the background to reduce contrast for a better reading experience as you transition to the second page on the first spread.
                         </div>
@@ -67,7 +70,9 @@
                   <div class="designOffsetImageRight">
                      <div class="designOffsetContainer">
                         <div class="offsetImgText">
-                           For the title text "decoded", I blended together an array of dots and then masked everything under a bold typeface. Lastly I applied the blue-to-pink gradient 
+                           <h2 class="designSubTitle">Creative Process</h2>
+                           For the title text "decoded", I blended together an array of dots and then masked everything under a bold typeface. Lastly I applied the blue-to-pink gradient.
+                           The goal for the text was to have it fit the concept of an LED to fit with the intended aesthetic. 
                         </div>
                      </div>
                      <div class="designOffsetContainer">
@@ -90,7 +95,8 @@
                   </div>
                   <div class="designSpace"></div>
                      <div class="designTextContainerBody">
-                        Desiging this was a lot of fun. Although I don't regret adding a page worth of text for information, in the future, I would probably cut down on that text and and use the
+                        <h2 class="designSubTitle">Thoughts</h2>
+                        Desiging this was a lot of fun. However in retrospect, next time I will probably cut down on amount of text and and use the
                         available real-estate for adding more illustrations and designs.
                      <div class="designSpace"></div>
                   </div>

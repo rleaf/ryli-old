@@ -16,10 +16,11 @@
             <div class="designContainerBox">
                <div class="designContainerBoxPadding">
                   <div class="designTextContainerBody">
-                     The purpose of this redesign is to maintain the aesthetic already established and compliment it with increased functionality.
+                     <h2 class="designSubTitle">About The Project</h2>
+                     This redesign was a challenge to maintain the aesthetic already established and compliment it with increased functionality.
                      The goals included: better organization on the landing page,
                      a "stats" section of your listening activity, and control of generating your own playlist.
-                     Various cosmetic changes were also introduced. This project was desiged at the time of the 2019 Spotify UX.
+                     Various cosmetic changes were also introduced. This project was desiged at the time of the 2019 Spotify UI.
                   </div>
 
                   <div id="textContainerBody">
@@ -56,6 +57,7 @@
                   </div>
                   <div class="designSpace"></div>
                   <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">Thoughts</h2>
                      In total, there are 10 images - some redesigned, some created.
                   </div>
                   <div class="designSpace"></div>

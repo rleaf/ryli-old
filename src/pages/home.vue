@@ -37,7 +37,8 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Lora&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap');
 
 :root {
@@ -474,7 +475,8 @@ html {
 }
 
 .textDesignSubHeader {
-   font-size: 18px;
+   font-size: 20px;
+   font-weight: 300;
    padding-top: 20px;
    text-shadow: 1px 1px 8px #0e0e0e;
 }
@@ -500,8 +502,9 @@ html {
 }
 
 .textDesignContainer {
-   font-size: 46px;
-   font-family: 'Lora';
+   font-size: 54px;
+   font-weight: 500;
+   font-family: var(--type);
    color: var(--shadeWhite1);
    text-shadow: 1px 1px 8px #0e0e0e;
    text-align: center;
@@ -534,11 +537,20 @@ html {
 }
 
 .designTextContainerBody {
+   /* background-color: var(--white); */
+   text-align: left;
    padding: 50px 10vw;
    color: var(--black);
    font-family: 'Lora', serif;
    font-size: 16px;
-   line-height: 140%;
+   line-height: 1.9;
+}
+
+h2.designSubTitle {
+   line-height: normal;
+   font-weight: 500;
+   margin-left: 1em;
+   margin-bottom: 2em;
 }
 
 .designImageSubText {
@@ -590,7 +602,8 @@ html {
    color: var(--black);
    font-family: 'Lora', serif;
    font-size: 16px;
-   line-height: 140%;
+   line-height: 1.9;
+   text-align: left;
    /* margin-bottom: 70px; */
 }
 
