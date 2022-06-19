@@ -1,17 +1,12 @@
 <template>
   <div id="landing">
      <!-- <backdrop /> -->
-     <div class="testo">
-
-     <!-- <NavBar /> -->
          <div id="textContainerHeader">
          </div>
-      <!-- <div id="textContainerBody" style="font-size: 16px;"> -->
          <div id="curriculumBody">
                <div id="curriculumHeader">
                   <u style="font-size: 18px;">About</u>
                </div>
-               <!-- <sharks /> -->
                <p>
                   <curriculumAbout/>
                </p>
@@ -85,7 +80,6 @@
 
       </div>
      </div>
-  </div>
 </template>
 
 <script>

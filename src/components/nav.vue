@@ -16,13 +16,13 @@
                <router-link :to="{ name: 'curriculumvitae'}" class="underline">
                   <li>About / CV</li>
                </router-link>
-               <router-link to='' class="underline">
+               <!-- <router-link to='' class="underline">
                   <span @click="emailnotif">
                      <li>Contact</li>
                      <input value="ryanurquhartlin@gmail.com" class="email" style="opacity: 0; visibility: 0; z-index: -999; position: absolute;">
                      <span class="emailnotif" style="position: absolute; overflow-wrap: normal;">Email copied to clipboard!</span>
                   </span>
-               </router-link>
+               </router-link> -->
                <router-link :to="{ name: 'blog'}" class="underline">
                   <li>Blog</li>
                </router-link>
@@ -64,9 +64,9 @@
                      <router-link :to="{ name: 'curriculumvitae'}" class="mobilenavbutton">
                         <li>About / CV</li>
                      </router-link>
-                     <span @click="emailnotif" class="mobilenavbutton" style="cursor: pointer;">
+                     <!-- <span @click="emailnotif" class="mobilenavbutton" style="cursor: pointer;">
                         <li>Copy email to clipboard</li>
-                     </span>
+                     </span> -->
                      <router-link :to="{ name: 'blog'}" class="mobilenavbutton">
                         <li>Blog</li>
                      </router-link>
