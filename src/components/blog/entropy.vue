@@ -32,6 +32,7 @@
                      <li><a href="#645">Example (6.4) & (6.5)</a></li>
                      <li><a href="#70">Example (7.0)</a></li>
                   </ul>
+                  <!-- <li><a href="#kldivergence">Kullback-Leibler Divergence</a></li> -->
                   <li><a href="#thoughts">Thoughts</a></li>
                   <!-- <li>KL Divergence</li>
                   <ul>
@@ -368,6 +369,14 @@
                <vue-mathjax :formula="`$X$`"></vue-mathjax>. It is subtle, but the right hand term inside the expectation is not a conditional entropy - it is the entropy of the conditional distribution.  
             </p>
             <vue-mathjax :formula='entropy.conditionalEntropy4'></vue-mathjax>
+            <div id="kldivergence"></div>
+            <!-- <div id="blogSubHeader">
+               Kullback-Leibler Divergence
+            </div>
+            <p>
+               Also known as relative entropy, the KL Divergence is a measurement that quantifies the dissimilarity between two probaility distributions <vue-mathjax :formula="`$p$`"></vue-mathjax>
+               and <vue-mathjax :formula="`$q$`"></vue-mathjax>
+            </p> -->
             <div id="thoughts"></div>
             <div id="blogSubHeader">
                Thoughts
