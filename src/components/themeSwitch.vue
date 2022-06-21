@@ -162,7 +162,7 @@ export default {
       background-color: var(--white);
       mask-image: url('../assets/moon.svg');
       mask-position: center;
-      mask-size: 70%;
+      mask-size: 60%;
       mask-repeat: no-repeat;
    }
 
