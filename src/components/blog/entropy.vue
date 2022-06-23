@@ -95,8 +95,8 @@
                Let's pretend we're rolling a fair 4 sided die where each vertex has equal probability of pointing up (you look at the vertices on a 4 sided die, not
                the face). Taking the uniform distribution where the random variable, the die, has 4 possible outcomes, <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax>, we can calculate the entropy simply with
                <vue-mathjax :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vue-mathjax>. With a 6 sided die, this would be <vue-mathjax :formula="`$\\log_2{6} = 2.58\\dots\\text{bits}$`"></vue-mathjax>.
-               As mentioned previously about the uniform distribution, these answers not only represents the amount of entropy
-               present in our dice random variables, but they are also the upper bound the possible entropy. 
+               As mentioned previously about the uniform distribution, these answers not only represent the amount of entropy
+               present in our dice random variables, but are also the upper bound of possible entropy. 
             </p>
             <p>
                A couple more examples:
@@ -283,8 +283,8 @@
             <vue-mathjax :formula='entropy.conditionalEntropy1'></vue-mathjax>
             <p>
                Equation 6.1, 6.4, 6.5, and 7.0 are the different interpretations I am going to focus on. The differences between these interpretations is that they each require a different combination of understanding
-               for concepts in probability theory, <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. The examples of each equation refer to the
-               distribution shown immediately below.
+               for concepts in probability theory, <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. The examples refer to the
+               distribution defined immediately below.
                <br><br>
                Rolling a fair die, let <vue-mathjax :formula="`$X=1$`"></vue-mathjax> to indicate the rolled number is even and <vue-mathjax :formula="`$X=0$`"></vue-mathjax> otherwise. Let
                <vue-mathjax :formula="`$Y=1 $`"></vue-mathjax> to indicate the rolled number is prime and <vue-mathjax :formula="`$Y = 0$`"></vue-mathjax> otherwise.
@@ -342,10 +342,10 @@
             <h2>6.1</h2>
             <p>
                Equation 6.1 most succinctly defines the relationship, in terms of entropy, between joint and conditional probability. Conditional probability is joint probability except the only difference is that, in
-               the case of two random variables, one of those random variables are fixed. This means the distribution is forced to find the probability of an event of a subspace of the total sample space. This
-               intuition is directly transferable to the concept of uncertainty. If I have <vue-mathjax :formula="`$p(y\\,|\\,x)$`"></vue-mathjax> - because the event of random variable
-               <vue-mathjax :formula="`$X$`"></vue-mathjax> is predetermined, the entropy it provides is equal to 0. We can reformulate this concept as the joint entropy,
-               <vue-mathjax :formula="`$\\mathbb{H}(X, Y)$`"></vue-mathjax>, except again because a random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> should be 0 as it has no entropy, we must subtract it. 
+               the case of two random variables, one of those random variables are fixed. This means the conditional distribution is forced to find the probability of an event in a subspace of the total sample space. This
+               intuition is directly transferable to the concept of uncertainty. If I have <vue-mathjax :formula="`$p(y\\,|\\,x)$`"></vue-mathjax>, because the event of random variable
+               <vue-mathjax :formula="`$X$`"></vue-mathjax> is predetermined, the entropy it provides is equal to 0. We can reformulate this as the joint entropy,
+               <vue-mathjax :formula="`$\\mathbb{H}(X, Y)$`"></vue-mathjax>, except again because random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> should be 0 as it has no entropy, we must subtract it. 
                This provides us with equation 6.1.
             </p>
             <vue-mathjax :formula='entropy.conditionalEntropy2'></vue-mathjax>
@@ -365,8 +365,9 @@
             <h2>7.0</h2>
             <p>
                Equation 7.0 says "the conditional entropy of <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax> is equal to the expectation, generated
-               from the marginal distribution of <vue-mathjax :formula="`$X$`"></vue-mathjax>, of the entropy of the distribution of <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
-               <vue-mathjax :formula="`$X$`"></vue-mathjax>. It is subtle, but the right hand term inside the expectation is not a conditional entropy - it is the entropy of the conditional distribution.  
+               from the marginal distribution of <vue-mathjax :formula="`$X$`"></vue-mathjax>, of the entropy of the distribution <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
+               <vue-mathjax :formula="`$X$`"></vue-mathjax>. It is subtle and may look visually deceiving, 
+               but the right hand term inside the expectation is not conditional entropy, it is the entropy of the conditional distribution.
             </p>
             <vue-mathjax :formula='entropy.conditionalEntropy4'></vue-mathjax>
             <div id="kldivergence"></div>
@@ -384,7 +385,9 @@
             <p>
                My first run-in with entropy was cross entropy loss maybe half a year ago at the time of writing this. My second was with the KL divergence very quickly after that. My third happened about a week ago and
                is what made me want to write this, I was reading about the lower variational bound on a variational autoencoder. Originally I did not intend to delve into the different ways you can view some of the
-               entropies such as the conditional entropy but the more I thought about it, the more I realized "Oh...you can look at it like this too, let me quickly write that down". Turns out it was pretty fun.
+               entropies such as the conditional entropy but the more I thought about it, the more I realized "Oh...you can look at it like this too, let me quickly write that down". I think it's important in all of math,
+               but I'd like to emphasize trying to understand the different interpretations of entropy found here and in any other read. Because a lot of machine learning is defined probabilistically, information (entropy)
+               has become a very useful tool in reconfiguring mechanics in deep learning.
             </p>
             <p>
                Ryan
