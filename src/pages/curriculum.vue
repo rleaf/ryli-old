@@ -39,7 +39,7 @@
                      <ul>
                         <li>Python (PyTorch, Pandas, NumPy)</li>
                         <li>JavaScript (Vue, Node.js, Three.js, GSAP)</li>
-                        <li>GLSL Shaders</li>
+                        <li>GLSL</li>
                      </ul>
                      <!-- <li><i>MS Office</i></li>
                         <ul>
