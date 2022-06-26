@@ -623,7 +623,6 @@ h2.designSubTitle {
 
 #curriculumHeader {
    font-family: 'Lora', serif;
-   /* text-transform: uppercase; */
 }
 
 #curriculumBody {

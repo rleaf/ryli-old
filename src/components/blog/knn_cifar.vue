@@ -6,8 +6,8 @@
          <div id="curriculumBody">
             <div id="curriculumHeader">
                <div id="blogHeader">
-                  <p style="padding: 0 !important; margin: 0 !important;">Implementing K Nearest Neighbors on CIFAR-10</p>
-                  <p style="font-size: 18px; padding: 0 !important; ">9 &#8226; 7 &#8226; 2021</p>
+                  <p>Implementing K Nearest Neighbors on CIFAR-10</p>
+                  <p style="font-size: 18px;">9 &#8226; 7 &#8226; 2021</p>
                </div>
             </div>
             <div class="blogtoc">

@@ -5,17 +5,18 @@
    flex-direction: column;
    margin-left: 6vw;
    margin-right: 6vw;
-   /* text-align: left; */
    text-align: center;
+   /* text-align: left; */
    align-items: center;
 }
+
+
 
 #blogHeader {
    text-align: center;
    margin-top: 8vh;
    margin-bottom: 8vh;
    font-size: 26px;
-   /* float: left; */
 }
 
 #blogHeader p {
