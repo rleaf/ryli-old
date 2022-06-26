@@ -108,6 +108,11 @@ const routes = [
     name: 'sign',
     component: () => import('../pages/portfolioObjects/signObject.vue')
   },
+  {
+    path: '/design/oscilla',
+    name: 'oscilla',
+    // component: () => import('../pages/portfolioObjects/oscillaObject.vue')
+  },
 
 
   // BLOG SECTION

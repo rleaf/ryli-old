@@ -112,16 +112,13 @@
             </p>
             <p>
                Supplied with our Q, K, and V (queries/keys/values respectively), scaled dot product attention on a <u>single element from the batch</u> will look like:
-            <br>
-            <br>
-            <vue-mathjax :formula='transformerAssets.sdp'></vue-mathjax>
-               where shapes of inputs <i>Q, K, V</i> are: 
-               <br>
-               <vue-mathjax :formula='`$Q \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>,
-               <vue-mathjax :formula='`$K \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>,
-               <vue-mathjax :formula='`$V \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>
+               <vue-mathjax :formula='transformerAssets.sdp'></vue-mathjax>
+            </p>
+               where shapes of inputs Q, K, V are: 
                <br>
                <br>
+               <vue-mathjax :formula='`$K \\in \\mathbb{R}^{k \\times e}, Q \\in \\mathbb{R}^{k \\times e}, V \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>
+            <p>
                Fortunately in code, we can perform batch operations to calculate the attention values all at once. I encourage looking at the PyTorch SDP Attention implementation found <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/functional.py#L4765" target="_blank">here</a>.
                I will sprinkle in the corresponding PyTorch code at every section.
             </p>
@@ -185,9 +182,9 @@
                <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax>, which will be a provided hyperparameter - <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
                <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax> tensor back to a <vue-mathjax :formula='`$d_{in}$`'></vue-mathjax> dimensional tensor, another provided hyperparameter.
                Retaining original shape is important as generally the feed forward nets will need to feed into another encoder or decoder block.
-               <br><br>
-               <vue-mathjax :formula='`$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$`'></vue-mathjax>
             </p>
+               <vue-mathjax :formula='`$$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$$`'></vue-mathjax>
+               <br><br>
             <prism-editor class="codeblock" v-model="transformerAssets.mlp" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
 

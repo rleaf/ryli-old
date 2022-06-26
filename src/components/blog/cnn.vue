@@ -98,8 +98,8 @@
                   <br>
                   <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b}} = \\frac{\\partial{f}}{\\partial{b}} \\cdot upstream= dout$$`'></vue-mathjax>
                   <br>
-                  The tricky part is thinking about the interaction between the tensor shapes. <i>"Okay...so we're indexing along dimension x and this 4x2x5x5 tensor multiples elementwise with this 2x3x3x3..."</i>.
-                  I also have a lot of difficulty conceptualizing it - especially with high dimensional tensors. For more elaborate discussion, my post on
+                  The tricky part is thinking about the interaction between the tensor shapes. <i>"Okay...so we're indexing along dimension x and this 4x2x5x5 tensor multiples elementwise with this 2x3x3x3..."</i>
+                  For more elaborate discussion, my post on
                   <a href="/bnbackpass" target="_blank">differentiating batch normalization</a> and <a href="/rnn" target="_blank">recurrent neural networks</a> may be helpful.
                   Keeping it simple however, here are some "rules" which work well for me:
                   <br>
@@ -136,18 +136,14 @@
                </p>
                <prism-editor class="codeblock" v-model="cnnAssets.reluBackward" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
                <p>
-                  An example below. Backpropagation through a single transformation can be broken down to two metaphorical steps:
-                  <br>
-                  <br>
+                  An example below. Backpropagation through a single transformation can be broken down to two steps:
+                  <br><br>
                   1) There is the local computation. For the convolutional backpass, this was
-                  computing the local jacobian for <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. For ReLU, this means doing the same the piecewise function:
+                  computing the local jacobian for <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. For ReLU, this means doing the same to the piecewise function which will provide 1's and 0's:
                   <vue-mathjax :formula='`$$f(x) = \\begin{cases} 
                   x & \\text{if $x \\gt 0$} \\\\  
                   0 & \\text{otherwise} \\\\  
                   \\end{cases} $$`'></vue-mathjax>
-                  which will provide 1's and 0's. Further shown below is max pooling where there's not much math and it strictly routes the upstream values.
-                  <br>
-                  <br>
                   2) Multiply that local computation by the upstream. I use <code style="background: var(--codeSnippet); border-radius: 5px;">dout</code> to refer to the upstream.
                </p>
                <prism-editor class="codeblock" v-model="cnnAssets.reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>

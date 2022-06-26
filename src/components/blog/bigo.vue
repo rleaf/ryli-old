@@ -78,9 +78,9 @@
                <br>
                <br>
                It is important to think of these functions as <i>boundaries</i> for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. They demarcate, for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, all values to
-               the right of <vue-mathjax :formula='`$n_0$`'></vue-mathjax>. Another representation, using <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax> for example, could be limit notation shown as:
-               <vue-mathjax :formula='`$$\\lim_{n\\to\\infty}f(n) \\leq c \\cdot g(n), \\mathrm{\\;when\\;}n > n_0$$`'></vue-mathjax>  
+               the right of <vue-mathjax :formula='`$n_0$`'></vue-mathjax>. Another representation, using <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax>, in limit notation is:
             </p>
+               <vue-mathjax :formula='`$$\\lim_{n\\to\\infty}f(n) \\leq c \\cdot g(n), \\mathrm{\\;when\\;}n > n_0$$`'></vue-mathjax>  
             <p>
                The picture and definitions are from <a href="https://www.algorist.com/" target="_blank">The Algorithm Design Manuel, by Steven Skiena</a> (p 35-36 of 2nd edition). Before we go through examples, a couple
                of things to note: 1) Some people consider <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
@@ -94,24 +94,24 @@
             </div>
             <p>
                Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. I will be using 3 examples for <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
-               where <vue-mathjax :formula='`$n = n, n = n^2, n = n^3$`'></vue-mathjax> We can assert:
+               where <vue-mathjax :formula='`$n = n, n = n^2, n = n^3$`'></vue-mathjax>. We can assert:
             </p>
             <div class="bgColor theme">
                   <br>
                   <vue-mathjax class="theme" :formula='`$$g(n) = n$$`'></vue-mathjax>
                <p>
-                  <vue-mathjax :formula='`$f(n) = n^2+4n \\neq O(n)$`'></vue-mathjax>, because there exists no constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
+                  <vue-mathjax :formula='`$$f(n) = n^2+4n \\neq O(n)$$`'></vue-mathjax> because there exists no constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
                   is always <vue-mathjax :formula='`$\\leq c \\cdot g(n)$`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>. At no point, <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, will <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> always
                   be an <i>upper bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$f(n) = n^2+4n = \\Omega(n)$`'></vue-mathjax>, because there exists a constant, for example <vue-mathjax :formula='`$c=5$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
+                  <vue-mathjax :formula='`$$f(n) = n^2+4n = \\Omega(n)$$`'></vue-mathjax> because there exists a constant, for example <vue-mathjax :formula='`$c=5$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
                   is always <vue-mathjax :formula='`$\\geq g(n)$`'></vue-mathjax> when <vue-mathjax :formula='`$n \\geq 5$`'></vue-mathjax>. There exists a point, <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, where <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
                   will always be a <i>lower bound</i> for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/smr2bmhdew" target="_blank">Link</a> to graphing calculator for visualization.
                   Note I can pick <vue-mathjax :formula='`$c=1$`'></vue-mathjax> rendering this statement also true when <vue-mathjax :formula='`$n \\geq 0$`'></vue-mathjax>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$f(n) = n^2+4n \\neq \\Theta(n)$`'></vue-mathjax> because only <vue-mathjax :formula='`$\\Omega$`'></vue-mathjax> applies.
+                  <vue-mathjax :formula='`$$f(n) = n^2+4n \\neq \\Theta(n)$$`'></vue-mathjax> because only <vue-mathjax :formula='`$\\Omega$`'></vue-mathjax> applies.
                </p>
             </div>
             <br>
@@ -119,16 +119,16 @@
                   <br>
                   <vue-mathjax class="theme" :formula='`$$g(n) = n^2$$`'></vue-mathjax>
                <p>
-                  <vue-mathjax :formula='`$f(n) = n^2+4n = O(n^2)$`'></vue-mathjax>, because there exists a constant, for example <vue-mathjax :formula='`$c=2$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n) \\leq 2n^2$`'></vue-mathjax>
+                  <vue-mathjax :formula='`$$f(n) = n^2+4n = O(n^2)$$`'></vue-mathjax> because there exists a constant, for example <vue-mathjax :formula='`$c=2$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n) \\leq 2n^2$`'></vue-mathjax>
                   for all <vue-mathjax :formula='`$n \\geq 4$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/csj6cj3d4z" target="_blank">Link</a> to graphing calculator mapping the two functions showing this.
                   Again, we can pick any value for <i>c</i>, what matters is that there is some <i>c</i> that satisfies to <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$n^2+4n = \\Omega(n^2)$`'></vue-mathjax>, because similarly to the above, we can pick <vue-mathjax :formula='`$c = 1$`'></vue-mathjax>, enabling <vue-mathjax :formula='`$f(n) \\geq c\\cdot g(n)$`'></vue-mathjax>
+                  <vue-mathjax :formula='`$$n^2+4n = \\Omega(n^2)$$`'></vue-mathjax> because similarly to the above, we can pick <vue-mathjax :formula='`$c = 1$`'></vue-mathjax>, enabling <vue-mathjax :formula='`$f(n) \\geq c\\cdot g(n)$`'></vue-mathjax>
                   for all <vue-mathjax :formula='`$n \\gt 0$`'></vue-mathjax>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$n^2+4n = \\Theta(n^2)$`'></vue-mathjax>, because both <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega(n^2)$`'></vue-mathjax> hold true.  
+                  <vue-mathjax :formula='`$$n^2+4n = \\Theta(n^2)$$`'></vue-mathjax> because both <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega(n^2)$`'></vue-mathjax> hold true.  
                </p>
             </div>
             <br>
@@ -137,15 +137,15 @@
                   <vue-mathjax class="theme" :formula='`$$g(n) = n^3$$`'></vue-mathjax>
                   <span class="theme" style='font-size: 13px;'><i>In plain English</i></span>
                <p>
-                  <vue-mathjax :formula='`$f(n) = n^2+4n = O(n^3)$`'></vue-mathjax>, because there exists coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n" will <b>always</b> be an
+                  <vue-mathjax :formula='`$$f(n) = n^2+4n = O(n^3)$$`'></vue-mathjax> because there exists coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n" will <b>always</b> be an
                   <i>upper bound</i> of "f of n" for all <i>n</i> greater than <i>n sub 0</i>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$n^2+4n \\neq \\Omega(n^3)$`'></vue-mathjax>, because there exists <b>no</b> coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n"
+                  <vue-mathjax :formula='`$$n^2+4n \\neq \\Omega(n^3)$$`'></vue-mathjax> because there exists <b>no</b> coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n"
                   will <b>always</b> be a <i>lower bound</i> of "f of n" for all <i>n</i> greater than <i>n sub 0</i>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$n^2+4n \\neq \\Theta(n^3)$`'></vue-mathjax>, because only "Oh of n cubed" holds true. 
+                  <vue-mathjax :formula='`$$n^2+4n \\neq \\Theta(n^3)$$`'></vue-mathjax> because only "Oh of n cubed" holds true. 
                </p>
             </div>
             <p>
@@ -235,7 +235,8 @@
                simple initialization and a while loop (line 5 & 7 respectively). We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. So far, we have
                the partially translated function <vue-mathjax :formula='`$n(1+\\mathtt{while})$`'></vue-mathjax>, we need find a way to represent it functionally.
                <br>
-                As mentioned above, we are <b>primarily
+               <br>
+               As mentioned above, we are <b>primarily
                interested in the worst case scenario</b>; it is most desirable to understand how <i>inefficient</i> an algorithm can perform. So we will always assume the maximum amount of iterations possible for some loop
                because we can then safely and confidently assume that no matter what, every permutation of list input <i>n</i> (for insertion sort), if we were to use that as input, would be more efficient. Because of this philosophy, we acknowledge
                the maximum amount of times the while loop can iterate for is <i>n</i> times, as long as the list itself. Conceptually, this would require a list input <i>n</i> that is sorted in reverse order

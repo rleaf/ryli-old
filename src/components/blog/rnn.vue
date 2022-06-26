@@ -76,18 +76,16 @@
                to visualize where that particular tensor belongs. Excluding the loss function, the two transformations shown below are fundamental to a Vanilla RNN. 
             </p>
             <div id="forwardhidden"></div>
+            <h2>One:</h2>
             <p>
-               <b>One:</b>
-               <br>
                Transformation between hidden steps <vue-mathjax :formula='`$h_{t-1} \\rightarrow h_t$`'></vue-mathjax>
             </p>
             <vue-mathjax :formula='rnnAssets.rnnStep'></vue-mathjax>
             <img id="img500" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/graph.png" alt="">
             <prism-editor class="codeblock" v-model="rnnAssets.toad" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="forwardpred"></div>
+            <h2>Two:</h2>
             <p>
-               <b>Two:</b>
-               <br>
                Transformation between hidden step and prediction <vue-mathjax :formula='`$h_{t} \\rightarrow \\hat{y}$`'></vue-mathjax>
             </p>
             <vue-mathjax :formula='rnnAssets.yhatTransform'></vue-mathjax>
@@ -173,9 +171,6 @@
                calculate the gradient wrt to the same variable between two backward steps, <vue-mathjax :formula='`$\\frac{\\partial{L}}{\\partial{h_{t-1}}}$`'></vue-mathjax> computes it's value from all upstream gradients
                through <vue-mathjax :formula='`$f_h$`'></vue-mathjax> while <vue-mathjax :formula='`$\\frac{\\partial{L}}{\\partial{h_{t}}}$`'></vue-mathjax> computes it's value from the local loss through 
                <vue-mathjax :formula='`$f_y$`'></vue-mathjax>.
-               <br>
-               <br>
-               Here it is in code:
             </p>
             <prism-editor class="codeblock" v-model="rnnAssets.toad4" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="rnn_thoughts"></div>

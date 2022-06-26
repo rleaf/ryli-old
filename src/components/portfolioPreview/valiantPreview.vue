@@ -4,7 +4,7 @@
          <div class="imagehover">
             <p>Valiant</p>
             <div id="subtext">
-               <p>Branding / Logo & Web Design / Dev</p>
+               <p>Branding & Web Design / Dev</p>
             </div>
             <div id="covertext">
                <!-- <p>12/8/2019</p> -->

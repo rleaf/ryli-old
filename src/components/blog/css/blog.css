@@ -1,27 +1,48 @@
 #curriculumBody {
-   width: auto !important;
+   width: auto;
    display: flex;
    font-family: var(--type);
    flex-direction: column;
-   align-items: center;
-   justify-content: center;
+   margin-left: 6vw;
+   margin-right: 6vw;
+   /* text-align: left; */
    text-align: center;
+   align-items: center;
 }
 
 #blogHeader {
-   padding-bottom: 8vh;
-   font-size: 24px;
+   text-align: center;
+   margin-top: 8vh;
+   margin-bottom: 8vh;
+   font-size: 26px;
+   /* float: left; */
+}
+
+#blogHeader p {
+   padding: 0;
+   margin: 0;
 }
 
 .bgColor {
    background-color: var(--bgColor);
    border-radius: 5px;
-   border: 1px solid
+   border: 1px solid;
+}
+
+.bgColor p {
+   margin-left: 2em;
+   margin-right: 2em;
 }
 
 p {
-   padding: 25px 6vw;
+   /* text-align: left; */
+   margin-top: 4vh;
+   margin-bottom: 4vh;
    line-height: 2;
+}
+
+p:not(#blogHeader p) {
+   text-align: left;
 }
 
 a:not(.nav a) { 
@@ -36,8 +57,13 @@ a:not(.blogtoc a) {
 #blogSubHeader {
    color: var(--shadeWhite1);
    font-family: var(--type);
-   font-size: 19px;
+   font-size: 21px;
    margin-top: 4em;
+   /* margin-bottom: 1em; */
+   text-align: center;
+   width: 50%;
+   padding-bottom: 0.5em;
+   /* border-bottom: 1px solid var(--shadeWhite2); */
 }
 
 @media (max-width: 1255px) {
@@ -54,12 +80,22 @@ a:not(.blogtoc a) {
 
 h2 {
    color: var(--shadeWhite1);
-   font-size: 16px;
+   font-size: 17px;
    font-weight: bold;
    font-style: italic;
+   margin: 0;
+   padding-top: 3em;
+   font-weight: 200;
+}
+
+h3 {
+   /* color: var(--shadeWhite1); */
+   font-size: 16px;
+   /* font-weight: bold;
+   font-style: italic; */
    padding-top: 10px;
    margin: 0;
-   font-weight: 200;
+   /* font-weight: 200; */
 }
 
 img, video {
@@ -73,6 +109,15 @@ img, video {
    transform: scale(1.5);
    cursor: zoom-out !important;
 }
+
+.blogtoc {
+   text-align: center;
+   /* float: right; */
+}
+
+/* .tocHeader {
+   align-items: center;
+} */
 
 table {
    margin-left: auto;
