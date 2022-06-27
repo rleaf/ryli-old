@@ -20,6 +20,9 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    meta: {
+      title: 'Ryan Lin'
+    },
     component: HomePage
   },
   {
@@ -66,6 +69,9 @@ const routes = [
   {
     path: '/design/expanse',
     name: 'expanse',
+    meta: {
+      title: 'Expanse | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/expanseObject.vue')
   },
   // {
@@ -76,26 +82,41 @@ const routes = [
   {
     path: '/design/barnegat',
     name: 'barnegat',
+    meta: {
+      title: 'Barnegat Light | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/barnegatObject.vue')
   },
   {
     path: '/design/dropbox',
     name: 'dropbox',
+    meta: {
+      title: 'Dropbox Redesign | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/dropboxObject.vue')
   },
   {
     path: '/design/valiant',
     name: 'valiant',
+    meta: {
+      title: 'Valiant | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/valiantObject.vue')
   },
   {
     path: '/design/spotify',
     name: 'spotify',
+    meta: {
+      title: 'Spotify Redesign | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/spotifyObject.vue')
   },
   {
     path: '/design/spdmagazine',
     name: 'spdmagazine',
+    meta: {
+      title: 'Magazine Spread | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/spdmagazineObject.vue')
   },
   // {
@@ -106,12 +127,18 @@ const routes = [
   {
     path: '/design/sign',
     name: 'sign',
+    meta: {
+      title: 'Sign | Ryan Lin'
+    },
     component: () => import('../pages/portfolioObjects/signObject.vue')
   },
   {
     path: '/design/oscilla',
     name: 'oscilla',
-    // component: () => import('../pages/portfolioObjects/oscillaObject.vue')
+    meta: {
+      title: 'Oscilla | Ryan Lin'
+    },
+    component: () => import('../pages/portfolioObjects/oscillaObject.vue')
   },
 
 
