@@ -119,8 +119,8 @@
                <br>
                <vue-mathjax :formula='`$K \\in \\mathbb{R}^{k \\times e}, Q \\in \\mathbb{R}^{k \\times e}, V \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>
             <p>
-               Fortunately in code, we can perform batch operations to calculate the attention values all at once. I encourage looking at the PyTorch SDP Attention implementation found <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/functional.py#L4765" target="_blank">here</a>.
-               I will sprinkle in the corresponding PyTorch code at every section.
+               Fortunately in code, we can perform batch operations to calculate the attention values all at once. I encourage looking at the PyTorch SDP Attention implementation found <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/functional.py#L4765" target="_blank">here</a>
+               (You may need to ctrl+f "scaled_dot_product_attention"). I will sprinkle in the corresponding PyTorch code at every now and then.
             </p>
             <prism-editor class="codeblock" v-model="transformerAssets.scaleddotproduct" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <div id="attention"></div>
@@ -129,7 +129,7 @@
             </div>
             <p>
                We can now construct the classes that house SDP Attention. It's worth mentioning that there are <a href="https://www.catalyzex.com/paper/arxiv:1706.03762/code" target="_blank">different ways</a> how you can
-               code the model (<a href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer" target="_blank">Pytorch's Transformer</a>). The way shown here will certainly have it's idiosyncrasies,
+               code the model (<a href="https://pytorch.org/docs/stable/_modules/torch/nn/modules/transformer.html#Transformer" target="_blank">Pytorch's Transformer</a>). The way shown here will certainly have its idiosyncrasies,
                so my goal is to really convey the main mechanisms present in all of these variations. I will occasionally toss in different characteristics of other Transformer models.
             </p>
             <div id="selfattention"></div>
@@ -274,8 +274,8 @@
                to the creedence of that statement, the only thing I was made curious about were Transformers themselves. At the time, not only was I very unfamiliar with them, but I did not even know about
                <a href="/rnn">Recurrent Networks</a>. I remember reading about Transformers the following day, specifically the <i>Attention Is All You Need</i> paper, and feeling as if I had skipped a couple steps.
                <br><br>
-               They're a pretty cool architecture though, no? The attention mechanism and all of it's variations have introduced, for me at least, very unique ways you can go about manipulating information. And
-               when arranged appropiately to constitute a single Transformer network, the strengths are very evident. The weaknesses are there too, however since one of it's biggest is tied to
+               They're a pretty cool architecture though, no? The attention mechanism and all of its variations have introduced, for me at least, very unique ways you can go about manipulating information. And
+               when arranged appropiately to constitute a single Transformer network, the strengths are very evident. The weaknesses are there too, however since one of its biggest is tied to
                hardware capability, I am a little forgiving.
                <br><br>
                I wanted to remain impartial to that one person who said Transformers are taking over every industry, but there has been some <a href="https://arxiv.org/pdf/2201.03545.pdf" target="_blank">retaliation</a>

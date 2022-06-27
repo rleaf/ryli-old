@@ -102,9 +102,6 @@ export default {
    threeScene.cache = 'barnegatScene'
 
 
-   },
-   beforeDestroy() {
-      console.log('toad');
    }
 }
 </script>
