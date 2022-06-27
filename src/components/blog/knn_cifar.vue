@@ -290,9 +290,6 @@ export default {
       PrismEditor
    },
    head: {
-      title: {
-         inner: 'Implementing K Nearest Neighbors on CIFAR-10'
-      },
       meta: [
          {
             name: 'author',

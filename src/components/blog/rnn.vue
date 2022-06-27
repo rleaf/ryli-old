@@ -221,9 +221,6 @@ export default {
       PrismEditor
    },
    head: {
-      title: {
-         inner: 'Forward & Backward of a RNN',
-      },
       meta: [
          {
             name: 'author',

@@ -229,10 +229,6 @@ export default {
    },
 
    head: {
-      title: {
-         inner: 'The Shortcut in Differentiating the Backwards Pass in Batch Normalization',
-      },
-
       meta: [
          {
             name: 'author',

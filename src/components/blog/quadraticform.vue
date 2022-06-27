@@ -223,9 +223,6 @@ export default {
       'vue-mathjax': VueMathjax 
    },
    head: {
-      title: {
-         inner: 'Learning to find the derivative of the quadratic form',
-      },
       meta: [
          {
             name: 'author',

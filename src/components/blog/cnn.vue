@@ -231,9 +231,6 @@ export default {
 
    },
    head: {
-      title: {
-         inner: 'The Transformations in a CNN'
-      },
       meta: [
          {
             name: 'author',

@@ -321,9 +321,6 @@ export default {
       // MathJax
    },
    head: {
-      title: {
-         inner: 'Introduction to Big "Oh" Notation'
-      },
       meta: [
          {
             name: 'author',

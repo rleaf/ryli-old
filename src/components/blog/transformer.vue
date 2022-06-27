@@ -320,9 +320,6 @@ export default {
    },
 
    head: {
-      title: {
-         inner: 'Transformers Deconstructed and Explained',
-      },
       meta: [
          {
             name: 'author',

@@ -425,8 +425,7 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
-   metaInfo: {
-      title: 'Entropy in Machine Learning',
+   head: {
       meta: [
          {
             name: 'author',
