@@ -6,7 +6,7 @@
       <a :href='insta' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & uke, reading, and 
       playing games. Check out the <router-link :to="{ name: 'blog'}" :style="{ textDecoration: 'underline', fontStyle: 'oblique'}">blog</router-link> section for more in depth discussion on my interests.
       <br><br>
-      You can get in touch with me at: ryanurquhartlin [at] gmail dot com
+      You can get in touch with me at: ryanurquhartlin [at] gmail [dot] com
    </div>
 </template>
 

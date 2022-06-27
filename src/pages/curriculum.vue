@@ -32,6 +32,7 @@
                      <ul>
                         <li>Adobe CC (PhotoShop, Illustrator, After Effects, Premiere, InDesign)</li>
                         <li>Figma</li>
+                        <li>InVision</li>
                         <li>HTML & CSS</li>
                      </ul>
                      <br>
