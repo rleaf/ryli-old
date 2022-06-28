@@ -87,7 +87,7 @@
                <br>
                Eq (17.1): An alternative representation. Factor out -1 from both terms on the right hand side, which will equal positive one. 
             </p>
-            
+
          </div>
          <themeSwitch />
          <toTop />
@@ -123,15 +123,15 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Toads'
+            content: 'An exhaustive breakdown on the KL Divergence between two mv gaussian distributions.'
          },
          {
             name: 'keywords',
-            content: 'toads, are, green, sometimes'
+            content: 'kl divergence, multivariate gaussian, multivariate normal, distribution, entropy, information theory'
          },
          {
             property: 'og:description',
-            content: 'Toads'
+            content: 'An exhaustive breakdown on the KL Divergence between two mv gaussian distributions.'
          }
       ]
    },
