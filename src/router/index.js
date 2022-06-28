@@ -198,6 +198,14 @@ const routes = [
     },
     component: () => import('../components/blog/entropy.vue')
   },
+  {
+    path: '/blog/kl-divergence-mv-gaussian',
+    name: 'dklmvgaus',
+    meta: {
+      title: 'KL Divergence Between Multivariate Gaussians'
+    },
+    component: () => import('../components/blog/dklmvgaussian.vue')
+  },
   
   // REDIRECT HANDLING (temporary?)
 

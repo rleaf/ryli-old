@@ -10,38 +10,38 @@
                   <p style="font-size: 18px">6 &#8226; 11 &#8226; 2022</p>
                </div>
             </div>
-               <div class="tocHeader">
-            <div class="blogtoc">
-                  Contents
-               
-               <ul>
-                  <li><a href="#introduction">Introduction</a></li>
-                  <li>Entropy</li>
+            <div class="tocHeader">
+               <div class="blogtoc">
+                     Contents
+                  
                   <ul>
-                     <li><a href="#intuition">Intuition & Explanation</a></li>
-                     <li><a href="#entropymath">Mathematical Formalism</a></li>
-                     <li><a href="#entropyexamples">Examples</a></li>
+                     <li><a href="#introduction">Introduction</a></li>
+                     <li>Entropy</li>
+                     <ul>
+                        <li><a href="#intuition">Intuition & Explanation</a></li>
+                        <li><a href="#entropymath">Mathematical Formalism</a></li>
+                        <li><a href="#entropyexamples">Examples</a></li>
+                     </ul>
+                     <li><a href="#selfinformation">Self Information</a></li>
+                     <li><a href="#cross">Cross Entropy</a></li>
+                     <ul>
+                        <li><a href="#crossexample">Example</a></li>
+                     </ul>
+                     <li><a href="#joint">Joint Entropy</a></li>
+                     <li><a href="#conditional">Conditional Entropy</a></li>
+                     <ul>
+                        <li><a href="#61">Example (6.1)</a></li>
+                        <li><a href="#645">Example (6.4) & (6.5)</a></li>
+                        <li><a href="#70">Example (7.0)</a></li>
+                     </ul>
+                     <!-- <li><a href="#kldivergence">Kullback-Leibler Divergence</a></li> -->
+                     <li><a href="#thoughts">Thoughts</a></li>
+                     <!-- <li>KL Divergence</li>
+                     <ul>
+                        <li></li>
+                     </ul> -->
                   </ul>
-                  <li><a href="#selfinformation">Self Information</a></li>
-                  <li><a href="#cross">Cross Entropy</a></li>
-                  <ul>
-                     <li><a href="#crossexample">Example</a></li>
-                  </ul>
-                  <li><a href="#joint">Joint Entropy</a></li>
-                  <li><a href="#conditional">Conditional Entropy</a></li>
-                  <ul>
-                     <li><a href="#61">Example (6.1)</a></li>
-                     <li><a href="#645">Example (6.4) & (6.5)</a></li>
-                     <li><a href="#70">Example (7.0)</a></li>
-                  </ul>
-                  <!-- <li><a href="#kldivergence">Kullback-Leibler Divergence</a></li> -->
-                  <li><a href="#thoughts">Thoughts</a></li>
-                  <!-- <li>KL Divergence</li>
-                  <ul>
-                     <li></li>
-                  </ul> -->
-               </ul>
-            </div>
+               </div>
             </div>
             <div id="introduction"></div>
             <div id="blogSubHeader">

@@ -12,6 +12,11 @@
          </p>
          <div id="links">
 
+            <li><router-link :to="{ name: 'dklmvgaus'}">KL Divergence Between Multivariate Gaussians</router-link></li>
+            <p class="date">6/27/22</p>
+            <p class="blogdescription">
+               {{description.dklmvgaus}}
+            </p>
             <li><router-link :to="{ name: 'entropy'}">Entropy in Machine Learning</router-link></li>
             <p class="date">6/11/22</p>
             <p class="blogdescription">
@@ -78,6 +83,7 @@ export default {
    data() {
       return {
          description: {
+            dklmvgaus: `toads`,
             entropy: `An explanation on entropy from a Machine Learning perspective. I incorporate philosophy drawn from Claude Shannon's "A Mathematical Theory of Communication" and provides examples, while walking through the math, of the different types of entropy.`,
             transformers: `A thorough breakdown on the operations and overall construction of a Transformer neural network. I show code for each module of the Transformer while also explaining the purpose of each one.`,
             cnn: `A discussion about both the forward and backward pass of a convolutional neural network. Accompanied with code, mathematical explanation, and visuals, I go into detail about the popular transformations.`,

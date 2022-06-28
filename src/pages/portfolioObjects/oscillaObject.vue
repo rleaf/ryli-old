@@ -17,7 +17,7 @@
             <div class="designContainerBoxPadding">
                <div class="designTextContainerBody">
                   <h2 class="designSubTitle">About The Project</h2>
-                  Oscilla is a header typeface motivated by desiging glyphs that "oscilla"te between thick strokes and thin serifs. In total there are 62 glyphs.
+                  Oscilla is a display typeface motivated by desiging glyphs that "oscilla"te between thick strokes and thin serifs. In total there are 62 glyphs.
                </div>
                <img src="../../assets/design/oscilla/1.webp" class="designImg1300">
                <img src="../../assets/design/oscilla/3.webp" class="designImg1300">
