@@ -15,14 +15,14 @@
                      Contents
                   
                   <ul>
-                     <li><a href="#introduction">Introduction</a></li>
-                     <li>1</li>
+                     <li><a href="#introduction">The "Meat & Potatoes"</a></li>
+                     <li><a href="#properties">Properties Used & Explanation</a></li>
                   </ul>
                </div>
             </div>
             <div id="introduction"></div>
             <div id="blogSubHeader">
-               Introduction
+               The "Meat & Potatoes"
             </div>
             <p>
                The KL divergence of continuous distributions is:
@@ -38,6 +38,56 @@
                The KL divergence between distribution <vue-mathjax :formula='`$p(x)$`'></vue-mathjax> and <vue-mathjax :formula='`$q(x)$`'></vue-mathjax> is:
             </p>
             <vue-mathjax :formula='ohboy'></vue-mathjax>
+            <div id="properties"></div>
+            <div id="blogSubHeader">
+               Properties Used & Explanation
+            </div>
+            <p>
+               Eq (1): Definition of KL divergence
+               <br>
+               Eq (2): Represent the integral as the expectation of continuous random variable <vue-mathjax :formula='`$X$`'></vue-mathjax> generated from distribution <vue-mathjax :formula='`$p$`'></vue-mathjax>.
+               In other reads I usually denote with <vue-mathjax :formula='`$\\mathbb{E}_{X\\,\\sim{\\,p}}$`'></vue-mathjax>, however not here to keep things simple.
+               [<a href="https://en.wikipedia.org/wiki/Expected_value#Random_variables_with_density" target="_blank">Link</a>]
+               <br>
+               Eq (3): Quotient rule. [<a href="https://mathinsight.org/logarithm_basics" target="_blank">Link</a>]
+               <br>
+               Eq (4): Substitute in the densities.
+               <br>
+               Eq (5): Log of reciprocal rule and Log of e rule. [See eq. 3]
+               <br>
+               Eq (6): Product rule. [See eq. 3]
+               <br>
+               Eq (7): Cancel terms and use log of power rule. [See eq. 3]
+               <br>
+               Eq (8): Quotient rule. [See eq. 3]
+               <br>
+               Eq (9): Segregate expectations via linearity property and take the expectation of the constant, which is equal to the constant.
+               [<a href="https://en.wikipedia.org/wiki/Expected_value#Properties" target="_blank">Link</a>]
+               <br>
+               Eq (10): <vue-mathjax :formula='`$(x-\\mu)^\\top\\Sigma(x-\\mu)$`'></vue-mathjax> is a real number, which can be interpreted as a 1x1 matrix, making it equal to its trace.
+               <br>
+               Eq (11): Use equation 16 of section 1.1 from the matrix cookbook. [<a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf" target="_blank">Link</a>]
+               <br>
+               Eq (12): Distribute expectation again. For the middle term: <vue-mathjax :formula='`$\\text{tr}(\\mathbb{E}(X)) = \\mathbb{E}(\\text{tr}(X))$`'></vue-mathjax>, factor out the constant
+               inverse covariance matrix, and then you are left with the definition of the covariance matrix. [<a href="https://en.wikipedia.org/wiki/Covariance_matrix#Definition" target="_blank">Link</a>].
+               Right hand term: distribute.
+               <br>
+               Eq (13): Middle term: definition of matrix inverse. [<a href="https://en.wikipedia.org/wiki/Invertible_matrix" target="_blank">Link</a> ]. Right hand term: use trace/expectation property shown in eq 12
+               and then factor out the constant inverse covariance matrix.
+               <br>
+               Eq (14): Middle term: the trace of the identity is equal to the dimension of the matrix. Right hand term: Use equation 377 of section 8.2 in the matrix cookbook linked in equation 11. Then take the
+               expectation of <vue-mathjax :formula='`$2x\\mu_2^\\top$`'></vue-mathjax>, which is <vue-mathjax :formula='`$2\\mu_1\\mu_2^\\top$`'></vue-mathjax> since the expectation is generated from
+               distribution <vue-mathjax :formula='`$p$`'></vue-mathjax>.
+               <br>
+               Eq (15): Distribute <vue-mathjax :formula='`$\\Sigma_2^{-1}$`'></vue-mathjax> accordingly.
+               <br>
+               Eq (16): Factor right hand term.
+               <br>
+               Eq (17): Factor out <vue-mathjax :formula='`$1/2$`'></vue-mathjax>. Reorder the right hand term via commutative properties.
+               <br>
+               Eq (17.1): An alternative representation. Factor out -1 from both terms on the right hand side, which will equal positive one. 
+            </p>
+            
          </div>
          <themeSwitch />
          <toTop />
@@ -93,26 +143,38 @@ export default {
          mvnormal: '$$p(x;\\,\\mu,\\Sigma)=\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu)^\\top\\Sigma^{-1}(x-\\mu)\\biggr)}$$',
          ohboy: `$$\\begin{align}
          D_{\\mathbb{KL}}(p\\,||\\,q) & = \\int_x{p(x)\\log\\frac{{p(x)}}{q(x)}}dx \\tag{1} \\\\[2ex] 
-            & = \\mathbb{E}_p[\\log\\frac{p(x)}{q(x)}] \\tag{2}\\\\[2ex]
+            & = \\mathbb{E}_p\\Biggl[\\log\\frac{p(x)}{q(x)}\\Biggr] \\tag{2}\\\\[2ex]
             & = \\mathbb{E}_p[\\log{p(x)} - \\log{q(x)}] \\tag{3}\\\\[2ex]
             & = \\mathbb{E}_p\\Bigg[\\log\\Biggl(\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma_1)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma_1^{-1}(x-\\mu_1)\\biggr)}\\Biggr) - 
                 \\log\\Biggl(\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma_2^{-1}(x-\\mu_2)\\biggr)}\\Biggr)\\Biggr] \\tag{4}\\\\[2ex]
-            & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) +
-                \\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\Bigr)-\\log\\Bigl(\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) +
-                \\log\\Bigl((2\\pi)^{n/2}\\Bigr)+\\log\\Bigl(\\det{(\\Sigma_2)}^{1/2}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\mathbb{E}_p\\Bigg[-\\frac{1}{2}\\log\\Bigl(\\det{(\\Sigma_1)}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) +
-                \\frac{1}{2}\\log\\Bigl(\\det{(\\Sigma_2)}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\mathbb{E}_p\\Bigg[\\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) +
-                \\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\mathbb{E}_p\\Bigg[-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1) +
-                \\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl((x-\\mu_1)^\\top\\Sigma^{-1}(x-\\mu_1)\\Bigr) +
-                \\text{tr}\\Bigl((x-\\mu_2)^\\top\\Sigma^{-1}(x-\\mu_2)\\Bigr)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl((x-\\mu_1)(x-\\mu_1)^\\top\\Sigma^{-1}\\Bigr) +
-                \\text{tr}\\Bigl((x-\\mu_2)(x-\\mu_2)^\\top\\Sigma^{-1}\\Bigr)\\Biggr] \\tag{5} \\\\[2ex]
-            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl(\\Sigma_1\\Sigma^{-1}\\Bigr) +
-                \\text{tr}\\Bigl((x-\\mu_2)(x-\\mu_2)^\\top\\Sigma^{-1}\\Bigr)\\Biggr] \\tag{5} \\\\[2ex]
+            & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
+                \\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
+            & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\Bigr)-\\log\\Bigl(\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
+                \\log\\Bigl((2\\pi)^{n/2}\\Bigr)+\\log\\Bigl(\\det{(\\Sigma_2)}^{1/2}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{6} \\\\[2ex]
+            & = \\mathbb{E}_p\\Bigg[-\\frac{1}{2}\\log\\Bigl(\\det{(\\Sigma_1)}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
+                \\frac{1}{2}\\log\\Bigl(\\det{(\\Sigma_2)}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{7} \\\\[2ex]
+            & = \\mathbb{E}_p\\Bigg[\\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
+                \\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{8} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\mathbb{E}_p\\Bigg[-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
+                \\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{9} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl((x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1)\\Bigr) +
+                \\text{tr}\\Bigl((x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Bigr)\\Biggr] \\tag{10} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl(\\Sigma^{-1}_1(x-\\mu_1)(x-\\mu_1)^\\top\\Bigr) +
+                \\text{tr}\\Bigl(\\Sigma^{-1}_2(x-\\mu_2)(x-\\mu_2)^\\top\\Bigr)\\Biggr] \\tag{11} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{1}{2}\\text{tr}\\Bigl(\\Sigma^{-1}_1\\Sigma_1\\Bigr) +
+                \\frac{1}{2}\\mathbb{E}_p\\Bigg[\\text{tr}\\Bigl(\\Sigma^{-1}_2(xx^\\top-2x\\mu_2^\\top+\\mu_2\\mu_2^\\top)\\Bigr)\\Biggr] \\tag{12} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{1}{2}\\text{tr}\\bigl(\\mathit{I}_n\\bigr) +
+                \\frac{1}{2}\\text{tr}\\Bigl(\\Sigma^{-1}_2\\mathbb{E}_p\\Big[(xx^\\top-2x\\mu_2^\\top+\\mu_2\\mu_2^\\top)\\Bigr]\\Bigr) \\tag{13} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{n}{2} +
+                \\frac{1}{2}\\text{tr}\\Bigl(\\Sigma^{-1}_2(\\Sigma_1+\\mu_1\\mu_1^\\top-2\\mu_1\\mu_2^\\top+\\mu_2\\mu_2^\\top)\\Bigr) \\tag{14} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{n}{2} +
+                \\frac{1}{2}\\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\Sigma^{-1}_2\\bigl(\\mu_1\\mu_1^\\top-2\\mu_1\\mu_2^\\top+\\mu_2\\mu_2^\\top\\bigr) \\tag{15} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{n}{2} +
+                \\frac{1}{2}\\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\Sigma^{-1}_2\\bigl(\\mu_1-\\mu_2\\bigr)\\bigl(\\mu_1-\\mu_2\\bigr)^\\top \\tag{16} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
+                \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_1-\\mu_2\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_1-\\mu_2\\bigr)\\Biggr) \\tag{17} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
+                \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr) \\tag{17.1} \\\\[2ex]
             
          \\end{align}$$`
 
@@ -155,5 +217,12 @@ export default {
 }
 </script>
 
-<style scoped src='./css/blog.css'>
+<style scoped src='./css/blog.css'></style>
+
+<style scoped>
+br {
+      display: block;
+      content: " ";
+      margin-top: 2em;
+   }
 </style>
