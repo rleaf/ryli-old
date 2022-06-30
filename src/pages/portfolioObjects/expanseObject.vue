@@ -40,12 +40,13 @@
                   <img src="../../assets/design/expanse/space.jpg" class="designImg1300">
                   <img src="../../assets/design/expanse/mock1.jpg" class="designImg1300">
                   <div class="designSpace"></div>
-                  <div id="textContainerBody">
-                     <div id="linkhover" style="color: #000;">
-                        Sources: <a href="https://www.artstation.com/karlpoyzer" style="color: #000;"> Karl Poyzer</a> &
-                        <a href="https://www.instagram.com/cosmic_background/" style="color: #000;">Andrew McCarthy</a>
-                     </div>
-                  </div>        
+
+                  <div class="designTextContainerBody">
+                     <h2 class="designSubTitle">Thoughts</h2>
+                     Expanse is free to download on my Github, link <a href="https://github.com/rleaf/Typefaces/tree/main/Expanse" target="_blank">here</a>.
+                     Sources: <a href="https://www.artstation.com/karlpoyzer" style="color: #000;"> Karl Poyzer</a> &
+                     <a href="https://www.instagram.com/cosmic_background/" style="color: #000;">Andrew McCarthy</a>
+                  </div>
                   <div class="designSpace"></div>
                </div>
             </div>
