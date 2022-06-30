@@ -17,6 +17,7 @@
                   <ul>
                      <li><a href="#introduction">The "Meat & Potatoes"</a></li>
                      <li><a href="#properties">Properties Used & Explanation</a></li>
+                     <li><a href="#alternative">Alternative Method</a></li>
                   </ul>
                </div>
             </div>
@@ -37,7 +38,11 @@
                in <vue-mathjax :formula='`$\\mathbb{R}^n$`'></vue-mathjax>.
                The KL divergence between distribution <vue-mathjax :formula='`$p(x)$`'></vue-mathjax> and <vue-mathjax :formula='`$q(x)$`'></vue-mathjax> is:
             </p>
+            <div class="mathjax">
             <vue-mathjax :formula='ohboy'></vue-mathjax>
+
+            </div>
+
             <div id="properties"></div>
             <div id="blogSubHeader">
                Properties Used & Explanation
@@ -85,9 +90,20 @@
                <br>
                Eq (17): Factor out <vue-mathjax :formula='`$1/2$`'></vue-mathjax>. Reorder the right hand term via commutative properties.
                <br>
-               Eq (17.1): An alternative representation. Factor out -1 from both terms on the right hand side, which will equal positive one. 
+               Eq (17.1): An alternative representation. Factor out -1 from both terms on the right hand side, which nullify. 
             </p>
-
+            <div id="alternative"></div>
+            <div id="blogSubHeader">
+               Alternative Method
+            </div>
+            <p>
+               Starting from equation 11 defined above however we don't trace the right hand term in the expectation:
+            </p>
+            <vue-mathjax :formula='alt'></vue-mathjax>
+            <p>
+               Eq (12): Instead of expanding the right hand term as shown above, use equation 380 in section 8.2 of the <a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf" target="_blank">matrix cookbook</a>.
+               All other operations follow in suit from above.
+            </p>
          </div>
          <themeSwitch />
          <toTop />
@@ -102,6 +118,7 @@ import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
 import threeScene from '../../assets/js/threeScene'
 import gsap from 'gsap'
+import entropyjs from './assets/entropy.js'
 
 
 
@@ -110,10 +127,11 @@ export default {
    components: {
       backdrop,
       toTop,
-      themeSwitch, 
+      themeSwitch,
       'vue-mathjax': VueMathjax
       // MathJax
    },
+   
    metaInfo: {
       title: 'Toads',
       meta: [
@@ -138,15 +156,16 @@ export default {
    data() {
       return {
          blogs: [],
+         entropy: entropyjs,
          error: null,
          dkl: '$$D_{\\mathbb{KL}}(p\\,||\\,q)\\triangleq\\int_x{p(x)\\log\\frac{{p(x)}}{q(x)}}dx$$',
          mvnormal: '$$p(x;\\,\\mu,\\Sigma)=\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu)^\\top\\Sigma^{-1}(x-\\mu)\\biggr)}$$',
-         ohboy: `$$\\begin{align}
+         ohboy: `\\begin{align}
          D_{\\mathbb{KL}}(p\\,||\\,q) & = \\int_x{p(x)\\log\\frac{{p(x)}}{q(x)}}dx \\tag{1} \\\\[2ex] 
             & = \\mathbb{E}_p\\Biggl[\\log\\frac{p(x)}{q(x)}\\Biggr] \\tag{2}\\\\[2ex]
             & = \\mathbb{E}_p[\\log{p(x)} - \\log{q(x)}] \\tag{3}\\\\[2ex]
             & = \\mathbb{E}_p\\Bigg[\\log\\Biggl(\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma_1)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma_1^{-1}(x-\\mu_1)\\biggr)}\\Biggr) - 
-                \\log\\Biggl(\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma_2^{-1}(x-\\mu_2)\\biggr)}\\Biggr)\\Biggr] \\tag{4}\\\\[2ex]
+                \\log\\Biggl(\\frac{1}{(2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}}\\exp{\\biggl(-\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma_2^{-1}(x-\\mu_2)\\biggr)}\\Biggr)\\Biggr] \\tag{4} \\\\[2ex]
             & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
                 \\log\\Bigl((2\\pi)^{n/2}\\det{(\\Sigma_2)}^{1/2}\\Bigr)+\\frac{1}{2}(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Biggr] \\tag{5} \\\\[2ex]
             & = \\mathbb{E}_p\\Bigg[-\\log\\Bigl((2\\pi)^{n/2}\\Bigr)-\\log\\Bigl(\\det{(\\Sigma_1)}^{1/2}\\Bigr)-\\frac{1}{2}(x-\\mu_1)^\\top\\Sigma^{-1}_1(x-\\mu_1) +
@@ -175,9 +194,18 @@ export default {
                 \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_1-\\mu_2\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_1-\\mu_2\\bigr)\\Biggr) \\tag{17} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
                 \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr) \\tag{17.1} \\\\[2ex]
-            
-         \\end{align}$$`
-
+         \\end{align}`,
+         
+         alt: `\\begin{align}
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)+ \\frac{1}{2}\\mathbb{E}_p\\Bigg[-\\text{tr}\\Bigl(\\Sigma^{-1}_1(x-\\mu_1)(x-\\mu_1)^\\top\\Bigr) +
+                \\Sigma^{-1}_2(x-\\mu_2)(x-\\mu_2)^\\top\\Biggr] \\tag{11} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{1}{2}\\text{tr}\\Bigl(\\Sigma^{-1}_1\\Sigma_1\\Bigr) +
+                \\frac{1}{2}\\mathbb{E}_p\\Bigl[(x-\\mu_2)^\\top\\Sigma^{-1}_2(x-\\mu_2)\\Bigr] \\tag{12} \\\\[2ex]
+            & = \\frac{1}{2}\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- \\frac{n}{2} +
+                \\frac{1}{2}\\Bigl((\\mu_1-\\mu_2)^\\top\\Sigma^{-1}_2(\\mu_1-\\mu_2) + \\text{tr}(\\Sigma^{-1}_2\\Sigma_1)\\Bigr) \\tag{13}\\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr)- n + \\text{tr}(\\Sigma^{-1}_2\\Sigma_1) +
+                (\\mu_1-\\mu_2)^\\top \\Sigma^{-1}_2(\\mu_1-\\mu_2)\\Biggr) \\tag{14} \\\\[2ex]
+         \\end{align}`
       }
    },
 
@@ -220,6 +248,7 @@ export default {
 <style scoped src='./css/blog.css'></style>
 
 <style scoped>
+
 br {
       display: block;
       content: " ";

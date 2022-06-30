@@ -3,11 +3,11 @@
    display: flex;
    font-family: var(--type);
    flex-direction: column;
-   margin-left: 6vw;
-   margin-right: 6vw;
+   margin-left: 10vw;
+   margin-right: 10vw;
    text-align: center;
-   /* text-align: left; */
    align-items: center;
+   padding: 0;
 }
 
 
@@ -132,4 +132,9 @@ table, td, th {
 }
 td, th {
    padding: 0.5em;
+}
+
+.mathjax {
+   margin-left: -3vw;
+   margin-right: -3vw;
 }
