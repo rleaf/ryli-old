@@ -141,7 +141,7 @@ export default {
          },
          { 
             name: 'description',
-            content: 'An exhaustive breakdown on the KL Divergence between two mv gaussian distributions.'
+            content: 'An step by step on the KL divergence between two mv gaussian distributions.'
          },
          {
             name: 'keywords',
@@ -149,7 +149,7 @@ export default {
          },
          {
             property: 'og:description',
-            content: 'An exhaustive breakdown on the KL Divergence between two mv gaussian distributions.'
+            content: 'An step by step on the KL divergence between two mv gaussian distributions.'
          }
       ]
    },
