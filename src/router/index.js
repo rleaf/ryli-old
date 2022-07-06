@@ -27,7 +27,7 @@ const routes = [
     path: '/cv',
     name: 'curriculumvitae',
     meta: {
-      title: 'About'
+      title: 'About 👋'
     },
     component: () => import('../pages/curriculum.vue')
   },
@@ -36,7 +36,7 @@ const routes = [
     name: 'glossary',
     component: () => import('../pages/glossary.vue'),
     meta: {
-      title: 'Food',
+      title: 'Food 🍔',
     }
   },
 
@@ -45,7 +45,7 @@ const routes = [
     path: '/design',
     name: 'design',
     meta: {
-      title: 'Designs'
+      title: 'Designs 🖊️'
     },
     component: () => import('../pages/design.vue')
   },
@@ -121,7 +121,7 @@ const routes = [
     name: 'blog',
     component: () => import('../pages/cms.vue'),
     meta: {
-      title: 'Blog',
+      title: 'Blog 📚',
     },
     // children: [
     //   {
