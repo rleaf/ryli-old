@@ -2,7 +2,7 @@
    <keep-alive>
       <transition name="fade">
       <!-- <div  class="threeshow"> -->
-         <canvas v-show="blogRender" class="threeScene"></canvas>
+         <canvas v-show="blogRender" class="webgl"></canvas>
       <!-- </div> -->
       </transition>
 
@@ -11,10 +11,13 @@
 
 <script>
 import threeScene from '../assets/js/threeScene.js'
-// import Experience from '../assets/js/mainScene'
+
+// import Experience from '../assets/js/Experience/Experience.js'
+// import config from '../assets/js/Experience/RyliConfig.js'
+
 
 export default {
-   name: 'threeScene',
+   // name: 'threeScene',
    components: {
       
    },
@@ -44,6 +47,9 @@ export default {
       //    console.log('rendering...');
       // }
 
+      // config.imageCache = 'oscilla'
+      // new Experience(document.querySelector('canvas.webgl'))
+
       // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
       setTimeout(() => {
@@ -60,6 +66,12 @@ export default {
   transition-duration: .6s;
 }
 
+.alsdk {
+   color: #1a1a1a;
+   color: #0e0e0e;
+   color: rgb(26, 26, 26);
+}
+
 .fade-enter-active {
   transition-delay: .6s;
 }
@@ -67,7 +79,7 @@ export default {
 .fade-enter, .fade-leave-active {
   opacity: 0
 }
-.threeScene {
+.webgl {
     position: fixed;
     top: 0;
     left: 0;
