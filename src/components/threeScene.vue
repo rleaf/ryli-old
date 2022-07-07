@@ -23,14 +23,12 @@ export default {
       return {
          blogRender: null,
          experience: null,
-         routeCache: null
+         routeCache: 'hero'
       }
    },
 
    watch: {
       $route(to) {
-         console.log(to);
-         let x = to.path.split('/')
 
          switch (to.name) {
             case 'oscilla':
@@ -96,6 +94,8 @@ export default {
                break;
          }
 
+         let x = to.path.split('/')
+
          x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
 
       }  
@@ -123,7 +123,6 @@ export default {
          this.routeCache = 'hero'
       }
    },
-   
    mounted() {
       // Stop initial three render if click straight to a blog post
       // Break scene if path = /blog/
@@ -135,7 +134,7 @@ export default {
       // }
 
       this.experience = new Experience(document.querySelector('canvas.webgl'))
-      this.heroScene()
+      // this.heroScene()
       // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
 
