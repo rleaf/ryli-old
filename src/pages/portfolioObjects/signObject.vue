@@ -91,9 +91,9 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-import threeScene from '../../assets/js/threeScene.js'
+// import threeScene from '../../assets/js/threeScene.js'
 // // import scroll from '../../components/scroll.vue'
-import gsap from 'gsap'
+// import gsap from 'gsap'
 
 export default {
    components: {
@@ -101,18 +101,18 @@ export default {
       // scroll,
       backdropFade
    },
-   mounted() {
+   // mounted() {
       
-      gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
-         threeScene.scene.remove(threeScene.sphere, threeScene.plane)
-         threeScene.scene.add(threeScene.signMesh)
-      }})
-      gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
+   //    gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
+   //       threeScene.scene.remove(threeScene.sphere, threeScene.plane)
+   //       threeScene.scene.add(threeScene.signMesh)
+   //    }})
+   //    gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
 
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5, delay: 1.5})
+   //    gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5, delay: 1.5})
 
-      threeScene.cache = 'signScene'
-   }
+   //    threeScene.cache = 'signScene'
+   // }
 }
 </script>
 

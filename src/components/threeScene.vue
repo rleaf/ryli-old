@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import threeScene from '../assets/js/threeScene.js'
+// import threeScene from '../assets/js/threeScene.js'
 
-// import Experience from '../assets/js/Experience/Experience.js'
-// import config from '../assets/js/Experience/RyliConfig.js'
+import Experience from '../assets/js/Experience/Experience.js'
+import gsap from 'gsap'
 
 
 export default {
@@ -23,18 +23,111 @@ export default {
    },
    data() {
       return {
-         blogRender: null
+         blogRender: null,
+         experience: null,
+         routeCache: null
       }
    },
 
    watch: {
       $route(to) {
+         console.log(to);
          let x = to.path.split('/')
 
+         switch (to.name) {
+            // case 'home' ||'design' || 'curriculumvitae' || 'blog' || 'glossary':
+            //    this.heroScene()
+            //    break;
+            case 'oscilla':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.oscillaMesh)
+               }, 600)
+               break;
+
+            case 'sign':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.signMesh)
+               }, 600)
+               break;
+
+            case 'spdmagazine':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.spdMesh)
+               }, 600)
+               break;
+
+            case 'spotify':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.spotifyMesh)
+               }, 600)
+               break;
+
+            case 'valiant':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.valiantMesh)
+               }, 600)
+               break;
+
+            case 'dropbox':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.dropboxMesh)
+               }, 600)
+               break;
+
+            case 'barnegat':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.barnegatMesh)
+               }, 600)
+               break;
+
+            case 'expanse':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.expanseMesh)
+               }, 600)
+               break;
+            
+            default:
+               if (this.routeCache == 'design') {
+                  this.heroScene()
+               }
+               break;
+         }
+
+         // console.log('re', this.experience.world.image.setMaterial());
          x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
-         // threeScene.init()
-         // console.log('three', to);
+
       }  
+   },
+
+   methods: {
+
+      designScene() {
+         gsap.fromTo(this.experience.world.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
+            this.experience.scene.remove(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
+         }})
+
+         gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
+
+         this.routeCache = 'design'   
+      },
+
+      heroScene() {
+         gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
+            this.experience.world.unsetMesh()
+            this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
+         }})
+         gsap.fromTo(this.experience.world.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
+
+         this.routeCache = 'hero'
+      }
    },
    
    mounted() {
@@ -47,13 +140,12 @@ export default {
       //    console.log('rendering...');
       // }
 
-      // config.imageCache = 'oscilla'
-      // new Experience(document.querySelector('canvas.webgl'))
-
+      this.experience = new Experience(document.querySelector('canvas.webgl'))
+      this.heroScene()
       // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
       setTimeout(() => {
-         threeScene.init()
+         // threeScene.init()
       })
    }
 }
