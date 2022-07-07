@@ -1,9 +1,7 @@
 <template>
    <keep-alive>
       <transition name="fade">
-      <!-- <div  class="threeshow"> -->
          <canvas v-show="blogRender" class="webgl"></canvas>
-      <!-- </div> -->
       </transition>
 
    </keep-alive>
@@ -35,9 +33,6 @@ export default {
          let x = to.path.split('/')
 
          switch (to.name) {
-            // case 'home' ||'design' || 'curriculumvitae' || 'blog' || 'glossary':
-            //    this.heroScene()
-            //    break;
             case 'oscilla':
                this.designScene()
                setTimeout(() => {
@@ -101,7 +96,6 @@ export default {
                break;
          }
 
-         // console.log('re', this.experience.world.image.setMaterial());
          x[1] == 'blog' && x.length > 2 ? (this.blogRender = false) : (this.blogRender = true)
 
       }  
@@ -144,9 +138,10 @@ export default {
       this.heroScene()
       // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
-      setTimeout(() => {
-         // threeScene.init()
-      })
+
+      // setTimeout(() => {
+      //    threeScene.init()
+      // })
    }
 }
 
@@ -156,12 +151,6 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
   transition-duration: .6s;
-}
-
-.alsdk {
-   color: #1a1a1a;
-   color: #0e0e0e;
-   color: rgb(26, 26, 26);
 }
 
 .fade-enter-active {
