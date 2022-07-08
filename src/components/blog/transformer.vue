@@ -75,7 +75,7 @@
             <br><br>
             <div id="preparation"></div>
             <div id="blogSubHeader">
-               Preperation
+               Preparation
             </div>
             <p>
                Before the sequence inputs can be fed into the encoder and decoder, they must be tokenized, pass go through an embedding layer, and then have positional encoding added to them.

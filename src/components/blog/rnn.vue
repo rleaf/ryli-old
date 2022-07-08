@@ -43,7 +43,7 @@
                A couple of "top level" things to look at. I discuss some of these points further below, but they're nice to acknowledge in the beginning - confusion is okay. <u>One:</u> every timestep function
                <vue-mathjax :formula='`$f_h$`'></vue-mathjax> requires, as arguments, it's corresponding input <vue-mathjax :formula='`$x_t$`'></vue-mathjax> and prior hidden state
                <vue-mathjax :formula='`$h_{t - 1}$`'></vue-mathjax> to produce the next hidden state <vue-mathjax :formula='`$h_t$`'></vue-mathjax>. <u>Two:</u> The gradients in backpropagation will be summed at each
-               step as RNN's use shared weights at every timestep. <u>Three:</u> both the input and output sequence, shown as red and
+               step as RNNs use shared weights at every timestep. <u>Three:</u> both the input and output sequence, shown as red and
                yellow respectively, are arbitrarily partitioned <i>t</i> times.
                This is one of a <i>"handful of different ways"</i> to represent the input and output for an RNN. <u>Four:</u> a inital hidden state, <vue-mathjax :formula='`$h_0$`'></vue-mathjax>, must be provided for the forward pass
                of an RNN. The initial hidden state is either learnt (the output of  network <i>x</i> can be used to to populate <vue-mathjax :formula='`$h_0$`'></vue-mathjax> in RNN <i>y</i> ) or set to 0.
@@ -98,7 +98,7 @@
             <img id="img500" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/combinedgraphs.png" alt="">
             <span style="font-size:14px; padding-top: -10px;"><i>Combined picture of both computational graphs</i></span>
             <p>
-               Time to go backwards. Before talking about anything, there are a handful of idiosyncrasies between the different sequence styles of RNN's. <b>Everything below assumes a many to many sequence</b>, very similar
+               Time to go backwards. Before talking about anything, there are a handful of idiosyncrasies between the different sequence styles of RNNs. <b>Everything below assumes a many to many sequence</b>, very similar
                to the first picture at the top of this page. This is important because the process of computing some gradients is different between sequence styles.
                <br>
                <br>
@@ -178,9 +178,9 @@
                Thoughts
             </div>
             <p>
-               I originally wrote this wanting to talk about LSTM... I'll still probably make one about LSTM, now I just have an excuse to not make it as detailed. Something about RNN's though is that a lot of sources
+               I originally wrote this wanting to talk about LSTM... I'll still probably make one about LSTM, now I just have an excuse to not make it as detailed. Something about RNNs though is that a lot of sources
                seem to have different information on them. Some people use a linear transformation between <vue-mathjax :formula='`$h_t$`'></vue-mathjax> and <vue-mathjax :formula='`$\\hat{y}_t$`'></vue-mathjax> as I did, 
-               while others use non-linear transformations (tanh, relu, sigmoid, etc...). Some explanations on RNN's don't even use a transformation - which makes sense pedagogically, but could be a detriment as well. Understanding
+               while others use non-linear transformations (tanh, relu, sigmoid, etc...). Some explanations on RNNs don't even use a transformation - which makes sense pedagogically, but could be a detriment as well. Understanding
                backpropagation tripped me up for a couple of hours, but it helps to think about things <i>very</i> slowly. The summing for the parameters wasn't difficult to grasp, but the section where I talked about summing
                two unique gradients because of a redundancy was a little annoying. Felt nice figuring it out though. Feel free to reach out. I'm going to bed :).
             </p>
