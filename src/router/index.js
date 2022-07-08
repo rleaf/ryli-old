@@ -45,7 +45,7 @@ const routes = [
     path: '/design',
     name: 'design',
     meta: {
-      title: 'Designs 🖊️'
+      title: 'Design 🖊️'
     },
     component: () => import('../pages/design.vue')
   },
