@@ -251,7 +251,7 @@
                <vue-mathjax :formula='`$c_1 = 3$`'></vue-mathjax> providing <vue-mathjax :formula='`$1 \\cdot n^2 \\leq 2n^2 \\leq 3 \\cdot n^2$`'></vue-mathjax> as required by the definition of <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax>.
                And this is correct, we have now shown that a very real algorithm, insertion sort, is <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> on
                a <i>worst case scenario</i>. Food for thought though, what if input <i>n</i> is already perfectly sorted? If <i>n</i> were perfectly sorted from smallest to largest, then the while loop would never
-               run, thus giving a lsower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
+               run, thus giving a lower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
             </p>
             <div id="elefante"></div>
             <div id="blogSubHeader">
