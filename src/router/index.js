@@ -206,6 +206,14 @@ const routes = [
     },
     component: () => import('../components/blog/dklmvgaussian.vue')
   },
+  {
+    path: '/blog/lower-variational-bound',
+    name: 'elbo',
+    meta: {
+      title: 'ELBO'
+    },
+    component: () => import('../components/blog/elbo.vue')
+  },
   
   // REDIRECT HANDLING (temporary?)
 
