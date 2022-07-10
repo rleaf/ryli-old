@@ -210,7 +210,7 @@ const routes = [
     path: '/blog/lower-variational-bound',
     name: 'elbo',
     meta: {
-      title: 'ELBO'
+      title: 'Tractability and Optimization of the Variational Autoencoder'
     },
     component: () => import('../components/blog/elbo.vue')
   },
