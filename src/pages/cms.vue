@@ -12,11 +12,11 @@
          </p>
          <div id="links">
 
-            <!-- <li><router-link :to="{ name: 'elbo'}">Tractability and Optimization of the Variational Autoencoder</router-link></li>
+            <li><router-link :to="{ name: 'elbo'}">Tractability and Optimization of the Variational Autoencoder</router-link></li>
             <p class="date">7/8/22</p>
             <p class="blogdescription">
                {{description.elbo}}
-            </p> -->
+            </p>
             <li><router-link :to="{ name: 'dklmvgaus'}">KL Divergence Between Multivariate Gaussians</router-link></li>
             <p class="date">6/27/22</p>
             <p class="blogdescription">
@@ -27,7 +27,7 @@
             <p class="blogdescription">
                {{description.entropy}}
             </p>
-            <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed an d Explained</router-link></li>
+            <li><router-link :to="{ name: 'transformer'}">Transformers Deconstructed and Explained</router-link></li>
             <p class="date">5/4/22</p>
             <p class="blogdescription">
                {{description.transformers}}

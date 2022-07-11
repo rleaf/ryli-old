@@ -16,13 +16,13 @@
                Contents
                <ul>
                   <li><a href="#introduction">Introduction</a></li>
-                  <li><a href="#elbo">Lower Variational Bound (or ELBO)</a></li>
+                  <li><a href="#elbo">Variational Lower Bound (or ELBO)</a></li>
                   <ul>
                      <li><a href="#logpx">Starting with: log p(x)</a></li>
                      <li><a href="#bayes">Starting with: Bayes Rule</a></li>
                      <li><a href="#kldivergence">Starting with: KL divergence</a></li>
                   </ul>
-                  <li><a href="#">Gradient Flow</a></li>
+                  <li><a href="#gradientflow">Gradient Flow</a></li>
                   <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
@@ -38,7 +38,7 @@
                <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>, is introduced to approximate the posterior: <vue-mathjax :formula='`$q_\\phi(z|x) \\approx p_\\theta(z|x)$`'></vue-mathjax>.
                <br><br>
                The relationship between the auxiliary network, popularly referred to as the <i>encoder</i>, and the posterior distribution will provide a tractible means for likelihood estimation
-               and is what will become known as the <i>lower variational bound</i> or the <i> evidence lower bound (ELBO)</i>. Then by jointly updating parameters 
+               and is what will become known as the <i>variational lower bound</i> or the <i> evidence lower bound (ELBO)</i>. Then by jointly updating parameters 
                <vue-mathjax :formula='`$\\phi$`'></vue-mathjax> and <vue-mathjax :formula='`$\\theta$`'></vue-mathjax> via some gradient optimization (maximizing likelihood), the Variational
                Autoencoder increases in efficacy.
                <br><br>
@@ -52,10 +52,10 @@
             </p>
             <div id="elbo"></div>
             <div id="blogSubHeader">
-               Lower Variational Bound (or ELBO)
+               Variational Lower Bound (or ELBO)
             </div>
             <p>
-               The lower variational bound, <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>,
+               The variational lower bound, <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>,
                is a value that is always less than or equal to the proposed density <vue-mathjax :formula='`$\\log{p_\\theta(x)}$`'></vue-mathjax>. By maximizing the tractible
                <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>, the intractible marginal likelihood, <vue-mathjax :formula='`$p_\\theta(x)$`'></vue-mathjax>, is also maximized. Note that
                applying the monotonic transformation <vue-mathjax :formula='`$\\log{f(x)}$`'></vue-mathjax> to some function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax> preserves local extrema which does
@@ -66,7 +66,7 @@
             <br><br>
             <vue-mathjax :formula='logpx'></vue-mathjax>
             <p>
-               This is, from what I've seen, the most popular way to formulate <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>. Equation 1.4 defines the relationship between the marginal likelihood,
+               This is, from what I've seen, the most popular way to formulate <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>. Equation 1.4 shows the relationship between the marginal likelihood,
                <vue-mathjax :formula='`$\\log{p_\\theta(x)}$`'></vue-mathjax>, and <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> where the difference between the two values is the KL divergence
                from the encoder, <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>, to the posterior, <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>. Because the KL divergence is non negative,
                by subtracting it from the RHS we ensure <vue-mathjax :formula='`$\\log{p_\\theta(x) \\geq \\mathcal{L}}$`'></vue-mathjax>.
@@ -75,6 +75,23 @@
             <h2>Starting with: Bayes Rule</h2>
             <br><br>
             <vue-mathjax :formula='bayes'></vue-mathjax>
+            <p>
+               This explanation is a little unnecessarily long because it should seem apparent how to get from eq 2.2 to eq 2.7 with understanding of eq 1.0 - 1.5.
+               However eq 2.31 shows a further decomposition of the variational lower bound: <vue-mathjax :formula='l'></vue-mathjax>. The left term is the <i>reconstruction error</i> 
+               or <i>expected reconstruction error</i> and the right is the KL divergence from the encoder to the prior distribution.
+            </p>
+            <div id="kldivergence"></div>
+            <h2>Starting with: KL divergence</h2>
+            <br><br>
+            <vue-mathjax :formula='dkl'></vue-mathjax>
+            <p>
+               Conceptually optimization of the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>
+               is analagous to lowering its KL divergence between it and the posterior <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>.
+            </p>
+            <div id="gradientflow"></div>
+            <div id="blogSubHeader">
+               Gradient Flow
+            </div>
             <p>
                toads
             </p>
@@ -137,16 +154,25 @@ export default {
          bayes: `$$\\begin{align}
          \\log{\\frac{p_\\theta(x|z)p_\\theta(z)}{p_\\theta(z|x)}} & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(x|z)p_\\theta(z)}{p_\\theta(z|x)}}\\biggr] && \\text{Reasoning from (1.0)} \\tag{2.0} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(x|z)q_\\phi(z|x)p_\\theta(z)}{p_\\theta(z|x)q_\\phi(z|x)}}\\biggr] && \\text{multiply by "1"} \\tag{2.1} \\\\[2ex]
-            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{p_\\theta(x|z)} - \\log{\\frac{q_\\phi(z|x)}{p_\\theta(z)}} + \\log{\\frac{q_\\phi(z|x)}{p_\\theta(z|x)}}\\biggr] && \\text{segregate via log rules}\\tag{2.2} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{p_\\theta(x|z)} - \\log{\\frac{q_\\phi(z|x)}{p_\\theta(z)}} + \\log{\\frac{q_\\phi(z|x)}{p_\\theta(z|x)}}\\biggr] && \\text{segregate}\\tag{2.2} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_\\phi(z|x)}{p_\\theta(z)}} \\biggr] +
-                \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_\\phi(z|x)}{p_\\theta(z|x)}} \\biggr] \\tag{2.3} && \\text{distibute expectation via linear property} \\\\[2ex]
+                \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_\\phi(z|x)}{p_\\theta(z|x)}} \\biggr] \\tag{2.3} && \\text{distibute expectation} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) && \\text{*check below}\\tag{2.31} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] + \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z)}{q_\\phi(z|x)}} \\biggr] +
                D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) && \\text{log reciprocal & definition of KL divergence} \\tag{2.4} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(x|z)p_\\theta(z)}{q_\\phi(z|x)}} \\biggr] + D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) && \\text{log product rule} \\tag{2.5} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(x, z)}{q_\\phi(z|x)}} \\biggr] + D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) && \\text{probability chain rule} \\tag{2.6} \\\\[2ex]
             & = \\mathcal{L} + D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) \\tag{2.7} \\\\[2ex]
-         \\end{align}$$`
+         \\end{align}$$`,
+         dkl: `$$\\begin{align}
+         D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z|x)}} \\biggr] && \\text{definition of kl divergence} \\tag{3.1} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)p_\\theta(x)}{p_\\theta(z,x)}} \\biggr] && p(z|x) = \\frac{p(z, x)}{p(x)}\\, \\text{and reciprocal} \\tag{3.2} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}} + \\log{p_\\theta(x)} \\biggr] && \\text{segregate} \\tag{3.3} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}}\\biggr] +  \\mathbb{E}_{q_{\\phi}(z|x)}[\\log{p_\\theta(x)}] && \\text{distribute expectation} \\tag{3.4} \\\\[2ex]
+            & = -\\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z,x)}{q_{\\phi}(z|x)}}\\biggr] +  \\log{p_\\theta(x)} && \\text{log reciprocal and reasoning from (1.0) & (2.0)} \\tag{3.5} \\\\[2ex]
+            & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.0} \\\\[2ex]
+         \\end{align}$$`,
+         l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`
       }
    },
 
