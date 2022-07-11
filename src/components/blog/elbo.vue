@@ -59,7 +59,7 @@
                is a value that is always less than or equal to the proposed density <vue-mathjax :formula='`$\\log{p_\\theta(x)}$`'></vue-mathjax>. By maximizing the tractible
                <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>, the intractible marginal likelihood, <vue-mathjax :formula='`$p_\\theta(x)$`'></vue-mathjax>, is also maximized. Note that
                applying the monotonic transformation <vue-mathjax :formula='`$\\log{f(x)}$`'></vue-mathjax> to some function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax> preserves local extrema which does
-               not conflict with maximum likelihood estimation. Below I cover three different ways to arrive at <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
+               not conflict with maximum likelihood estimation. Below are three different ways to arrive at <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
             </p>
             <div id="logpx"></div>
             <h2>Starting with: log p(x)</h2>
@@ -77,8 +77,9 @@
             <vue-mathjax :formula='bayes'></vue-mathjax>
             <p>
                This explanation is a little unnecessarily long because it should seem apparent how to get from eq 2.2 to eq 2.7 with understanding of eq 1.0 - 1.5.
-               However eq 2.31 shows a further decomposition of the variational lower bound: <vue-mathjax :formula='l'></vue-mathjax>. The left term is the <i>reconstruction error</i> 
-               or <i>expected reconstruction error</i> and the right is the KL divergence from the encoder to the prior distribution.
+               However eq 2.31 shows a further decomposition of the variational lower bound: <vue-mathjax :formula='l'></vue-mathjax>.
+               The left term is the <i>reconstruction error</i> or <i>expected reconstruction error</i> and the right is the KL divergence from the encoder to the prior distribution. An alternative
+               formulation is: <vue-mathjax :formula='l2'></vue-mathjax>.
             </p>
             <div id="kldivergence"></div>
             <h2>Starting with: KL divergence</h2>
@@ -93,8 +94,16 @@
                Gradient Flow
             </div>
             <p>
-               toads
+               <!-- Section 2.3 of <a href="https://arxiv.org/abs/1906.02691" target="_blank">An Introduction to Variational Autoencoders</a> -->
+               Monte Carlo estimates are used to show the gradients wrt <vue-mathjax :formula='`$\\theta$`'></vue-mathjax> and <vue-mathjax :formula='`$\\phi$`'></vue-mathjax>
+               for the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
+               In the case of <vue-mathjax :formula='`$\\nabla_\\theta$`'></vue-mathjax> and using <vue-mathjax :formula='l2'></vue-mathjax>, the gradient will be
             </p>
+            <vue-mathjax :formula='gradtheta'></vue-mathjax>
+            <p>
+               For <vue-mathjax :formula='`$\\nabla_\\phi$`'></vue-mathjax> the process is a little more convoluted because we're seeking the gradient for the parameters of the distribution in the expectation.
+            </p>
+            <vue-mathjax :formula='gradphi'></vue-mathjax>
          </div>
          <themeSwitch />
          <toTop />
@@ -172,7 +181,20 @@ export default {
             & = -\\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z,x)}{q_{\\phi}(z|x)}}\\biggr] +  \\log{p_\\theta(x)} && \\text{log reciprocal and reasoning from (1.0) & (2.0)} \\tag{3.5} \\\\[2ex]
             & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.0} \\\\[2ex]
          \\end{align}$$`,
-         l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`
+         l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`,
+         l2: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr]$`,
+         gradtheta: `$$\\begin{align}
+         \\nabla_\\theta \\mathcal{L} & =  \\nabla_\\theta\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\nabla_\\theta(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x))}\\bigr] \\\\[2ex]
+            & \\approx \\nabla_\\theta(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\\\[2ex]
+            & = \\nabla_\\theta(\\log{p_\\theta(x, z))} \\quad \\text{where } z \\sim q_\\phi(z|x) \\\\[2ex]
+         \\end{align}$$`,
+         gradphi: `$$\\begin{align}
+         \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - q_\\phi(z|x)\\bigr] \\\\[2ex]
+            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)} - q_\\phi(z|x)dz \\\\[2ex]
+            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)}dz - \\int_zq_\\phi(z|x)dz \\\\[2ex]
+            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)}dz - \\int_zq_\\phi(z|x)dz \\\\[2ex]
+         \\end{align}$$`,
       }
    },
 

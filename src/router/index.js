@@ -207,7 +207,7 @@ const routes = [
     component: () => import('../components/blog/dklmvgaussian.vue')
   },
   {
-    path: '/blog/lower-variational-bound',
+    path: '/blog/tractability-and-optimization-of-vae',
     name: 'elbo',
     meta: {
       title: 'Tractability and Optimization of the Variational Autoencoder'
