@@ -26,7 +26,6 @@
                   <ul>
                      <li><a href="#reparameterization">Reparameterization Trick</a></li>
                   </ul>
-                  <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
             <div id="introduction"></div>
@@ -112,15 +111,28 @@
             <p>
                Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>, they express high variance making them impractical for use. To reduce variance
                the reparameterization trick is used which delegates the stochasticity in random variable
-               <vue-mathjax :formula='`$z$`'></vue-mathjax> to another random variable <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax>. Random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> is then "reparametized" to
-               <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax> and is
-               referred to as the <i>control variate</i>.
+               <vue-mathjax :formula='`$z$`'></vue-mathjax> to random variable <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax>. Random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> is then "reparametized" to
+               <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> and is referred to as the <i>control variate</i>.
             </p>
                <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization.png" alt="">
+               <span style="font-size:14px; padding-top: -10px;"><i><a href="https://stats.stackexchange.com/questions/199605/how-does-the-reparameterization-trick-for-vaes-work-and-why-is-it-important#" target="_blank">Stack Exchange</a></i></span>
             <p>
-               Variance reduction in reparameterizing random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> works by approximating the estimate z
-               <vue-mathjax :formula='`$z = g_\\phi(x, \\epsilon) \\approx z \\sim q_\\phi(z|x)$`'></vue-mathjax>.
+               As a brief aside, the reparameterization trick reduces variance specifically through the use of a control variate.
+               Variance reduction through a control variate works by approximating some function <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>, whose expectation is known,
+               to another function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>. Then by taking the variance of a Monte Carlo estimate, the known constant expectation nullifies. The closer <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>
+               is to <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>, the lower the variance.
             </p>
+            <vue-mathjax :formula='controlvariate'></vue-mathjax>
+            <p>
+               Variance reduction works because the expectation of the control variate is known. Because of this,
+               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
+               By scaling and shifting <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
+               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>,
+               that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
+            </p>
+            <!-- <p>
+               With the reparameterization trick, <vue-mathjax :formula='l2'></vue-mathjax> is becomes
+            </p> -->
          </div>
          <themeSwitch />
          <toTop />
@@ -218,6 +230,11 @@ export default {
             & =  \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)}\\bigr] \\\\[2ex]
             & \\approx  (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)} \\quad \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\\\[2ex]
          \\end{align}$$`,
+         controlvariate: `\\begin{align}
+         \\int f(x)dx & = \\int g(x)dx + \\int (f(x) - g(x))dx \\tag{3.0} \\\\
+            & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\tag{3.2} \\\\
+         \\text{Var of (3.2)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\tag{3.3} \\\\
+         \\end{align}`,
       }
    },
 
