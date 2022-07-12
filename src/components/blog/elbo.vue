@@ -8,7 +8,7 @@
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Tractability and Optimization of the Variational Autoencoder</p>
                   <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
-                  <p style="font-size: 18px; padding: 0 !important; ">7 &#8226; 8 &#8226; 2021</p>
+                  <p style="font-size: 18px; padding: 0 !important; ">7 &#8226; 8 &#8226; 2022</p>
                   <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
@@ -167,15 +167,15 @@ export default {
          },
          { 
             name: 'description',
-            content: 'Toads'
+            content: 'Covering different interpretations to the variational lower bound (ELBO), gradient flow through a Variational Autoencoder, and the use of the reparameterization trick for variance reduction.'
          },
          {
             name: 'keywords',
-            content: 'toads, are, green, sometimes'
+            content: 'variational autoencoder, bayesian inference, bayes rule, gradient, variational lower bound, elbo, evidence lower bound, reparameterization trick, variation reduction'
          },
          {
             property: 'og:description',
-            content: 'Toads'
+            content: 'Covering different interpretations to the variational lower bound (ELBO), gradient flow through a Variational Autoencoder, and the use of the reparameterization trick for variance reduction.'
          }
       ]
    },
