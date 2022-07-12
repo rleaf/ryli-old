@@ -126,7 +126,7 @@
             <p>
                Variance reduction works because the expectation of the control variate is known. Because of this,
                <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
-               By scaling and shifting <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
+               By scaling and shifting <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
                the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>,
                that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
             </p>
@@ -213,7 +213,7 @@ export default {
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}} + \\log{p_\\theta(x)} \\biggr] && \\text{segregate} \\tag{3.3} \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}}\\biggr] +  \\mathbb{E}_{q_{\\phi}(z|x)}[\\log{p_\\theta(x)}] && \\text{distribute expectation} \\tag{3.4} \\\\[2ex]
             & = -\\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z,x)}{q_{\\phi}(z|x)}}\\biggr] +  \\log{p_\\theta(x)} && \\text{log reciprocal and reasoning from (1.0) & (2.0)} \\tag{3.5} \\\\[2ex]
-            & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.0} \\\\[2ex]
+            & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.6} \\\\[2ex]
          \\end{align}$$`,
          l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`,
          l2: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr]$`,
