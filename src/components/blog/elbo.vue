@@ -130,9 +130,14 @@
                the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>,
                that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
             </p>
-            <!-- <p>
-               With the reparameterization trick, <vue-mathjax :formula='l2'></vue-mathjax> is becomes
-            </p> -->
+            <p>
+               With reparameterization, the two representations of the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>  shown in "<a href="#bayes">Starting with: Bayes Rule</a>" are called
+               the Stochastic Gradient Variational Bayes Estimator (SGVB) and can be represented as:
+            </p>
+            <vue-mathjax :formula='sgvb'></vue-mathjax>
+            <p>
+               
+            </p>
          </div>
          <themeSwitch />
          <toTop />
@@ -235,6 +240,13 @@ export default {
             & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\\\
          \\text{Var of (3.2)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\\\
          \\end{align}`,
+         sgvb: `$$\\begin{align}
+         \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^A \\\\
+            & = \\frac{1}{L}\\sum_{l=1}^L \\log{p_\\theta(x, z^l)} - \\log{q_\\phi(z^l|x)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon) \\\\
+            & \\text{and} \\\\[2ex]
+         \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^B \\\\
+            & = - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon)
+         \\end{align}$$`
       }
    },
 
