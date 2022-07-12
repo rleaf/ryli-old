@@ -23,6 +23,9 @@
                      <li><a href="#kldivergence">Starting with: KL divergence</a></li>
                   </ul>
                   <li><a href="#gradientflow">Gradient Flow</a></li>
+                  <ul>
+                     <li><a href="#reparameterization">Reparameterization Trick</a></li>
+                  </ul>
                   <li><a href="#thoughts">Thoughts</a></li>
                </ul>
             </div>
@@ -97,13 +100,27 @@
                <!-- Section 2.3 of <a href="https://arxiv.org/abs/1906.02691" target="_blank">An Introduction to Variational Autoencoders</a> -->
                Monte Carlo estimates are used to show the gradients wrt <vue-mathjax :formula='`$\\theta$`'></vue-mathjax> and <vue-mathjax :formula='`$\\phi$`'></vue-mathjax>
                for the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
-               In the case of <vue-mathjax :formula='`$\\nabla_\\theta$`'></vue-mathjax> and using <vue-mathjax :formula='l2'></vue-mathjax>, the gradient will be
+               In the case of <vue-mathjax :formula='`$\\nabla_\\theta$`'></vue-mathjax> and using <vue-mathjax :formula='l2'></vue-mathjax>, the gradient will be:
             </p>
             <vue-mathjax :formula='gradtheta'></vue-mathjax>
             <p>
-               For <vue-mathjax :formula='`$\\nabla_\\phi$`'></vue-mathjax> the process is a little more convoluted because we're seeking the gradient for the parameters of the distribution in the expectation.
+               For <vue-mathjax :formula='`$\\nabla_\\phi$`'></vue-mathjax> the process is a little more convoluted because we're seeking the gradient for the parameters of the expectation.
             </p>
             <vue-mathjax :formula='gradphi'></vue-mathjax>
+            <div id="reparameterization"></div>
+            <h2>Reparameterization Trick</h2>
+            <p>
+               Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>, they express high variance making them impractical for use. To reduce variance
+               the reparameterization trick is used which delegates the stochasticity in random variable
+               <vue-mathjax :formula='`$z$`'></vue-mathjax> to another random variable <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax>. Random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> is then "reparametized" to
+               <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax> and is
+               referred to as the <i>control variate</i>.
+            </p>
+               <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization.png" alt="">
+            <p>
+               Variance reduction in reparameterizing random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> works by approximating the estimate z
+               <vue-mathjax :formula='`$z = g_\\phi(x, \\epsilon) \\approx z \\sim q_\\phi(z|x)$`'></vue-mathjax>.
+            </p>
          </div>
          <themeSwitch />
          <toTop />
@@ -186,15 +203,28 @@ export default {
          gradtheta: `$$\\begin{align}
          \\nabla_\\theta \\mathcal{L} & =  \\nabla_\\theta\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] \\\\[2ex]
             & = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\nabla_\\theta(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x))}\\bigr] \\\\[2ex]
-            & \\approx \\nabla_\\theta(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\\\[2ex]
-            & = \\nabla_\\theta(\\log{p_\\theta(x, z))} \\quad \\text{where } z \\sim q_\\phi(z|x) \\\\[2ex]
+            & \\approx \\nabla_\\theta(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\quad \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\\\[2ex]
+            & = \\nabla_\\theta(\\log{p_\\theta(x, z))}  \\\\[2ex]
          \\end{align}$$`,
          gradphi: `$$\\begin{align}
-         \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - q_\\phi(z|x)\\bigr] \\\\[2ex]
-            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)} - q_\\phi(z|x)dz \\\\[2ex]
-            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)}dz - \\int_zq_\\phi(z|x)dz \\\\[2ex]
-            & = \\nabla_\\phi \\int_z \\log{p_\\theta(x, z)}dz - \\int_zq_\\phi(z|x)dz \\\\[2ex]
+         \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] \\\\[2ex]
+            & = \\nabla_\\phi \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)})q_{\\phi}(z|x)dz \\quad \\text{assuming continuous latent space z}\\\\[2ex]
+            & = \\nabla_\\phi \\int \\log{p_\\theta(x, z)}q_{\\phi}(z|x)dz - \\nabla_\\phi \\int \\log{q_\\phi(z|x)}q_{\\phi}(z|x)dz \\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x) + \\nabla_\\phi q_{\\phi}(z|x)dz \\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz + \\nabla_\\phi \\int q_{\\phi}(z|x)dz \\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz \\\\[2ex]
+            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi q_{\\phi}(z|x)dz \\\\[2ex]
+            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) q_{\\phi}(z|x)dz \\nabla_\\phi \\log{q_{\\phi}(z|x)}dz \\\\[2ex]
+            & =  \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)}\\bigr] \\\\[2ex]
+            & \\approx  (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)} \\quad \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\\\[2ex]
          \\end{align}$$`,
+      }
+   },
+
+   methods: {
+      imageZoom(event) {
+         // https://stackoverflow.com/questions/53737648/how-get-clicked-item-in-vue
+         event.target.classList.toggle('scaledUp')
       }
    },
 
