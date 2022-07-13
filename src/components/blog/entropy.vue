@@ -59,7 +59,7 @@
             </div>
             <h2>Intuition & Definition</h2>
             <p>
-               Entropy, in <a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank">Information Theory</a>, is the innate uncertainty of a random variable with it's associated probability
+               Entropy, in <a href="https://en.wikipedia.org/wiki/Information_theory" target="_blank">Information Theory</a>, is the innate uncertainty of a random variable with its associated probability
                distribution. The word "uncertainty" is synonymous to other interpretations used to define entropy such as "missing information", "surprisal", and "lack of predictability". The higher the entropy, the more
                uncertainty there is encoded into a random variable. By this logic a uniform distribution encodes the maximum entropy on a discrete random variable as each value is equally probable - there is total
                uncertainty as to which value will be sampled. 
@@ -153,25 +153,25 @@
                Self Information
             </div>
             <p>
-               If entropy is the measure of the expected uncertainty of a random variable and it's associated probability distribution, self information is the measure of uncertainty for a specific value in a random
-               variable and it's associated probability distribution. Self information is the basic quantity that tells us how much uncertainty is present in a particular event. 
+               If entropy is the measure of the expected uncertainty of a random variable and its associated probability distribution, self information is the measure of uncertainty for a specific value in a random
+               variable and its associated probability distribution. Self information is the basic quantity that tells us how much uncertainty is present in a particular event. 
                Defined as <vue-mathjax :formula="`$I$`"></vue-mathjax> the self information of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
             </p>
-            <vue-mathjax :formula="`$I(x) \\triangleq -\\log_bp(X = x)$`"></vue-mathjax>
+            <vue-mathjax :formula="`$I(x) \\triangleq -\\log_bp(x)$`"></vue-mathjax>
             <p>
                where once again the base <vue-mathjax :formula="`$b$`"></vue-mathjax> in <vue-mathjax :formula="`$\\log_b$`"></vue-mathjax> denotes the unit. Using the most recent example in the <a href="#entropyexamples">entropy</a>
                section with the Bernoulli distribution where <vue-mathjax :formula="`$p(X=0) = 0.95$`"></vue-mathjax>, we can calculate entropy of that event as
                <vue-mathjax :formula="`$I(X=0) = -\\log_20.95 = 0.07400\\dots\\text{bits}$`"></vue-mathjax>. This event encodes approximately 3.8x less information
-               compared to it's entropy of
-               <vue-mathjax :formula="`$0.28639\\dots\\text{bits}$`"></vue-mathjax>. Using self information, we can reformulate entropy itself as:
+               compared to its entropy of
+               <vue-mathjax :formula="`$0.28639\\dots\\text{bits}$`"></vue-mathjax>.
             </p>
-               <vue-mathjax :formula="entropy.entropySelfInformation"></vue-mathjax>
+               <!-- <vue-mathjax :formula="entropy.entropySelfInformation"></vue-mathjax> -->
             <div id="cross"></div>
             <div id="blogSubHeader">
                Cross Entropy
             </div>
             <p>
-               Cross entropy tells us how much more entropy there will be on a random variable with it's associated innate distribution if we sample it from a new prescribed distribution.
+               Cross entropy tells us how much more entropy there will be on a random variable with its associated innate distribution if we sample it from a new prescribed distribution.
                Because two distributions are embedding onto a random variable, cross entropy is a metric that quantifies the difference between those two probability distributions.
                It tells us how many more expected bits we will need, assuming <vue-mathjax :formula="`$\\log_2$`"></vue-mathjax>, if we calculate information that has distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>
                using a new distribution <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
