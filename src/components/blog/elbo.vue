@@ -87,10 +87,10 @@
             <h2>Starting with: KL divergence</h2>
             <br><br>
             <vue-mathjax :formula='dkl'></vue-mathjax>
-            <p>
+            <!-- <p>
                Conceptually optimization of the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>
                is analagous to lowering its KL divergence between it and the posterior <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>.
-            </p>
+            </p> -->
             <div id="gradientflow"></div>
             <div id="blogSubHeader">
                Gradient Flow
