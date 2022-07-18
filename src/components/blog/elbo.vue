@@ -119,15 +119,15 @@
             <p>
                As a brief aside, the reparameterization trick reduces variance specifically through the use of a control variate.
                Variance reduction through a control variate works by approximating some function <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>, whose expectation is known,
-               to another function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>. Then by taking the variance of a Monte Carlo estimate, the known constant expectation nullifies. The closer <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>
-               is to <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>, the lower the variance.
+               to another function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>. Then by taking the variance of a Monte Carlo estimate, the known constant expectation nullifies. If
+               <vue-mathjax :formula='`$g(x)$`'></vue-mathjax> is correlated with <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>, then <vue-mathjax :formula='`$\\tilde{z}$`'></vue-mathjax> can produce lower variance.
             </p>
             <vue-mathjax :formula='controlvariate'></vue-mathjax>
             <p>
                Variance reduction works because the expectation of the control variate is known. Because of this,
                <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
                By scaling and shifting <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
-               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>,
+               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, I)$`'></vue-mathjax>,
                that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
             </p>
             <p>
@@ -208,12 +208,12 @@ export default {
             & = \\mathcal{L} + D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) \\tag{2.7} \\\\[2ex]
          \\end{align}$$`,
          dkl: `$$\\begin{align}
-         D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z|x)}} \\biggr] && \\text{definition of kl divergence} \\tag{3.1} \\\\[2ex]
-            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)p_\\theta(x)}{p_\\theta(z,x)}} \\biggr] && p(z|x) = \\frac{p(z, x)}{p(x)}\\, \\text{and reciprocal} \\tag{3.2} \\\\[2ex]
-            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}} + \\log{p_\\theta(x)} \\biggr] && \\text{segregate} \\tag{3.3} \\\\[2ex]
-            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}}\\biggr] +  \\mathbb{E}_{q_{\\phi}(z|x)}[\\log{p_\\theta(x)}] && \\text{distribute expectation} \\tag{3.4} \\\\[2ex]
-            & = -\\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z,x)}{q_{\\phi}(z|x)}}\\biggr] +  \\log{p_\\theta(x)} && \\text{log reciprocal and reasoning from (1.0) & (2.0)} \\tag{3.5} \\\\[2ex]
-            & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.6} \\\\[2ex]
+         D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z|x)) & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z|x)}} \\biggr] && \\text{definition of kl divergence} \\tag{3.0} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)p_\\theta(x)}{p_\\theta(z,x)}} \\biggr] && p(z|x) = \\frac{p(z, x)}{p(x)}\\, \\text{and reciprocal} \\tag{3.1} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}} + \\log{p_\\theta(x)} \\biggr] && \\text{segregate} \\tag{3.2} \\\\[2ex]
+            & = \\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{q_{\\phi}(z|x)}{p_\\theta(z,x)}}\\biggr] +  \\mathbb{E}_{q_{\\phi}(z|x)}[\\log{p_\\theta(x)}] && \\text{distribute expectation} \\tag{3.3} \\\\[2ex]
+            & = -\\mathbb{E}_{q_{\\phi}(z|x)}\\biggl[\\log{\\frac{p_\\theta(z,x)}{q_{\\phi}(z|x)}}\\biggr] +  \\log{p_\\theta(x)} && \\text{log reciprocal and reasoning from (1.0) & (2.0)} \\tag{3.4} \\\\[2ex]
+            & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.5} \\\\[2ex]
          \\end{align}$$`,
          l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`,
          l2: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr]$`,
@@ -236,9 +236,9 @@ export default {
             & \\approx  (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)} && \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\tag{4.9}\\\\[2ex]
          \\end{align}$$`,
          controlvariate: `\\begin{align}
-         \\int f(x)dx & = \\int g(x)dx + \\int (f(x) - g(x))dx \\\\
-            & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\\\
-         \\text{Var of (3.2)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\\\
+         \\int f(x)dx & = \\int g(x)dx + \\int (f(x) - g(x))dx \\tag{5.0} \\\\
+            & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\tag{5.1} \\\\ 
+         \\text{Var of eq (5.1)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\tag{5.2} \\\\
          \\end{align}`,
          sgvb: `$$\\begin{align}
          \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^A \\\\
