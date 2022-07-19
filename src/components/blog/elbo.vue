@@ -22,6 +22,7 @@
                      <li><a href="#bayes">Starting with: Bayes Rule</a></li>
                      <li><a href="#kldivergence">Starting with: KL divergence</a></li>
                   </ul>
+                  <!-- <li><a href="#dkl-encoder-prior">KL Divergence Between Encoder And Prior</a></li> -->
                   <li><a href="#gradientflow">Gradient Flow</a></li>
                   <ul>
                      <li><a href="#reparameterization">Reparameterization Trick</a></li>
@@ -91,7 +92,20 @@
                Conceptually optimization of the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>
                is analagous to lowering its KL divergence between it and the posterior <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>.
             </p> -->
-            <div id="gradientflow"></div>
+
+            <!-- <div id="dkl-encoder-prior"></div>
+            <div id="blogSubHeader">
+               KL Divergence Between Encoder And Prior
+            </div>
+            <p>
+               When both the encoder and prior are multivariate gaussian distributions the KL divergence, <vue-mathjax :formula='`$D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`'></vue-mathjax>,
+               in the lower variational bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> shown in equation 2.31 simplifies. Let the encoder
+               <vue-mathjax :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_1 = \\mu$`'></vue-mathjax> and 
+               <vue-mathjax :formula='`$\\Sigma_1 = \\text{diag}(\\sigma_1^2, \\sigma_2^2, \\text{ ... }, \\sigma_n^2)$`'></vue-mathjax>
+               and let the prior <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_2 = 0$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Sigma_2 = I$`'></vue-mathjax>.
+            </p>
+            <vue-mathjax :formula='encoderprior'></vue-mathjax> -->
+            <div id="gradientflow"></div> 
             <div id="blogSubHeader">
                Gradient Flow
             </div>
@@ -246,7 +260,10 @@ export default {
             & \\text{and} \\\\[2ex]
          \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^B \\\\
             & = - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon)
-         \\end{align}$$`
+         \\end{align}$$`,
+         encoderprior: `\\begin{align}
+         x
+         \\end{align}`,
       }
    },
 
