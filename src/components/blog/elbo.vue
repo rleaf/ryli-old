@@ -139,7 +139,7 @@
             <vue-mathjax :formula='controlvariate'></vue-mathjax>
             <p>
                Variance reduction works because the expectation of the control variate is known. Because of this,
-               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
+               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, I)$`'></vue-mathjax>.
                By scaling and shifting <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
                the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, I)$`'></vue-mathjax>,
                that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
