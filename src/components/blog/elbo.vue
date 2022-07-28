@@ -22,7 +22,7 @@
                      <li><a href="#bayes">Starting with: Bayes Rule</a></li>
                      <li><a href="#kldivergence">Starting with: KL divergence</a></li>
                   </ul>
-                  <li><a href="#dkl-encoder-prior">KL Divergence Between Encoder And Prior</a></li>
+                  <li><a href="#dkl-encoder-prior">Closed Form Computation of KL Divergence in the ELBO</a></li>
                   <li><a href="#gradientflow">Gradient Flow</a></li>
                   <ul>
                      <li><a href="#reparameterization">Reparameterization Trick</a></li>
@@ -90,14 +90,20 @@
             <vue-mathjax :formula='dkl'></vue-mathjax>
             <div id="dkl-encoder-prior"></div>
             <div id="blogSubHeader">
-               KL Divergence Between Encoder And Prior
+               Closed Form Computation of KL Divergence in the ELBO
             </div>
             <p>
-               <!-- When both the encoder and prior are multivariate gaussian distributions the KL divergence, <vue-mathjax :formula='`$D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`'></vue-mathjax>,
-               in the lower variational bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> shown in equation 2.31 simplifies. Let the encoder
-               <vue-mathjax :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_1 = \\mu$`'></vue-mathjax> and 
-               <vue-mathjax :formula='`$\\Sigma_1 = \\text{diag}(\\sigma_1^2, \\sigma_2^2, \\text{ ... }, \\sigma_n^2)$`'></vue-mathjax>
-               and let the prior <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_2 = 0$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Sigma_2 = I$`'></vue-mathjax>. -->
+               To make sure our ducks are in a row before proceeding...
+               <br>
+               <b>Duck 1:</b> For reference, the lower variational bound referenced in eq 2.31 is: <vue-mathjax :formula='l1'></vue-mathjax>
+               <br>
+               <b>Duck 2:</b> The KL divergence between two multivariate gaussians simplies as such (<a href="/blog/kl-divergence-mv-gaussian" target="_blank">shown here</a>):
+               <vue-mathjax :formula='`$$D_{\\mathbb{KL}}(q\\,||\\,p) \\triangleq \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
+               \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr)$$`'></vue-mathjax>
+               <br>  
+               When both the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax> and prior <vue-mathjax :formula='`$p_\\theta(z)$`'></vue-mathjax> are multivariate diagonal gaussians, where
+               <vue-mathjax :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1) = \\mathcal{N}(\\mu, \\Sigma)$`'></vue-mathjax> and <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2) =\\mathcal{N}(0, I)$`'></vue-mathjax>, the
+               KL divergence term in <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> can be computed.
             </p>
             <vue-mathjax :formula='encoderprior'></vue-mathjax>
             <div id="gradientflow"></div> 
@@ -224,6 +230,7 @@ export default {
             & = - \\mathcal{L} + \\log{p_\\theta(x)}  \\tag{3.5} \\\\[2ex]
          \\end{align}$$`,
          l: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`,
+         l1: `$$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x|z)} \\bigr] - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$$`,
          l2: `$\\mathcal{L} = \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr]$`,
          gradtheta: `$$\\begin{align}
          \\nabla_\\theta \\mathcal{L} & =  \\nabla_\\theta\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] \\\\[2ex]
@@ -256,7 +263,17 @@ export default {
             & = - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon)
          \\end{align}$$`,
          encoderprior: `\\begin{align}
-         x
+         D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{|I|}{|\\Sigma|}\\Bigr) - n +
+               \\text{tr}\\bigl(I^{-1}\\Sigma\\bigr)+\\bigl(0-\\mu\\bigr)^\\top I^{-1}\\bigl(0-\\mu\\bigr)\\Biggr) && \\text{definition. Change det(x) to |x| for readability} \\tag{abc} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(\\log{|I|} - \\log{|\\Sigma|} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
+               && \\text{log quotient property}, I=I^{-1}, IA = A, -1\\times -1 = 1\\times 1 \\tag{abc} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(0 - \\log{\\prod_i{\\sigma_i}} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
+               && |I| = 1, ln(1) = 0, \\text{det of diag matrix = product of diag values} \\tag{abc} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\log{\\sigma_i}} - n + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
+               && \\text{convert to sums} \\tag{abc} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\bigl(\\log{\\sigma_i}} + 1\\bigr) + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
+               && \\text{n = dimension of latent space} \\tag{abc} \\\\[2ex]
+
          \\end{align}`,
       }
    },
