@@ -97,7 +97,7 @@
                <br>
                <b>Duck 1:</b> For reference, the lower variational bound referenced in eq 2.31 is: <vue-mathjax :formula='l1'></vue-mathjax>
                <br>
-               <b>Duck 2:</b> The KL divergence between two multivariate gaussians simplies as such (<a href="/blog/kl-divergence-mv-gaussian" target="_blank">shown here</a>):
+               <b>Duck 2:</b> The KL divergence between two multivariate gaussians simplifies to (<a href="/blog/kl-divergence-mv-gaussian" target="_blank">shown here</a>):
                <vue-mathjax :formula='`$$D_{\\mathbb{KL}}(q\\,||\\,p) \\triangleq \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
                \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr)$$`'></vue-mathjax>
                <br>  
@@ -239,21 +239,21 @@ export default {
             & = \\nabla_\\theta(\\log{p_\\theta(x, z))}  \\\\[2ex]
          \\end{align}$$`,
          gradphi: `$$\\begin{align}
-         \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] && \\text{definition of } \\mathcal{L}\\tag{4.0} \\\\[2ex]
-            & = \\nabla_\\phi \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)})q_{\\phi}(z|x)dz && \\text{continuous latent space z} \\tag{4.1}\\\\[2ex]
-            & = \\nabla_\\phi \\int \\log{p_\\theta(x, z)}q_{\\phi}(z|x)dz - \\nabla_\\phi \\int \\log{q_\\phi(z|x)}q_{\\phi}(z|x)dz && \\text{distribute terms} \\tag{4.2}\\\\[2ex]
-            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\bigl(\\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x) + \\nabla_\\phi q_{\\phi}(z|x)\\bigr)dz && \\text{product rule} \\tag{4.3}\\\\[2ex]
-            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz + \\nabla_\\phi \\int q_{\\phi}(z|x)dz && \\text{distribute integral on RHS} \\tag{4.4}\\\\[2ex]
-            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz && \\int q_\\phi(z|x)dz = 1, \\nabla_\\phi 1 = 0 \\tag{4.5}\\\\[2ex]
-            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi q_{\\phi}(z|x)dz && \\text{combine terms & factor out } \\nabla_\\phi q_\\phi(z|x) \\tag{4.6}\\\\[2ex]
-            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) q_{\\phi}(z|x) \\nabla_\\phi \\log{q_{\\phi}(z|x)}dz && \\text{chain rule, }\\frac{d}{dx}\\log{(x)} = \\frac{1}{x}\\log{\\biggl(\\frac{d}{dx}x\\biggr)}   \\tag{4.7}\\\\[2ex]
-            & =  \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)}\\bigr] && \\text{convert back to expectation}  \\tag{4.8}\\\\[2ex]
-            & \\approx  (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)} && \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\tag{4.9}\\\\[2ex]
+         \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] && \\text{definition of } \\mathcal{L}\\tag{5.0} \\\\[2ex]
+            & = \\nabla_\\phi \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)})q_{\\phi}(z|x)dz && \\text{continuous latent space z} \\tag{5.1}\\\\[2ex]
+            & = \\nabla_\\phi \\int \\log{p_\\theta(x, z)}q_{\\phi}(z|x)dz - \\nabla_\\phi \\int \\log{q_\\phi(z|x)}q_{\\phi}(z|x)dz && \\text{distribute terms} \\tag{5.2}\\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\bigl(\\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x) + \\nabla_\\phi q_{\\phi}(z|x)\\bigr)dz && \\text{product rule} \\tag{5.3}\\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz + \\nabla_\\phi \\int q_{\\phi}(z|x)dz && \\text{distribute integral on RHS} \\tag{5.4}\\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz && \\int q_\\phi(z|x)dz = 1, \\nabla_\\phi 1 = 0 \\tag{5.5}\\\\[2ex]
+            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi q_{\\phi}(z|x)dz && \\text{combine terms & factor out } \\nabla_\\phi q_\\phi(z|x) \\tag{5.6}\\\\[2ex]
+            & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) q_{\\phi}(z|x) \\nabla_\\phi \\log{q_{\\phi}(z|x)}dz && \\text{chain rule, }\\frac{d}{dx}\\log{(x)} = \\frac{1}{x}\\log{\\biggl(\\frac{d}{dx}x\\biggr)}   \\tag{5.7}\\\\[2ex]
+            & =  \\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[(\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)}\\bigr] && \\text{convert back to expectation}  \\tag{5.8}\\\\[2ex]
+            & \\approx  (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi \\log{q_{\\phi}(z|x)} && \\text{Monte Carlo estimate where } z \\sim q_\\phi(z|x) \\tag{5.9}\\\\[2ex]
          \\end{align}$$`,
          controlvariate: `\\begin{align}
-         \\int f(x)dx & = \\int g(x)dx + \\int (f(x) - g(x))dx \\tag{5.0} \\\\
-            & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\tag{5.1} \\\\ 
-         \\text{Var of eq (5.1)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\tag{5.2} \\\\
+         \\int f(x)dx & = \\int g(x)dx + \\int (f(x) - g(x))dx \\tag{6.0} \\\\
+            & \\approx \\mathbb{E}[g(x)] + \\frac{1}{n}\\sum_n(f(x) - g(x)) && \\text{take n samples} \\tag{6.1} \\\\ 
+         \\text{Var of eq (6.1)}& = \\frac{1}{n}\\text{Var}\\biggl(\\sum_n(f(x) - g(x))\\biggr) && \\text{Var}(X + c) = \\text{Var}(X), \\text{where c is constant} \\tag{6.2} \\\\
          \\end{align}`,
          sgvb: `$$\\begin{align}
          \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^A \\\\
@@ -264,15 +264,15 @@ export default {
          \\end{align}$$`,
          encoderprior: `\\begin{align}
          D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{|I|}{|\\Sigma|}\\Bigr) - n +
-               \\text{tr}\\bigl(I^{-1}\\Sigma\\bigr)+\\bigl(0-\\mu\\bigr)^\\top I^{-1}\\bigl(0-\\mu\\bigr)\\Biggr) && \\text{definition. Change det(x) to |x| for readability} \\tag{abc} \\\\[2ex]
+               \\text{tr}\\bigl(I^{-1}\\Sigma\\bigr)+\\bigl(0-\\mu\\bigr)^\\top I^{-1}\\bigl(0-\\mu\\bigr)\\Biggr) && \\text{definition. Change det(x) to |x| for readability} \\tag{4.0} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(\\log{|I|} - \\log{|\\Sigma|} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
-               && \\text{log quotient property}, I=I^{-1}, IA = A, -1\\times -1 = 1\\times 1 \\tag{abc} \\\\[2ex]
+               && \\text{log quotient property}, I=I^{-1}, IA = A, -1\\times -1 = 1\\times 1 \\tag{4.1} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(0 - \\log{\\prod_i{\\sigma_i}} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
-               && |I| = 1, ln(1) = 0, \\text{det of diag matrix = product of diag values} \\tag{abc} \\\\[2ex]
+               && |I| = 1, ln(1) = 0, \\text{det of diag matrix = product of diag values} \\tag{4.2} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(-\\sum_i{\\log{\\sigma_i}} - n + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
-               && \\text{convert to sums} \\tag{abc} \\\\[2ex]
+               && \\text{convert to sums} \\tag{4.3} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(-\\sum_i{\\bigl(\\log{\\sigma_i}} + 1\\bigr) + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
-               && \\text{n = dimension of latent space} \\tag{abc} \\\\[2ex]
+               && \\text{n = dimension of latent space} \\tag{4.4} \\\\[2ex]
 
          \\end{align}`,
       }
