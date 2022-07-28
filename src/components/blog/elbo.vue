@@ -22,7 +22,7 @@
                      <li><a href="#bayes">Starting with: Bayes Rule</a></li>
                      <li><a href="#kldivergence">Starting with: KL divergence</a></li>
                   </ul>
-                  <!-- <li><a href="#dkl-encoder-prior">KL Divergence Between Encoder And Prior</a></li> -->
+                  <li><a href="#dkl-encoder-prior">KL Divergence Between Encoder And Prior</a></li>
                   <li><a href="#gradientflow">Gradient Flow</a></li>
                   <ul>
                      <li><a href="#reparameterization">Reparameterization Trick</a></li>
@@ -88,23 +88,18 @@
             <h2>Starting with: KL divergence</h2>
             <br><br>
             <vue-mathjax :formula='dkl'></vue-mathjax>
-            <!-- <p>
-               Conceptually optimization of the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>
-               is analagous to lowering its KL divergence between it and the posterior <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>.
-            </p> -->
-
-            <!-- <div id="dkl-encoder-prior"></div>
+            <div id="dkl-encoder-prior"></div>
             <div id="blogSubHeader">
                KL Divergence Between Encoder And Prior
             </div>
             <p>
-               When both the encoder and prior are multivariate gaussian distributions the KL divergence, <vue-mathjax :formula='`$D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`'></vue-mathjax>,
+               <!-- When both the encoder and prior are multivariate gaussian distributions the KL divergence, <vue-mathjax :formula='`$D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z))$`'></vue-mathjax>,
                in the lower variational bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> shown in equation 2.31 simplifies. Let the encoder
                <vue-mathjax :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_1 = \\mu$`'></vue-mathjax> and 
                <vue-mathjax :formula='`$\\Sigma_1 = \\text{diag}(\\sigma_1^2, \\sigma_2^2, \\text{ ... }, \\sigma_n^2)$`'></vue-mathjax>
-               and let the prior <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_2 = 0$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Sigma_2 = I$`'></vue-mathjax>.
+               and let the prior <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vue-mathjax> where <vue-mathjax :formula='`$\\mu_2 = 0$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Sigma_2 = I$`'></vue-mathjax>. -->
             </p>
-            <vue-mathjax :formula='encoderprior'></vue-mathjax> -->
+            <vue-mathjax :formula='encoderprior'></vue-mathjax>
             <div id="gradientflow"></div> 
             <div id="blogSubHeader">
                Gradient Flow
@@ -128,8 +123,8 @@
                <vue-mathjax :formula='`$z$`'></vue-mathjax> to random variable <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax>. Random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> is then "reparametized" to
                <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> and is referred to as the <i>control variate</i>.
             </p>
-               <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization.png" alt="">
-               <span style="font-size:14px; padding-top: -10px;"><i><a href="https://stats.stackexchange.com/questions/199605/how-does-the-reparameterization-trick-for-vaes-work-and-why-is-it-important#" target="_blank">Stack Exchange</a></i></span>
+               <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization3.png" alt="">
+               <span style="font-size:14px; padding-top: -10px;"><i><a href="https://arxiv.org/abs/1906.02691" target="_blank">Figure 2.3 from "An Introduction to Variational Autoencoders"</a></i></span>
             <p>
                As a brief aside, the reparameterization trick reduces variance specifically through the use of a control variate.
                Variance reduction through a control variate works by approximating some function <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>, whose expectation is known,
@@ -139,10 +134,9 @@
             <vue-mathjax :formula='controlvariate'></vue-mathjax>
             <p>
                Variance reduction works because the expectation of the control variate is known. Because of this,
-               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, I)$`'></vue-mathjax>.
+               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
                By scaling and shifting <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
-               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax>, where <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, I)$`'></vue-mathjax>,
-               that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
+               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
             </p>
             <p>
                With reparameterization, the two representations of the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>  shown in "<a href="#bayes">Starting with: Bayes Rule</a>" are called
