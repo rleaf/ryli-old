@@ -93,7 +93,8 @@
                Closed Form Computation of KL Divergence in the ELBO
             </div>
             <p>
-               To make sure our ducks are in a row before proceeding...
+               This section is more of an aside to show the breakdown of the KL divergence term in <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> when the prior and encoder are initialized
+               to certain densities. To make sure our ducks are in a row before proceeding...
                <br>
                <b>Duck 1:</b> For reference, the lower variational bound referenced in eq 2.31 is: <vue-mathjax :formula='l1'></vue-mathjax>
                <br>
@@ -260,19 +261,22 @@ export default {
             & = \\frac{1}{L}\\sum_{l=1}^L \\log{p_\\theta(x, z^l)} - \\log{q_\\phi(z^l|x)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon) \\\\
             & \\text{and} \\\\[2ex]
          \\mathcal{L} & \\approx \\mathcal{\\widetilde{L}}^B \\\\
-            & = - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon)
+            & = - D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{where } z^l = g(\\phi, x, \\epsilon^l) \\text{ and } \\epsilon^l \\sim p(\\epsilon) \\\\
+            & = \\frac{1}{2}\\sum_i\\Biggl(\\log{\\sigma_i^2} + 1 - \\sigma_i^2 - \\mu_i^2\\Biggr) + \\frac{1}{L}\\sum_{l=1}^L\\log{p_\\theta(x|z^l)} && \\text{sub in eq 4.5}
          \\end{align}$$`,
          encoderprior: `\\begin{align}
          D_{\\mathbb{KL}}(q_\\phi(z|x)\\,||\\,p_\\theta(z)) & = \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{|I|}{|\\Sigma|}\\Bigr) - n +
                \\text{tr}\\bigl(I^{-1}\\Sigma\\bigr)+\\bigl(0-\\mu\\bigr)^\\top I^{-1}\\bigl(0-\\mu\\bigr)\\Biggr) && \\text{definition. Change det(x) to |x| for readability} \\tag{4.0} \\\\[2ex]
             & = \\frac{1}{2}\\Biggl(\\log{|I|} - \\log{|\\Sigma|} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
                && \\text{log quotient property}, I=I^{-1}, IA = A, -1\\times -1 = 1\\times 1 \\tag{4.1} \\\\[2ex]
-            & = \\frac{1}{2}\\Biggl(0 - \\log{\\prod_i{\\sigma_i}} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
+            & = \\frac{1}{2}\\Biggl(0 - \\log{\\prod_i{\\sigma_i^2}} - n + \\text{tr}\\bigl(\\Sigma\\bigr)+\\mu^\\top\\mu\\Biggr)
                && |I| = 1, ln(1) = 0, \\text{det of diag matrix = product of diag values} \\tag{4.2} \\\\[2ex]
-            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\log{\\sigma_i}} - n + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
-               && \\text{convert to sums} \\tag{4.3} \\\\[2ex]
-            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\bigl(\\log{\\sigma_i}} + 1\\bigr) + \\sum_i{\\sigma_i}+\\sum_i{\\mu_i^2}\\Biggr)
+            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\log{\\sigma_i^2}} - n + \\sum_i{\\sigma_i^2}+\\sum_i{\\mu_i^2}\\Biggr)
+               && \\text{convert to sums. Recall diagonal of covariance mat is }\\sigma^2 \\tag{4.3} \\\\[2ex]
+            & = \\frac{1}{2}\\Biggl(-\\sum_i{\\bigl(\\log{\\sigma_i^2}} + 1\\bigr) + \\sum_i{\\sigma_i^2}+\\sum_i{\\mu_i^2}\\Biggr)
                && \\text{n = dimension of latent space} \\tag{4.4} \\\\[2ex]
+            & = \\frac{1}{2}\\sum_i\\Biggl(-\\bigl(\\log{\\sigma_i^2} + 1\\bigr) + \\sigma_i^2 +\\mu_i^2\\Biggr)
+               && \\text{simplify} \\tag{4.5}
 
          \\end{align}`,
       }
