@@ -48,6 +48,23 @@ export default {
 
    mounted() {
       window.addEventListener('scroll', this.themeRender)
+      
+      if (localStorage.getItem('theme') == 'Day') {
+         this.themeBool = true
+         this.themeToggle()
+      }
+
+      if (localStorage.getItem('type') == 'Sans Serif') {
+         this.typeBool = true
+         this.type = 'Sans Serif'
+         document.querySelector('#landing').classList.toggle('serif')
+      }
+
+      if (localStorage.getItem('size') == '17px') {
+         this.sizeBool = true
+         this.size = '17px'
+         document.querySelector('#landing').classList.toggle('typeSize')
+      }
    },
 
    beforeDestroy() {
@@ -67,13 +84,21 @@ export default {
 
       changeTheme() {
 
+         this.themeToggle()
+         this.themeBool = !this.themeBool
+         this.themeBool ? this.theme = 'Day': this.theme = 'Night'
+         this.theme == 'Day' ? localStorage.setItem('theme', 'Day') : localStorage.setItem('theme', 'Night')
+      },
+
+      themeToggle() {
+
          let landing = document.querySelector('#landing')
          let themeIcon = document.querySelector('.themeIcon')
-
-         landing.classList.toggle('day')
-
          let nav = document.querySelectorAll('.nav')
          let img = document.querySelectorAll('img')
+
+         landing.classList.toggle('day')
+         themeIcon.classList.toggle('dayIcon')
 
          nav.forEach((li) => {
             li.classList.toggle('day')
@@ -84,11 +109,6 @@ export default {
                img.classList.toggle('daymodeimg')
             }
          })
-
-         this.themeBool = !this.themeBool
-         this.themeBool ? this.theme = 'Day': this.theme = 'Night'
-         // this.themeBool ? themeIcon.style.maskImage = `url('../assets/moon2.svg')` : themeIcon.style.maskImage = `url('../assets/sun.svg')`
-         themeIcon.classList.toggle('dayIcon')
       },
 
       changeType() {
@@ -98,6 +118,8 @@ export default {
 
          this.typeBool = !this.typeBool
          this.typeBool ? this.type = 'Sans Serif': this.type = 'Serif'
+
+         localStorage.setItem('type', this.type)
       },
 
       changeSize() {
@@ -108,9 +130,11 @@ export default {
          this.sizeBool = !this.sizeBool
          this.sizeBool ? this.size = '17px': this.size = '15px'
 
+         localStorage.setItem('size', this.size)
       }
    }
 }
+
 </script>
 
 <style scoped>
