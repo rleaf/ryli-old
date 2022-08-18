@@ -29,7 +29,7 @@
                   </ul>
                </ul>
             </div>
-            <i>(5/17/22) Edit: Improved clarification on what reparameterization is and how it works</i>
+            <i>(8/18/22) Edit: Improved explanation on what the reparameterization trick is and how it works.</i>
             <div id="introduction"></div>
             <div id="blogSubHeader">
                Introduction
