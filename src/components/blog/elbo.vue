@@ -124,27 +124,21 @@
             <vue-mathjax :formula='gradphi'></vue-mathjax>
             <div id="reparameterization"></div>
             <h2>Reparameterization Trick</h2>
-            <p>
-               Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>, they express high variance making them impractical for use. To reduce variance
-               the reparameterization trick is used which delegates the stochasticity in random variable
-               <vue-mathjax :formula='`$z$`'></vue-mathjax> to random variable <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax>. Random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> is then "reparametized" to
-               <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> and is referred to as the <i>control variate</i>.
+            <p> 
+               The reparameterization trick is a procedure that segregates the inherit stochasticity in the random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> from the desired parameters for backpropogation.
+               This provides two benefits. One, reparameterization is a variance reduction technique. Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>,
+               they express high variance making them impractical for use.
+               By reducing variance, we ensure a more appropriate gradient for the model to learn. Two, reparameterization also guarantees
+               the function to be differentiable because <vue-mathjax :formula='`$\\nabla_\\phi q_\\phi(z|x)$`'></vue-mathjax> is not always possible to compute. By eschewing the gradient's parameters from this density's parameters, we circumvent this issue.
             </p>
                <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization3.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i><a href="https://arxiv.org/abs/1906.02691" target="_blank">Figure 2.3 from "An Introduction to Variational Autoencoders"</a></i></span>
             <p>
-               As a brief aside, the reparameterization trick reduces variance specifically through the use of a control variate.
-               Variance reduction through a control variate works by approximating some function <vue-mathjax :formula='`$g(x)$`'></vue-mathjax>, whose expectation is known,
-               to another function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>. Then by taking the variance of a Monte Carlo estimate, the known constant expectation nullifies. If
-               <vue-mathjax :formula='`$g(x)$`'></vue-mathjax> is correlated with <vue-mathjax :formula='`$f(x)$`'></vue-mathjax>, then <vue-mathjax :formula='`$\\tilde{z}$`'></vue-mathjax> can produce lower variance.
+               Reparameterization introduces an intermediary function <vue-mathjax :formula='`$g$`'></vue-mathjax> such that <vue-mathjax :formula='`$z = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where
+               <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax>. On an intuitive level, this converts a lot of the headache witnessed in equations 5.X to something more approachable because, by
+               reparameterizing <vue-mathjax :formula='`$z$`'></vue-mathjax>, the parameters of the density of the expectation changes which in turn enables a swap between the gradient and expectation.
             </p>
-            <vue-mathjax :formula='controlvariate'></vue-mathjax>
-            <p>
-               Variance reduction works because the expectation of the control variate is known. Because of this,
-               <vue-mathjax :formula='`$p(\\epsilon)$`'></vue-mathjax> it is popularly initialized as the unit gaussian <vue-mathjax :formula='`$\\epsilon \\sim \\mathcal{N}(0, 1)$`'></vue-mathjax>.
-               By scaling and shifting <vue-mathjax :formula='`$\\epsilon$`'></vue-mathjax> through transformation <vue-mathjax :formula='`$g(\\phi, x, \\epsilon) = \\mu + \\sigma\\epsilon$`'></vue-mathjax>,
-               the hope is to sample from random variable <vue-mathjax :formula='`$\\tilde{z} = g(\\phi, x, \\epsilon)$`'></vue-mathjax> that approximates <vue-mathjax :formula='`$z \\sim q(z|x)$`'></vue-mathjax> with lower variance.
-            </p>
+            <vue-mathjax :formula='reparam'></vue-mathjax>
             <p>
                With reparameterization, the two representations of the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>  shown in "<a href="#bayes">Starting with: Bayes Rule</a>" are called
                the Stochastic Gradient Variational Bayes Estimator (SGVB) and can be represented as:
@@ -243,7 +237,7 @@ export default {
          \\nabla_\\phi \\mathcal{L} & =  \\nabla_\\phi\\mathbb{E}_{q_{\\phi}(z|x)}\\bigl[\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}\\bigr] && \\text{definition of } \\mathcal{L}\\tag{5.0} \\\\[2ex]
             & = \\nabla_\\phi \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)})q_{\\phi}(z|x)dz && \\text{continuous latent space z} \\tag{5.1}\\\\[2ex]
             & = \\nabla_\\phi \\int \\log{p_\\theta(x, z)}q_{\\phi}(z|x)dz - \\nabla_\\phi \\int \\log{q_\\phi(z|x)}q_{\\phi}(z|x)dz && \\text{distribute terms} \\tag{5.2}\\\\[2ex]
-            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\bigl(\\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x) + \\nabla_\\phi q_{\\phi}(z|x)\\bigr)dz && \\text{product rule} \\tag{5.3}\\\\[2ex]
+            & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\bigl(\\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x) + \\nabla_\\phi q_{\\phi}(z|x)\\bigr)dz && \\text{product rule on RHS} \\tag{5.3}\\\\[2ex]
             & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz + \\nabla_\\phi \\int q_{\\phi}(z|x)dz && \\text{distribute integral on RHS} \\tag{5.4}\\\\[2ex]
             & =  \\int \\log{p_\\theta(x, z)}\\nabla_\\phi q_{\\phi}(z|x)dz - \\int \\log{q_\\phi(z|x)} \\nabla_\\phi q_{\\phi}(z|x)dz && \\int q_\\phi(z|x)dz = 1, \\nabla_\\phi 1 = 0 \\tag{5.5}\\\\[2ex]
             & =  \\int (\\log{p_\\theta(x, z)} - \\log{q_\\phi(z|x)}) \\nabla_\\phi q_{\\phi}(z|x)dz && \\text{combine terms & factor out } \\nabla_\\phi q_\\phi(z|x) \\tag{5.6}\\\\[2ex]
@@ -279,6 +273,11 @@ export default {
                && \\text{simplify} \\tag{4.5}
 
          \\end{align}`,
+         reparam: `\\begin{align}
+         \\nabla_\\phi\\mathbb{E}_{q_\\phi(z|x)}[f(z)] & = \\nabla_\\phi\\mathbb{E}_{p(\\epsilon))}[f(g(\\phi, x, \\epsilon))] && \\text{where } z = g(\\phi, x, \\epsilon), \\epsilon \\sim p(\\epsilon) \\\\[2ex]
+            & = \\mathbb{E}_{p(\\epsilon))}[\\nabla_\\phi f(g(\\phi, x, \\epsilon))] \\\\[2ex]
+            & \\approx \\nabla_\\phi f(g(\\phi, x, \\epsilon)) && \\text{Monte Carlo estimate where } \\epsilon \\sim p(\\epsilon)
+         \\end{align}`
       }
    },
 
