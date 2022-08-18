@@ -47,23 +47,35 @@ export default {
    // },
 
    mounted() {
-      window.addEventListener('scroll', this.themeRender)
-      
-      if (localStorage.getItem('theme') == 'Day') {
-         this.themeBool = true
-         this.themeToggle()
-      }
 
+      window.addEventListener('scroll', this.themeRender)
+
+      if (localStorage.theme) {
+         // ...has to be a better way...localStorage only stores strings...
+         localStorage.theme == 'true' ? this.themeBool = true : this.themeBool = false
+      }
+      this.setTheme(this.themeBool)
+      
       if (localStorage.getItem('type') == 'Sans Serif') {
          this.typeBool = true
          this.type = 'Sans Serif'
-         document.querySelector('#landing').classList.toggle('serif')
+
+         if (document.querySelectorAll('#landing').length == 2) {
+            document.querySelectorAll('#landing')[1].classList.toggle('serif')
+         } else {
+            document.querySelector('#landing').classList.toggle('serif')
+         }
       }
 
       if (localStorage.getItem('size') == '17px') {
          this.sizeBool = true
          this.size = '17px'
-         document.querySelector('#landing').classList.toggle('typeSize')
+
+         if (document.querySelectorAll('#landing').length == 2) {
+            document.querySelectorAll('#landing')[1].classList.toggle('typeSize')
+         } else {
+            document.querySelector('#landing').classList.toggle('typeSize')
+         }
       }
    },
 
@@ -84,31 +96,53 @@ export default {
 
       changeTheme() {
 
-         this.themeToggle()
          this.themeBool = !this.themeBool
-         this.themeBool ? this.theme = 'Day': this.theme = 'Night'
-         this.theme == 'Day' ? localStorage.setItem('theme', 'Day') : localStorage.setItem('theme', 'Night')
+         localStorage.setItem('theme', this.themeBool)
+         this.setTheme(this.themeBool)
       },
 
-      themeToggle() {
+      setTheme(bool) {
 
-         let landing = document.querySelector('#landing')
+         let landing
+
+         if (document.querySelectorAll('#landing').length == 2) {
+            landing = document.querySelectorAll('#landing')[1]
+         } else {
+            landing = document.querySelector('#landing')
+         }
+
          let themeIcon = document.querySelector('.themeIcon')
          let nav = document.querySelectorAll('.nav')
          let img = document.querySelectorAll('img')
 
-         landing.classList.toggle('day')
-         themeIcon.classList.toggle('dayIcon')
-
-         nav.forEach((li) => {
-            li.classList.toggle('day')
-         })
-
-         img.forEach((img) => {
-            if (!img.classList.contains('noInvert')) {
-               img.classList.toggle('daymodeimg')
-            }
-         })
+         if (bool) {
+            landing.classList.add('day')
+            themeIcon.classList.add('dayIcon')
+   
+            nav.forEach((li) => {
+               li.classList.add('day')
+            })
+   
+            img.forEach((img) => {
+               if (!img.classList.contains('noInvert')) {
+                  img.classList.add('daymodeimg')
+               }
+            })
+            
+         } else {
+            landing.classList.remove('day')
+            themeIcon.classList.remove('dayIcon')
+   
+            nav.forEach((li) => {
+               li.classList.remove('day')
+            })
+   
+            img.forEach((img) => {
+               if (!img.classList.contains('noInvert')) {
+                  img.classList.remove('daymodeimg')
+               }
+            })
+         }
       },
 
       changeType() {
