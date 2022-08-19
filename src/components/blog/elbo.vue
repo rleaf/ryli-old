@@ -126,7 +126,7 @@
             <div id="reparameterization"></div>
             <h2>Reparameterization Trick</h2>
             <p> 
-               The reparameterization trick is a procedure that segregates the inherit stochasticity in the random variable <vue-mathjax :formula='`$z$`'></vue-mathjax> from the desired parameters for backpropogation.
+               The reparameterization trick is a procedure that segregates the stochasticity in <vue-mathjax :formula='`$z$`'></vue-mathjax> from the desired parameters for backpropogation.
                This provides two benefits. One, reparameterization is a variance reduction technique. Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>,
                they express high variance making them impractical for use.
                By reducing variance, we ensure a more appropriate gradient for the model to learn. Two, reparameterization also guarantees
@@ -135,9 +135,11 @@
                <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization3.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i><a href="https://arxiv.org/abs/1906.02691" target="_blank">Figure 2.3 from "An Introduction to Variational Autoencoders"</a></i></span>
             <p>
-               Reparameterization introduces an intermediary function <vue-mathjax :formula='`$g$`'></vue-mathjax> such that <vue-mathjax :formula='`$z = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where
-               <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax>. On an intuitive level, this converts a lot of the headache witnessed in equations 5.X to something more approachable because, by
-               reparameterizing <vue-mathjax :formula='`$z$`'></vue-mathjax>, the parameters of the density of the expectation changes which in turn enables a swap between the gradient and expectation.
+               Reparameterization introduces an intermediary function <vue-mathjax :formula='`$g$`'></vue-mathjax> such that instead of <vue-mathjax :formula='`$z \\sim q_\\phi(z|x)$`'></vue-mathjax>,
+               <vue-mathjax :formula='`$z = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where the stochasticity is delegated to random variable <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax>. The desired parameter for backpropagation,
+               <vue-mathjax :formula='`$\\phi$`'></vue-mathjax>, now becomes deterministic and provides a more reliable flow downstream.
+               On a more tangible level this converts a lot of the headache witnessed in equations 5.X to something more approachable because, by
+               reparameterizing <vue-mathjax :formula='`$z$`'></vue-mathjax>, the parameters of the density of the expectation changes, which in turn allows the gradient to be inside the expectation.
             </p>
             <vue-mathjax :formula='reparam'></vue-mathjax>
             <p>
