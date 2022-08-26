@@ -146,7 +146,7 @@
             <h2>Multi Headed Attention</h2>
             <p>
                After creating our <code style="background: var(--codeSnippet); border-radius: 5px;">Self Attention</code> class, we can instantiate it inside a Module List based off the number of heads we have, which will be a hyperparameter. The
-               forward pass of multi headed attention feeds the input through <code style="background: var(--codeSnippet); border-radius: 5px;">num_heads</code> self attention classes and then concatenates the each of the self attention
+               forward pass of multi headed attention feeds the input through <code style="background: var(--codeSnippet); border-radius: 5px;">num_heads</code> self attention classes and then concatenates each of the self attention
                outputs along the trailing dimension. Lastly the concatenated tensor is fed through a linear layer to transform it back to the input shape.
             </p>
             <prism-editor class="codeblock" v-model="transformerAssets.multi_head_attn" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
