@@ -36,7 +36,6 @@
 
 <script>
 // // import backdrop from '../components/backdrop.vue'
-import threeScene from '../assets/js/threeScene.js'
 import Post from '../assets/js/glossaryStruc.js'
 import g from '../assets/json/glossary.json'
 import { VueMathjax } from 'vue-mathjax'
@@ -45,7 +44,6 @@ import 'vue-prism-editor/dist/prismeditor.min.css'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-python'
 import 'prismjs/themes/prism-nord.css'
-import gsap from 'gsap'
 // const backpropImg = require('../assets/backprop2.png')
 
 export default {
@@ -131,32 +129,6 @@ export default {
          return highlight(code, languages.py); // languages.<insert language> to return html with markup
       }
    },
-   mounted() {
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
-
-      if(threeScene.cache == 'noScene') {
-         return
-      } else {
-         
-         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         //    threeScene.destroyMesh()
-         //    threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         // }})
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
-            threeScene.destroyHero()
-            threeScene.destroyMesh()
-            // setTimeout(() => {
-            //    threeScene.destroyHero()
-            //    threeScene.destroyMesh()
-            // }, 1500)
-         }})
-         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'noScene'
-      }
-   }
 }
 </script>
 

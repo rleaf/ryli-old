@@ -29,7 +29,14 @@ export default {
 
    watch: {
       $route(to) {
+         
+         // Destroy shaders on blog pages
+         if (to.path.slice(0, 5) == '/blog' && to.path.length > 5) {
+            this.experience.world.removeHero()
+            this.experience.world.removeDesign()
+         }
 
+         // Change shaders depending on design or hero
          switch (to.name) {
             case 'oscilla':
                this.designScene()
@@ -105,9 +112,8 @@ export default {
 
       designScene() {
          gsap.fromTo(this.experience.world.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
-            this.experience.scene.remove(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
+            this.experience.world.removeHero()
          }})
-
          gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
 
          this.routeCache = 'design'   
@@ -115,7 +121,7 @@ export default {
 
       heroScene() {
          gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-            this.experience.world.unsetMesh()
+            this.experience.world.removeDesign()
             this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
          }})
          gsap.fromTo(this.experience.world.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})

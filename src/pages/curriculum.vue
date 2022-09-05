@@ -87,8 +87,6 @@
 // import NavBar from '../components/nav.vue'
 // // import backdrop from '../components/backdrop.vue'
 import curriculumAbout from '../components/curriculumAbout.vue'
-import threeScene from '../assets/js/threeScene.js'
-import gsap from 'gsap'
 
 export default {
    name: 'curriculum',
@@ -98,24 +96,6 @@ export default {
       curriculumAbout,
       // sharks
    },
-   mounted() {
-      // threeScene.loadPageScene()
-      gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, delay: 1.5, duration: 1.5})
-
-      if(threeScene.cache == 'mainScene') {
-         return
-      } else {
-         
-         gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: "auto", onComplete:() => {
-         threeScene.destroyMesh()
-         threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         }})
-
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'mainScene'
-      }
-   }
 }
 </script>
 
