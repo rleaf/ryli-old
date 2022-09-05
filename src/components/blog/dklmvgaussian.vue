@@ -132,8 +132,7 @@ export default {
       // MathJax
    },
    
-   metaInfo: {
-      title: 'Toads',
+   head: {
       meta: [
          {
             name: 'author',

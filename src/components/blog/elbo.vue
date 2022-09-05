@@ -176,7 +176,7 @@ export default {
       'vue-mathjax': VueMathjax
       // MathJax
    },
-   metaInfo: {
+   head: {
       meta: [
          {
             name: 'author',
