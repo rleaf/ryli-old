@@ -8,14 +8,11 @@
 </template>
 
 <script>
-// import threeScene from '../assets/js/threeScene.js'
-
 import Experience from '../assets/js/Experience/Experience.js'
 import gsap from 'gsap'
 
 
 export default {
-   // name: 'threeScene',
    components: {
       
    },
@@ -120,10 +117,6 @@ export default {
             this.experience.world.removeHero()
          }})
          gsap.to(this.experience.world.groupOpacity, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
-         // gsap.fromTo(this.experience.world.groupOpacity, {sphere: 1.0, plane: 1.0}, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
-         //    this.experience.world.removeHero()
-         // }})
-         // gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.0}, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
 
          this.routeCache = 'design'
       },
@@ -135,9 +128,6 @@ export default {
          }})
 
          gsap.to(this.experience.world.groupOpacity, {sphere: 1.0, plane: 1.0, delay: 0.6, duration: 1, overwrite: 'auto'})
-         // gsap.fromTo(this.experience.world.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         // }})
-         // gsap.fromTo(this.experience.world.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
 
          this.routeCache = 'hero'
       }
@@ -153,13 +143,9 @@ export default {
       // }
 
       this.experience = new Experience(document.querySelector('canvas.webgl'))
-      // this.heroScene()
+
       // Set to null first to prevent "blinking" render when opening a blog directly.
       this.blogRender = true
-
-      // setTimeout(() => {
-      //    threeScene.init()
-      // })
    }
 }
 

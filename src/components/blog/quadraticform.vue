@@ -209,10 +209,6 @@ import { VueMathjax } from 'vue-mathjax'
 import toTop from '../../components/toTop.vue'
 import themeSwitch from '../../components/themeSwitch.vue'
 import quadformjs from './assets/quadform'
-import threeScene from '../../assets/js/threeScene'
-import gsap from 'gsap'
-
-
 
 export default {
    name: 'blogQuadraticForm',
@@ -273,27 +269,6 @@ export default {
             processEnvironments: true
          }
       });
-      
-      if(threeScene.cache == 'noScene') {
-         return
-      } else {
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
-            threeScene.destroyHero()
-            threeScene.destroyMesh()
-            // From glossary.vue
-         }})
-         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         // threeScene.destroyMesh()
-         // threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         // }})
-         // setTimeout(() => {
-         //    threeScene.destroyHero()
-         // }, 1500)
-         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'noScene'
-      }
    },
 }
 </script>

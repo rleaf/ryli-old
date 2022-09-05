@@ -30,22 +30,6 @@ export default {
       }
    },
 
-   // watch: {
-   //    theme() {
-   //       console.log(this.theme);
-   //       this.changeTheme()
-         
-   //       this.theme ? this.mode = 'Day': this.mode = 'Night'
-   //    },
-
-   //    // This doesn't work because componenent is being destroyed on route change.
-   //    // $route(to) {
-   //    //    setTimeout(() => {
-   //    //       console.log('themeSwitch', to)
-   //    //    })
-   //    // },
-   // },
-
    mounted() {
 
       window.addEventListener('scroll', this.themeRender)

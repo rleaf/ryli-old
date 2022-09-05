@@ -7,9 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Introduction to Big "Oh" Notation</p>
-                  <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">12 &#8226; 20 &#8226; 2021</p>
-                  <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
             <div class="blogtoc">
@@ -303,8 +301,6 @@ import { VueMathjax } from 'vue-mathjax'
 import { PrismEditor } from 'vue-prism-editor'
 import 'vue-prism-editor/dist/prismeditor.min.css'
 import { highlight, languages } from 'prismjs/components/prism-core'
-import threeScene from '../../assets/js/threeScene'
-import gsap from 'gsap'
 import 'prismjs/components/prism-python'
 import 'prismjs/themes/prism-nord.css'
 import bigojs from './assets/bigo.js'
@@ -364,17 +360,7 @@ export default {
       }
    },
 
-   beforeMount() {
-
-      // let mathjaxScript = document.createElement('script')
-      // mathjaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-      // document.head.appendChild(mathjaxScript)
-   },
-      mounted () {
-         // let mathJaxScript = document.createElement('script')
-         // mathJaxScript.setAttribute('src', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML')
-         // document.head.appendChild(mathJaxScript)
-
+   mounted () {
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
@@ -384,33 +370,6 @@ export default {
             processEnvironments: true
          }
       });
-
-         // console.log(window.MathJax);
-         // this.$nextTick(() => {
-         //    console.log('toads');
-         //    // window.MathJax.Hub.Queue(["Typeset",window.MathJax.Hub, document.body])
-         // })
-
-      if(threeScene.cache == 'noScene') {
-         return
-      } else {
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
-            threeScene.destroyHero()
-            threeScene.destroyMesh()
-            // From glossary.vue
-         }})
-         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         // threeScene.destroyMesh()
-         // // threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         // }})
-         // setTimeout(() => {
-            // threeScene.destroyHero()
-         // }, 1500)
-         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'noScene'
-      }
    } 
 }
 </script>

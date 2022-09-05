@@ -52,15 +52,8 @@ export default {
          threeScene.cache = 'mainScene'
       }
       
-      // gsap.fromTo('.introword', {opacity: 0}, {opacity: 1, duration: 7, delay: 0.8})
       gsap.from('.introword', {duration: 7, opacity: 0, delay: .8});
-      gsap.from('.subwordhomeIntro', {duration: 7, opacity: 0, delay: 3})
-      
-      // for (let i = 0; i < x.length; i++) {
-      //    // gsap.from(x[i], {duration: "random(3, 5)", y: 120});
-      // }
-   
-      // gsap.from(y[0], {duration: 5, opacity: 0, delay: 4.5});
+      gsap.from('.subwordhomeIntro', {duration: 7, opacity: 0, delay: 3}) 
    },
 }
 </script>

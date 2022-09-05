@@ -7,9 +7,7 @@
             <div id="curriculumHeader">
                <div id="blogHeader">
                   <p style="padding: 0 !important; margin: 0 !important;">Skeleton</p>
-                  <!-- <p style="display: flex; justify-content: center;">2 3 4 </p> -->
                   <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
-                  <!-- <p>{{ blogs[0].name }}</p> -->
                </div>
             </div>
             <vue-mathjax :formula='formula'></vue-mathjax>
@@ -38,7 +36,6 @@
                dolor imperdiet vel. Suspendisse potenti. Etiam enim nisi, condimentum ornare molestie eu, finibus 
                in purus. Cras suscipit tellus sagittis sapien molestie accumsan.
             </p>
-            <!-- <p>{{ blogs[0].description }}</p> -->
          </div>
          <themeSwitch />
          <toTop />
@@ -46,15 +43,10 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import backdrop from '../backdrop.vue'
 import toTop from '../../components/toTop.vue'
 import themeSwitch from '../../components/themeSwitch.vue'
 import { VueMathjax } from 'vue-mathjax'
-import threeScene from '../../assets/js/threeScene'
-import gsap from 'gsap'
-
-
 
 export default {
    name: 'blogskeleton',
@@ -106,27 +98,6 @@ export default {
             processEnvironments: true
          }
       });
-
-      if(threeScene.cache == 'noScene') {
-         return
-      } else {
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
-            threeScene.destroyHero()
-            threeScene.destroyMesh()
-            // From glossary.vue
-         }})
-         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         // threeScene.destroyMesh()
-         // threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         // }})
-         // setTimeout(() => {
-         //    threeScene.destroyHero()
-         // }, 1500)
-         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'noScene'
-      }
    } 
 }
 </script>

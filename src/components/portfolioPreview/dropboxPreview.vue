@@ -10,7 +10,7 @@
                <!-- <p>10/5/2018</p> -->
             </div>
          </div>
-         <div id="dropboxTween"  v-on:mouseover="bgTweenMouseOver()" v-on:mouseleave="bgTweenMouseLeave()" class="imagePreviewHover">
+         <div id="dropboxTween" class="imagePreviewHover">
             <img src="../../assets/design/dropbox/dropbox_cover.webp" class="portimg">
          </div>
       </router-link>
@@ -18,9 +18,6 @@
 </template>
 
 <script>
-import threeScene from '../../assets/js/threeScene.js'
-import { gsap } from 'gsap'
-
 export default {
    
    data() {
@@ -28,17 +25,7 @@ export default {
 
       }
    },
-
-   methods: {
-      bgTweenMouseOver() {
-         gsap.to(threeScene.fogColorRGB, {r: 0/255,g: 12.125/255, b: 31.875/255, duration: 1.5})
-      },
-      bgTweenMouseLeave() {
-         gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
-      }
-   },
 }
-
 </script>
 
 <style>

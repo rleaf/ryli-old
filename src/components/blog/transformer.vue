@@ -291,13 +291,10 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import backdrop from '../backdrop.vue'
 import themeSwitch from '../../components/themeSwitch.vue'
 import toTop from '../../components/toTop.vue'
 import { VueMathjax } from 'vue-mathjax'
-import threeScene from '../../assets/js/threeScene'
-import gsap from 'gsap'
 import transformerjs from './assets/transformer'
 
 import { PrismEditor } from 'vue-prism-editor'
@@ -316,7 +313,6 @@ export default {
       toTop,
       PrismEditor,
       'vue-mathjax': VueMathjax
-      // MathJax
    },
 
    head: {
@@ -363,8 +359,7 @@ export default {
       }
    },
 
-   mounted () {
-      
+   mounted () { 
       window.MathJax.Hub.Config({
          tex2jax: {
             inlineMath: [['$','$']],
@@ -374,27 +369,6 @@ export default {
             processEnvironments: true
          }
       });
-
-      if(threeScene.cache == 'noScene') {
-         return
-      } else {
-         gsap.fromTo(threeScene.groupOpacity, {sphere: 1.0, plane: 1.0, designSceneOpacity: 0.4}, {sphere: 0.0, plane: 0.0, designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete: () => {
-            threeScene.destroyHero()
-            threeScene.destroyMesh()
-            // From glossary.vue
-         }})
-         // gsap.fromTo(threeScene.groupOpacity, {designSceneOpacity: 0.4}, {designSceneOpacity: 0.0, duration: .6, overwrite: true, onComplete:() => {
-         // threeScene.destroyMesh()
-         // threeScene.scene.add(threeScene.sphere,threeScene.plane)
-         // }})
-         // setTimeout(() => {
-         //    threeScene.destroyHero()
-         // }, 1500)
-         // Easier to just use the backdrop component, which I made earlier, instead of tweening.
-         // gsap.fromTo(threeScene.groupOpacity, {sphere: 0.0, plane: 0.0}, {sphere: 1.0, plane: 1.0, delay: .6, duration: 1, overwrite: "auto"})
-         
-         threeScene.cache = 'noScene'
-      }
    } 
 }
 </script>

@@ -1,15 +1,10 @@
 <template>
    <div class="nav">
-      <!-- <div class="imageheaderratio"> -->
-            <!-- <li>Home</li> -->
          <div id="mainnav">
             <router-link  :to="{ name: 'home' }" class="underline">
                <img class="logoimg" src="../assets/logo.png" alt="">
             </router-link>
             <ul id='bar'>
-               <!-- <router-link to="/" class="underline">
-                  <li>Home</li>
-               </router-link> -->
                <router-link  :to="{ name: 'design'}" class="underline">
                   <li>Design</li>
                </router-link>
@@ -29,9 +24,6 @@
                <router-link :to="{ name: 'glossary'}" class="underline">
                   <li>Food</li>
                </router-link>
-               <!-- <router-link to='sketches' class="underline">
-                  <li>Sketches +</li>
-               </router-link> -->
             </ul>
             <ul id='bar2'>
                <a href="https://twitter.com/_ryli" class="underline" target="_blank">
@@ -101,20 +93,6 @@ export default {
       isActive() {
          let menu = document.querySelector('#mobilepad')
          let bread = document.getElementsByClassName('bread')
-         // bread.classList.toggle('bread')
-         // this.isActive ?
-         //    // Menu is inactive
-         //    (menu.style.transform = 'translate(0, -100%)') &
-         //    (bread[0].style.transform = 'none') &
-         //    (bread[1].style.transform = 'scale(1)') &
-         //    (bread[1].style.opacity = '1') &
-         //    (bread[2].style.transform = 'none') :
-         //    // Menu is active
-         //    (menu.style.transform = 'none') &
-         //    (bread[0].style.transform = 'translate(4px, -3px) rotate(45deg) ') &
-         //    (bread[1].style.transform = 'scale(0.2)') &
-         //    (bread[1].style.opacity = '0') &
-         //    (bread[2].style.transform = 'translate(4px, 3px) rotate(-45deg) ')
 
          // Easier way to understand. Group style changes under classes and then append classes when desired
          this.isActive ?
