@@ -25,9 +25,6 @@
                   <img src="../../assets/design/spdmagazine/mock121.jpg" alt="" class="designImg1300">
                   <img src="../../assets/design/spdmagazine/mock13.jpg" alt="" class="designImg1300">
                   <div class="designSpace"></div>
-                  <!-- <div class="designTextContainerBody">
-                     At the time I was a little interested in AI so I decided to dedicate my entry to the subject. The text is from the Wikipedia page.
-                  </div> -->
                   <div class="designTextContainerBody">
                      <h2 class="designSubTitle">Creative Process</h2>
                      I had the idea already of incorporating threads and dots into the design and used Illustrator to create some concepts. The goal at this stage was to simply create as much of anything
@@ -100,8 +97,6 @@
                         available real-estate for adding more illustrations and designs.
                      <div class="designSpace"></div>
                   </div>
-                  <!-- <img src="../../assets/design/spdmagazine/mock21.jpg" alt="" id="img1300">
-                  <img src="../../assets/design/spdmagazine/mock22.jpg" alt="" id="img1300"> -->
                </div>
             </div>
          </div>
@@ -114,7 +109,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene.js'
 
 export default {
    name: 'portfolioObject',

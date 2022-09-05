@@ -81,7 +81,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene.js'
 
 export default {
    name: 'portfolioObject',
@@ -89,12 +88,6 @@ export default {
       toTop,
       backdropFade,
    },
-
-   // head: {
-   //    title: {
-   //       inner: 'Introduction to Big "Oh" Notation'
-   //    },
-   // },
 }
 </script>
 

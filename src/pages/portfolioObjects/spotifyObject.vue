@@ -71,7 +71,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene'
 
 export default {
    name: 'portfolioObject',

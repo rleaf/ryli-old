@@ -8,7 +8,6 @@
                <div class="textDesignSubHeader">
                   Photography
                </div>
-
             </div>
          </div>
       </div>
@@ -91,11 +90,6 @@ export default {
 </script>
 
 <style scoped>
-   /* .landing {
-      display: inherit;
-      z-index: 5;
-   } */
-
    
 ::selection {
   background: var(--designSelection) !important; /* WebKit/Blink Browsers */

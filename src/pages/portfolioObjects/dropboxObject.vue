@@ -32,9 +32,6 @@
                   <div class="designSpace"></div>
                   <video id="img1300" autoplay loop :src="signin"></video>
                   <div class="designSpace"></div>
-                  <!-- <div class="designTextContainerBody">
-                     toad
-                  </div> -->
                   <div class="designSpace"></div>
                </div>
             </div>
@@ -46,7 +43,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene'
 
 export default {
    name: 'portfolioObject',

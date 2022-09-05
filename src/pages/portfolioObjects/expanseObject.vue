@@ -24,18 +24,12 @@
                   <img src="../../assets/design/expanse/expanseland.jpg" class="designImg1300">
                   <div class="designSpace"></div>
                   <img src="../../assets/design/expanse/quickbrownfox.png" class="designImg1300" style="box-shadow: none;">
-                  <!-- <div class="designSpace"></div> -->
                   <div class="designOffsetImageLeft">
                      <div class="designOffsetContainer">
                         <div class="designOffsetImgContainer">
                            <img src="../../assets/design/expanse/expanse_fill2.png" class="offsetImg800" style="box-shadow: none;">
                         </div>
                      </div>
-                     <!-- <div class="designOffsetContainer">
-                        <div class="offsetImgText">
-                           toadsare so poweroful toadsare so poweroful toadsare so poweroful toadsare so poweroful
-                        </div>
-                     </div> -->
                   </div>
                   <img src="../../assets/design/expanse/space.jpg" class="designImg1300">
                   <img src="../../assets/design/expanse/mock1.jpg" class="designImg1300">
@@ -58,7 +52,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene.js'
 
 export default {
    components: {

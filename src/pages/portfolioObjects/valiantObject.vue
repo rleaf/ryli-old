@@ -62,10 +62,6 @@
                </div>
             </div>
          </div>
-         <!-- <img src="../../assets/valiant/Artboard 2.png" id="img1300"> -->
-         <!-- <div id="textContainerBody">
-            Here is the final version of the website. 
-         </div> -->
       <toTop />
   </div>
 </template>
@@ -73,7 +69,6 @@
 <script>
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
-// import threeScene from '../../assets/js/threeScene.js'
 
 export default {
    name: 'portfolioObject',
@@ -83,7 +78,6 @@ export default {
    },
    data() {
       return {
-         // valiantOpen:
          landing: require("../../assets/design/valiant/valiant.webm") 
       }
    },

@@ -1,7 +1,6 @@
 <template>
   <div class="landingDesign">
      <backdropFade />
-     <!-- <scroll /> -->
       <div class="designHero">
          <div class="designContainerHeader">
             <div class="textDesignContainer">
@@ -95,7 +94,6 @@ import backdropFade from '../../components/backdropFade.vue'
 export default {
    components: {
       toTop,
-      // scroll,
       backdropFade
    },
 }

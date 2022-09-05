@@ -32,13 +32,11 @@ a<template>
 </template>
 
 <script>
-// import NavBar from '../../components/nav.vue'
 import toTop from '../../components/toTop.vue'
 
 export default {
    name: 'portfolioObject',
    components: {
-      // NavBar,
       toTop
    }
 }
