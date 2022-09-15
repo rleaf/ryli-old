@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Magazine Spread</p>
             <div id="subtext">
+               <p>2020</p>
                <p>Illustration / Print / Layout</p>
             </div>
             <div id="covertext">

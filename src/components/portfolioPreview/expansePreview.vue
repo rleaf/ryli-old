@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>expanse</p>
             <div id="subtext">
+               <p>2020</p>
                <p>typography</p>
             </div>
             <div id="covertext">

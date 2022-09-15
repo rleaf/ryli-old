@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Hand Gestures</p>
             <div id="subtext">
+               <p>2021</p>
                <p>Illustration</p>
             </div>
             <div id="covertext">

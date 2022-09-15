@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Expanse
                <div class="textDesignSubHeader">
+                  2020
+                  <br><br>
                   Typography
                </div>
 

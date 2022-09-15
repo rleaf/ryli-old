@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Barnegat Light
                <div class="textDesignSubHeader">
+                  2020
+                  <br><br>
                   Photography
                </div>
             </div>

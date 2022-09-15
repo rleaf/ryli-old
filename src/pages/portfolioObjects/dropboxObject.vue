@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
             Dropbox Redesign
             <div class="textDesignSubHeader">
+               2019
+               <br><br>
                Web Design / Development
             </div>
 

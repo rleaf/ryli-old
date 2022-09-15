@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Dropbox Redesign</p>
             <div id="subtext">
+               <p>2019</p>
                <p>Web Design / Dev</p>
             </div>
             <div id="covertext">

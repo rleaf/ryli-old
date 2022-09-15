@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Magazine Spread
                <div class="textDesignSubHeader">
+                  2020
+                  <br><br>
                   Design / Illustration / Print
                </div>
             </div>

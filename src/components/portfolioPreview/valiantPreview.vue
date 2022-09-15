@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Valiant</p>
             <div id="subtext">
+               <p>2020</p>
                <p>Branding & Web Design / Dev</p>
             </div>
             <div id="covertext">

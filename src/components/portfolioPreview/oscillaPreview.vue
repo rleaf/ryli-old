@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Oscilla</p>
             <div id="subtext">
+               <p>2022</p>
                <p>typography</p>
             </div>
             <div id="covertext">

@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Spotify Redesign
                <div class="textDesignSubHeader">
+                  2020
+                  <br><br>
                   UI / UX
                </div>
             </div>

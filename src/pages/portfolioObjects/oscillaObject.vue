@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Oscilla
                <div class="textDesignSubHeader">
+                  2022
+                  <br><br>
                   Typography
                </div>
             </div>

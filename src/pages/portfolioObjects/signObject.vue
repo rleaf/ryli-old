@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Hand Gestures
                <div class="textDesignSubHeader">
+                  2021
+                  <br><br>
                   Illustration
                </div>         
 

@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>Spotify</p>
             <div id="subtext">
+               <p>2020</p>
                <p>UI / UX</p>
             </div>
             <div id="covertext">

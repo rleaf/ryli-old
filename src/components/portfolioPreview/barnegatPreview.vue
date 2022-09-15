@@ -4,6 +4,7 @@
          <div class="imagehover">
             <p>barnegat light</p>
             <div id="subtext">
+               <p>2020</p>
                <p>photography</p>
             </div>
             <div id="covertext">

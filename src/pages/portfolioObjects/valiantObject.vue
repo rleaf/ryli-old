@@ -6,6 +6,8 @@
             <div class="textDesignContainer">
                Valiant
                <div class="textDesignSubHeader">
+                  2020
+                  <br><br>
                   Branding / Logo & Web Design / Development
                </div>
             </div>
