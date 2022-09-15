@@ -40,6 +40,13 @@ export default {
 
          // Change shaders depending on design or hero
          switch (to.name) {
+            case 'spotifyDesk':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.spotifyDeskMesh)
+               }, 600)
+               break;
+
             case 'oscilla':
                this.designScene()
                setTimeout(() => {
@@ -99,6 +106,7 @@ export default {
             default:
                if (this.routeCache == 'design') {
                   this.heroScene()
+                  console.log('hello');
                }
                break;
          }

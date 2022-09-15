@@ -1,6 +1,7 @@
 <template>
    <div id="portfolioSkeletonFlex">
       <!-- <jawsposter /> -->
+      <spotifyDesk />
       <oscilla />
       <signLanguage />
       <spdmagazine />
@@ -24,6 +25,7 @@ import spotify from './portfolioPreview/spotifyPreview.vue'
 import signLanguage from './portfolioPreview/signPreview.vue'
 import spdmagazine from './portfolioPreview/spdmagazinePreview.vue'
 import oscilla from './portfolioPreview/oscillaPreview.vue'
+import spotifyDesk from './portfolioPreview/spotifyDeskPreview.vue'
 // import jawsposter from './portfolioPreview/jawspreview.vue'
 import gsap from 'gsap'
 
@@ -38,6 +40,7 @@ export default {
       signLanguage,
       spdmagazine,
       oscilla,
+      spotifyDesk,
       // jawsposter
 
 

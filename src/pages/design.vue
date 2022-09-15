@@ -17,7 +17,7 @@ export default {
       // NavBar,
       portfolioSkeleton
    },
-   metaInfo: {
+   head: {
       meta: [
          {
             name: 'author',

@@ -113,6 +113,14 @@ const routes = [
     },
     component: () => import('../pages/portfolioObjects/oscillaObject.vue')
   },
+  {
+    path: '/design/spotifyDesktop',
+    name: 'spotifyDesk',
+    meta: {
+    title: 'Spotify Desktop'
+    },
+    component: () => import('../pages/portfolioObjects/spotifyDeskObject.vue')
+  },
 
 
   // BLOG SECTION
