@@ -106,7 +106,6 @@ export default {
             default:
                if (this.routeCache == 'design') {
                   this.heroScene()
-                  console.log('hello');
                }
                break;
          }
