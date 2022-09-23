@@ -94,11 +94,11 @@
                sequence index. If we have a sequence tensor of shape <code style="background: var(--codeSnippet); border-radius: 5px;">(K, E)</code> where <i>p</i> traverses the <i>Kth</i> dimension and <i>i</i> the <i>Eth</i>,
                then:
                <br><br>
-               <vue-mathjax :formula='transformerAssets.PEsin'></vue-mathjax>
+               <vm :formula='transformerAssets.PEsin'></vm>
                <br>
-               <vue-mathjax :formula='transformerAssets.PEcos'></vue-mathjax>
+               <vm :formula='transformerAssets.PEcos'></vm>
                <br>
-               <vue-mathjax :formula='`$$a = \\biggr\\lfloor{\\frac{2i}{E}}\\biggl\\rfloor$$`'></vue-mathjax>
+               <vm :formula='`$$a = \\biggr\\lfloor{\\frac{2i}{E}}\\biggl\\rfloor$$`'></vm>
             </p>
             <prism-editor class="codeblock" v-model="transformerAssets.positionalencoding" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -112,12 +112,12 @@
             </p>
             <p>
                Supplied with our Q, K, and V (queries/keys/values respectively), scaled dot product attention on a <u>single element from the batch</u> will look like:
-               <vue-mathjax :formula='transformerAssets.sdp'></vue-mathjax>
+               <vm :formula='transformerAssets.sdp'></vm>
             </p>
                where shapes of inputs Q, K, V are: 
                <br>
                <br>
-               <vue-mathjax :formula='`$K \\in \\mathbb{R}^{k \\times e}, Q \\in \\mathbb{R}^{k \\times e}, V \\in \\mathbb{R}^{k \\times e}$`'></vue-mathjax>
+               <vm :formula='`$K \\in \\mathbb{R}^{k \\times e}, Q \\in \\mathbb{R}^{k \\times e}, V \\in \\mathbb{R}^{k \\times e}$`'></vm>
             <p>
                Fortunately in code, we can perform batch operations to calculate the attention values all at once. I encourage looking at the PyTorch SDP Attention implementation found <a href="https://github.com/pytorch/pytorch/blob/master/torch/nn/functional.py#L4765" target="_blank">here</a>
                (You may need to ctrl+f "scaled_dot_product_attention"). I will sprinkle in the corresponding PyTorch code at every now and then.
@@ -179,11 +179,11 @@
             </div>
             <p>
                A standard feed forward network composed of a linear -> ReLU -> linear tranformation is used at the end of every block. The first linear layer transforms the input into dimension
-               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax>, which will be a provided hyperparameter - <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
-               <vue-mathjax :formula='`$d_{ff}$`'></vue-mathjax> tensor back to a <vue-mathjax :formula='`$d_{in}$`'></vue-mathjax> dimensional tensor, another provided hyperparameter.
+               <vm :formula='`$d_{ff}$`'></vm>, which will be a provided hyperparameter - <i>Attention Is All You Need</i> uses 2048. The second linear layer reforms that 
+               <vm :formula='`$d_{ff}$`'></vm> tensor back to a <vm :formula='`$d_{in}$`'></vm> dimensional tensor, another provided hyperparameter.
                Retaining original shape is important as generally the feed forward nets will need to feed into another encoder or decoder block.
             </p>
-               <vue-mathjax :formula='`$$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$$`'></vue-mathjax>
+               <vm :formula='`$$FFN(x) = max(0,\\;xW_1 + b_1)W_2 + b_2$$`'></vm>
                <br><br>
             <prism-editor class="codeblock" v-model="transformerAssets.mlp" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -210,9 +210,9 @@
                Pytorch's</a> implementation of the encoder block - look at lines 423 & 424 particularly. This is to ensure a smooth transformation between the concatenated tensor and the linear layer. The forward
                pass is laid out in a manner such that:
             </p>
-               <vue-mathjax :formula='`$$sublayer_1(x) = dropout(layernorm(multihead(x, x, x) + residual))$$`'></vue-mathjax>
+               <vm :formula='`$$sublayer_1(x) = dropout(layernorm(multihead(x, x, x) + residual))$$`'></vm>
                <br>
-               <vue-mathjax :formula='`$$sublayer_2(sublayer_1) = dropout(layernorm(feedforward(sublayer_1) + residual))$$`'></vue-mathjax>
+               <vm :formula='`$$sublayer_2(sublayer_1) = dropout(layernorm(feedforward(sublayer_1) + residual))$$`'></vm>
                <br><br>
             <prism-editor class="codeblock" v-model="transformerAssets.encoderblock" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <br><br>
@@ -312,7 +312,7 @@ export default {
       themeSwitch,
       toTop,
       PrismEditor,
-      'vue-mathjax': VueMathjax
+      'vm': VueMathjax
    },
 
    head: {

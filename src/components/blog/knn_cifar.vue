@@ -74,7 +74,7 @@
             <span style="font-size:14px; padding-top: -10px;"><i>Visualization of computing the pixel values of a single <i>test</i> image (left) against every <i>train</i> image (right). <br>
             Right click and toggle 'show controls' to stop the animation.</i></span>
             <p>
-               For reference, the Euclidean distance is: <vue-mathjax :formula='knncifarAssets.euclidean'></vue-mathjax>. In the visualization above, kNN is operating on a colored (RGB) image dataset of 5x5 pixels - so in total 75 pixels per image (3x5x5).
+               For reference, the Euclidean distance is: <vm :formula='knncifarAssets.euclidean'></vm>. In the visualization above, kNN is operating on a colored (RGB) image dataset of 5x5 pixels - so in total 75 pixels per image (3x5x5).
                To compute the Eucliden distance between one test image and one training image, the squared difference between corresponding pixels in both images are taken and then
                then summed and finally taken the square root of. To reiterate, we are taking 75 differences, squaring each one, summing all that together, and then finally square rooting everything. And this occurs for each test image
                against every training image. It's worth mentioning, in the animation I do not show the 5x5 green and blue pixel channels being iterated over
@@ -168,12 +168,12 @@
                This procedure makes use of expanding the square in the Euclidean distance:
                <br>
                <br>
-               <vue-mathjax :formula='knncifarAssets.distributed_euclidean'></vue-mathjax>
+               <vm :formula='knncifarAssets.distributed_euclidean'></vm>
                <br>
                On this no-loop variant of computing the Euclidean, we are evaluating all arithmetic independently and then compiling everything together so that it represents the right hand side of the formula above.
                Instead of going through element by element, after we preprocess the inputs,
                we square the <code style="background: var(--codeSnippet);; border-radius: 5px;">train</code> and <code style="background: var(--codeSnippet);; border-radius: 5px;">test</code>
-               tensors immediately then take the sum of their rows. Then, <vue-mathjax :formula='knncifarAssets.midterm'></vue-mathjax> is evaluated through the matrix multiplication of the
+               tensors immediately then take the sum of their rows. Then, <vm :formula='knncifarAssets.midterm'></vm> is evaluated through the matrix multiplication of the
                <code style="background: var(--codeSnippet);; border-radius: 5px;">train</code> <i>[500, 3072]</i> and the transpose of the <code style="background: var(--codeSnippet);; border-radius: 5px;">test</code> <i>[3072, 250]</i> tensors.
                Finally, we have all terms to produce the right hand of the equality above, allowing us to wrap everything in a square root and
                store it in <code style="background: var(--codeSnippet);; border-radius: 5px;">dists</code>. 
@@ -280,7 +280,7 @@ export default {
       toTop,
       themeSwitch,
       backdrop,
-      'vue-mathjax': VueMathjax,
+      'vm': VueMathjax,
       PrismEditor
    },
    head: {

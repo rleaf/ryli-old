@@ -74,79 +74,79 @@
                to be <i>"plain"</i>. For context, this is a famous quote from the film <a href="https://en.wikipedia.org/wiki/My_Fair_Lady_(film)" target="_blank">My Fair Lady</a>. In the example the word
                is the random variable and what is inferred, "plain", is what is sampled from the distribution of possible values.
                We can say, because of the quote's fame, that there is high certainty of the random variable to be the word "plain" thus yielding low entropy. However, it may
-               be too ambitious to assert that there is <i>no</i> entropy at all, indicating certainty, <vue-mathjax :formula="`$p(X = \\textit{plain}) = 1$`"></vue-mathjax>, because maybe I lied about attributing 
+               be too ambitious to assert that there is <i>no</i> entropy at all, indicating certainty, <vm :formula="`$p(X = \\textit{plain}) = 1$`"></vm>, because maybe I lied about attributing 
                my partially finished quote to <i>My Fair Lady</i> and instead just wanted to say <i>"The rain in Spain falls mainly on the ground"</i>.
             </p>
             <div id="entropymath"></div>
             <h2>Mathematical Formalism of Entropy</h2>
             <p>
-               Entropy can be represented with different units depending on the base of the logarithm: nats (<vue-mathjax :formula="`$\\ln$`"></vue-mathjax>),
-               bits &  shannons (<vue-mathjax :formula="`$\\log_2$`"></vue-mathjax>), or bans (<vue-mathjax :formula="`$\\log_{10}$`"></vue-mathjax>); anecdotally, I have never seen entropy defined in bans.
-               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the entropy of the random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution
-               <vue-mathjax :formula="`$p$`"></vue-mathjax> is: 
+               Entropy can be represented with different units depending on the base of the logarithm: nats (<vm :formula="`$\\ln$`"></vm>),
+               bits &  shannons (<vm :formula="`$\\log_2$`"></vm>), or bans (<vm :formula="`$\\log_{10}$`"></vm>); anecdotally, I have never seen entropy defined in bans.
+               Defined as <vm :formula="`$\\mathbb{H}$`"></vm>, the entropy of the random variable <vm :formula="`$X$`"></vm> with distribution
+               <vm :formula="`$p$`"></vm> is: 
             </p>
-               <vue-mathjax :formula='entropy.entropy'></vue-mathjax>
+               <vm :formula='entropy.entropy'></vm>
             <p>
-               As an example we can represent the entropy of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with the aforementioned uniform distribution,
-               <vue-mathjax :formula="`$X\\sim\\mathcal{U}$`"></vue-mathjax>, as such:
+               As an example we can represent the entropy of random variable <vm :formula="`$X$`"></vm> with the aforementioned uniform distribution,
+               <vm :formula="`$X\\sim\\mathcal{U}$`"></vm>, as such:
             </p>
-            <vue-mathjax :formula='entropy.uniform'></vue-mathjax>
+            <vm :formula='entropy.uniform'></vm>
             <br>
             <div id="entropyexamples"></div>
             <h2>Examples</h2>
             <p>
                Let's pretend we're rolling a fair 4 sided die where each vertex has equal probability of pointing up (you look at the vertices on a 4 sided die, not
-               the face). Taking the uniform distribution where the random variable, the die, has 4 possible outcomes, <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax>, we can calculate the entropy simply with
-               <vue-mathjax :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vue-mathjax>. With a 6 sided die, this would be <vue-mathjax :formula="`$\\log_2{6} = 2.58\\dots\\text{bits}$`"></vue-mathjax>.
+               the face). Taking the uniform distribution where the random variable, the die, has 4 possible outcomes, <vm :formula="`$X=\\{1, 2, 3, 4\\}$`"></vm>, we can calculate the entropy simply with
+               <vm :formula="`$\\log_2{4} = 2\\,\\text{bits}$`"></vm>. With a 6 sided die, this would be <vm :formula="`$\\log_2{6} = 2.58\\dots\\text{bits}$`"></vm>.
                As mentioned previously about the uniform distribution, these answers not only represent the amount of entropy
                present in our dice random variables, but are also the upper bound of possible entropy. 
             </p>
                <!-- <h3>Uniform distribution of a random variable with 3 events: </h3> -->
             
-               <vue-mathjax :formula="`$$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 3)$$`"></vue-mathjax>
+               <vm :formula="`$$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 3)$$`"></vm>
                <br>
-               <vue-mathjax :formula='entropy.uniformThree'></vue-mathjax>
+               <vm :formula='entropy.uniformThree'></vm>
                <br><br>
 
-               <vue-mathjax :formula="`$$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 2)$$`"></vue-mathjax>
+               <vm :formula="`$$\\mathbb{H}(X),\\; X \\sim \\mathcal{U}(1, 2)$$`"></vm>
                <i>This is equal to a fair Bernoulli distribution</i>
                <br>
-               <vue-mathjax :formula='entropy.uniformBernoulli'></vue-mathjax>
+               <vm :formula='entropy.uniformBernoulli'></vm>
                <br><br>
 
-               <vue-mathjax :formula="`$$\\mathbb{H}(X),\\; X \\sim p\\;\\text{where}$$`"></vue-mathjax>
+               <vm :formula="`$$\\mathbb{H}(X),\\; X \\sim p\\;\\text{where}$$`"></vm>
                <br>
-               <vue-mathjax :formula='`$$p(x) = \\begin{cases} 
+               <vm :formula='`$$p(x) = \\begin{cases} 
                   0.8 & \\text{if}\\; x = 0 \\\\
                   0.2 & \\text{if}\\; x = 1 \\\\  
-                  \\end{cases} $$`'></vue-mathjax>
+                  \\end{cases} $$`'></vm>
                <br>
-               <vue-mathjax :formula='entropy.unfairBernoulli'></vue-mathjax>
+               <vm :formula='entropy.unfairBernoulli'></vm>
                <br><br>
                
-               <vue-mathjax :formula="`$$\\mathbb{H}(X),\\; X \\sim p\\;\\text{where}$$`"></vue-mathjax>
+               <vm :formula="`$$\\mathbb{H}(X),\\; X \\sim p\\;\\text{where}$$`"></vm>
                <br>
-               <vue-mathjax :formula='`$$p(x) = \\begin{cases} 
+               <vm :formula='`$$p(x) = \\begin{cases} 
                   0.95 & \\text{if}\\; x = 0 \\\\  
                   0.05 & \\text{if}\\; x = 1 \\\\  
-                  \\end{cases} $$`'></vue-mathjax>
+                  \\end{cases} $$`'></vm>
                <br>
-               <vue-mathjax :formula='entropy.extremeBernoulli'></vue-mathjax>
+               <vm :formula='entropy.extremeBernoulli'></vm>
             
             <p>
                The amount of entropy is predicated primarily on the distribution a random variable follows. It may seem that the amount of values in a random variable participates to the entropy given the examples:
-               <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,4) = 2\\,\\text{bits}$`"></vue-mathjax> and <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,3) = 1.58\\dots\\text{bits}$`"></vue-mathjax> where the only difference
-               is <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax> versus <vue-mathjax :formula="`$X=\\{1, 2, 3\\}$`"></vue-mathjax>, however this is not accurate. We can see this by assigning a categorical
-               distribution to random variable <vue-mathjax :formula="`$Z=\\{1, 2, 3, 4\\}$`"></vue-mathjax> such that <vue-mathjax :formula="`$p(Z=1)=0$`"></vue-mathjax> and
-               <vue-mathjax :formula="`$ p(Z=2) = p(Z=3) = p(Z=4) = \\frac{1}{3}$`"></vue-mathjax>. This random variable, <vue-mathjax :formula="`$Z$`"></vue-mathjax>, although composed of four values yields the same
-               entropy as <vue-mathjax :formula="`$X\\sim\\mathcal{U}(1,3)$`"></vue-mathjax>, composed of three. Of course if we know that there is no impossible value in a random variable,
-               <vue-mathjax :formula="`$p(X=x)=0$`"></vue-mathjax>, we can then attribute the amount of values to the entropy.
+               <vm :formula="`$X\\sim\\mathcal{U}(1,4) = 2\\,\\text{bits}$`"></vm> and <vm :formula="`$X\\sim\\mathcal{U}(1,3) = 1.58\\dots\\text{bits}$`"></vm> where the only difference
+               is <vm :formula="`$X=\\{1, 2, 3, 4\\}$`"></vm> versus <vm :formula="`$X=\\{1, 2, 3\\}$`"></vm>, however this is not accurate. We can see this by assigning a categorical
+               distribution to random variable <vm :formula="`$Z=\\{1, 2, 3, 4\\}$`"></vm> such that <vm :formula="`$p(Z=1)=0$`"></vm> and
+               <vm :formula="`$ p(Z=2) = p(Z=3) = p(Z=4) = \\frac{1}{3}$`"></vm>. This random variable, <vm :formula="`$Z$`"></vm>, although composed of four values yields the same
+               entropy as <vm :formula="`$X\\sim\\mathcal{U}(1,3)$`"></vm>, composed of three. Of course if we know that there is no impossible value in a random variable,
+               <vm :formula="`$p(X=x)=0$`"></vm>, we can then attribute the amount of values to the entropy.
                <br><br>
                Looking at entropy like this we can decompose the measurement to be a combination of a random variable's probability distribution and i.f.f the random variable has no impossible values, the total amount
                of values in that random variable.
                <!-- You can see that as the values of random variable
-               <vue-mathjax :formula="`$X$`"></vue-mathjax> decrement while following the same uniform distribution, <vue-mathjax :formula="`$\\mathcal{U}$`"></vue-mathjax>, the entropy reduces accordingly.
-               You can also see that as we fix the values of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> to be the same but bias the probabilities to further promote certainty, the entropy reduces. -->
+               <vm :formula="`$X$`"></vm> decrement while following the same uniform distribution, <vm :formula="`$\\mathcal{U}$`"></vm>, the entropy reduces accordingly.
+               You can also see that as we fix the values of random variable <vm :formula="`$X$`"></vm> to be the same but bias the probabilities to further promote certainty, the entropy reduces. -->
             </p>
             <div id="selfinformation"></div>
             <div id="blogSubHeader">
@@ -155,17 +155,17 @@
             <p>
                If entropy is the measure of the expected uncertainty of a random variable and its associated probability distribution, self information is the measure of uncertainty for a specific value in a random
                variable and its associated probability distribution. Self information is the basic quantity that tells us how much uncertainty is present in a particular event. 
-               Defined as <vue-mathjax :formula="`$I$`"></vue-mathjax> the self information of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> with distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+               Defined as <vm :formula="`$I$`"></vm> the self information of random variable <vm :formula="`$X$`"></vm> with distribution <vm :formula="`$p$`"></vm> is:
             </p>
-            <vue-mathjax :formula="`$I(x) \\triangleq -\\log_bp(x)$`"></vue-mathjax>
+            <vm :formula="`$I(x) \\triangleq -\\log_bp(x)$`"></vm>
             <p>
-               where once again the base <vue-mathjax :formula="`$b$`"></vue-mathjax> in <vue-mathjax :formula="`$\\log_b$`"></vue-mathjax> denotes the unit. Using the most recent example in the <a href="#entropyexamples">entropy</a>
-               section with the Bernoulli distribution where <vue-mathjax :formula="`$p(X=0) = 0.95$`"></vue-mathjax>, we can calculate entropy of that event as
-               <vue-mathjax :formula="`$I(X=0) = -\\log_20.95 = 0.07400\\dots\\text{bits}$`"></vue-mathjax>. This event encodes approximately 3.8x less information
+               where once again the base <vm :formula="`$b$`"></vm> in <vm :formula="`$\\log_b$`"></vm> denotes the unit. Using the most recent example in the <a href="#entropyexamples">entropy</a>
+               section with the Bernoulli distribution where <vm :formula="`$p(X=0) = 0.95$`"></vm>, we can calculate entropy of that event as
+               <vm :formula="`$I(X=0) = -\\log_20.95 = 0.07400\\dots\\text{bits}$`"></vm>. This event encodes approximately 3.8x less information
                compared to its entropy of
-               <vue-mathjax :formula="`$0.28639\\dots\\text{bits}$`"></vue-mathjax>.
+               <vm :formula="`$0.28639\\dots\\text{bits}$`"></vm>.
             </p>
-               <!-- <vue-mathjax :formula="entropy.entropySelfInformation"></vue-mathjax> -->
+               <!-- <vm :formula="entropy.entropySelfInformation"></vm> -->
             <div id="cross"></div>
             <div id="blogSubHeader">
                Cross Entropy
@@ -173,65 +173,65 @@
             <p>
                Cross entropy tells us how much more entropy there will be on a random variable with its associated innate distribution if we sample it from a new prescribed distribution.
                Because two distributions are embedding onto a random variable, cross entropy is a metric that quantifies the difference between those two probability distributions.
-               It tells us how many more expected bits we will need, assuming <vue-mathjax :formula="`$\\log_2$`"></vue-mathjax>, if we calculate information that has distribution <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>
-               using a new distribution <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
-               Cross entropy can also be thought of as the average uncertainty of information, generated from <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>,
-               of self information for all values in <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>.
+               It tells us how many more expected bits we will need, assuming <vm :formula="`$\\log_2$`"></vm>, if we calculate information that has distribution <vm :formula="`$p(x)$`"></vm>
+               using a new distribution <vm :formula="`$q(x)$`"></vm>.
+               Cross entropy can also be thought of as the average uncertainty of information, generated from <vm :formula="`$p(x)$`"></vm>,
+               of self information for all values in <vm :formula="`$q(x)$`"></vm>.
                
-               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax> the cross entropy of random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> between distributions
-               <vue-mathjax :formula="`$p$`"></vue-mathjax> and <vue-mathjax :formula="`$q$`"></vue-mathjax> is:
+               Defined as <vm :formula="`$\\mathbb{H}$`"></vm> the cross entropy of random variable <vm :formula="`$X$`"></vm> between distributions
+               <vm :formula="`$p$`"></vm> and <vm :formula="`$q$`"></vm> is:
             </p>
-            <vue-mathjax :formula='entropy.crossEntropy'></vue-mathjax>
+            <vm :formula='entropy.crossEntropy'></vm>
             <p>
-               Cross entropy is inclusively lower bounded by the originating distribution's entropy, <vue-mathjax :formula="`$\\mathbb{H}(p)$`"></vue-mathjax>, and has no upper bound. The lower the cross entropy
-               between distributions <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> and <vue-mathjax :formula="`$q(x)$`"></vue-mathjax> the more similar the two distributions are. If
-               <vue-mathjax :formula="`$\\mathbb{H}(p,q) = \\mathbb{H}(p,p)$`"></vue-mathjax>, then <vue-mathjax :formula="`$q(x) = p(x)$`"></vue-mathjax> and we are simply calculating the entropy
-               <vue-mathjax :formula="`$\\mathbb{H}(p)$`"></vue-mathjax>. Conversely, the higher the cross entropy or the expected bits between two distributions, the more idiosyncratic the two distributions will be
+               Cross entropy is inclusively lower bounded by the originating distribution's entropy, <vm :formula="`$\\mathbb{H}(p)$`"></vm>, and has no upper bound. The lower the cross entropy
+               between distributions <vm :formula="`$p(x)$`"></vm> and <vm :formula="`$q(x)$`"></vm> the more similar the two distributions are. If
+               <vm :formula="`$\\mathbb{H}(p,q) = \\mathbb{H}(p,p)$`"></vm>, then <vm :formula="`$q(x) = p(x)$`"></vm> and we are simply calculating the entropy
+               <vm :formula="`$\\mathbb{H}(p)$`"></vm>. Conversely, the higher the cross entropy or the expected bits between two distributions, the more idiosyncratic the two distributions will be
                from one another.
                <br><br>
-               Machine learning considers two distributions, <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> and <vue-mathjax :formula="`$q(x)$`"></vue-mathjax> in this case, where one is the ground truth distribution
-               of the dataset we are training a model on (let's make that <vue-mathjax :formula="`$p(x)$`"></vue-mathjax>) and the other is predicted distribution (let's make that <vue-mathjax :formula="`$q(x)$`"></vue-mathjax>).
+               Machine learning considers two distributions, <vm :formula="`$p(x)$`"></vm> and <vm :formula="`$q(x)$`"></vm> in this case, where one is the ground truth distribution
+               of the dataset we are training a model on (let's make that <vm :formula="`$p(x)$`"></vm>) and the other is predicted distribution (let's make that <vm :formula="`$q(x)$`"></vm>).
                An implementation of cross entropy called <a href="https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression">cross entropy loss</a> is a popular loss function to find how
-               dissimilar the two distributions <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> and <vue-mathjax :formula="`$q(x)$`"></vue-mathjax> are from each other.
+               dissimilar the two distributions <vm :formula="`$p(x)$`"></vm> and <vm :formula="`$q(x)$`"></vm> are from each other.
             </p>
             <div id="crossexample"></div>
             <h2>Example</h2>
             <p>
-               Let random variable <vue-mathjax :formula="`$X=\\{1, 2, 3, 4\\}$`"></vue-mathjax> and
+               Let random variable <vm :formula="`$X=\\{1, 2, 3, 4\\}$`"></vm> and
             
                <br>
                <br>
-               <vue-mathjax :formula='`$p(x) = \\begin{cases} 
+               <vm :formula='`$p(x) = \\begin{cases} 
                   0.15 & \\text{if}\\; x = 1 \\\\  
                   0.30 & \\text{if}\\; x = 2 \\\\  
                   0.20 & \\text{if}\\; x = 3 \\\\  
                   0.35 & \\text{if}\\; x = 4 \\\\  
-                  \\end{cases} \\qquad$`'></vue-mathjax>
-               <vue-mathjax :formula='`$q(x) = \\begin{cases} 
+                  \\end{cases} \\qquad$`'></vm>
+               <vm :formula='`$q(x) = \\begin{cases} 
                   0.25 & \\text{if}\\; x = 1 \\\\  
                   0.10 & \\text{if}\\; x = 2 \\\\  
                   0.40 & \\text{if}\\; x = 3 \\\\  
                   0.25 & \\text{if}\\; x = 4 \\\\  
-                  \\end{cases} $`'></vue-mathjax>
+                  \\end{cases} $`'></vm>
             </p>
-               <vue-mathjax :formula='entropy.crossEntropyExample1'></vue-mathjax>
-               <vue-mathjax :formula='entropy.crossEntropyExample2'></vue-mathjax>
+               <vm :formula='entropy.crossEntropyExample1'></vm>
+               <vm :formula='entropy.crossEntropyExample2'></vm>
             <p>
-               Unless <vue-mathjax :formula="`$q(x)=p(x)$`"></vue-mathjax>, <vue-mathjax :formula="`$\\mathbb{H}(p, q) \\neq \\mathbb{H}(q, p)$`"></vue-mathjax>. Introducing a third distribution which will be <i>very</i>
-               similar to <vue-mathjax :formula="`$p(x)$`"></vue-mathjax> to better illustrate the lower bounds of cross entropy, let
-               <vue-mathjax :formula='`$$z(x) = \\begin{cases} 
+               Unless <vm :formula="`$q(x)=p(x)$`"></vm>, <vm :formula="`$\\mathbb{H}(p, q) \\neq \\mathbb{H}(q, p)$`"></vm>. Introducing a third distribution which will be <i>very</i>
+               similar to <vm :formula="`$p(x)$`"></vm> to better illustrate the lower bounds of cross entropy, let
+               <vm :formula='`$$z(x) = \\begin{cases} 
                   0.17 & \\text{if}\\; x = 1 \\\\  
                   0.28 & \\text{if}\\; x = 2 \\\\  
                   0.20 & \\text{if}\\; x = 3 \\\\  
                   0.35 & \\text{if}\\; x = 4 \\\\  
-                  \\end{cases}$$`'></vue-mathjax>
+                  \\end{cases}$$`'></vm>
             </p>
-            <vue-mathjax :formula='entropy.crossEntropyExample3'></vue-mathjax>
-            <vue-mathjax :formula='entropy.crossEntropyExample4'></vue-mathjax>
+            <vm :formula='entropy.crossEntropyExample3'></vm>
+            <vm :formula='entropy.crossEntropyExample4'></vm>
             <p>
-               It may be discussed later, but the difference between <vue-mathjax :formula="`$\\mathbb{H}(p, z)$`"></vue-mathjax> and <vue-mathjax :formula="`$\\mathbb{H}(p)$`"></vue-mathjax>
+               It may be discussed later, but the difference between <vm :formula="`$\\mathbb{H}(p, z)$`"></vm> and <vm :formula="`$\\mathbb{H}(p)$`"></vm>
                is known as the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence" target="_blank">Kullback-Leibler divergence / Relative entropy</a>:
-               <vue-mathjax :formula="`$$D_\\mathbb{KL}(p\\;\\lvert\\rvert \\;z) = \\mathbb{H}(p, z) - \\mathbb{H}(p) = 0.00277$$`"></vue-mathjax>
+               <vm :formula="`$$D_\\mathbb{KL}(p\\;\\lvert\\rvert \\;z) = \\mathbb{H}(p, z) - \\mathbb{H}(p) = 0.00277$$`"></vm>
             </p>
             <div id="joint"></div>
             <div id="blogSubHeader">
@@ -239,67 +239,67 @@
             </div>
             <p>
                Joint entropy carries analagous concept and definition as <a href="#intuition">entropy</a> however operates on a set of random variables as opposed to one.
-               Defined as <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the joint entropy of the random variables <vue-mathjax :formula="`$X$`"></vue-mathjax> and <vue-mathjax :formula="`$Y$`"></vue-mathjax>
-               with joint distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+               Defined as <vm :formula="`$\\mathbb{H}$`"></vm>, the joint entropy of the random variables <vm :formula="`$X$`"></vm> and <vm :formula="`$Y$`"></vm>
+               with joint distribution <vm :formula="`$p$`"></vm> is:
             </p>
-            <vue-mathjax :formula='entropy.jointEntropy'></vue-mathjax>
+            <vm :formula='entropy.jointEntropy'></vm>
             <p>
-               Although similar to entropy, <vue-mathjax :formula="`$\\mathbb{H}(X)$`"></vue-mathjax>, an important difference is the potential correlation between the multiple random variables. As correlation is a metric
+               Although similar to entropy, <vm :formula="`$\\mathbb{H}(X)$`"></vm>, an important difference is the potential correlation between the multiple random variables. As correlation is a metric
                of interdependence of data, it should be obvious that higher the correlation, the more certainty or information we will have, which will result in lower entropy. Because of this relationship
                we can say that unless the events sampled from random variables of a joint distribution indicate independence, the joint entropy will usually be less than the sum of each random variable's entropy:
-               <vue-mathjax :formula="`$\\mathbb{H}(X, Y) \\lt \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vue-mathjax> and if they are independent:
-               <vue-mathjax :formula="`$\\mathbb{H}(X, Y) = \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vue-mathjax>.
+               <vm :formula="`$\\mathbb{H}(X, Y) \\lt \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vm> and if they are independent:
+               <vm :formula="`$\\mathbb{H}(X, Y) = \\mathbb{H}(X) + \\mathbb{H}(Y)$`"></vm>.
             </p>
             <h2>Example</h2>
             <p>
-               Given the joint distribution between <vue-mathjax :formula="`$X$`"></vue-mathjax> and <vue-mathjax :formula="`$Y$`"></vue-mathjax>:
+               Given the joint distribution between <vm :formula="`$X$`"></vm> and <vm :formula="`$Y$`"></vm>:
                <table>
                   <tr>
-                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vue-mathjax :formula="`$p(X,Y)$`"></vue-mathjax></th>
-                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 0 $`"></vue-mathjax></th>
-                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 1 $`"></vue-mathjax></th>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vm :formula="`$p(X,Y)$`"></vm></th>
+                     <th style="border-bottom: 1px solid;"><vm :formula="`$Y = 0 $`"></vm></th>
+                     <th style="border-bottom: 1px solid;"><vm :formula="`$Y = 1 $`"></vm></th>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 0$`"></vue-mathjax></th>
-                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
-                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                     <th style="border-right: 1px solid;"><vm :formula="`$X = 0$`"></vm></th>
+                     <td><vm :formula="`$1/6$`"></vm></td>
+                     <td><vm :formula="`$2/6$`"></vm></td>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 1$`"></vue-mathjax></th>
-                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
-                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                     <th style="border-right: 1px solid;"><vm :formula="`$X = 1$`"></vm></th>
+                     <td><vm :formula="`$1/6$`"></vm></td>
+                     <td><vm :formula="`$2/6$`"></vm></td>
                   </tr>
                </table>
             </p>
-            <vue-mathjax :formula='entropy.jointEntropy2'></vue-mathjax>
+            <vm :formula='entropy.jointEntropy2'></vm>
             
             <div id="conditional"></div>
             <div id="blogSubHeader">
                Conditional Entropy
             </div>
             <p>
-               The conditional entropy tells us how much uncertainty there will be in calculating <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax>. Because of
+               The conditional entropy tells us how much uncertainty there will be in calculating <vm :formula="`$Y$`"></vm> given <vm :formula="`$X$`"></vm>. Because of
                the relationship between joint and conditional probability, specifically the <a href="https://en.wikipedia.org/wiki/Chain_rule_(probability)" target="_blank">chain rule of probability</a>:
-               <vue-mathjax :formula="`$p(x, y) = p(x\\,|\\, y)\\,p(y) = p(y\\,|\\,x) \\,p(x)$`"></vue-mathjax>, there are a 
+               <vm :formula="`$p(x, y) = p(x\\,|\\, y)\\,p(y) = p(y\\,|\\,x) \\,p(x)$`"></vm>, there are a 
                handful of different interpretations to the conditional entropy. Most, if not all, of these interpretations are built directly on concepts defined above. As such, I would like to initially
                define conditional entropy with what seems the most intuitive and then work through the remaining rigor to show those other interpretations. Defined as
-               <vue-mathjax :formula="`$\\mathbb{H}$`"></vue-mathjax>, the conditional entropy of the random variable <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax>
-               with distribution <vue-mathjax :formula="`$p$`"></vue-mathjax> is:
+               <vm :formula="`$\\mathbb{H}$`"></vm>, the conditional entropy of the random variable <vm :formula="`$Y$`"></vm> given <vm :formula="`$X$`"></vm>
+               with distribution <vm :formula="`$p$`"></vm> is:
             </p>
             <div style="justify-content: left"></div>
-            <vue-mathjax :formula='entropy.conditionalEntropy1'></vue-mathjax>
+            <vm :formula='entropy.conditionalEntropy1'></vm>
             <p>
                Equation 6.1, 6.4, 6.5, and 7.0 are the different interpretations I am going to focus on. The differences between these interpretations is that they each require a different combination of understanding
                for concepts in probability theory, <a href="#intuition">entropy</a>, <a href="#selfinformation">self information</a> and <a href="#joint">joint entropy</a>. The examples refer to the
                distribution defined immediately below.
                <br><br>
-               Rolling a fair die, let <vue-mathjax :formula="`$X=1$`"></vue-mathjax> to indicate the rolled number is even and <vue-mathjax :formula="`$X=0$`"></vue-mathjax> otherwise. Let
-               <vue-mathjax :formula="`$Y=1 $`"></vue-mathjax> to indicate the rolled number is prime and <vue-mathjax :formula="`$Y = 0$`"></vue-mathjax> otherwise.
+               Rolling a fair die, let <vm :formula="`$X=1$`"></vm> to indicate the rolled number is even and <vm :formula="`$X=0$`"></vm> otherwise. Let
+               <vm :formula="`$Y=1 $`"></vm> to indicate the rolled number is prime and <vm :formula="`$Y = 0$`"></vm> otherwise.
                <br>
                <br>
                <table>
                   <tr>
-                     <th style="border-right: 1px solid; border-bottom: 1px solid;"><vue-mathjax :formula="`$n$`"></vue-mathjax></th>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;"><vm :formula="`$n$`"></vm></th>
                      <th style="border-bottom: 1px solid;">1</th>
                      <th style="border-bottom: 1px solid;">2</th>
                      <th style="border-bottom: 1px solid;">3</th>
@@ -308,7 +308,7 @@
                      <th style="border-bottom: 1px solid;">6</th>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X$`"></vue-mathjax></th>
+                     <th style="border-right: 1px solid;"><vm :formula="`$X$`"></vm></th>
                      <th>0</th>
                      <th>1</th>
                      <th>0</th>
@@ -317,7 +317,7 @@
                      <th>1</th>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$Y$`"></vue-mathjax></th>
+                     <th style="border-right: 1px solid;"><vm :formula="`$Y$`"></vm></th>
                      <th>0</th>
                      <th>1</th>
                      <th>1</th>
@@ -329,19 +329,19 @@
                <br>
                <table>
                   <tr>
-                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vue-mathjax :formula="`$p(X,Y)$`"></vue-mathjax></th>
-                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 0 $`"></vue-mathjax></th>
-                     <th style="border-bottom: 1px solid;"><vue-mathjax :formula="`$Y = 1 $`"></vue-mathjax></th>
+                     <th style="border-right: 1px solid; border-bottom: 1px solid;" ><vm :formula="`$p(X,Y)$`"></vm></th>
+                     <th style="border-bottom: 1px solid;"><vm :formula="`$Y = 0 $`"></vm></th>
+                     <th style="border-bottom: 1px solid;"><vm :formula="`$Y = 1 $`"></vm></th>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 0$`"></vue-mathjax></th>
-                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
-                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
+                     <th style="border-right: 1px solid;"><vm :formula="`$X = 0$`"></vm></th>
+                     <td><vm :formula="`$1/6$`"></vm></td>
+                     <td><vm :formula="`$2/6$`"></vm></td>
                   </tr>
                   <tr>
-                     <th style="border-right: 1px solid;"><vue-mathjax :formula="`$X = 1$`"></vue-mathjax></th>
-                     <td><vue-mathjax :formula="`$2/6$`"></vue-mathjax></td>
-                     <td><vue-mathjax :formula="`$1/6$`"></vue-mathjax></td>
+                     <th style="border-right: 1px solid;"><vm :formula="`$X = 1$`"></vm></th>
+                     <td><vm :formula="`$2/6$`"></vm></td>
+                     <td><vm :formula="`$1/6$`"></vm></td>
                   </tr>
                </table>
             </p>
@@ -350,40 +350,40 @@
             <p>
                Equation 6.1 most succinctly defines the relationship, in terms of entropy, between joint and conditional probability. Conditional probability is joint probability except the only difference is that, in
                the case of two random variables, one of those random variables are fixed. This means the conditional distribution is forced to find the probability of an event in a subspace of the total sample space. This
-               intuition is directly transferable to the concept of uncertainty. If I have <vue-mathjax :formula="`$p(y\\,|\\,x)$`"></vue-mathjax>, because the event of random variable
-               <vue-mathjax :formula="`$X$`"></vue-mathjax> is predetermined, the entropy it provides is equal to 0. We can reformulate this as the joint entropy,
-               <vue-mathjax :formula="`$\\mathbb{H}(X, Y)$`"></vue-mathjax>, except again because random variable <vue-mathjax :formula="`$X$`"></vue-mathjax> should be 0 as it has no entropy, we must subtract it. 
+               intuition is directly transferable to the concept of uncertainty. If I have <vm :formula="`$p(y\\,|\\,x)$`"></vm>, because the event of random variable
+               <vm :formula="`$X$`"></vm> is predetermined, the entropy it provides is equal to 0. We can reformulate this as the joint entropy,
+               <vm :formula="`$\\mathbb{H}(X, Y)$`"></vm>, except again because random variable <vm :formula="`$X$`"></vm> should be 0 as it has no entropy, we must subtract it. 
                This provides us with equation 6.1.
             </p>
-            <vue-mathjax :formula='entropy.conditionalEntropy2'></vue-mathjax>
+            <vm :formula='entropy.conditionalEntropy2'></vm>
             <br><br>
             <div id="645"></div>
             <h2>Examples 6.4 & 6.5</h2>
             <p>
-               Both 6.4 and 6.5 have a couple "sub" interpretations. One way to look at it is taking the joint cross entropy where <vue-mathjax :formula="`$P = p(x, y)$`"></vue-mathjax> and
-               <vue-mathjax :formula="`$Q = p(y\\,|\\,x)$`"></vue-mathjax>. Through this lens, we are calculating the combined expected entropy between random variables <vue-mathjax :formula="`$X$`"></vue-mathjax>
-               and <vue-mathjax :formula="`$Y$`"></vue-mathjax> of their joint distribution when encoded to a new conditional distribution. This is synonymous to quantifying the difference between the two distributions.
-               A second way to look at it is by taking the expectation generated from distribution <vue-mathjax :formula="`$P$`"></vue-mathjax> of the self information of distribution
-               <vue-mathjax :formula="`$Q$`"></vue-mathjax>. A third way can be seen as finding the KL Divergence <vue-mathjax :formula="`$D_{\\mathbb{KL}}(p(x, y)\\,||\\,p(x))$`"></vue-mathjax>.
+               Both 6.4 and 6.5 have a couple "sub" interpretations. One way to look at it is taking the joint cross entropy where <vm :formula="`$P = p(x, y)$`"></vm> and
+               <vm :formula="`$Q = p(y\\,|\\,x)$`"></vm>. Through this lens, we are calculating the combined expected entropy between random variables <vm :formula="`$X$`"></vm>
+               and <vm :formula="`$Y$`"></vm> of their joint distribution when encoded to a new conditional distribution. This is synonymous to quantifying the difference between the two distributions.
+               A second way to look at it is by taking the expectation generated from distribution <vm :formula="`$P$`"></vm> of the self information of distribution
+               <vm :formula="`$Q$`"></vm>. A third way can be seen as finding the KL Divergence <vm :formula="`$D_{\\mathbb{KL}}(p(x, y)\\,||\\,p(x))$`"></vm>.
             </p>
-            <vue-mathjax :formula='entropy.conditionalEntropy3'></vue-mathjax>
+            <vm :formula='entropy.conditionalEntropy3'></vm>
             <br><br>
             <div id="70"></div>
             <h2>Example 7.0</h2>
             <p>
-               Equation 7.0 says "the conditional entropy of <vue-mathjax :formula="`$Y$`"></vue-mathjax> given <vue-mathjax :formula="`$X$`"></vue-mathjax> is equal to the expectation, generated
-               from the marginal distribution of <vue-mathjax :formula="`$X$`"></vue-mathjax>, of the entropy of the distribution <vue-mathjax :formula="`$Y$`"></vue-mathjax> given
-               <vue-mathjax :formula="`$X$`"></vue-mathjax>. It is subtle and may look visually deceiving, 
+               Equation 7.0 says "the conditional entropy of <vm :formula="`$Y$`"></vm> given <vm :formula="`$X$`"></vm> is equal to the expectation, generated
+               from the marginal distribution of <vm :formula="`$X$`"></vm>, of the entropy of the distribution <vm :formula="`$Y$`"></vm> given
+               <vm :formula="`$X$`"></vm>. It is subtle and may look visually deceiving, 
                but the right hand term inside the expectation is not conditional entropy, it is the entropy of the conditional distribution.
             </p>
-            <vue-mathjax :formula='entropy.conditionalEntropy4'></vue-mathjax>
+            <vm :formula='entropy.conditionalEntropy4'></vm>
             <div id="kldivergence"></div>
             <!-- <div id="blogSubHeader">
                Kullback-Leibler Divergence
             </div>
             <p>
-               Also known as relative entropy, the KL Divergence is a measurement that quantifies the dissimilarity between two probaility distributions <vue-mathjax :formula="`$p$`"></vue-mathjax>
-               and <vue-mathjax :formula="`$q$`"></vue-mathjax>
+               Also known as relative entropy, the KL Divergence is a measurement that quantifies the dissimilarity between two probaility distributions <vm :formula="`$p$`"></vm>
+               and <vm :formula="`$q$`"></vm>
             </p> -->
             <div id="thoughts"></div>
             <div id="blogSubHeader">
@@ -418,7 +418,7 @@ export default {
       backdrop,
       toTop,
       themeSwitch, 
-      'vue-mathjax': VueMathjax
+      'vm': VueMathjax
       // MathJax
    },
    head: {

@@ -34,7 +34,7 @@
                <br>
                <br>
                The image below defines "whitening". An application to a batch of inputs with the goal to reduce the <i>internal covariate shift</i>. This procedure occurs during the forward pass.
-               In order to preserve training, the backward pass must also be defined. Similarly to how the gradient of the sigmoid function simplifies to <vue-mathjax :formula='bnbackpassAssets.simplesigmoid'></vue-mathjax>,
+               In order to preserve training, the backward pass must also be defined. Similarly to how the gradient of the sigmoid function simplifies to <vm :formula='bnbackpassAssets.simplesigmoid'></vm>,
                the gradient for batch normalization can also undergo a similar process to promote computational efficiency (<a href="https://arxiv.org/pdf/1502.03167.pdf" target="_blank">link to paper</a>).
                <br>
             </p>
@@ -53,19 +53,19 @@
                Total Derivative Representation
             </div>
             <p>
-               <vue-mathjax :formula='bnbackpassAssets.dldxFullQuote'></vue-mathjax>
+               <vm :formula='bnbackpassAssets.dldxFullQuote'></vm>
                <br>
-               Now lets find a better way to pass backwards through batch normalization using the derivative. Above is a "full" representation of the total derivative of <vue-mathjax :formula='bnbackpassAssets.dldx'></vue-mathjax>.
+               Now lets find a better way to pass backwards through batch normalization using the derivative. Above is a "full" representation of the total derivative of <vm :formula='bnbackpassAssets.dldx'></vm>.
                I wrote the "full" (as opposed to the truly full) representation first for ease of understanding. The third term in the second summand: 
-               <vue-mathjax :formula='bnbackpassAssets.dxhatdmu'></vue-mathjax>, can be further decomposed because <vue-mathjax :formula='bnbackpassAssets.mu'></vue-mathjax> is an argument of <vue-mathjax :formula='bnbackpassAssets.xhat'></vue-mathjax> and the
-               intermediate variable <vue-mathjax :formula='bnbackpassAssets.sigmoid'></vue-mathjax>.
+               <vm :formula='bnbackpassAssets.dxhatdmu'></vm>, can be further decomposed because <vm :formula='bnbackpassAssets.mu'></vm> is an argument of <vm :formula='bnbackpassAssets.xhat'></vm> and the
+               intermediate variable <vm :formula='bnbackpassAssets.sigmoid'></vm>.
                It looks like:
             </p>
-            <vue-mathjax :formula='bnbackpassAssets.dxhatdmufull'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dxhatdmufull'></vm>
             <p>
                The full represetation without quotes:
             </p>
-            <vue-mathjax :formula='bnbackpassAssets.dldxFull'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxFull'></vm>
             <div id="summations"></div>
             <div id="blogSubHeader">
                Integrate Summations
@@ -76,16 +76,16 @@
                will instead be a conglomeration of intermediary functions. Below I integrate summations into the total derivative to reduce dimensionality as the betas all reference a scalar value for each feature
                of the entire batch. (aka: Derivative of rank 2 tensor wrt rank 1 tensor goes through summation to produce a rank 1 tensor which matches dimensionality of what we're differentiating wrt to).
             </p>
-               <vue-mathjax :formula='bnbackpassAssets.dldxSimple1'></vue-mathjax>
+               <vm :formula='bnbackpassAssets.dldxSimple1'></vm>
                <br>
             <!-- <p>
-               Factoring out <vue-mathjax :formula='bnbackpassAssets.factor'></vue-mathjax> as shown below is no good. Doing so destroys scalar structure. The below function is bad.
+               Factoring out <vm :formula='bnbackpassAssets.factor'></vm> as shown below is no good. Doing so destroys scalar structure. The below function is bad.
             </p>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSimple2'></vue-mathjax> -->
+            <vm :formula='bnbackpassAssets.dldxSimple2'></vm> -->
             <p>
-               For clarity, you can rewrite redundant partials into a generalized form: <vue-mathjax :formula='bnbackpassAssets.redundant'></vue-mathjax>
+               For clarity, you can rewrite redundant partials into a generalized form: <vm :formula='bnbackpassAssets.redundant'></vm>
             </p>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSimple3'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSimple3'></vm>
             
             <div id="partials"></div>
             <div id="blogSubHeader">
@@ -93,26 +93,26 @@
             </div>
             <p>
                Solve for all of the partials shown above. This is the easiest part. The upstream gradient defined immediately below is automatically provided to the function when backpropagating.
-               Special consideration to <vue-mathjax :formula='bnbackpassAssets.dsigdmu'></vue-mathjax> and <vue-mathjax :formula='bnbackpassAssets.dsigdx'></vue-mathjax> as there are summations in
-               their functions. The sigma notation in <vue-mathjax :formula='bnbackpassAssets.dsigdx'></vue-mathjax> does not carry over because we are differentiating wrt a vector.
+               Special consideration to <vm :formula='bnbackpassAssets.dsigdmu'></vm> and <vm :formula='bnbackpassAssets.dsigdx'></vm> as there are summations in
+               their functions. The sigma notation in <vm :formula='bnbackpassAssets.dsigdx'></vm> does not carry over because we are differentiating wrt a vector.
             </p>
-            <vue-mathjax :formula='bnbackpassAssets.dldy'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldy'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dydxhatSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dydxhatSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dxhatdxSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dxhatdxSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dxhatdmuSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dxhatdmuSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dxhatdsigSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dxhatdsigSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dsigdmuSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dsigdmuSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dmudxSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dmudxSolve'></vm>
             <br>
-            <vue-mathjax :formula='bnbackpassAssets.dsigdxSolve'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dsigdxSolve'></vm>
             <div id="substitute"></div>
             <div id="blogSubHeader">
                Substitute in Partials & Simplify
@@ -122,30 +122,30 @@
                Note that I've changed the nested summations index to <i>k</i>. It will initially look more confusing, but simplifies well :). <i>(be careful to consider equations overflowing to the next line)</i>
             </p>
             <h2>1</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub1'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub1'></vm>
             <p>
-               I'm going to work on the middle summand first. Rewrite <vue-mathjax :formula='bnbackpassAssets.rootTrick'></vue-mathjax> as <vue-mathjax :formula='bnbackpassAssets.rootTrick2'></vue-mathjax>. I will also slowly
+               I'm going to work on the middle summand first. Rewrite <vm :formula='bnbackpassAssets.rootTrick'></vm> as <vm :formula='bnbackpassAssets.rootTrick2'></vm>. I will also slowly
                be removing the dot notation where multiplication is obvious.
             </p>
             <h2>2</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub2'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub2'></vm>
             <p>
-               Further simplify the nested summation <vue-mathjax :formula='bnbackpassAssets.secondSumSimplify'></vue-mathjax> by distributing the sigma to it's terms.
+               Further simplify the nested summation <vm :formula='bnbackpassAssets.secondSumSimplify'></vm> by distributing the sigma to it's terms.
             </p>
             <h2>3</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub3'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub3'></vm>
             <br>
             <h2>4</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub4'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub4'></vm>
             <br>
             <h2>5</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub5'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub5'></vm>
             <br>
             <h2>6</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub6'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub6'></vm>
             <p>
-               On equation 4 after distributing the sums, the values both simplify to the expectation over the batch <vue-mathjax :formula='bnbackpassAssets.mu'></vue-mathjax>. I do not break down 
-               <vue-mathjax :formula='bnbackpassAssets.trickyPart1'></vue-mathjax> immediately as I did for <vue-mathjax :formula='bnbackpassAssets.expectation'></vue-mathjax> for understanding; <vue-mathjax :formula='bnbackpassAssets.mu'></vue-mathjax>
+               On equation 4 after distributing the sums, the values both simplify to the expectation over the batch <vm :formula='bnbackpassAssets.mu'></vm>. I do not break down 
+               <vm :formula='bnbackpassAssets.trickyPart1'></vm> immediately as I did for <vm :formula='bnbackpassAssets.expectation'></vm> for understanding; <vm :formula='bnbackpassAssets.mu'></vm>
                is being summed up <i>m</i> times then divided by <i>m</i>. The difference in the parenthesis evaluates to 0 and then the labor of <i>"10 steps backwards 11 steps forward"</i> is shown.
                Equation 6 drops everything multiplied by zero and cleans up some of the left hand side of the equation.
                <br>
@@ -154,24 +154,24 @@
                the index of the right-most product from <i>i</i> to <i>k</i>. This is because it has to be treated as a constant to the summation.
             </p>
             <h2>7</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub7'></vue-mathjax>  
+            <vm :formula='bnbackpassAssets.dldxSub7'></vm>  
             <p>
                Factor out constants
             </p>         
             <h2>8</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub8'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub8'></vm>
             <p>
-               The reason I mentioned combining terms in equation 7 was the money step is because the term <vue-mathjax :formula='bnbackpassAssets.xhatformula'></vue-mathjax> is equal to the normalization step 
-               <vue-mathjax :formula='bnbackpassAssets.xhat'></vue-mathjax> in the backward pass of batch normalization. I substitute in <vue-mathjax :formula='bnbackpassAssets.xhat'></vue-mathjax>, which will be a parameter passed to
+               The reason I mentioned combining terms in equation 7 was the money step is because the term <vm :formula='bnbackpassAssets.xhatformula'></vm> is equal to the normalization step 
+               <vm :formula='bnbackpassAssets.xhat'></vm> in the backward pass of batch normalization. I substitute in <vm :formula='bnbackpassAssets.xhat'></vm>, which will be a parameter passed to
                our backward pass function from the forward pass stored in the cache (shown later), I change the square root representation to make factoring later more amenable, and I clean up stray terms.
             </p>
             <h2>9</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub9'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub9'></vm>
             <p>
                Some final cleaning by factoring our similarities from the 3 terms. 
             </p>     
             <h2>10</h2>
-            <vue-mathjax :formula='bnbackpassAssets.dldxSub10'></vue-mathjax>
+            <vm :formula='bnbackpassAssets.dldxSub10'></vm>
             <p>
                Below is a codeblock implemented with equation 10. With a 276 character difference, the shortcut performs a backwards pass much faster than the original implementation.
             </p>
@@ -218,7 +218,7 @@ export default {
       backdrop,
       toTop,
       themeSwitch,
-      'vue-mathjax': VueMathjax,
+      'vm': VueMathjax,
       PrismEditor
 
    },

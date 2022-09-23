@@ -10,8 +10,8 @@
                   <p style="font-size: 18px; padding: 0 !important; ">8 &#8226; 26 &#8226; 2021</p>
                </div>
             </div>
-            <vue-mathjax :formula='formula'></vue-mathjax>
-            <vue-mathjax :formula='jacobian'></vue-mathjax>
+            <vm :formula='formula'></vm>
+            <vm :formula='jacobian'></vm>
             <!-- <math-jax :latex="formula" />
             <math-jax :latex="formula" :block="true" /> -->
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -53,8 +53,8 @@ export default {
    components: {
       backdrop,
       toTop,
-      themeSwitch, 
-      'vue-mathjax': VueMathjax
+      themeSwitch,
+      'vm': VueMathjax
       // MathJax
    },
    metaInfo: {

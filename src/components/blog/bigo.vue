@@ -53,37 +53,37 @@
             <br>
             <br>
             <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/bigo3.png" alt="">
-            <span class="theme" style="font-size:14px; padding-top: -10px;">Visually, the graphs show that all points <i>n</i> beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> adhere to the rules of their respective set.
-            <i>(a)</i> shows <vue-mathjax :formula='`$f(n) = O(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\lt c \\cdot g(n)$`'></vue-mathjax> at all points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax> thus making <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> an 
-            <i>upper bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. <i>(b)</i> shows <vue-mathjax :formula='`$f(n) = \\Omega(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$f(n) \\gt c \\cdot g(n)$`'></vue-mathjax>
-            for all <i>n</i> points beyond <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, making <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> a <i>lower bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
-            <i>(c)</i> shows <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax> because <vue-mathjax :formula='`$c_2\\cdot g(n) \\lt f(n) \\lt c_1\\cdot g(n)$`'></vue-mathjax> at all points beyond
-            <vue-mathjax :formula='`$n_0$`'></vue-mathjax>. </span>
+            <span class="theme" style="font-size:14px; padding-top: -10px;">Visually, the graphs show that all points <i>n</i> beyond <vm :formula='`$n_0$`'></vm> adhere to the rules of their respective set.
+            <i>(a)</i> shows <vm :formula='`$f(n) = O(g(n))$`'></vm> because <vm :formula='`$f(n) \\lt c \\cdot g(n)$`'></vm> at all points beyond <vm :formula='`$n_0$`'></vm> thus making <vm :formula='`$g(n)$`'></vm> an 
+            <i>upper bound</i> of <vm :formula='`$f(n)$`'></vm>. <i>(b)</i> shows <vm :formula='`$f(n) = \\Omega(g(n))$`'></vm> because <vm :formula='`$f(n) \\gt c \\cdot g(n)$`'></vm>
+            for all <i>n</i> points beyond <vm :formula='`$n_0$`'></vm>, making <vm :formula='`$g(n)$`'></vm> a <i>lower bound</i> of <vm :formula='`$f(n)$`'></vm>.
+            <i>(c)</i> shows <vm :formula='`$f(n) = \\Theta(g(n))$`'></vm> because <vm :formula='`$c_2\\cdot g(n) \\lt f(n) \\lt c_1\\cdot g(n)$`'></vm> at all points beyond
+            <vm :formula='`$n_0$`'></vm>. </span>
             <br>
             <p>
-               (a) <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
-               some constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> is always <vue-mathjax :formula='`$\\leq c \\cdot g(n)$`'></vue-mathjax>, for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
-               <!-- We say a function <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> belongs to "Big Oh" of the function g when <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> -->
+               (a) <vm :formula='bigoAssets.bigO'></vm> means <vm :formula='`$c \\cdot g(n)$`'></vm> is an <i>upper bound</i> on <vm :formula='`$f(n)$`'></vm>. Thus there exists
+               some constant <i>c</i> such that <vm :formula='`$f(n)$`'></vm> is always <vm :formula='`$\\leq c \\cdot g(n)$`'></vm>, for large enough <vm :formula='`$n\\geq n_0$`'></vm>.
+               <!-- We say a function <vm :formula='`$f(n)$`'></vm> belongs to "Big Oh" of the function g when <vm :formula='bigoAssets.bigO'></vm> -->
                <br>
                <br>
-               (b) <vue-mathjax :formula='bigoAssets.bigOmega'></vue-mathjax> means <vue-mathjax :formula='`$c \\cdot g(n)$`'></vue-mathjax> is a <i>lower bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists
-               some constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> is always <vue-mathjax :formula='`$\\geq c \\cdot g(n)$`'></vue-mathjax>, for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
+               (b) <vm :formula='bigoAssets.bigOmega'></vm> means <vm :formula='`$c \\cdot g(n)$`'></vm> is a <i>lower bound</i> on <vm :formula='`$f(n)$`'></vm>. Thus there exists
+               some constant <i>c</i> such that <vm :formula='`$f(n)$`'></vm> is always <vm :formula='`$\\geq c \\cdot g(n)$`'></vm>, for large enough <vm :formula='`$n\\geq n_0$`'></vm>.
                <br>
                <br>
-               (c) <vue-mathjax :formula='bigoAssets.bigTheta'></vue-mathjax> means <vue-mathjax :formula='`$c_1 \\cdot g(n)$`'></vue-mathjax> is an <i>upper bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> and
-               <vue-mathjax :formula='`$c_2 \\cdot g(n)$`'></vue-mathjax> is a <i>lower bound</i> on <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. Thus there exists constants <vue-mathjax :formula='`$c_1$`'></vue-mathjax>
-               and <vue-mathjax :formula='`$c_2$`'></vue-mathjax> such that <vue-mathjax :formula='`$c_2 \\cdot g(n) \\leq f(n) \\leq c_1\\cdot g(n) $`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>.
+               (c) <vm :formula='bigoAssets.bigTheta'></vm> means <vm :formula='`$c_1 \\cdot g(n)$`'></vm> is an <i>upper bound</i> on <vm :formula='`$f(n)$`'></vm> and
+               <vm :formula='`$c_2 \\cdot g(n)$`'></vm> is a <i>lower bound</i> on <vm :formula='`$f(n)$`'></vm>. Thus there exists constants <vm :formula='`$c_1$`'></vm>
+               and <vm :formula='`$c_2$`'></vm> such that <vm :formula='`$c_2 \\cdot g(n) \\leq f(n) \\leq c_1\\cdot g(n) $`'></vm> for large enough <vm :formula='`$n\\geq n_0$`'></vm>.
                <br>
                <br>
-               It is important to think of these functions as <i>boundaries</i> for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. They demarcate, for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, all values to
-               the right of <vue-mathjax :formula='`$n_0$`'></vue-mathjax>. Another representation, using <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax>, in limit notation is:
+               It is important to think of these functions as <i>boundaries</i> for <vm :formula='`$f(n)$`'></vm>. They demarcate, for <vm :formula='`$f(n)$`'></vm>, all values to
+               the right of <vm :formula='`$n_0$`'></vm>. Another representation, using <vm :formula='`$O(g(n))$`'></vm>, in limit notation is:
             </p>
-               <vue-mathjax :formula='`$$\\lim_{n\\to\\infty}f(n) \\leq c \\cdot g(n), \\mathrm{\\;when\\;}n > n_0$$`'></vue-mathjax>  
+               <vm :formula='`$$\\lim_{n\\to\\infty}f(n) \\leq c \\cdot g(n), \\mathrm{\\;when\\;}n > n_0$$`'></vm>  
             <p>
                The picture and definitions are from <a href="https://www.algorist.com/" target="_blank">The Algorithm Design Manuel, by Steven Skiena</a> (p 35-36 of 2nd edition). Before we go through examples, a couple
-               of things to note: 1) Some people consider <vue-mathjax :formula='bigoAssets.bigO'></vue-mathjax> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
-               "<i>f(n)</i> is a member of set <i>O(g(n))</i>" which usually is represented in set notation as <vue-mathjax :formula='`$f(x) \\in O(g(n))$`'></vue-mathjax>. 2) It doesn't seem to be stated definitively
-               in Skiena's book (or maybe I missed it), but it should seem apparent that <vue-mathjax :formula="`$c > 0$`"></vue-mathjax> otherwise we're subject to some funk. This is stated in
+               of things to note: 1) Some people consider <vm :formula='bigoAssets.bigO'></vm> to be an <a href="https://en.wikipedia.org/wiki/Big_O_notation#Equals_sign" target="_blank">abuse of notation</a> because we mean to say
+               "<i>f(n)</i> is a member of set <i>O(g(n))</i>" which usually is represented in set notation as <vm :formula='`$f(x) \\in O(g(n))$`'></vm>. 2) It doesn't seem to be stated definitively
+               in Skiena's book (or maybe I missed it), but it should seem apparent that <vm :formula="`$c > 0$`"></vm> otherwise we're subject to some funk. This is stated in
                <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">Introduction to Algorithms, 3rd Ed</a> on p. 50.
             </p>
             <div id="on_functions"></div>
@@ -91,81 +91,81 @@
                The Implementation on Functions
             </div>
             <p>
-               Let's use the simple quadratic function <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax> as an example  for now. I will be using 3 examples for <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
-               where <vue-mathjax :formula='`$n = n, n = n^2, n = n^3$`'></vue-mathjax>. We can assert:
+               Let's use the simple quadratic function <vm :formula='`$f(n) = n^2+4n$`'></vm> as an example  for now. I will be using 3 examples for <vm :formula='`$g(n)$`'></vm>
+               where <vm :formula='`$n = n, n = n^2, n = n^3$`'></vm>. We can assert:
             </p>
             <div class="bgColor theme">
                   <br>
-                  <vue-mathjax class="theme" :formula='`$$g(n) = n$$`'></vue-mathjax>
+                  <vm class="theme" :formula='`$$g(n) = n$$`'></vm>
                <p>
-                  <vue-mathjax :formula='`$$f(n) = n^2+4n \\neq O(n)$$`'></vue-mathjax> because there exists no constant <i>c</i> such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
-                  is always <vue-mathjax :formula='`$\\leq c \\cdot g(n)$`'></vue-mathjax> for large enough <vue-mathjax :formula='`$n\\geq n_0$`'></vue-mathjax>. At no point, <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, will <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> always
-                  be an <i>upper bound</i> of <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
+                  <vm :formula='`$$f(n) = n^2+4n \\neq O(n)$$`'></vm> because there exists no constant <i>c</i> such that <vm :formula='`$f(n)$`'></vm>
+                  is always <vm :formula='`$\\leq c \\cdot g(n)$`'></vm> for large enough <vm :formula='`$n\\geq n_0$`'></vm>. At no point, <vm :formula='`$n_0$`'></vm>, will <vm :formula='`$g(n)$`'></vm> always
+                  be an <i>upper bound</i> of <vm :formula='`$f(n)$`'></vm>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$f(n) = n^2+4n = \\Omega(n)$$`'></vue-mathjax> because there exists a constant, for example <vue-mathjax :formula='`$c=5$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>
-                  is always <vue-mathjax :formula='`$\\geq g(n)$`'></vue-mathjax> when <vue-mathjax :formula='`$n \\geq 5$`'></vue-mathjax>. There exists a point, <vue-mathjax :formula='`$n_0$`'></vue-mathjax>, where <vue-mathjax :formula='`$g(n)$`'></vue-mathjax>
-                  will always be a <i>lower bound</i> for <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/smr2bmhdew" target="_blank">Link</a> to graphing calculator for visualization.
-                  Note I can pick <vue-mathjax :formula='`$c=1$`'></vue-mathjax> rendering this statement also true when <vue-mathjax :formula='`$n \\geq 0$`'></vue-mathjax>.
+                  <vm :formula='`$$f(n) = n^2+4n = \\Omega(n)$$`'></vm> because there exists a constant, for example <vm :formula='`$c=5$`'></vm>, such that <vm :formula='`$f(n)$`'></vm>
+                  is always <vm :formula='`$\\geq g(n)$`'></vm> when <vm :formula='`$n \\geq 5$`'></vm>. There exists a point, <vm :formula='`$n_0$`'></vm>, where <vm :formula='`$g(n)$`'></vm>
+                  will always be a <i>lower bound</i> for <vm :formula='`$f(n)$`'></vm>. <a href="https://www.desmos.com/calculator/smr2bmhdew" target="_blank">Link</a> to graphing calculator for visualization.
+                  Note I can pick <vm :formula='`$c=1$`'></vm> rendering this statement also true when <vm :formula='`$n \\geq 0$`'></vm>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$f(n) = n^2+4n \\neq \\Theta(n)$$`'></vue-mathjax> because only <vue-mathjax :formula='`$\\Omega$`'></vue-mathjax> applies.
+                  <vm :formula='`$$f(n) = n^2+4n \\neq \\Theta(n)$$`'></vm> because only <vm :formula='`$\\Omega$`'></vm> applies.
                </p>
             </div>
             <br>
             <div class="bgColor theme">
                   <br>
-                  <vue-mathjax class="theme" :formula='`$$g(n) = n^2$$`'></vue-mathjax>
+                  <vm class="theme" :formula='`$$g(n) = n^2$$`'></vm>
                <p>
-                  <vue-mathjax :formula='`$$f(n) = n^2+4n = O(n^2)$$`'></vue-mathjax> because there exists a constant, for example <vue-mathjax :formula='`$c=2$`'></vue-mathjax>, such that <vue-mathjax :formula='`$f(n) \\leq 2n^2$`'></vue-mathjax>
-                  for all <vue-mathjax :formula='`$n \\geq 4$`'></vue-mathjax>. <a href="https://www.desmos.com/calculator/csj6cj3d4z" target="_blank">Link</a> to graphing calculator mapping the two functions showing this.
-                  Again, we can pick any value for <i>c</i>, what matters is that there is some <i>c</i> that satisfies to <vue-mathjax :formula='`$O(g(n))$`'></vue-mathjax>.
+                  <vm :formula='`$$f(n) = n^2+4n = O(n^2)$$`'></vm> because there exists a constant, for example <vm :formula='`$c=2$`'></vm>, such that <vm :formula='`$f(n) \\leq 2n^2$`'></vm>
+                  for all <vm :formula='`$n \\geq 4$`'></vm>. <a href="https://www.desmos.com/calculator/csj6cj3d4z" target="_blank">Link</a> to graphing calculator mapping the two functions showing this.
+                  Again, we can pick any value for <i>c</i>, what matters is that there is some <i>c</i> that satisfies to <vm :formula='`$O(g(n))$`'></vm>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$n^2+4n = \\Omega(n^2)$$`'></vue-mathjax> because similarly to the above, we can pick <vue-mathjax :formula='`$c = 1$`'></vue-mathjax>, enabling <vue-mathjax :formula='`$f(n) \\geq c\\cdot g(n)$`'></vue-mathjax>
-                  for all <vue-mathjax :formula='`$n \\gt 0$`'></vue-mathjax>.
+                  <vm :formula='`$$n^2+4n = \\Omega(n^2)$$`'></vm> because similarly to the above, we can pick <vm :formula='`$c = 1$`'></vm>, enabling <vm :formula='`$f(n) \\geq c\\cdot g(n)$`'></vm>
+                  for all <vm :formula='`$n \\gt 0$`'></vm>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$n^2+4n = \\Theta(n^2)$$`'></vue-mathjax> because both <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega(n^2)$`'></vue-mathjax> hold true.  
+                  <vm :formula='`$$n^2+4n = \\Theta(n^2)$$`'></vm> because both <vm :formula='`$O(n^2)$`'></vm> and <vm :formula='`$\\Omega(n^2)$`'></vm> hold true.  
                </p>
             </div>
             <br>
             <div class="bgColor theme">
                   <br>
-                  <vue-mathjax class="theme" :formula='`$$g(n) = n^3$$`'></vue-mathjax>
+                  <vm class="theme" :formula='`$$g(n) = n^3$$`'></vm>
                   <span class="theme" style='font-size: 13px;'><i>In plain English</i></span>
                <p>
-                  <vue-mathjax :formula='`$$f(n) = n^2+4n = O(n^3)$$`'></vue-mathjax> because there exists coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n" will <b>always</b> be an
+                  <vm :formula='`$$f(n) = n^2+4n = O(n^3)$$`'></vm> because there exists coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n" will <b>always</b> be an
                   <i>upper bound</i> of "f of n" for all <i>n</i> greater than <i>n sub 0</i>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$n^2+4n \\neq \\Omega(n^3)$$`'></vue-mathjax> because there exists <b>no</b> coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n"
+                  <vm :formula='`$$n^2+4n \\neq \\Omega(n^3)$$`'></vm> because there exists <b>no</b> coefficients, <i>c</i>, with corresponding points, <i>n sub 0</i>, where "<i>c</i> times g of n"
                   will <b>always</b> be a <i>lower bound</i> of "f of n" for all <i>n</i> greater than <i>n sub 0</i>.
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$n^2+4n \\neq \\Theta(n^3)$$`'></vue-mathjax> because only "Oh of n cubed" holds true. 
+                  <vm :formula='`$$n^2+4n \\neq \\Theta(n^3)$$`'></vm> because only "Oh of n cubed" holds true. 
                </p>
             </div>
             <p>
                If you look at these examples long enough aided with some intuition - you may notice some "hints" to help determine which set(s) a function belongs to. A big hint, probably the biggest, is that
-               the leading/highest degree term of the function is really what determines the outcome of the function. In <vue-mathjax :formula='`$f(n) = n^2+4n$`'></vue-mathjax>, <vue-mathjax :formula='`$n^2$`'></vue-mathjax>
-               has the most impact to dictate <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>'s membership. For <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, any
-               <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> whose leading term is less than degree 2 will be <i>dominated</i> by <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>. The inverse is also true; for
-               any <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> where the leading term is higher than degree 2, we say <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> <i>dominates</i> <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
-               A faster growing function dominates a slower growing one. If <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> dominates <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, we can then assert that at some point
-               <vue-mathjax :formula='`$f(n) = O(g(n))$`'></vue-mathjax> because <b>eventually</b>, regardless of other terms, there will be some point <vue-mathjax :formula='`$n_0$`'></vue-mathjax> such that every point thereafter
-               <vue-mathjax :formula='`$g(n) > f(n)$`'></vue-mathjax>.
+               the leading/highest degree term of the function is really what determines the outcome of the function. In <vm :formula='`$f(n) = n^2+4n$`'></vm>, <vm :formula='`$n^2$`'></vm>
+               has the most impact to dictate <vm :formula='`$f(n)$`'></vm>'s membership. For <vm :formula='`$f(n)$`'></vm>, any
+               <vm :formula='`$g(n)$`'></vm> whose leading term is less than degree 2 will be <i>dominated</i> by <vm :formula='`$f(n)$`'></vm>. The inverse is also true; for
+               any <vm :formula='`$g(n)$`'></vm> where the leading term is higher than degree 2, we say <vm :formula='`$g(n)$`'></vm> <i>dominates</i> <vm :formula='`$f(n)$`'></vm>.
+               A faster growing function dominates a slower growing one. If <vm :formula='`$g(n)$`'></vm> dominates <vm :formula='`$f(n)$`'></vm>, we can then assert that at some point
+               <vm :formula='`$f(n) = O(g(n))$`'></vm> because <b>eventually</b>, regardless of other terms, there will be some point <vm :formula='`$n_0$`'></vm> such that every point thereafter
+               <vm :formula='`$g(n) > f(n)$`'></vm>.
                <br>
                <br>
-               Another observation is that <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> is the most restrictive set. <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> must belong to both
-               <vue-mathjax :formula='`$O$`'></vue-mathjax> and <vue-mathjax :formula='`$\\Omega$`'></vue-mathjax> for <vue-mathjax :formula='`$f(n) = \\Theta$`'></vue-mathjax>. Piggybacking on thoughts from the paragraph above,
-               it becomes clear that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> must have matching degree to <vue-mathjax :formula='`$f(n)$`'></vue-mathjax> for <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax>.
-               Only then can we guarantee that at no point in the domain of <i>n</i>, <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> will overtake <b>or</b> undertake <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>.
+               Another observation is that <vm :formula='`$\\Theta$`'></vm> is the most restrictive set. <vm :formula='`$f(n)$`'></vm> must belong to both
+               <vm :formula='`$O$`'></vm> and <vm :formula='`$\\Omega$`'></vm> for <vm :formula='`$f(n) = \\Theta$`'></vm>. Piggybacking on thoughts from the paragraph above,
+               it becomes clear that <vm :formula='`$g(n)$`'></vm> must have matching degree to <vm :formula='`$f(n)$`'></vm> for <vm :formula='`$f(n) = \\Theta(g(n))$`'></vm>.
+               Only then can we guarantee that at no point in the domain of <i>n</i>, <vm :formula='`$g(n)$`'></vm> will overtake <b>or</b> undertake <vm :formula='`$f(n)$`'></vm>.
                <br>
                <br>
                I use the terms <i>upper</i> and <i>lower bound</i> a lot. Some books define them more rigidly and call them the <i>asymptotic upper</i> and <i>asymptotic lower bound</i> - communication can wear many hats.
-               One term I find useful is that when <vue-mathjax :formula='`$f(n) = \\Theta(g(n))$`'></vue-mathjax> we can say that <vue-mathjax :formula='`$g(n)$`'></vue-mathjax> is a <i>tight bound</i> for
-               <vue-mathjax :formula='`$f(n)$`'></vue-mathjax>, indicating it is sandwiched between an upper and lower bound.
+               One term I find useful is that when <vm :formula='`$f(n) = \\Theta(g(n))$`'></vm> we can say that <vm :formula='`$g(n)$`'></vm> is a <i>tight bound</i> for
+               <vm :formula='`$f(n)$`'></vm>, indicating it is sandwiched between an upper and lower bound.
             </p>
             <div id="on_algorithms"></div>
             <div id="blogSubHeader">
@@ -203,12 +203,12 @@
             <p>
                Not bad right? Line 3 is constant no matter the size of our input <i>n</i> for algorithm <i>simple</i> so it is always equal to 1 time step.
                The for loop however is dependent on the size of input <i>n</i> because it runs exactly <i>n</i> times. Because of this, we multiply the inner operations, represented vaguely as (...), 
-               by <i>n</i> so that when we put everything together we are provided with <i>1 + n(...)</i>. We can now see that this function belongs to <vue-mathjax :formula='`$\\Theta(n)$`'></vue-mathjax>.
+               by <i>n</i> so that when we put everything together we are provided with <i>1 + n(...)</i>. We can now see that this function belongs to <vm :formula='`$\\Theta(n)$`'></vm>.
                To be clear, this function doesn't really fit the definition of an algorithm, even if it's pseudocode, but that is okay. I just want to convey a very simple example of translating code into a function.
                <br>
                <br>
-               I think it is a good habit declare an algorithm <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax> when possible because it provides more information to the reader, however using
-               <vue-mathjax :formula='`$O$`'></vue-mathjax> is also very fine because the <i>upper bound</i> is the primary interest. Just as many scientists seek to <a href="https://youtu.be/EYPapE-3FRw?t=226" target="_blank">prove theories wrong</a>,
+               I think it is a good habit declare an algorithm <vm :formula='`$\\Theta$`'></vm> when possible because it provides more information to the reader, however using
+               <vm :formula='`$O$`'></vm> is also very fine because the <i>upper bound</i> is the primary interest. Just as many scientists seek to <a href="https://youtu.be/EYPapE-3FRw?t=226" target="_blank">prove theories wrong</a>,
                many algorists and computer scientists seek to understand the <i>worst case scenario</i> for algorithms. Nobody cares if an algorithm is working efficiently, people only care if an algorithm is working <i>inefficiently</i>.
                If an algorithm operates within an acceptable timeframe, we are content. It is only when an algorithm takes an obscene amount of time to complete we ask <i>"what the hell is going on?"</i>.
                Except for our primary interest being towards the <i>worst case scenario</i>, I say the things here somewhat jokingly, I just want to convey the significance. 
@@ -227,11 +227,11 @@
             </p>
             <prism-editor class="codeblock" v-model="bigoAssets.insertionSort2" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
             <p>
-               A little more complex than the previous simple algorithm! We conclude with the unrefined function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>. Here is a very specific explanation. Everything
+               A little more complex than the previous simple algorithm! We conclude with the unrefined function <vm :formula='`$n(1+n(1+1))$`'></vm>. Here is a very specific explanation. Everything
                in the <i>insertionSort</i> algorithm occurs within a for loop that iterates <i>n</i> times (line 3). This is why everything in our polynomial is multiplied by the outermost <i>n</i>.
                One level into our for loop, we have a 
                simple initialization and a while loop (line 5 & 7 respectively). We know the initialization takes 1 time step, producing a 1 in our polynomial, but the while loop is a little trickier. So far, we have
-               the partially translated function <vue-mathjax :formula='`$n(1+\\mathtt{while})$`'></vue-mathjax>, we need find a way to represent it functionally.
+               the partially translated function <vm :formula='`$n(1+\\mathtt{while})$`'></vm>, we need find a way to represent it functionally.
                <br>
                <br>
                As mentioned above, we are <b>primarily
@@ -241,34 +241,34 @@
                (biggest to smallest).
                <br>
                So both loops can be represented as <i>n</i>. Now look at everything that loops <i>n</i> times in our while loop, we have two operations that do not depend on the input size so they are represented as single step operations.
-               This results in the function <vue-mathjax :formula='`$n(1+n(1+1))$`'></vue-mathjax>, which when simplified is equal to <vue-mathjax :formula='`$2n^2+n$`'></vue-mathjax>.
+               This results in the function <vm :formula='`$n(1+n(1+1))$`'></vm>, which when simplified is equal to <vm :formula='`$2n^2+n$`'></vm>.
                <br>
                <br>
                To find a function's membership in the "Big Oh" family, we know, as stated above, always look at the leading term. Coefficients to the leading term are also irrelevant because, remember we can pick any <i>c</i> to satisfy set membership. For
-               instance, if I want to show <vue-mathjax :formula='`$f(n) = 2n^2+n = \\Theta(n^2)$`'></vue-mathjax>, I pick <vue-mathjax :formula='`$c_2 = 1$`'></vue-mathjax> and
-               <vue-mathjax :formula='`$c_1 = 3$`'></vue-mathjax> providing <vue-mathjax :formula='`$1 \\cdot n^2 \\leq 2n^2 \\leq 3 \\cdot n^2$`'></vue-mathjax> as required by the definition of <vue-mathjax :formula='`$\\Theta$`'></vue-mathjax>.
-               And this is correct, we have now shown that a very real algorithm, insertion sort, is <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax> and <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> on
+               instance, if I want to show <vm :formula='`$f(n) = 2n^2+n = \\Theta(n^2)$`'></vm>, I pick <vm :formula='`$c_2 = 1$`'></vm> and
+               <vm :formula='`$c_1 = 3$`'></vm> providing <vm :formula='`$1 \\cdot n^2 \\leq 2n^2 \\leq 3 \\cdot n^2$`'></vm> as required by the definition of <vm :formula='`$\\Theta$`'></vm>.
+               And this is correct, we have now shown that a very real algorithm, insertion sort, is <vm :formula='`$\\Theta(n^2)$`'></vm> and <vm :formula='`$O(n^2)$`'></vm> on
                a <i>worst case scenario</i>. Food for thought though, what if input <i>n</i> is already perfectly sorted? If <i>n</i> were perfectly sorted from smallest to largest, then the while loop would never
-               run, thus giving a lower bound, or <i>best case scenario</i> of <vue-mathjax :formula='`$\\Omega(n)$`'></vue-mathjax>.
+               run, thus giving a lower bound, or <i>best case scenario</i> of <vm :formula='`$\\Omega(n)$`'></vm>.
             </p>
             <div id="elefante"></div>
             <div id="blogSubHeader">
                Analysis & Addressing the Elephant
             </div>
             <p>
-               First analysis, then the elephant. So we've shown our insertion sort algorithm to be <vue-mathjax :formula='`$\\Theta(n^2)$`'></vue-mathjax>, now what? Well, what we have done is quantified the efficiency,
+               First analysis, then the elephant. So we've shown our insertion sort algorithm to be <vm :formula='`$\\Theta(n^2)$`'></vm>, now what? Well, what we have done is quantified the efficiency,
                within allowable tolerances, of the insertion sort algorithm. Now we can compare it to other algorithms to see how it stacks up against others. <a href="https://www.bigocheatsheet.com/">Bigocheatsheet</a>
-               provides many resources to show just that. We can see that...well <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithms are classified as "horrible", meaning that as the input size <i>n</i> gets
-               larger, the amount of operations required scales quadratically. If we have an input size of 10 for a <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithm, at worst that algorithm will require 100
-               operations. If we have an input size of 1,000,000 (not unreasonable in the realm of computers), our <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> algorithm will take 1,000,000,000,000 (a trillion)
+               provides many resources to show just that. We can see that...well <vm :formula='`$O(n^2)$`'></vm> algorithms are classified as "horrible", meaning that as the input size <i>n</i> gets
+               larger, the amount of operations required scales quadratically. If we have an input size of 10 for a <vm :formula='`$O(n^2)$`'></vm> algorithm, at worst that algorithm will require 100
+               operations. If we have an input size of 1,000,000 (not unreasonable in the realm of computers), our <vm :formula='`$O(n^2)$`'></vm> algorithm will take 1,000,000,000,000 (a trillion)
                operations. In <a href="https://www.algorist.com/" target="_blank">Skiena's</a> book (p. 38), you can find an extremely helpful table that compares algorithm runtimes between each other. It is shown
                below.
             </p>
             <img id="img1000" @click="imageZoom" style="box-shadow: none;" src="../../assets/blog/bigoscaling.png" alt="">
             <p>
                Okay now the elephant. If you're already familiar with "Big Oh" or may have derived from the bigocheatsheet and table resources above, you will notice I only talk about a portion of the complexities.
-               <vue-mathjax :formula='`$O(n^2)$`'></vue-mathjax> is certainly "horrible", but nowhere as horrible as <vue-mathjax :formula='`$O(n!)$`'></vue-mathjax> or <vue-mathjax :formula='`$O(2^n)$`'></vue-mathjax>.
-               Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vue-mathjax :formula='`$O(lg(n))$`'></vue-mathjax>? What an insanely efficient runtime. I talk about why I omit them below,
+               <vm :formula='`$O(n^2)$`'></vm> is certainly "horrible", but nowhere as horrible as <vm :formula='`$O(n!)$`'></vm> or <vm :formula='`$O(2^n)$`'></vm>.
+               Just look at how bad they get on inputs of size 30 and 50 respectively. And what about <vm :formula='`$O(lg(n))$`'></vm>? What an insanely efficient runtime. I talk about why I omit them below,
                but the elephant is simply that I do not explain them at all here.
             </p>
             <div id="thoughts"></div>
@@ -277,10 +277,10 @@
             </div>
             <p>
                For the complexities I don't talk about here, I would like to provide algorithms that represent these complexities their own blog. This is because algorithms that belong to for example,
-               <vue-mathjax :formula='`$O(nlg(n))$`'></vue-mathjax>, are frequently shown with recursion - a procedure I think warrants a decently "in depth" discussion on it's own. 
+               <vm :formula='`$O(nlg(n))$`'></vm>, are frequently shown with recursion - a procedure I think warrants a decently "in depth" discussion on it's own. 
                <br>
                <br>
-               There are also other notations <vue-mathjax :formula='`$o(n)$`'></vue-mathjax> and <vue-mathjax :formula='`$\\omega(n)$`'></vue-mathjax> that I don't mention. It was kinda funny seeing <vue-mathjax :formula='`$o(n)$`'></vue-mathjax>
+               There are also other notations <vm :formula='`$o(n)$`'></vm> and <vm :formula='`$\\omega(n)$`'></vm> that I don't mention. It was kinda funny seeing <vm :formula='`$o(n)$`'></vm>
                again after using it for differentiating the quadratic form. My goal for this blog was to introduce a well grounded but simple enough explanation to "Big Oh" notation and I think everything I mentioned and did not
                mention provides a nice balance between "enough detail to conveniently understand it" and "too much detail, where's my notebook?!".
             </p>
@@ -313,7 +313,7 @@ export default {
       toTop,
       themeSwitch,
       PrismEditor,
-      'vue-mathjax': VueMathjax
+      'vm': VueMathjax
       // MathJax
    },
    head: {

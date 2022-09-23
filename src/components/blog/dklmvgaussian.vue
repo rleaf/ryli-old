@@ -28,18 +28,18 @@
             <p>
                The KL divergence of continuous distributions is:
             </p>
-            <vue-mathjax :formula='dkl'></vue-mathjax>
+            <vm :formula='dkl'></vm>
             <p>
                The density function of the multivariate normal distribution is:
             </p>
-            <vue-mathjax :formula='mvnormal'></vue-mathjax>
+            <vm :formula='mvnormal'></vm>
             <p>
-               Let <vue-mathjax :formula='`$p(x)\\sim\\mathcal{N}(\\mu_1, \\Sigma_1)$`'></vue-mathjax> and <vue-mathjax :formula='`$q(x)\\sim\\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vue-mathjax>, both
-               in <vue-mathjax :formula='`$\\mathbb{R}^n$`'></vue-mathjax>.
-               The KL divergence between distribution <vue-mathjax :formula='`$p(x)$`'></vue-mathjax> and <vue-mathjax :formula='`$q(x)$`'></vue-mathjax> is:
+               Let <vm :formula='`$p(x)\\sim\\mathcal{N}(\\mu_1, \\Sigma_1)$`'></vm> and <vm :formula='`$q(x)\\sim\\mathcal{N}(\\mu_2, \\Sigma_2)$`'></vm>, both
+               in <vm :formula='`$\\mathbb{R}^n$`'></vm>.
+               The KL divergence between distribution <vm :formula='`$p(x)$`'></vm> and <vm :formula='`$q(x)$`'></vm> is:
             </p>
             <div class="mathjax">
-            <vue-mathjax :formula='ohboy'></vue-mathjax>
+            <vm :formula='ohboy'></vm>
 
             </div>
 
@@ -50,8 +50,8 @@
             <p>
                Eq (1): Definition of KL divergence
                <br>
-               Eq (2): Represent the integral as the expectation of continuous random variable <vue-mathjax :formula='`$X$`'></vue-mathjax> generated from distribution <vue-mathjax :formula='`$p$`'></vue-mathjax>.
-               In other reads I usually denote with <vue-mathjax :formula='`$\\mathbb{E}_{X\\,\\sim{\\,p}}$`'></vue-mathjax>, however not here to keep things simple.
+               Eq (2): Represent the integral as the expectation of continuous random variable <vm :formula='`$X$`'></vm> generated from distribution <vm :formula='`$p$`'></vm>.
+               In other reads I usually denote with <vm :formula='`$\\mathbb{E}_{X\\,\\sim{\\,p}}$`'></vm>, however not here to keep things simple.
                [<a href="https://en.wikipedia.org/wiki/Expected_value#Random_variables_with_density" target="_blank">Link</a>]
                <br>
                Eq (3): Quotient rule. [<a href="https://mathinsight.org/logarithm_basics" target="_blank">Link</a>]
@@ -69,11 +69,11 @@
                Eq (9): Segregate expectations via linearity property and take the expectation of the constant, which is equal to the constant.
                [<a href="https://en.wikipedia.org/wiki/Expected_value#Properties" target="_blank">Link</a>]
                <br>
-               Eq (10): <vue-mathjax :formula='`$(x-\\mu)^\\top\\Sigma(x-\\mu)$`'></vue-mathjax> is a real number, which can be interpreted as a 1x1 matrix, making it equal to its trace.
+               Eq (10): <vm :formula='`$(x-\\mu)^\\top\\Sigma(x-\\mu)$`'></vm> is a real number, which can be interpreted as a 1x1 matrix, making it equal to its trace.
                <br>
                Eq (11): Use equation 16 of section 1.1 from the matrix cookbook. [<a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf" target="_blank">Link</a>]
                <br>
-               Eq (12): Distribute expectation again. For the middle term: <vue-mathjax :formula='`$\\text{tr}(\\mathbb{E}(X)) = \\mathbb{E}(\\text{tr}(X))$`'></vue-mathjax>, factor out the constant
+               Eq (12): Distribute expectation again. For the middle term: <vm :formula='`$\\text{tr}(\\mathbb{E}(X)) = \\mathbb{E}(\\text{tr}(X))$`'></vm>, factor out the constant
                inverse covariance matrix, and then you are left with the definition of the covariance matrix. [<a href="https://en.wikipedia.org/wiki/Covariance_matrix#Definition" target="_blank">Link</a>].
                Right hand term: distribute.
                <br>
@@ -81,14 +81,14 @@
                and then factor out the constant inverse covariance matrix.
                <br>
                Eq (14): Middle term: the trace of the identity is equal to the dimension of the matrix. Right hand term: Use equation 377 of section 8.2 in the matrix cookbook linked in equation 11. Then take the
-               expectation of <vue-mathjax :formula='`$2x\\mu_2^\\top$`'></vue-mathjax>, which is <vue-mathjax :formula='`$2\\mu_1\\mu_2^\\top$`'></vue-mathjax> since the expectation is generated from
-               distribution <vue-mathjax :formula='`$p$`'></vue-mathjax>.
+               expectation of <vm :formula='`$2x\\mu_2^\\top$`'></vm>, which is <vm :formula='`$2\\mu_1\\mu_2^\\top$`'></vm> since the expectation is generated from
+               distribution <vm :formula='`$p$`'></vm>.
                <br>
-               Eq (15): Distribute <vue-mathjax :formula='`$\\Sigma_2^{-1}$`'></vue-mathjax> accordingly.
+               Eq (15): Distribute <vm :formula='`$\\Sigma_2^{-1}$`'></vm> accordingly.
                <br>
                Eq (16): Factor right hand term.
                <br>
-               Eq (17): Factor out <vue-mathjax :formula='`$1/2$`'></vue-mathjax>. Reorder the right hand term via commutative properties.
+               Eq (17): Factor out <vm :formula='`$1/2$`'></vm>. Reorder the right hand term via commutative properties.
                <br>
                Eq (17.1): An alternative representation. Factor out -1 from both terms on the right hand side, which nullify. 
             </p>
@@ -99,7 +99,7 @@
             <p>
                Starting from equation 11 defined above however we don't trace the right hand term in the expectation:
             </p>
-            <vue-mathjax :formula='alt'></vue-mathjax>
+            <vm :formula='alt'></vm>
             <p>
                Eq (12): Instead of expanding the right hand term as shown above, use equation 380 in section 8.2 of the <a href="https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf" target="_blank">matrix cookbook</a>.
                All other operations follow in suit from above.
@@ -126,7 +126,7 @@ export default {
       backdrop,
       toTop,
       themeSwitch,
-      'vue-mathjax': VueMathjax
+      'vm': VueMathjax
    },
    
    head: {

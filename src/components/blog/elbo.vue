@@ -36,14 +36,14 @@
             </div>
             <p>
                Tractibility concerns become evident when considering likelihood estimation for a Variational Autoencoder. Unable to maximize the marginal distribution
-               <vue-mathjax :formula='`$p_\\theta(x) = \\int{p_\\theta(x|z)p_\\theta(z)dz}$`'></vue-mathjax> due to complexity of integrating over the high dimensional latent space <vue-mathjax :formula='`$z$`'></vue-mathjax>,
-               it is also prohibitive to maximize the bayesian representation <vue-mathjax :formula='`$p_\\theta(x) = p_\\theta(x|z)p_\\theta(z)/p_\\theta(z|x)$`'></vue-mathjax>
-               because of the posterior <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>. To circumvent this tractibility concern an auxiliary network,
-               <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>, is introduced to approximate the posterior: <vue-mathjax :formula='`$q_\\phi(z|x) \\approx p_\\theta(z|x)$`'></vue-mathjax>.
+               <vm :formula='`$p_\\theta(x) = \\int{p_\\theta(x|z)p_\\theta(z)dz}$`'></vm> due to complexity of integrating over the high dimensional latent space <vm :formula='`$z$`'></vm>,
+               it is also prohibitive to maximize the bayesian representation <vm :formula='`$p_\\theta(x) = p_\\theta(x|z)p_\\theta(z)/p_\\theta(z|x)$`'></vm>
+               because of the posterior <vm :formula='`$p_\\theta(z|x)$`'></vm>. To circumvent this tractibility concern an auxiliary network,
+               <vm :formula='`$q_\\phi(z|x)$`'></vm>, is introduced to approximate the posterior: <vm :formula='`$q_\\phi(z|x) \\approx p_\\theta(z|x)$`'></vm>.
                <br><br>
                The relationship between the auxiliary network, popularly referred to as the <i>encoder</i>, and the posterior distribution will provide a tractible means for likelihood estimation
                and is what will become known as the <i>variational lower bound</i> or the <i> evidence lower bound (ELBO)</i>. Then by jointly updating parameters 
-               <vue-mathjax :formula='`$\\phi$`'></vue-mathjax> and <vue-mathjax :formula='`$\\theta$`'></vue-mathjax> via some gradient optimization (maximizing likelihood), the Variational
+               <vm :formula='`$\\phi$`'></vm> and <vm :formula='`$\\theta$`'></vm> via some gradient optimization (maximizing likelihood), the Variational
                Autoencoder increases in efficacy.
                <br><br>
                The goal here is to "homogenize" the information I've found on VAEs. Different sources on the network begin explanation differently, so some people (me) are prone to confusion.
@@ -59,97 +59,95 @@
                Variational Lower Bound (or ELBO)
             </div>
             <p>
-               The variational lower bound, <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>,
-               is a value that is always less than or equal to the proposed density <vue-mathjax :formula='`$\\log{p_\\theta(x)}$`'></vue-mathjax>. By maximizing the tractible
-               <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>, the intractible marginal likelihood, <vue-mathjax :formula='`$p_\\theta(x)$`'></vue-mathjax>, is also maximized. Note that
-               applying the monotonic transformation <vue-mathjax :formula='`$\\log{f(x)}$`'></vue-mathjax> to some function <vue-mathjax :formula='`$f(x)$`'></vue-mathjax> preserves local extrema which does
-               not conflict with maximum likelihood estimation. Below are three different ways to arrive at <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
+               The variational lower bound, <vm :formula='`$\\mathcal{L}$`'></vm>,
+               is a value that is always less than or equal to the proposed density <vm :formula='`$\\log{p_\\theta(x)}$`'></vm>. By maximizing the tractible
+               <vm :formula='`$\\mathcal{L}$`'></vm>, the intractible marginal likelihood, <vm :formula='`$p_\\theta(x)$`'></vm>, is also maximized. Note that
+               applying the monotonic transformation <vm :formula='`$\\log{f(x)}$`'></vm> to some function <vm :formula='`$f(x)$`'></vm> preserves local extrema which does
+               not conflict with maximum likelihood estimation. Below are three different ways to arrive at <vm :formula='`$\\mathcal{L}$`'></vm>.
             </p>
             <div id="logpx"></div>
             <h2>Starting with: log p(x)</h2>
             <br><br>
-            <vue-mathjax :formula='logpx'></vue-mathjax>
+            <vm :formula='logpx'></vm>
             <p>
-               This is, from what I've seen, the most popular way to formulate <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>. Equation 1.4 shows the relationship between the marginal likelihood,
-               <vue-mathjax :formula='`$\\log{p_\\theta(x)}$`'></vue-mathjax>, and <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> where the difference between the two values is the KL divergence
-               from the encoder, <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax>, to the posterior, <vue-mathjax :formula='`$p_\\theta(z|x)$`'></vue-mathjax>. Because the KL divergence is non negative,
-               by subtracting it from the RHS we ensure <vue-mathjax :formula='`$\\log{p_\\theta(x) \\geq \\mathcal{L}}$`'></vue-mathjax>.
+               This is, from what I've seen, the most popular way to formulate <vm :formula='`$\\mathcal{L}$`'></vm>. Equation 1.4 shows the relationship between the marginal likelihood,
+               <vm :formula='`$\\log{p_\\theta(x)}$`'></vm>, and <vm :formula='`$\\mathcal{L}$`'></vm> where the difference between the two values is the KL divergence
+               from the encoder, <vm :formula='`$q_\\phi(z|x)$`'></vm>, to the posterior, <vm :formula='`$p_\\theta(z|x)$`'></vm>. Because the KL divergence is non negative,
+               by subtracting it from the RHS we ensure <vm :formula='`$\\log{p_\\theta(x) \\geq \\mathcal{L}}$`'></vm>.
             </p>
             <div id="bayes"></div>
             <h2>Starting with: Bayes Rule</h2>
             <br><br>
-            <vue-mathjax :formula='bayes'></vue-mathjax>
+            <vm :formula='bayes'></vm>
             <p>
                This explanation is a little unnecessarily long because it should seem apparent how to get from eq 2.2 to eq 2.7 with understanding of eq 1.0 - 1.5.
-               However eq 2.31 shows a further decomposition of the variational lower bound: <vue-mathjax :formula='l'></vue-mathjax>.
+               However eq 2.31 shows a further decomposition of the variational lower bound: <vm :formula='l'></vm>.
                The left term is the <i>reconstruction error</i> or <i>expected reconstruction error</i> and the right is the KL divergence from the encoder to the prior distribution. An alternative
-               formulation is: <vue-mathjax :formula='l2'></vue-mathjax>.
+               formulation is: <vm :formula='l2'></vm>.
             </p>
             <div id="kldivergence"></div>
             <h2>Starting with: KL divergence</h2>
             <br><br>
-            <vue-mathjax :formula='dkl'></vue-mathjax>
+            <vm :formula='dkl'></vm>
             <div id="dkl-encoder-prior"></div>
             <div id="blogSubHeader">
                Closed Form Computation of KL Divergence in the ELBO
             </div>
             <p>
-               This section is more of an aside to show the breakdown of the KL divergence term in <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> when the prior and encoder are initialized
+               This section is more of an aside to show the breakdown of the KL divergence term in <vm :formula='`$\\mathcal{L}$`'></vm> when the prior and encoder are initialized
                to certain densities. To make sure our ducks are in a row before proceeding...
                <br>
-               <b>Duck 1:</b> For reference, the lower variational bound referenced in eq 2.31 is: <vue-mathjax :formula='l1'></vue-mathjax>
+               <b>Duck 1:</b> For reference, the lower variational bound referenced in eq 2.31 is: <vm :formula='l1'></vm>
                <br>
                <b>Duck 2:</b> The KL divergence between two multivariate gaussians simplifies to (<a href="/blog/kl-divergence-mv-gaussian" target="_blank">shown here</a>):
-               <vue-mathjax :formula='`$$D_{\\mathbb{KL}}(q\\,||\\,p) \\triangleq \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
-               \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr)$$`'></vue-mathjax>
+               <vm :formula='`$$D_{\\mathbb{KL}}(q\\,||\\,p) \\triangleq \\frac{1}{2}\\Biggl(\\log\\Bigl(\\frac{\\det{(\\Sigma_2)}}{\\det{(\\Sigma_1)}}\\Bigr) - n +
+               \\text{tr}\\bigl(\\Sigma^{-1}_2\\Sigma_1\\bigr)+\\bigl(\\mu_2-\\mu_1\\bigr)^\\top\\Sigma^{-1}_2\\bigl(\\mu_2-\\mu_1\\bigr)\\Biggr)$$`'></vm>
                <br>  
-               When both the encoder <vue-mathjax :formula='`$q_\\phi(z|x)$`'></vue-mathjax> and prior <vue-mathjax :formula='`$p_\\theta(z)$`'></vue-mathjax> are multivariate diagonal gaussians, where
-               <vue-mathjax :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1) = \\mathcal{N}(\\mu, \\Sigma)$`'></vue-mathjax> and <vue-mathjax :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2) =\\mathcal{N}(0, I)$`'></vue-mathjax>, the
-               KL divergence term in <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax> can be computed.
+               When both the encoder <vm :formula='`$q_\\phi(z|x)$`'></vm> and prior <vm :formula='`$p_\\theta(z)$`'></vm> are multivariate diagonal gaussians, where
+               <vm :formula='`$q_\\phi(z|x) = \\mathcal{N}(\\mu_1, \\Sigma_1) = \\mathcal{N}(\\mu, \\Sigma)$`'></vm> and <vm :formula='`$p_\\theta(z) = \\mathcal{N}(\\mu_2, \\Sigma_2) =\\mathcal{N}(0, I)$`'></vm>, the
+               KL divergence term in <vm :formula='`$\\mathcal{L}$`'></vm> can be computed.
             </p>
-            <vue-mathjax :formula='encoderprior'></vue-mathjax>
+            <vm :formula='encoderprior'></vm>
             <div id="gradientflow"></div> 
             <div id="blogSubHeader">
                Gradient Flow
             </div>
             <p>
                <!-- Section 2.3 of <a href="https://arxiv.org/abs/1906.02691" target="_blank">An Introduction to Variational Autoencoders</a> -->
-               Monte Carlo estimates are used to show the gradients wrt <vue-mathjax :formula='`$\\theta$`'></vue-mathjax> and <vue-mathjax :formula='`$\\phi$`'></vue-mathjax>
-               for the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>.
-               In the case of <vue-mathjax :formula='`$\\nabla_\\theta$`'></vue-mathjax> and using <vue-mathjax :formula='l2'></vue-mathjax>, the gradient will be:
+               Monte Carlo estimates are used to show the gradients wrt <vm :formula='`$\\theta$`'></vm> and <vm :formula='`$\\phi$`'></vm>
+               for the variational lower bound <vm :formula='`$\\mathcal{L}$`'></vm>.
+               In the case of <vm :formula='`$\\nabla_\\theta$`'></vm> and using <vm :formula='l2'></vm>, the gradient will be:
             </p>
-            <vue-mathjax :formula='gradtheta'></vue-mathjax>
+            <vm :formula='gradtheta'></vm>
             <p>
-               For <vue-mathjax :formula='`$\\nabla_\\phi$`'></vue-mathjax> the process is a little more convoluted because we're seeking the gradient for the parameters of the expectation.
+               For <vm :formula='`$\\nabla_\\phi$`'></vm> the process is a little more convoluted because we're seeking the gradient for the parameters of the expectation.
             </p>
-            <vue-mathjax :formula='gradphi'></vue-mathjax>
+            <vm :formula='gradphi'></vm>
             <div id="reparameterization"></div>
             <h2>Reparameterization Trick</h2>
             <p> 
-               The reparameterization trick is a procedure that segregates the stochasticity in <vue-mathjax :formula='`$z$`'></vue-mathjax> from the desired parameters for backpropogation.
-               This provides two benefits. One, reparameterization is a variance reduction technique. Although these estimates can provide tractible means to calculate <vue-mathjax :formula='`$\\nabla_{\\theta,\\phi}$`'></vue-mathjax>,
+               The reparameterization trick is a procedure that segregates the stochasticity in <vm :formula='`$z$`'></vm> from the desired parameters for backpropogation.
+               This provides two benefits. One, reparameterization is a variance reduction technique. Although these estimates can provide tractible means to calculate <vm :formula='`$\\nabla_{\\theta,\\phi}$`'></vm>,
                they express high variance making them impractical for use.
                By reducing variance, we ensure a more appropriate gradient for the model to learn. Two, reparameterization also guarantees
-               the function to be differentiable because <vue-mathjax :formula='`$\\nabla_\\phi q_\\phi(z|x)$`'></vue-mathjax> is not always possible to compute. By eschewing the gradient's parameters from this density's parameters, we circumvent this issue.
+               the function to be differentiable because <vm :formula='`$\\nabla_\\phi q_\\phi(z|x)$`'></vm> is not always possible to compute. By eschewing the gradient's parameters from this density's parameters, we circumvent this issue.
             </p>
                <img id="img500" class="noInvert" @click="imageZoom" src="../../assets/blog/elbo/reparameterization3.png" alt="">
                <span style="font-size:14px; padding-top: -10px;"><i><a href="https://arxiv.org/abs/1906.02691" target="_blank">Figure 2.3 from "An Introduction to Variational Autoencoders"</a></i></span>
             <p>
-               Reparameterization introduces an intermediary function <vue-mathjax :formula='`$g$`'></vue-mathjax> such that instead of <vue-mathjax :formula='`$z \\sim q_\\phi(z|x)$`'></vue-mathjax>,
-               <vue-mathjax :formula='`$z = g(\\phi, x, \\epsilon)$`'></vue-mathjax> where the stochasticity is delegated to random variable <vue-mathjax :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vue-mathjax>. The desired parameter for backpropagation,
-               <vue-mathjax :formula='`$\\phi$`'></vue-mathjax>, now becomes deterministic and provides a more reliable flow downstream.
+               Reparameterization introduces an intermediary function <vm :formula='`$g$`'></vm> such that instead of <vm :formula='`$z \\sim q_\\phi(z|x)$`'></vm>,
+               <vm :formula='`$z = g(\\phi, x, \\epsilon)$`'></vm> where the stochasticity is delegated to random variable <vm :formula='`$\\epsilon \\sim p(\\epsilon)$`'></vm>. The desired parameter for backpropagation,
+               <vm :formula='`$\\phi$`'></vm>, now becomes deterministic and provides a more reliable flow downstream.
                On a more tangible level this converts a lot of the headache witnessed in equations 5.X to something more approachable because, by
-               reparameterizing <vue-mathjax :formula='`$z$`'></vue-mathjax>, the parameters of the density of the expectation changes, which in turn allows the gradient to be inside the expectation.
+               reparameterizing <vm :formula='`$z$`'></vm>, the parameters of the density of the expectation changes, which in turn allows the gradient to be inside the expectation.
             </p>
-            <vue-mathjax :formula='reparam'></vue-mathjax>
+            <vm :formula='reparam'></vm>
             <p>
-               With reparameterization, the two representations of the variational lower bound <vue-mathjax :formula='`$\\mathcal{L}$`'></vue-mathjax>  shown in "<a href="#bayes">Starting with: Bayes Rule</a>" are called
+               With reparameterization, the two representations of the variational lower bound <vm :formula='`$\\mathcal{L}$`'></vm>  shown in "<a href="#bayes">Starting with: Bayes Rule</a>" are called
                the Stochastic Gradient Variational Bayes Estimator (SGVB) and can be represented as:
             </p>
-            <vue-mathjax :formula='sgvb'></vue-mathjax>
-            <p>
-               
-            </p>
+            <vm :formula='sgvb'></vm>
+            <p></p>
          </div>
          <themeSwitch />
          <toTop />
@@ -168,7 +166,7 @@ export default {
       backdrop,
       toTop,
       themeSwitch, 
-      'vue-mathjax': VueMathjax
+      'vm': VueMathjax
    },
    head: {
       meta: [

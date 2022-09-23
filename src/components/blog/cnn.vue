@@ -56,7 +56,7 @@
                </div>
                   <h2>Forward</h2>
                <p>
-                  CNNs, similar to MLPs operate under the same archetype of <vue-mathjax :formula='`$w^\\top x+b$`'></vue-mathjax>, except are designed to <i>preserve spatial
+                  CNNs, similar to MLPs operate under the same archetype of <vm :formula='`$w^\\top x+b$`'></vm>, except are designed to <i>preserve spatial
                   structure</i>. Because there is no dimension reduction, to deal with these high dimensional inputs, the weight matrix <i>w</i>, also frequently referred to as a <i>kernel</i>
                   or <i>filter</i> operates on a portion of the input by taking the dot product
                   then convolves/slides/translates to the next portion. The kernel usually extends to the full depth of the input; there are times
@@ -88,15 +88,15 @@
                <div id="convolution_backward"></div>
                   <h2>Backward</h2>
                <p>
-                  Consider again thinking about the equation <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. Looking at the equation, it is very easy to find the desired local gradients
+                  Consider again thinking about the equation <vm :formula='`$f(x) = w^\\top x+b$`'></vm>. Looking at the equation, it is very easy to find the desired local gradients
                   and then simply multiply them by the upstream:
                   <br>
                   <br>
-                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{x}} = \\frac{\\partial{f}}{\\partial{x}} \\cdot upstream= w \\cdot dout$$`'></vue-mathjax>
+                  <vm :formula='`$$\\frac{\\partial{L}}{\\partial{x}} = \\frac{\\partial{f}}{\\partial{x}} \\cdot upstream= w \\cdot dout$$`'></vm>
                   <br>
-                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{w}} = \\frac{\\partial{f}}{\\partial{w}} \\cdot upstream= x \\cdot dout$$`'></vue-mathjax>
+                  <vm :formula='`$$\\frac{\\partial{L}}{\\partial{w}} = \\frac{\\partial{f}}{\\partial{w}} \\cdot upstream= x \\cdot dout$$`'></vm>
                   <br>
-                  <vue-mathjax :formula='`$$\\frac{\\partial{L}}{\\partial{b}} = \\frac{\\partial{f}}{\\partial{b}} \\cdot upstream= dout$$`'></vue-mathjax>
+                  <vm :formula='`$$\\frac{\\partial{L}}{\\partial{b}} = \\frac{\\partial{f}}{\\partial{b}} \\cdot upstream= dout$$`'></vm>
                   <br>
                   The tricky part is thinking about the interaction between the tensor shapes. <i>"Okay...so we're indexing along dimension x and this 4x2x5x5 tensor multiples elementwise with this 2x3x3x3..."</i>
                   For more elaborate discussion, my post on
@@ -104,7 +104,7 @@
                   Keeping it simple however, here are some "rules" which work well for me:
                   <br>
                   <br>
-                  1) Gradients, ie: <vue-mathjax :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vue-mathjax>, match dimensionality of what is being differentiated wrt to.
+                  1) Gradients, ie: <vm :formula='`$\\frac{\\partial{f}}{\\partial{x}}$`'></vm>, match dimensionality of what is being differentiated wrt to.
                   <br>
                   2) Calculating the entire gradient is a running sum (note the <code style="background: var(--codeSnippet); border-radius: 5px;">+=</code> on lines 39, 46, and 47 where the gradient formulas are shown).
                   <br>
@@ -139,11 +139,11 @@
                   An example below. Backpropagation through a single transformation can be broken down to two steps:
                   <br><br>
                   1) There is the local computation. For the convolutional backpass, this was
-                  computing the local jacobian for <vue-mathjax :formula='`$f(x) = w^\\top x+b$`'></vue-mathjax>. For ReLU, this means doing the same to the piecewise function which will provide 1's and 0's:
-                  <vue-mathjax :formula='`$$f(x) = \\begin{cases} 
+                  computing the local jacobian for <vm :formula='`$f(x) = w^\\top x+b$`'></vm>. For ReLU, this means doing the same to the piecewise function which will provide 1's and 0's:
+                  <vm :formula='`$$f(x) = \\begin{cases} 
                   x & \\text{if $x \\gt 0$} \\\\  
                   0 & \\text{otherwise} \\\\  
-                  \\end{cases} $$`'></vue-mathjax>
+                  \\end{cases} $$`'></vm>
                   2) Multiply that local computation by the upstream. I use <code style="background: var(--codeSnippet); border-radius: 5px;">dout</code> to refer to the upstream.
                </p>
                <prism-editor class="codeblock" v-model="cnnAssets.reluBackwardsExample" :highlight="highlighter" :line-numbers="true" :readonly="true"></prism-editor>
@@ -223,7 +223,7 @@ export default {
       backdrop,
       toTop,
       themeSwitch,
-      'vue-mathjax': VueMathjax,
+      'vm': VueMathjax,
       PrismEditor
 
    },
