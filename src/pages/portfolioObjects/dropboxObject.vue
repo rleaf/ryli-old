@@ -8,7 +8,7 @@
             <div class="textDesignSubHeader">
                2019
                <br><br>
-               Web Design / Development
+               Web Design
             </div>
 
             </div>
