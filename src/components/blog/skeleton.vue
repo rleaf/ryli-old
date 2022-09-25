@@ -82,6 +82,7 @@ export default {
       return {
          blogs: [],
          error: null,
+         underbrace: `$$\\underbrace{f(x)=b}_{\\text{text here}}$$`,
          formula: '$$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}$$',
          jacobian: '$$\\begin{bmatrix}a & b\\\\ c & d\\end{bmatrix}$$'
       }

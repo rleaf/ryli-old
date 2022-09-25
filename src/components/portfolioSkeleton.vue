@@ -1,6 +1,6 @@
 <template>
    <div id="portfolioSkeletonFlex">
-      <BlogPreview
+      <DesignPreview
          v-for="design in designs"
          :key="design.title"
          :title="design.title"
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import BlogPreview from './portfolioPreview/BlogPreview.vue'
+import DesignPreview from './portfolioPreview/designPreview.vue'
 
 export default {
    data() {
@@ -87,7 +87,7 @@ export default {
       }
    },
    components: {
-      BlogPreview
+      DesignPreview
    },
 }
 
