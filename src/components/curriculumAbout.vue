@@ -1,6 +1,6 @@
 <template>
   <div id="linkhover"> 
-      Hello I'm Ryan Lin. Here you'll find more of who I am and things I enjoy doing.
+      Hello I'm Ryan Lin. This is my personal site and here you'll find more of who I am and the things I enjoy doing.
       Amongst what is briefly mentioned below, I also enjoy
       <a :href='youtube' target='_blank'><u><i>power/olympic lifting</i></u></a>,
       <a :href='insta' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & uke, reading, and 
