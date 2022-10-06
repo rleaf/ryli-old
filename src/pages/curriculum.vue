@@ -18,7 +18,7 @@
                   of the goals and challenges faced for that project.
                   <br><br>
                   In the <router-link :to="{ name: 'blog'}">blog</router-link> section, you'll find a lot of discussion affiliated to machine learning.
-                  Accompanied with my discussions on topics in ML, my <a :href=github target="_blank">GitHub</a> also has repositories showing various models I've made. All of what I talk about
+                  Accompanied with those discussions, my <a :href=github target="_blank">GitHub</a> also has repositories showing various models I've made. All of what I talk about
                   in my blogs and, in general, knowledge of machine learning is self taught.
                   <br><br>
                   In the remaining time when I'm not designing something or wrapping my head around some model, I enjoy
@@ -30,23 +30,26 @@
                </p>
             </div>
          </div>
-         <div id="curriculumBody">
+         <!-- <div id="curriculumBody">
             <u style="font-size: 18px;">Education</u>
             <p>
                Rider University 2016-2020
                <br>
                Bachelor of Arts: Graphic Design
             </p>
-         </div>
+         </div> -->
       <div id="curriculumStructure">
          <div id="curriculumBody">
             <div>
                <div id="curriculumHeader">
-                  <u style="font-size: 18px;">Technical Skills</u>
+                  <u style="font-size: 18px;">Technical Skills & Education</u>
                </div>
-               <div  style="padding-bottom: 0;">
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
-               </div>
+               <p>
+                  Rider University 2016-2020
+                  <br>
+                  Bachelor of Arts: Graphic Design
+               </p>
                <ul class="curriculumul" style="list-style-type: none;">
                   <li><i>Design:</i></li>
                      <ul>

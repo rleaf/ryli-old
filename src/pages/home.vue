@@ -24,6 +24,27 @@
          homeIntro,
          // threeScene
       },
+      head: {
+         meta: [
+            {
+               name: 'author',
+               content: 'Ryan Lin'
+            },
+            {
+               name: 'description',
+               content: `Personal site of Ryan Lin.`
+            },
+            {
+               name: 'keywords',
+               content: 'I love food'
+            },
+            {
+               property: 'og:description',
+               content: `Personal site of Ryan Lin.`
+            },
+            
+         ],
+      },
       mounted() {
          // threeScene.loadPageScene()
          // gsap.to(threeScene.fogColorRGB, {r: 14/255,g: 14/255, b: 14/255, duration: 1.5})
