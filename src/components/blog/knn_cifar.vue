@@ -61,7 +61,7 @@
                Feel free to also <i>only</i> read this section if you just want a synopsis of kNN classification.
             </p>
             <p>
-               The goal is <i>classification</i>. We have a dataset, images in our case, and unfortunately a portion of the images are <i>unlabeled</i>, they do not have an accompanying label which classifies them.
+               The goal is <i>classification</i>. We have a dataset, images in our case, and unfortunately a portion of the images are <i>unlabeled</i> - they do not have an accompanying label which classifies them.
                kNN is a method to "intelligibly" label the unclassified images by computing similarity with the labeled images. Euclidean distance is a popular metric to quantify the similarities, however there are a handful
                of other measures that have their own idiosyncrasies (Manhattan & Minkowsi). In the case of images, kNN computes the Euclidean distance between an unlabled and labeled image by iterating over their pixel values.
                The unlabeled image then takes the same majority classification as its <i>k nearest neighbors</i> or <i>k</i> neighbors with the lowest Euclidean distance, where <i>k</i> is a hyperparameter. 
@@ -245,11 +245,10 @@
                Thoughts
             </div>
             <p>
-               Writing this took a bit longer than I expected. I tried to be intentionally redundant at times to solidify understanding of concepts that, when I learned kNN and some ML in general, had trouble understanding. Creating the animations was fun. I was considering between Three.js and manim originally, but ended up with using
-               After Effects & Illustrator. I mentioned this at the top, but shoutout to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">
-               UMichigan's 498/598 Deep Learning for Computer Vision</a>. If you're interested in making a kNN yourself, you can find the files there or analogously, you can find a NumPy variation through Stanford's CS231n. I say that assumingly because 
-               I'm actually not sure if they still use NumPy or if they have transitioned to PyTorch/TensorFlow. As usual, if you notice
-               any typos, inconsistencies, or have thoughts in general, feel free to ping me and let me know.
+               Writing this took a bit longer than I expected. I tried to be intentionally redundant at times to solidify understanding of concepts that, when I learned kNN and some ML in general, had trouble understanding.
+               I mentioned this at the top, but a large credit of my writing this goes to <a href="https://web.eecs.umich.edu/~justincj/teaching/eecs498/FA2020/" target="_blank">
+               UMichigan's 498/598 Deep Learning for Computer Vision</a>. If you're interested in making a kNN yourself, you can find the files there or analogously, you can find a NumPy variation through Stanford's CS231n.
+               If you notice any typos, inconsistencies, or have thoughts in general, feel free to ping me and let me know.
             </p>
             <p>
                - Ryan Lin

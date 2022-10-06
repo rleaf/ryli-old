@@ -23,7 +23,7 @@
                   <br><br>
                   In the remaining time when I'm not designing something or wrapping my head around some model, I enjoy
                   <a :href='youtube' target='_blank'><u><i>power/olympic lifting</i></u></a>,
-                  <a :href='insta' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & ukulele, reading, 
+                  <a :href='insta' target='_blank'><u><i>eating/cooking</i></u></a>, practicing guitar & ukulele, 
                   playing games, and reading about full stack development (particularly MEVN).
                   <br><br>
                   You can get in touch with me at: ryanurquhartlin [at] gmail [dot] com

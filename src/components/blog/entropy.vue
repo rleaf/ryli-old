@@ -349,10 +349,10 @@
             <h2>Example 6.1</h2>
             <p>
                Equation 6.1 most succinctly defines the relationship, in terms of entropy, between joint and conditional probability. Conditional probability is joint probability except the only difference is that, in
-               the case of two random variables, one of those random variables are fixed. This means the conditional distribution is forced to find the probability of an event in a subspace of the total sample space. This
+               the case of two random variables, one of those random variables are fixed. This means the conditional distribution is restricted to a subspace of the joint distribution's sample space. This
                intuition is directly transferable to the concept of uncertainty. If I have <vm :formula="`$p(y\\,|\\,x)$`"></vm>, because the event of random variable
                <vm :formula="`$X$`"></vm> is predetermined, the entropy it provides is equal to 0. We can reformulate this as the joint entropy,
-               <vm :formula="`$\\mathbb{H}(X, Y)$`"></vm>, except again because random variable <vm :formula="`$X$`"></vm> should be 0 as it has no entropy, we must subtract it. 
+               <vm :formula="`$\\mathbb{H}(X, Y)$`"></vm>, except again because random variable <vm :formula="`$X$`"></vm> should be 0 as it has no entropy (because it is given), it has to be subtracted. 
                This provides us with equation 6.1.
             </p>
             <vm :formula='entropy.conditionalEntropy2'></vm>
