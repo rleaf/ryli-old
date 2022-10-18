@@ -19,7 +19,8 @@
             <div class="designContainerBoxPadding">
                <div class="designTextContainerBody">
                   <h2 class="designSubTitle">About The Project</h2>
-                  Oscilla is a display typeface motivated by desiging glyphs that "oscilla"te between thick strokes and thin serifs. In total there are 62 glyphs.
+                  Oscilla is a display typeface motivated by desiging glyphs that "oscilla"te between thick strokes and thin serifs. In total there are 62 glyphs. A free link to download is available
+                  at the bottom.
                </div>
                <img src="../../assets/design/oscilla/1.webp" class="designImg1300">
                <img src="../../assets/design/oscilla/3.webp" class="designImg1300">
@@ -33,8 +34,8 @@
                      </div>
                      <div class="designOffsetContainer">
                         <div class="offsetImgText">
-                           <h2 class="designSubTitle">Simple Ligatures</h2>
-                           Ligatures were added to prevent conflict between decenders.
+                           <h2 class="designSubTitle">Descender Collision</h2>
+                           Simple ligatures were added to prevent conflict between decenders.
                         </div>
                      </div>
                   </div>
@@ -45,6 +46,8 @@
 
                <div class="designTextContainerBody">
                   <h2 class="designSubTitle">Creative Process</h2>
+                  I believe the key to designing a typeface is making use of recycling assets for continuity. Shown below is the main artboard that houses all of the unfinalized glyphs. Above and below any
+                  glyph are either assets or different designs for that glyph.  
                </div>
                <img src="../../assets/design/oscilla/6.webp" class="designImg1300">
                <img src="../../assets/design/oscilla/5.webp" class="designImg1300">
@@ -54,7 +57,7 @@
                   <div class="designOffsetContainer">
                      <div class="offsetImgText">
                         <h2 class="designSubTitle">Creative Process</h2>
-                        Many glyphs have unique curves to accomodate for the transition between thick strokes and pointed serifs. 
+                        Despite the philosophy of recycling, many glyphs have unique curves to accomodate for the transition between thick strokes and pointed serifs.
                      </div>
                   </div>
                   <div class="designOffsetContainer">

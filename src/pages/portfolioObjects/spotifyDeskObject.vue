@@ -19,15 +19,17 @@
             <div class="designContainerBoxPadding">
                <div class="designTextContainerBody">
                   <h2 class="designSubTitle">About The Project</h2>
-                  The motivation behind this project was to ameliorate the user experience with the current Spotify design. As much of a fan (since 2013) I am of Spotify,
+                  <!-- <h3 class="designUsedSkills">Affiliated Tech: Figma</h3> -->
+                  The motivation behind this project was to improve user experience with the current Spotify design. As much of a fan (since 2013) I am of Spotify,
                   there are a lot of issues when it comes to the desktop and web app. Presented below are design changes, along with the reasons why, that incorporate functional
                   benefits to the user. The changes can be categorized to improve two concerns with the current UX: the "destructive" nature of a user's experience and the organization
                   of information.
                </div>
                <div class="designTextContainerBody">
                   The "destructive" nature refers to the inability for a user to be able to look back on their musical journey or simply their past actions. The current Recently Played and Recent Searches
-                  mechanisms serve as partial examples and are discussed further below. Organizational changes are simple improvements how information is displayed to the user. 
-                  <br> <br>
+                  mechanisms serve as partial examples and are discussed further below. Organizational changes are simple improvements how information is displayed to the user. In this current iteration,
+                  a lot of media produced by Spotify for a user seems "arbitrarily scattered", content can be difficult to find unless specifically searched out by the user. 
+                  <!-- <br> <br> -->
                   Both a <a href="https://www.figma.com/file/8qIHquloDrsgra2YFiTX5O/Spotify?node-id=0%3A1" target="_blank">design</a> and 
                   <a href="https://www.figma.com/proto/8qIHquloDrsgra2YFiTX5O/Spotify?node-id=1%3A7&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A7" target="_blank">prototype</a> are available
                   to click through.

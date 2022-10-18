@@ -66,6 +66,7 @@
    /* white */
    --shadeWhite1: #dddddd;
    /* offWhite */
+   --dayLink: #aaaaaa;
    --shadeWhite2: #b1b1b1;
    --primaryDark: #0e0e0e;
    --scrollbarThumb: #3f3f3f;
@@ -568,6 +569,14 @@ h2.designSubTitle {
    line-height: normal;
    font-weight: 500;
    margin-left: 1em;
+   margin-bottom: 2em;
+}
+
+h3.designUsedSkills {
+   line-height: normal;
+   font-size: 14px;
+   font-weight: 100;
+   margin-left: 24px;
    margin-bottom: 2em;
 }
 

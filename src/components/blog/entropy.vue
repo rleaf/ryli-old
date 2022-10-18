@@ -433,7 +433,7 @@ export default {
          },
          {
             name: 'keywords',
-            content: 'entropy, machine learning, self information, cross entropy, cross entropy loss, joint entropy, conditional entropy, kullback leibler divergence, kl divergence, relative entropy'
+            content: 'entropy in machine learning, entropy, machine learning, self information, cross entropy, cross entropy loss, joint entropy, conditional entropy, kullback leibler divergence, kl divergence, relative entropy'
          },
          {
             property: 'og:description',
