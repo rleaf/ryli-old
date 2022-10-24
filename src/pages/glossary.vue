@@ -17,13 +17,13 @@
          </div>
          <div id="glossarySkeletonFlex">
             <div class="glossaryWrapper" v-for="post in filteredList" :key="post.title">
-                  <p style="white-space: pre-wrap;">
-                     <u>{{ post.title }}</u>
+                  <p class="postTitle">
+                     {{ post.title }}
                   </p>
-                  <p style="white-space: pre-wrap;" v-if="post.body">
+                  <p v-if="post.body">
                      {{ post.body}}
                   </p>
-                  <p style="white-space: pre-wrap;">
+                  <p>
                      <vue-mathjax v-if="post.math" :formula='post.math'></vue-mathjax>
                      <prism-editor class="codeblock" v-if="post.code" v-model="post.code" :highlight="highlighter" :readonly="true"></prism-editor>
                   </p>
@@ -133,13 +133,23 @@ input[type=text] {
 }
 
 .glossaryWrapper > p {
-   
-   color: var(--offWhite);
    max-width: 400px;
+   white-space: pre-wrap;
+   font-family: var(--type), serif;
+}
+
+.glossaryWrapper > p:not(:first) {
+   color: var(--offWhite);
+}
+
+.postTitle {
+   color: var(--white);
+   /* font-size: 18px; */
 }
 
 .codeblock {
    /* max-width: 500px; */
    padding: 5px 10px;
 }
+
 </style>

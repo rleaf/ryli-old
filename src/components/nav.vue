@@ -2,7 +2,8 @@
    <div class="nav">
          <div id="mainnav">
             <router-link  :to="{ name: 'home' }" class="underline">
-               <img class="logoimg" src="../assets/logo.png" alt="">
+               <img class="logoimg" src="../assets/logo.svg" alt="">
+               <!-- <p class="name">RL</p> -->
             </router-link>
             <ul id='bar'>
                <router-link  :to="{ name: 'design'}" class="underline">
@@ -40,7 +41,7 @@
                <div id="mobilemain">
 
                   <router-link  :to="{ name: 'home' }">
-                     <img @click="isActive = true" class="logoimgmobile" src="../assets/logo.png" alt="">
+                     <img @click="isActive = true" class="logoimgmobile" src="../assets/logo.svg" alt="">
                   </router-link>
                   <div class="burger" @click="isActive = !isActive" style="cursor: pointer;">
                      <span class="bread"></span>
@@ -171,16 +172,28 @@ export default {
 }
 
 .logoimg {
-   width: 50px;
+   width: 60px;
    float: left;
-   padding-right: 40px;
+   margin-right: 40px;
+   filter: invert(100%) sepia(0%) saturate(1922%) hue-rotate(236deg) brightness(89%) contrast(94%);
+   margin-top: 16px;
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
+.name {
+   font-family: var(--displayFont);
+   font-size: 40px;
+   float: left;
+   padding-right: 40px;
+   /* margin-top: 32px; */
+   margin: 0;
+   line-height: 1;
+}
 
 .logoimgmobile {
    /* position: absolute; */
-   width: 42px;
+   width: 60px;
+   filter: invert(100%) sepia(0%) saturate(1922%) hue-rotate(236deg) brightness(89%) contrast(94%);
    /* padding-top: 6vh; */
    padding-left: 5vw;
    position: relative;
