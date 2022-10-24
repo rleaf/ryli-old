@@ -4,8 +4,8 @@
          <div class="imagehover">
             <p>{{ title }}</p>
             <div id="subtext">
-               <p>{{ year }}</p>
                <p>{{ genre }}</p>
+               <p>{{ year }}</p>
             </div>
             <!-- <div id="covertext">
                <p>2022</p>

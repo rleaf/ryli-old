@@ -1,11 +1,11 @@
 <template>
 <div id="syntax">
    <div id="landingintro">
-      <span class="introword">Ryan</span>
-      <span class="introword">Lin</span>
+      <span class="introword">Ryan Lin</span>
+      <!-- <span class="introword">Lin</span> -->
       <br>
       <div id="subda">
-         <span class="subwordhomeIntro">Design & Development</span>
+         <span class="subwordhomeIntro">All things design. Some things development.</span>
       </div>
    </div>
 </div>
@@ -49,6 +49,11 @@ export default {
 #subda {
    padding-top: 14px;
    font-size: 18px;
+}
+
+.introword {
+   font-family: var(--displayFont);
+   font-size: 10vh;
 }
 
 .introword, .subwordhomeIntro {

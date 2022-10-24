@@ -5,7 +5,8 @@
          </div>
          <div id="curriculumBody">
             <div id="curriculumHeader">
-               <u style="font-size: 18px;">About</u>
+               <!-- <u style="font-size: 18px;">About</u> -->
+               <p>About</p>
             </div>
             <div id="linkhover"> 
                <p>
@@ -39,10 +40,11 @@
             </p>
          </div> -->
       <div id="curriculumStructure">
-         <div id="curriculumBody">
+         <div id="curriculumBody" style="padding-bottom: 100px;">
             <div>
                <div id="curriculumHeader">
-                  <u style="font-size: 18px;">Technical Skills & Education</u>
+                  <!-- <u style="font-size: 18px;">Technical Skills & Education</u> -->
+                  <p>Technical Skills & Education</p>
                </div>
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
                <p>
@@ -95,9 +97,9 @@ a {
    font-style: oblique
 }
 
-#curriculumBody {
+/* #curriculumBody {
    padding: 1rem 5vw;
-}
+} */
 
 .curriculumul ul {
    list-style-type: disc;

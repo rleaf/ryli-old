@@ -7,10 +7,10 @@
             <div id="curriculumBody">
                <div id="curriculumHeader">
                   <!-- <u style="font-size: 18px;">For reference</u> -->
-                  <p style="font-size: 18px; margin: 0;">Total References: {{postList.length}}</p>
+                  <p>The most important section...</p>
                </div>
                <p>
-                  <i style="font-size: 14px;">The most important section...</i>
+                  <i style="font-size: 16px;">Total References: {{postList.length}}</i>
                </p>
                   <input type="text" v-model="search" placeholder="Search..."/>
             </div>

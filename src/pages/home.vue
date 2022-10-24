@@ -54,6 +54,13 @@
 </script>
 
 <style>
+
+@font-face {
+   font-family: 'Butler';
+   /* src: url('../assets/MeshedDisplay-Medium.woff2') format('woff2'); */
+   src: url('../assets/Butler-Medium.woff2') format('woff2');
+}
+
 @import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap');
 /* @import url('https://fonts.googleapis.com/css?family=Lora&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap');
@@ -78,7 +85,8 @@
    --mobilePad: #050505;
    --toc: #171717;
    --type: 'Lora', sans-serif;
-   --type2: 'Lora', sans-serif;
+   --type2: 'Open Sans', sans-serif;
+   --displayFont: 'Butler', sans-serif;
    --typeSize: 15px;
 
 }
@@ -159,7 +167,8 @@ html {
 
 .nav ul li{
    color: var(--shadeWhite1);
-   font-family: 'Inconsolata', sans-serif;
+   font-family: var(--type2);
+   font-size: 14px;
    text-transform: uppercase;
    list-style-type: none;
    text-decoration: none;
@@ -246,8 +255,8 @@ html {
 
 .imagehover > p {
    display: inline-block;
-   font-size: 20px;
-   font-family: 'Inconsolata', sans-serif;
+   font-size: 16px;
+   font-family: var(--type2), sans-serif;
    margin-top: 45px;
    margin-bottom: 0;
    color: var(--shadeWhite1);
@@ -256,8 +265,8 @@ html {
 }
 
 #subtext > p {
-   font-size: 16px;
-   font-family: 'Inconsolata', sans-serif;
+   font-size: 15px;
+   font-family: var(--type2), sans-serif;
    color: var(--shadeWhite1);
    text-transform: uppercase;
 }
@@ -521,9 +530,10 @@ html {
 }
 
 .textDesignContainer {
-   font-size: 54px;
+   font-size: 8vh;
    font-weight: 500;
-   font-family: var(--type);
+   /* font-family: var(--type); */
+   font-family: var(--displayFont);
    color: var(--shadeWhite1);
    text-shadow: 1px 1px 8px #0e0e0e;
    text-align: center;
@@ -566,10 +576,12 @@ html {
 }
 
 h2.designSubTitle {
+   font-family: var(--displayFont);
+   font-size: 40px;
    line-height: normal;
    font-weight: 500;
    margin-left: 1em;
-   margin-bottom: 2em;
+   margin-bottom: 1em;
 }
 
 h3.designUsedSkills {
@@ -649,7 +661,9 @@ h3.designUsedSkills {
 }
 
 #curriculumHeader {
-   font-family: 'Lora', serif;
+   font-family: var(--displayFont), serif;
+   font-size: 46px;
+   line-height: 100%;
 }
 
 #curriculumBody {

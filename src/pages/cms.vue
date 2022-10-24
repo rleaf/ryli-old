@@ -5,7 +5,8 @@
       </div>
       <div id="curriculumBody">
          <div id="curriculumHeader">
-            <i style="font-size: 18px;">A place for talking...</i>
+            <!-- <i style="font-size: 18px;">A place for talking...</i> -->
+            <p>A place for talking...</p>
          </div>
          <p>
             Usually it'll be about math, food, music, design, ml/ai, dev, and the things in between.
