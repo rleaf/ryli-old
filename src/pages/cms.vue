@@ -9,7 +9,7 @@
             <p>A place for talking...</p>
          </div>
          <p>
-            Usually it'll be about math, food, music, design, ml/ai, dev, and the things in between.
+            The things I write will usually be about math, food, music, design, machine learning, dev, and everything in between.
          </p>
          <div id="links">
             <BlogPreview 

@@ -177,6 +177,7 @@ export default {
    /* transition: 0.3s cubic-bezier(0.77,0.2,0.05,1.0); */
 }
 
+
 .logoimgmobile {
    /* position: absolute; */
    width: 42px;
