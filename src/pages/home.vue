@@ -775,7 +775,8 @@ h3.designUsedSkills {
 }
 
 .daymodeimg {
-      filter: invert(100%) hue-rotate(180deg) contrast(90%) grayscale(50%) !important;
+      filter: invert(0%) !important;
+      transition: 0.8s;
    }
 
 .serif {
