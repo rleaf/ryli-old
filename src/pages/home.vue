@@ -218,16 +218,6 @@ html {
    color: var(--white);
 }
 
-#portfolio {
-   position: relative;
-   display: flex;
-   flex-wrap: wrap;
-   /* flex-direction: row; */
-   clear:both;
-   padding: 120px 50px 0 50px;
-   justify-content: center;
-}
-
 #imgcontainer {
    width: 300px;
    height: 300px;

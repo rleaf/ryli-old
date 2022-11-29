@@ -1,15 +1,16 @@
 <template>
-   <div id="portfolioSkeletonFlex">
-      <DesignPreview
-         v-for="design in designs"
-         :key="design.title"
-         :title="design.title"
-         :year="design.year"
-         :genre="design.genre"
-         :route="design.route"
-         :img="design.img"
-      /> 
-
+   <div>
+      <div id="portfolioSkeletonFlex">
+         <DesignPreview
+            v-for="design in designs"
+            :key="design.title"
+            :title="design.title"
+            :year="design.year"
+            :genre="design.genre"
+            :route="design.route"
+            :img="design.img"
+         /> 
+      </div>
    </div>
 </template>
 
@@ -95,10 +96,13 @@ export default {
 
 <style>
 
-#imgcontainer, #portfolioSkeletonFlex {
-   display: inherit;
-   flex-wrap: inherit;
-   justify-content: inherit;
+#portfolioSkeletonFlex {
+   position: relative;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   /* padding-top: 120px; */
+   clear: both;
    /* z-index: 5; */
    /* width: 100vw; */
 }

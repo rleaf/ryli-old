@@ -1,9 +1,23 @@
 <template>
   <div id="landing">
-     <!-- <NavBar /> -->
-     <div id="portfolio">
-        <portfolioSkeleton />
-     </div>
+      <div id="textContainerHeader">
+      </div>
+      <div id="curriculumBody">
+         <div id="curriculumHeader">
+            <p>Case Studies</p>
+         </div>
+         <p>
+            Toads
+         </p>
+      </div>
+
+
+      <div id="curriculumBody">
+         <div id="curriculumHeader">
+            <p>Designs</p>
+         </div>
+      </div>
+      <portfolioSkeleton />
   </div>
 </template>
 
