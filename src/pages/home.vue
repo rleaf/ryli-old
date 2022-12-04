@@ -123,6 +123,7 @@ html {
    background-color: var(--primaryDark);
    width: 100%;
    height: 100%;
+   /* scroll-behavior: smooth; */
 }
 
 /* #origin {
@@ -541,8 +542,6 @@ html {
 .designContainerBox {
    margin: 0 auto;
    padding-top: 50px;
-   /* margin-left: 4em;
-   margin-right: 4em; */
    background-color: var(--white);
    max-width: 90vw;
 }
@@ -566,11 +565,11 @@ html {
 }
 
 h2.designSubTitle {
-   font-family: var(--displayFont);
+   font-family: var(--type);
    font-size: 40px;
    line-height: normal;
-   font-weight: 500;
-   margin-left: 1em;
+   font-weight: normal;
+   margin-left: 40px;
    margin-bottom: 1em;
 }
 

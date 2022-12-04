@@ -18,16 +18,16 @@ export default {
     threeScene,
     NavBar
   },
-  watch: {
-    $route() {
-      document.body.style.overflowY = "hidden";
-    }
-  },
-  updated() {
-    setTimeout(function () {
-        document.body.style.overflowY = "auto";
-    }, 625);
-  },
+  // watch: {
+  //   $route() {
+  //     document.body.style.overflowY = "hidden";
+  //   }
+  // },
+  // updated() {
+  //   setTimeout(function () {
+  //       document.body.style.overflowY = "auto";
+  //   }, 625);
+  // },
 }
 </script>
 

@@ -40,9 +40,17 @@ export default {
 
          // Change shaders depending on design or hero
          switch (to.name) {
+            case 'steam':
+               this.designScene()
+               setTimeout(() => {
+                  this.experience.scene.add(this.experience.world.image.steamMesh)
+               }, 600)
+               break;
+
             case 'spotifyDesk':
                this.designScene()
                setTimeout(() => {
+                  console.log('woww');
                   this.experience.scene.add(this.experience.world.image.spotifyDeskMesh)
                }, 600)
                break;

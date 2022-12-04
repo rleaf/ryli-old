@@ -6,10 +6,13 @@
          <div id="curriculumHeader">
             <p>Case Studies</p>
          </div>
-         <p>
-            Toads
-         </p>
+
       </div>
+      <caseSkeleton />
+      <!-- <p>
+         <router-link :to="{ name: 'steamCase'}">toad</router-link>
+      </p> -->
+
 
 
       <div id="curriculumBody">
@@ -24,12 +27,14 @@
 <script>
 // import NavBar from '../components/nav.vue'
 import portfolioSkeleton from '../components/portfolioSkeleton.vue'
+import caseSkeleton from '../components/caseSkeleton.vue'
 
 export default {
    name: 'design',
    components: {
       // NavBar,
-      portfolioSkeleton
+      portfolioSkeleton,
+      caseSkeleton
    },
    head: {
       meta: [

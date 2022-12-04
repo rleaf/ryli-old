@@ -57,13 +57,11 @@
                   <div class="designOffsetContainer">
                      <div class="offsetImgText">
                         <h2 class="designSubTitle">Creative Process</h2>
-                        Despite the philosophy of recycling, many glyphs have unique curves to accomodate for the transition between thick strokes and pointed serifs.
+                        Despite recycling, many glyphs have unique curves to accomodate for the transition between thick strokes and pointed serifs.
                      </div>
                   </div>
                   <div class="designOffsetContainer">
-                     <div class="designOffsetImgContainer">
                         <img src="../../assets/design/oscilla/8.webp" alt="" class="offsetImg800">
-                     </div>
                   </div>
                </div>
                <div class="designSpace"></div>

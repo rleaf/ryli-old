@@ -18,6 +18,9 @@
 import DesignPreview from './portfolioPreview/designPreview.vue'
 
 export default {
+   components: {
+      DesignPreview
+   },
    data() {
       return {
          designs: [
@@ -86,9 +89,6 @@ export default {
             },
          ]
       }
-   },
-   components: {
-      DesignPreview
    },
 }
 

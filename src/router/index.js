@@ -121,6 +121,26 @@ const routes = [
     },
     component: () => import('../pages/portfolioObjects/spotifyDeskObject.vue')
   },
+  
+  
+  // CASE STUDY SECTION
+  {
+    path: '/design/steam',
+    name: 'steam',
+    meta: {
+    title: 'Steam Case Study'
+    },
+    component: () => import('../pages/caseStudies/steamCase.vue')
+  },
+  
+  {
+    path: '/design/test',
+    name: 'testCase',
+    meta: {
+    title: 'test Case Study'
+    },
+    component: () => import('../pages/caseStudies/testCase.vue')
+  },
 
 
   // BLOG SECTION
@@ -293,11 +313,13 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   scrollBehavior(to, from) {
+
+    // return {x: 0, y: 0}
+
     let path = to.path.slice(1).split('/')
 
     if (path.length > 1 && to.name != from.name) {
       if (path[0] === 'blog' || path[0] === 'design') {
-
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({ y:0 })
