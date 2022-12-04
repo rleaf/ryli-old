@@ -103,6 +103,7 @@ export default {
    justify-content: center;
    /* padding-top: 120px; */
    clear: both;
+   padding-bottom: 13vh;
    /* z-index: 5; */
    /* width: 100vw; */
 }

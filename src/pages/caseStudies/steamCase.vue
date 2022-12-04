@@ -533,7 +533,7 @@ export default {
             pin: true,
             scrub: true,
             anticipatePin: 1,
-            markers: true,
+            // markers: true,
          }
       })
       .to('.finalbg', {
