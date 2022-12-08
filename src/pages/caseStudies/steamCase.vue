@@ -287,7 +287,7 @@
                               </ul>
                               This section, An Overview, will focus on the first four. The following section, <a href="#closerlook">A Closer Look</a>, will highlight the various general changes.
                            </p>
-                           <Flicking class="flickingmargins" :options="{ align: 'prev', circular: true }" :plugins="plugins4" style="clear: both; margin-bottom: 4rem;">
+                           <Flicking class="flickingmargins" :options="{ circular: true }" :plugins="plugins4">
                                     <div class="panel">
                                        <video class="finalCarouselImage" autoplay loop muted :src="storevid" alt=""></video>
                                        <p style="font-weight: normal">
@@ -486,7 +486,7 @@
 import { Flicking } from "@egjs/vue-flicking"
 import { Arrow } from "@egjs/flicking-plugins";
 import '@egjs/vue-flicking/dist/flicking.css'
-import "@egjs/flicking-plugins/dist/arrow.css"
+// import "@egjs/flicking-plugins/dist/arrow.css"
 import toTop from '../../components/toTop.vue'
 import backdropFade from '../../components/backdropFade.vue'
 import { gsap } from 'gsap'
@@ -502,7 +502,7 @@ export default {
    components: {
       toTop,
       backdropFade,
-      Flicking: Flicking
+      Flicking
    },
    data() {
       return {
@@ -597,11 +597,6 @@ export default {
 
 .designContainerBox {
    padding-top: 0;
-}
-
-.e3test {
-   color: #1df0e941;
-   color: #79ef708e;
 }
 
 .active {
@@ -765,6 +760,13 @@ h4.caseSubTitle2 {
    width: 100%;
 }
 
+.panel > p {
+   margin-top: 5px;
+   font-weight: bold;
+   font-size: 14px;
+   text-align: center;
+}
+
 .flicking-arrow-prev::before, .flicking-arrow-prev::after {
    background-color: var(--shadeWhite2);
 }
@@ -788,12 +790,7 @@ h4.caseSubTitle2 {
    width: 100%;
 }
 
-.panel > p {
-   margin-top: 5px;
-   font-weight: bold;
-   font-size: 14px;
-   text-align: center;
-}
+
 
 .flickingmargins {
    margin-top: 2rem;
@@ -869,5 +866,105 @@ h5 {
   background: var(--designSelection) !important; /* Gecko Browsers */
 }
 
+.flicking-arrow-prev,
+.flicking-arrow-next {
+  position: absolute;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.flicking-arrow-prev.is-circle,
+.flicking-arrow-next.is-circle {
+  background-color: var(--shadeWhite2);
+  border-radius: 50%;
+}
+
+.flicking-arrow-disabled.is-circle {
+  background-color: rgb(10 10 10 / 10%);
+}
+
+.flicking-arrow-prev.is-circle::before,
+.flicking-arrow-prev.is-circle::after,
+.flicking-arrow-next.is-circle::before,
+.flicking-arrow-next.is-circle::after {
+  background-color: white;
+}
+
+.flicking-arrow-prev {
+  left: 10px;
+}
+.flicking-arrow-next {
+  right: 10px;
+}
+
+.flicking-arrow-prev.is-outside {
+  left: -74px;
+}
+.flicking-arrow-next.is-outside {
+  right: -74px;
+}
+
+.flicking-arrow-prev::before,
+.flicking-arrow-prev::after,
+.flicking-arrow-next::before,
+.flicking-arrow-next::after {
+  content: "";
+  width: 24px;
+  height: 6px;
+  position: absolute;
+  background-color: var(--shadeWhite2);
+}
+.flicking-arrow-prev::before {
+  top: 50%;
+  left: 22px;
+  transform: rotate(-45deg);
+  transform-origin: 0% 50%;
+}
+.flicking-arrow-prev::after {
+  top: calc(50% - 4px);
+  left: 22px;
+  transform: rotate(45deg);
+  transform-origin: 0% 50%;
+}
+.flicking-arrow-next::before {
+  top: 50%;
+  right: 22px;
+  transform: rotate(45deg);
+  transform-origin: 100% 50%;
+}
+.flicking-arrow-next::after {
+  top: calc(50% - 4px);
+  right: 22px;
+  transform: rotate(-45deg);
+  transform-origin: 100% 50%;
+}
+
+.flicking-arrow-disabled,
+.flicking-arrow-disabled {
+  cursor: default;
+}
+
+.flicking-arrow-disabled::before,
+.flicking-arrow-disabled::after,
+.flicking-arrow-disabled::before,
+.flicking-arrow-disabled::after {
+  background-color: #e6e6e6;
+}
+
+.flicking-arrow-prev.is-thin::before,
+.flicking-arrow-prev.is-thin::after,
+.flicking-arrow-next.is-thin::before,
+.flicking-arrow-next.is-thin::after{
+  height: 3px;
+}
+
+.flicking-arrow-prev.is-thin::after,
+.flicking-arrow-next.is-thin::after{
+  top: calc(50% - 2px);
+}
 
 </style>

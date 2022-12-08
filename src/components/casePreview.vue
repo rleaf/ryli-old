@@ -1,12 +1,13 @@
 <template>
   <div class="casePreview">
-      <router-link :to="{ name: `${route}`}">
          <div class="caseflex">
             <img :src="require(`@/assets/case/steam/${img}`)" alt="">
             <div class="caseInfo">
+            <router-link :to="{ name: `${route}`}">
                <p class="caseTitle">
                   {{ title }}
                </p>
+            </router-link>
                <p class="caseYear">
                   {{ year }}
                </p>
@@ -16,7 +17,6 @@
             </div>
 
          </div>
-      </router-link>
   </div>
 </template>
 
@@ -44,14 +44,16 @@ export default {
    .caseflex {
       display: flex;
       flex-direction: row;
+      gap: 5rem;
    }
 
-   .caseInfo {
+   /* .caseInfo {
       margin-left: 5rem;
-   }
+   } */
 
    .caseInfo p {
       font-family: var(--type2);
+      color: var(--shadeWhite2);
    }
 
    .caseTitle {

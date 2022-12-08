@@ -25,98 +25,130 @@ export default {
    },
 
    watch: {
-      $route(to, from) {
+      $route(to) {
          
          // Destroy shaders on blog pages
-         if (to.path.slice(0, 5) == '/blog' && to.path.length > 5) {
+         // if (to.path.slice(0, 5) == '/blog' && to.path.length > 5) {
+         //    setTimeout(() => {
+         //       this.experience.world.removeHero()
+         //       this.experience.world.removeDesign()
+         //    }, 600)
+         // }
+         // if (from.path.slice(0, 5) == '/blog' && from.path.length > 5) {
+         //    this.heroScene()
+         // }
+
+
+         // if (to.name != 'home') {
+         //    this.removeHeroScene()
+         // } else {
+         //    if (this.routeCache != 'design') {
+         //       console.log('huh');
+         //       setTimeout(() => {
+         //          this.heroScene()
+         //       }, 600)
+         //    }
+         // }
+
+         if (to.name == 'home') {
+            if (this.routeCache == 'design') {
+               this.removeDesign()
+            }
             setTimeout(() => {
-               this.experience.world.removeHero()
-               this.experience.world.removeDesign()
+               this.heroScene()
             }, 600)
+         } else {
+            this.removeHeroScene()
+            switch (to.name) {
+               case 'steam':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.steamMesh)
+                  }, 600)
+                  break;
+   
+               case 'spotifyDesk':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.spotifyDeskMesh)
+                  }, 600)
+                  break;
+   
+               case 'oscilla':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.oscillaMesh)
+                  }, 600)
+                  break;
+   
+               case 'sign':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.signMesh)
+                  }, 600)
+                  break;
+   
+               case 'spdmagazine':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.spdMesh)
+                  }, 600)
+                  break;
+   
+               case 'spotify':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.spotifyMesh)
+                  }, 600)
+                  break;
+   
+               case 'valiant':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.valiantMesh)
+                  }, 600)
+                  break;
+   
+               case 'dropbox':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.dropboxMesh)
+                  }, 600)
+                  break;
+   
+               case 'barnegat':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.barnegatMesh)
+                  }, 600)
+                  break;
+   
+               case 'expanse':
+                  this.designScene()
+                  setTimeout(() => {
+                     this.experience.scene.add(this.experience.world.image.expanseMesh)
+                  }, 600)
+                  break;
+               
+               default:
+                  console.log('default');
+                  this.removeDesign()
+                  this.removeHeroScene()
+                  break;
+            }
          }
-         if (from.path.slice(0, 5) == '/blog' && from.path.length > 5) {
-            this.heroScene()
-         }
+         // if (to.name === 'home') {
+         //    this.landingScene()
+         //    console.log(to, 'heh');
+         // } else {
+         //    this.offScene()
+         //    // setTimeout(() => {
+
+         //    // }, 600)
+           
+         // }
 
          // Change shaders depending on design or hero
-         switch (to.name) {
-            case 'steam':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.steamMesh)
-               }, 600)
-               break;
-
-            case 'spotifyDesk':
-               this.designScene()
-               setTimeout(() => {
-                  console.log('woww');
-                  this.experience.scene.add(this.experience.world.image.spotifyDeskMesh)
-               }, 600)
-               break;
-
-            case 'oscilla':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.oscillaMesh)
-               }, 600)
-               break;
-
-            case 'sign':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.signMesh)
-               }, 600)
-               break;
-
-            case 'spdmagazine':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.spdMesh)
-               }, 600)
-               break;
-
-            case 'spotify':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.spotifyMesh)
-               }, 600)
-               break;
-
-            case 'valiant':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.valiantMesh)
-               }, 600)
-               break;
-
-            case 'dropbox':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.dropboxMesh)
-               }, 600)
-               break;
-
-            case 'barnegat':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.barnegatMesh)
-               }, 600)
-               break;
-
-            case 'expanse':
-               this.designScene()
-               setTimeout(() => {
-                  this.experience.scene.add(this.experience.world.image.expanseMesh)
-               }, 600)
-               break;
-            
-            default:
-               if (this.routeCache == 'design') {
-                  this.heroScene()
-               }
-               break;
-         }
 
          let x = to.path.split('/')
 
@@ -128,23 +160,74 @@ export default {
    methods: {
 
       designScene() {
-         gsap.to(this.experience.world.groupOpacity, {sphere: 0.0, plane: 0.0, duration: 0.6, overwrite: "auto", onComplete:() => {
-            this.experience.world.removeHero()
+         // Tween hero to 0 opacity, then remove it
+         gsap.to(this.experience.world.groupOpacity, {
+            sphere: 0.0,
+            plane: 0.0,
+            duration: 0.6,
+            overwrite: "auto",
+            onComplete:() => {
+               this.experience.world.removeHero()
          }})
-         gsap.to(this.experience.world.groupOpacity, {designSceneOpacity: 0.4, delay: 0.6, duration: 1, overwrite: "auto"})
+
+         // Tween design scene to 0.4
+         gsap.to(this.experience.world.groupOpacity, {
+            designSceneOpacity: 0.4,
+            delay: 0.6,
+            duration: 1,
+            overwrite: "auto"
+         })
 
          this.routeCache = 'design'
       },
 
-      heroScene() {
-         gsap.to(this.experience.world.groupOpacity, {designSceneOpacity: 0, duration: .6, overwrite: true, onComplete: () => {
-            this.experience.world.removeDesign()
-            this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
+      removeDesign() {
+         // Tween design scene to 0, then remove it
+         gsap.to(this.experience.world.groupOpacity, {
+            designSceneOpacity: 0,
+            duration: .6,
+            overwrite: true,
+            onComplete: () => {
+               this.experience.world.removeDesign()
+               // this.heroScene()
+               // this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
          }})
 
-         gsap.to(this.experience.world.groupOpacity, {sphere: 1.0, plane: 1.0, delay: 0.6, duration: 1, overwrite: 'auto'})
+         // gsap.to(this.experience.world.groupOpacity, {
+         //    sphere: 1.0,
+         //    plane: 1.0,
+         //    delay: 0.6,
+         //    duration: 1,
+         //    overwrite: 'auto'
+         // })
 
-         this.routeCache = 'hero'
+         // this.routeCache = 'hero'
+      },
+
+      removeHeroScene() {
+         gsap.to(this.experience.world.groupOpacity, {
+            sphere: 0,
+            plane: 0,
+            duration: 0.6,
+            overwrite: 'auto',
+            onComplete: () => {
+               this.experience.world.removeHero()
+            }
+         })
+      },
+
+      heroScene() {
+         console.log('heroScene');
+         gsap.to(this.experience.world.groupOpacity, {
+            onStart: () => {
+            this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
+            },
+            sphere: 1.0,
+            plane: 1.0,
+            // delay: 0.6,
+            duration: 1.5,
+            overwrite: 'auto'
+         })
       }
    },
    mounted() {
