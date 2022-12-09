@@ -24,8 +24,10 @@
                   </p>
                   <div v-if="post.list" class="checkList">
                      <div v-for="item in post.list" :key="item">
-                        <input type="checkbox">
-                        <label class="strikethrough" for="">{{ item }}</label>
+                        <label class="strikethrough">
+                           <input type="checkbox">
+                           <span>{{ item }}</span>
+                        </label>
                      </div>
                   </div>
                   <p v-if="post.body">
@@ -82,7 +84,7 @@ export default {
                   'Cold unsalted butter (8 tbsp, 113g)',
                   'Ice water (7-10 tbsp, 99-142g)',
                   'Peeled & sliced apples (8 cups, 964g, ~3 1/4 lbs)',
-                  'Lemon juice (2 tbsn)',
+                  'Lemon juice (2 tbsp)',
                   'Granulated sugar (3/4 cup, 194g)',
                   'All-purpose flour (2 tbsp, 14g)',
                   'Cornstarch/Instant ClearJel (2 tbsp, 14g)',
@@ -92,7 +94,7 @@ export default {
                   'Allspice (1/4 tsp)',
                   'Boiled cider (1/4 cup, 85g) OR Apple juice concentrate (1/4 cup, 80g), optional',
                   'Vanilla Extract (2 tsp), optional',
-                  'Butter, diced in small pieces (2 tbsn, 28g)'
+                  'Butter, diced in small pieces (2 tbsp, 28g)'
                ],
                body: 'First five ingredients are for the crust - remaining are for the filling. Check source for full recipe.',
                source: {
@@ -134,7 +136,7 @@ export default {
                   'Dark brown sugar (3/4 packed cup, 150g)',
                   'Granulated sugar (3/4 cup, 150g)',
                   'Cold large eggs (2, 100g)',
-                  'Vanilla Extract (1 tbsn)',
+                  'Vanilla Extract (1 tbsp)',
                   'Bittersweet chocolate disks, half coarsely chopped (5oz, 142g)',
                   'Milk chocolate disks, half coarsely chopped (5oz, 142g)',
                ],
@@ -230,10 +232,18 @@ label.striketrhough {
    /* color: var(--shadeWhite1) */
 }
 
-.checkList input[type="checkbox"]:checked + label.strikethrough {
+/* .checkList input[type="checkbox"]:checked + label.strikethrough {
    text-decoration: line-through;
    text-decoration-thickness: 0.1rem;
-   /* color: var(--designSelection); */
+} */
+
+.checkList input[type="checkbox"] {
+   accent-color: var(--shadeWhite2);
+}
+
+.checkList input[type="checkbox"]:checked + span {
+   text-decoration: line-through;
+   text-decoration-thickness: 0.1rem;
 }
 
 p.source {
