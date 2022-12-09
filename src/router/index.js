@@ -32,9 +32,9 @@ const routes = [
     component: () => import('../pages/curriculum.vue')
   },
   {
-    path: '/glossary',
-    name: 'glossary',
-    component: () => import('../pages/glossary.vue'),
+    path: '/food',
+    name: 'food',
+    component: () => import('../pages/food.vue'),
     meta: {
       title: 'Food 🍔',
     }

@@ -22,7 +22,7 @@
                <router-link :to="{ name: 'blog'}" class="underline">
                   <li>Blog</li>
                </router-link>
-               <router-link :to="{ name: 'glossary'}" class="underline">
+               <router-link :to="{ name: 'food'}" class="underline">
                   <li>Food</li>
                </router-link>
             </ul>
@@ -63,7 +63,7 @@
                      <router-link :to="{ name: 'blog'}" class="mobilenavbutton">
                         <li>Blog</li>
                      </router-link>
-                     <router-link :to="{ name: 'glossary'}" class="mobilenavbutton">
+                     <router-link :to="{ name: 'food'}" class="mobilenavbutton">
                         <li>Food</li>
                      </router-link>
                      <a href="https://twitter.com/_ryli" target="_blank" class="mobilenavbutton">
