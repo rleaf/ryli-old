@@ -433,7 +433,7 @@
                            </div>
                            <div class="side">
                               <div class="sideText" style="max-width: 50%;">
-                                 <h5>toads</h5>
+                                 <h5>Dynamic Search</h5>
                                  <p class="bodyText">
                                     Instead of numerous search bars between main sections, there is only one and it is dynamic to the section you are in.
                                  </p>
