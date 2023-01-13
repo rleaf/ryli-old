@@ -131,7 +131,6 @@ export default {
                   break;
                
                default:
-                  console.log('default');
                   this.removeDesign()
                   this.removeHeroScene()
                   break;
@@ -217,7 +216,6 @@ export default {
       },
 
       heroScene() {
-         console.log('heroScene');
          gsap.to(this.experience.world.groupOpacity, {
             onStart: () => {
             this.experience.world.scene.add(this.experience.world.sphere.mesh, this.experience.world.plane.mesh)
