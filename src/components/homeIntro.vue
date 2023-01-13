@@ -5,7 +5,7 @@
       <!-- <span class="introword">Lin</span> -->
       <br>
       <div id="subda">
-         <span class="subwordhomeIntro">All things design. Some things development.</span>
+         <span class="subwordhomeIntro">All things design. A lot of things development.</span>
       </div>
    </div>
 </div>

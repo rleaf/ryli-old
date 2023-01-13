@@ -446,7 +446,6 @@
                      
                   </section>
 
-
                   <section id="conclusion">
                      <div class="sectionWrapper">
                         <h2 class="designSubTitle">Conclusion</h2>

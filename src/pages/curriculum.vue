@@ -11,7 +11,7 @@
             <div id="linkhover"> 
                <p>
                   Hello I'm Ryan Lin. This is my personal site and here you'll find more about who I am and the things I enjoy doing.
-                  Most of my time is divided between some derivative of design, frequently UI/UX, and machine learning projects.
+                  Most of my time is divided between some derivative of design, frequently UI/UX, machine learning projects, and web development.
                   <br><br>
                   The 
                   <router-link :to="{ name: 'design'}">design</router-link> section serves as a portfolio and showcases some of my previous projects.
@@ -55,7 +55,13 @@
                <ul class="curriculumul" style="list-style-type: none;">
                   <li><i>Design:</i></li>
                      <ul>
-                        <li>Adobe CC (PhotoShop, Illustrator, After Effects, Premiere, InDesign)</li>
+                        <li>Adobe CC</li>
+                        <ul>
+                           <li>PhotoShop</li>
+                           <li>Illustrator</li>
+                           <li>After Effects</li>
+                           <li>InDesign</li>
+                        </ul>
                         <li>Figma</li>
                         <li>InVision</li>
                         <li>HTML & CSS</li>
@@ -63,9 +69,23 @@
                      <br>
                   <li><i>Development:</i></li>
                      <ul>
-                        <li>Python (PyTorch, Pandas, NumPy, Matplotlib)</li>
-                        <li>JavaScript (Vue.js, Node.js, Three.js, GSAP)</li>
-                        <li>GLSL</li>
+                        <li>Python</li>
+                        <ul>
+                           <li>PyTorch</li>
+                           <li>Pandas</li>
+                           <li>NumPy</li>
+                           <li>Matplotlib</li>
+                        </ul>
+                        <li>JavaScript</li>
+                        <ul>
+                           <li>Vue.js</li>
+                           <li>Express.js</li>
+                           <li>Mongo DB</li>
+                           <li>Node.js</li>
+                           <li>Three.js</li>
+                           <li>GSAP</li>
+                        </ul>
+                        <li>Familiarity with GLSL</li>
                      </ul>
                   </ul>
             </div>
