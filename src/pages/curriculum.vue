@@ -44,7 +44,7 @@
             <div>
                <div id="curriculumHeader">
                   <!-- <u style="font-size: 18px;">Technical Skills & Education</u> -->
-                  <p>Technical Skills & Education</p>
+                  <p>Skills & Education</p>
                </div>
                <i style="color: var(--white); font-size: 14px">* Full CV available upon request</i>
                <p>
@@ -52,42 +52,61 @@
                   <br>
                   Bachelor of Arts: Graphic Design
                </p>
-               <ul class="curriculumul" style="list-style-type: none;">
-                  <li><i>Design:</i></li>
-                     <ul>
-                        <li>Adobe CC</li>
+               <div class="curriculumul" style="list-style-type: none;">
+                  <div>
+                     <li><b>Design</b></li>
                         <ul>
-                           <li>PhotoShop</li>
-                           <li>Illustrator</li>
-                           <li>After Effects</li>
-                           <li>InDesign</li>
+                           <li>UX/UI</li>
+                           <ul>
+                              <li>Research</li>
+                              <li>Wireframing</li>
+                              <li>Prototyping</li>
+                           </ul>
+                           <li>Typography</li>
+                           <li>Software</li>
+                           <ul>
+                              <li>Adobe CC</li>
+                              <ul>
+                                 <li>PhotoShop</li>
+                                 <li>Illustrator</li>
+                                 <li>After Effects</li>
+                                 <li>InDesign</li>
+                              </ul>
+                              <li>Figma</li>
+                              <li>InVision</li>
+                           </ul>
                         </ul>
-                        <li>Figma</li>
-                        <li>InVision</li>
-                        <li>HTML & CSS</li>
-                     </ul>
-                     <br>
-                  <li><i>Development:</i></li>
-                     <ul>
-                        <li>Python</li>
+                        <br>
+                  </div>
+                  <div> 
+                     <li><b>Development</b></li>
                         <ul>
-                           <li>PyTorch</li>
-                           <li>Pandas</li>
-                           <li>NumPy</li>
-                           <li>Matplotlib</li>
+                           <li>Python</li>
+                           <ul>
+                              <li>PyTorch</li>
+                              <li>Pandas</li>
+                              <li>NumPy</li>
+                              <li>Matplotlib</li>
+                           </ul>
+                           <li>HTML & CSS</li>
+                           <li>JavaScript</li>
+                           <ul>
+                              <li>Vue.js</li>
+                              <li>Express.js</li>
+                              <li>Mongo DB</li>
+                              <li>Node.js</li>
+                              <li>Three.js</li>
+                              <li>D3.js</li>
+                              <li>GSAP</li>
+                           </ul>
+                           <li>Familiarity with:</li>
+                           <ul>
+                              <li>GLSL</li>
+                              <li>AWS</li>
+                           </ul>
                         </ul>
-                        <li>JavaScript</li>
-                        <ul>
-                           <li>Vue.js</li>
-                           <li>Express.js</li>
-                           <li>Mongo DB</li>
-                           <li>Node.js</li>
-                           <li>Three.js</li>
-                           <li>GSAP</li>
-                        </ul>
-                        <li>Familiarity with GLSL</li>
-                     </ul>
-                  </ul>
+                  </div>
+               </div>
             </div>
          </div>
 
@@ -121,8 +140,11 @@ a {
    padding: 1rem 5vw;
 } */
 
-.curriculumul ul {
-   list-style-type: disc;
+.curriculumul {
+   display: flex;
+   padding-top: 50px;
+   gap: 100px;
+   /* list-style-type: disc; */
 }
 
 /* * {
