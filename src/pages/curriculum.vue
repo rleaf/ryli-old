@@ -76,7 +76,6 @@
                               <li>InVision</li>
                            </ul>
                         </ul>
-                        <br>
                   </div>
                   <div> 
                      <li><b>Development</b></li>
