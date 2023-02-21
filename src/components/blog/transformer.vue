@@ -51,6 +51,7 @@
                <a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank"><i>Attention Is All You Need</i></a>
                a couple times throughout this read. Feel free to click around through the
                contents displayed above to read more about a particular section and the affiliated code. Similarly to other articles I've written, all code uses the PyTorch framework.
+            </p>
             <p>
                It is mentioned in the opening of the <i>Attention is All You Need</i> that the Transformer model was introduced to ameliorate and <i>"push the boundaries of recurrent language
                models and encoder-decoder architectures"</i>. While this was certainly true back when Transformers were new, it is worth mentioning that the impact of Transformers has broached
